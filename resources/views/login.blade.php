@@ -10,12 +10,12 @@
 
     <h2 class="login-header">Log in</h2>
 
-    <form class="login-container" method="POST" action="{{route('user.login')}}">
+    <form class="login-container" method="POST" action="{{route('login')}}">
         @csrf
-        <p><input type="email" name="email"placeholder="Email"></p>
+        <p><input type="login" name="login"placeholder="Login"></p>
         <p><input type="password"name="password" placeholder="Password"></p>
         <p><input type="submit" value="Log in"></p>
-        {{ $errors->first('email') }}
+        {{ $errors->first('login') }}
     </form>
 </div>
 </body>

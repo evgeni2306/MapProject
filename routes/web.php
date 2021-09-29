@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,12 +18,12 @@ Route::get('/', function () {
 });
 
 
-Route::name('user.')->group(function(){
+
     Route::view('/private','private')->middleware('auth')->name('private');
 
     Route::get('/login', function () {
         if (Auth::check()){
-            return redirect(route('user.private'));
+            return redirect(route('private'));
         }
         return view('login');
     })->name('login');
@@ -32,16 +32,17 @@ Route::name('user.')->group(function(){
 
 
     Route::get('/logout',function (){
+        session_destroy();
         Auth::logout();
         return redirect('/login');
     });
 
     Route::get('/registration', function () {
         if (Auth::check()){
-            return redirect(route('user.private'));
+            return redirect(route('private'));
         }
         return view('registration');
     })->name('registration');
 
     Route::post('/registration',[\App\Http\Controllers\RegisterController::class,'save']);
-});
+

@@ -10,9 +10,9 @@
 
     <h2 class="login-header">Log in</h2>
 
-    <form class="login-container" method="POST" action="{{route('user.registration')}}">
-        <p><input type="email" name="email" placeholder="Email"></p>
-        {{ $errors->first('email') }}
+    <form class="login-container" method="POST" action="{{route('registration')}}">
+        <p><input type="text" name="login" placeholder="Login"></p>
+        {{ $errors->first('login') }}
         <p><input type="text" name="name" placeholder="FirstName"></p>
         {{ $errors->first('name') }}
         <p><input type="text" name="surname" placeholder="SecondName"></p>
