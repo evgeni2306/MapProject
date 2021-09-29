@@ -36,7 +36,7 @@
     <div class="form-buttons _container">
       <div class="form-button form-button__createacc">Создать аккаунт</div>
       <div class="divider">или</div>
-      <a href="#" class="form-button form-button__google"><img src="img/01.svg" alt=""> Войти с помощью Google</a>
+      <a href="#" class="form-button form-button__google"><img src="img/01.svg" alt="google"> Войти с помощью Google</a>
       <a href="#" class="form-button form-button__vk"><img src="img/02.svg" alt="vk"> Войти с помощью ВКонтакте</a>
     </div>
   </div>
