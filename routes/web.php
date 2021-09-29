@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 session_start();
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ Route::get('/', function () {
         return view('login');
     })->name('login');
 
-    Route::post('/login',[\App\Http\Controllers\LoginController::class,'login']);
+    Route::post('/login',[LoginController::class,'login']);
 
 
     Route::get('/logout',function (){
@@ -44,5 +46,5 @@ Route::get('/', function () {
         return view('registration');
     })->name('registration');
 
-    Route::post('/registration',[\App\Http\Controllers\RegisterController::class,'save']);
+    Route::post('/registration',[RegisterController::class,'save']);
 
