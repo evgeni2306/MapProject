@@ -19,18 +19,18 @@
     </div>
     <div class="form-fields _container">
       <div class="form-field form-field__email">
-        <input type="email" placeholder="E-mail">
+        <input type="email" placeholder="E-mail" name = 'email'>
       </div>
       <div class="form-field__fullname">
         <div class="form-field form-field__name">
-        <input type="text" placeholder="Имя">
+        <input type="text" placeholder="Имя" name = 'name'>
       </div>
       <div class="form-field form-field__lastname">
-        <input type="text" placeholder="Фамилия">
+        <input type="text" placeholder="Фамилия" name = 'surname'>
       </div>
-    </div>      
+    </div>
       <div class="form-field form-field__password">
-        <input type="password" placeholder="Пароль">
+        <input type="password" placeholder="Пароль" name = 'password'>
       </div>
     </div>
     <div class="form-buttons _container">
