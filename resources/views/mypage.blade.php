@@ -23,23 +23,23 @@
       </div>
       <div class="form-field__fullname">
         <div class="form-field form-field__name">
-        <input type="text" placeholder="Имя">
+          <input type="text" placeholder="Имя">
+        </div>
+        <div class="form-field form-field__lastname">
+          <input type="text" placeholder="Фамилия">
+        </div>
+      </div>      
+        <div class="form-field form-field__password">
+          <input type="password" placeholder="Пароль">
+        </div>
       </div>
-      <div class="form-field form-field__lastname">
-        <input type="text" placeholder="Фамилия">
-      </div>
-    </div>      
-      <div class="form-field form-field__password">
-        <input type="password" placeholder="Пароль">
+      <div class="form-buttons _container">
+        <div class="form-button form-button__createacc">Создать аккаунт</div>
+        <div class="divider"><hr>или<hr></div>
+        <a href="#" class="form-button form-button__google"><img src="img/01.svg" alt="google">Войти с помощью Google</a>
+        <a href="#" class="form-button form-button__vk"><img src="img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
       </div>
     </div>
-    <div class="form-buttons _container">
-      <div class="form-button form-button__createacc">Создать аккаунт</div>
-      <div class="divider">или</div>
-      <a href="#" class="form-button form-button__google"><img src="img/01.svg" alt="google"> Войти с помощью Google</a>
-      <a href="#" class="form-button form-button__vk"><img src="img/02.svg" alt="vk"> Войти с помощью ВКонтакте</a>
-    </div>
-  </div>
   <script src="/js/script.js"></script>
 </body>
 </html>
