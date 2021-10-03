@@ -19,7 +19,7 @@
     </div>
     <div class="form-fields _container">
       <div class="form-field form-field__email">
-        <input type="email" placeholder="E-mail">
+        <input type="email" placeholder="E-mail" name = 'email'>
       </div>
       <div class="form-field__fullname">
         <div class="form-field form-field__name">
@@ -35,7 +35,7 @@
       </div>
       <div class="form-buttons _container">
         <div class="form-button form-button__createacc">Создать аккаунт</div>
-        <div class="divider"><hr>или<hr></div>
+        <div class="divider">или</div>
         <a href="#" class="form-button form-button__google"><img src="img/01.svg" alt="google">Войти с помощью Google</a>
         <a href="#" class="form-button form-button__vk"><img src="img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
       </div>

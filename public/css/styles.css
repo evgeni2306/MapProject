@@ -205,9 +205,6 @@ input:hover {
     .form-field__lastname {
         width: 100%;
     }
-    .wrapper {
-        padding: 30px;
-    }
     .logo {
         margin-bottom: 10px;
     }
@@ -227,6 +224,7 @@ input:hover {
     }
     .wrapper {
         margin: 10px auto;
+        padding: 30px;
     }
 }
 @media (max-width: 767px) {
