@@ -49,4 +49,4 @@ Route::get('/', function () {
     Route::post('/registration',[RegisterController::class,'save']);
 
 
-lj,
+
