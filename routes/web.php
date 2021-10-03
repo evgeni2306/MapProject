@@ -14,9 +14,14 @@ session_start();
 | contains the "web" middleware group. Now create something great!
 |
 */
+$_SESSION['MainX']= 56.838285;
+$_SESSION['MainY'] = 60.603442;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/map', function () {
+    return view('map');
 });
 
 
