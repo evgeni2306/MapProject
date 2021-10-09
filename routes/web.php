@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/map', function () {
     return view('map');
-});
+})->name('map');
 
 Route::post('/create',[PointController::class,'save']);
 

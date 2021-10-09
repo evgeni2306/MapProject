@@ -19,6 +19,8 @@ class Users extends Migration
             $table->string('name',255)->nullable(false);
             $table->string('surname',255)->nullable(false);
             $table->string('password',255)->nullable(false);
+            $table->string('avatar', 255)->nullable('true');
+            $table->string('transport', 255)->nullable('true');
             $table->timestamps();
         });
     }
