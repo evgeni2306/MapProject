@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function save(Request $request){
         if(Auth::check()){
-            return redirect(route('private'));
+            return redirect(route('map'));
         }
 
         $validateFields=$request->validate([
@@ -31,7 +31,7 @@ class RegisterController extends Controller
         $user=User::create($validateFields);
         if ($user){
             Auth::login($user);
-            return redirect(route('private'));
+            return redirect(route('map'));
         }
 
         return redirect(route('login'));

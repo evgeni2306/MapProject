@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login(Request $request){
-        if(Auth::check()){
-            return redirect()->intended(route('private'));
+        if(Auth::check()) {
+            return redirect('map');
         }
+
 
         $formFields=$request->only(['login','password']);
         if (Auth::attempt($formFields)){
-            return redirect()->intended(route('private'));
+            return redirect('map');
         }
 
         return redirect(route('login'))->withErrors([

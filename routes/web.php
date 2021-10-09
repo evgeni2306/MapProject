@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginController;use App\Http\Controllers\PointController;
+use App\Models\Point;
 session_start();
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +17,26 @@ session_start();
 */
 $_SESSION['MainX']= 56.838285;
 $_SESSION['MainY'] = 60.603442;
+$_SESSION['Points']=Point::all();
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/map', function () {
     return view('map');
 });
 
+Route::post('/create',[PointController::class,'save']);
 
 
-    Route::view('/private','private')->middleware('auth')->name('private');
+
+
+
+
+
+
+
 
     Route::get('/login', function () {
         if (Auth::check()){
