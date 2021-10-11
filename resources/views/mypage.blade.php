@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/styles.css">
-  <title>Форма регистрации</title>
+  <link rel="stylesheet" href="/registration/css/styles.css">
+  <title>Страница регистрации</title>
 </head>
 <body>
   <div class="main-image _ibg">
-    <img src="img/main.png" alt="main">
+    <img src="registration/img/main.png" alt="main">
   </div>
   <div class="wrapper">
     <div class="logo">LOGO</div>
@@ -19,27 +19,35 @@
     </div>
     <div class="form-fields _container">
       <div class="form-field form-field__email">
-        <input type="email" placeholder="E-mail" name = 'email'>
+        <form action="">
+          <input type="email" placeholder="E-mail" name = 'email'>
+        </form>   
       </div>
       <div class="form-field__fullname">
         <div class="form-field form-field__name">
-          <input type="text" placeholder="Имя">
+          <form action="">
+            <input type="text" placeholder="Имя">
+          </form>
         </div>
         <div class="form-field form-field__lastname">
-          <input type="text" placeholder="Фамилия">
+          <form action="">
+            <input type="text" placeholder="Фамилия">
+          </form>  
         </div>
       </div>      
         <div class="form-field form-field__password">
-          <input type="password" placeholder="Пароль">
+          <form action="">
+            <input type="password" placeholder="Пароль">
+          </form>         
         </div>
       </div>
       <div class="form-buttons _container">
-        <div class="form-button form-button__createacc">Создать аккаунт</div>
+        <a class="form-button form-button__createacc">Создать аккаунт</a>
         <div class="divider">или</div>
-        <a href="#" class="form-button form-button__google"><img src="img/01.svg" alt="google">Войти с помощью Google</a>
-        <a href="#" class="form-button form-button__vk"><img src="img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
+        <a href="#" class="form-button form-button__google"><img src="registration/img/01.svg" alt="google">Войти с помощью Google</a>
+        <a href="#" class="form-button form-button__vk"><img src="registration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
       </div>
     </div>
-  <script src="/js/script.js"></script>
+  <script src="/registration/js/script.js"></script>
 </body>
 </html>
