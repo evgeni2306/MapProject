@@ -23,6 +23,7 @@
 <div id="mapid" style="width: 600px; height: 400px;"></div>
 <script>
 
+
     var mymap = L.map('mapid',{zoom:15, minZoom:11, maxZoom:18, maxBounds:[[56.95097, 60.30052],
             [56.72561, 60.98717]]}).setView([{{$_SESSION['MainX']}}, {{$_SESSION['MainY']}}], 18);
 
@@ -35,11 +36,11 @@
         zoomOffset: -1
     }).addTo(mymap);
 
-    <?foreach ($_SESSION['Points'] as $point ) {?>
-   L.marker([{{$point->x}}, {{$point->y}}]).addTo(mymap)
-       .bindPopup("{{$point->name}}-{{$point->description}}").openPopup();
+{{--    <?foreach ($_SESSION['Points'] as $point ) {?>--}}
+{{--    L.marker([{{$point->x}}, {{$point->y}}]).addTo(mymap)--}}
+{{--        .bindPopup("<b>Hello world!</b><br />I am a {{$point->text}}.").openPopup();--}}
 
-    <? }?>
+{{--    <? }?>--}}
 
 
     mymap.setView([{{$_SESSION['MainX']}}, {{$_SESSION['MainY']}}], 18);
@@ -61,12 +62,12 @@
     function onMapClick(e) {
         popup
             .setLatLng(e.latlng)
-            .setContent('<form  method="POST" action="/create" ">\n' +
+            .setContent('<form action="{{route('map')}}" method="POST">\n' +
                 '\n' +
-                '        <input type="hidden" name="x"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
-                '        <input type="hidden" name="y"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
-                '        <input type="text" name="name" placeholder="Название" size="15" maxlength="30" value="">\n' +
-                '        <input type="text" name="description" placeholder="Описание" size="15" maxlength="30" value="">\n' +
+                '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
+                '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
+                '        <input type="text" name="description" size="15" maxlength="30" value="">\n' +
+
                 '@csrf' +
                 '    <input type="submit">\n' +
                 '</form>')
@@ -75,7 +76,10 @@
 
     mymap.on('click', onMapClick);
 
+
 </script>
+
+
 
 
 

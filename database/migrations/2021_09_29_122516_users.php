@@ -14,7 +14,7 @@ class Users extends Migration
     public function up()
     {
         Schema::create('users',function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('login',50)->nullable(false)->unique('login');
             $table->string('name',255)->nullable(false);
             $table->string('surname',255)->nullable(false);
