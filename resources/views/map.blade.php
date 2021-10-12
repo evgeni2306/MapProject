@@ -36,11 +36,11 @@
         zoomOffset: -1
     }).addTo(mymap);
 
-{{--    <?foreach ($_SESSION['Points'] as $point ) {?>--}}
-{{--    L.marker([{{$point->x}}, {{$point->y}}]).addTo(mymap)--}}
-{{--        .bindPopup("<b>Hello world!</b><br />I am a {{$point->text}}.").openPopup();--}}
+    <?foreach ($_SESSION['Points'] as $point ) {?>
+    L.marker([{{$point->lat}}, {{$point->lng}}]).addTo(mymap)
+        .bindPopup( "{{$point->description}}").openPopup();
 
-{{--    <? }?>--}}
+    <? }?>
 
 
     mymap.setView([{{$_SESSION['MainX']}}, {{$_SESSION['MainY']}}], 18);

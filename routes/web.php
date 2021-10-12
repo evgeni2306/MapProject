@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddPointController;
+use App\Http\Controllers\GetAllController;
 use App\Models\Point;
 session_start();
 /*
@@ -28,7 +29,7 @@ Route::get('/map', function () {
     return view('map');
 })->name('map');
 Route::post('/map', [AddPointController::class,'AddPoint']);
-
+Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 
 
