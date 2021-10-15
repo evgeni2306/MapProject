@@ -25,8 +25,7 @@
 
 
     var mymap = L.map('mapid',{zoom:15, minZoom:11, maxZoom:18, maxBounds:[[56.95097, 60.30052],
-            [56.72561, 60.98717]]}).setView([{{$_SESSION['MainX']}}, {{$_SESSION['MainY']}}], 18);
-
+            [56.72561, 60.98717]]}).setView([56.838285, 60.603442], 18);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -43,7 +42,7 @@
     <? }?>
 
 
-    mymap.setView([{{$_SESSION['MainX']}}, {{$_SESSION['MainY']}}], 18);
+    mymap.setView([56.838285, 60.603442], 18);
     // L.circle([51.508, -0.11], 500, {
     //     color: 'red',
     //     fillColor: '#f03',
