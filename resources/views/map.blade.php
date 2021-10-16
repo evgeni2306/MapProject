@@ -78,8 +78,48 @@
             </div>
         </div>
         <div class="map" id="mapid"></div>
-        
+        <script>
+
+            var mymap = L.map('mapid').setView([56.82, 60.6], 13);
+            var popup = L.popup();
+            var addObjectForm = document.querySelector('.add-object__container');
+            var cancelButton = document.querySelector('.form-photos__cancel')
+
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(mymap);
+
+            function onMapClick(e) {
+                /*if(addObjectForm.classList.contains('hidden')) {
+                    addObjectForm.classList.remove('hidden');
+                } */
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent('<form action="{{route('map')}}" method="POST">\n' + 
+                        '\n' +
+                        '<input type="hidden" name="x" value="' + e.latlng.lat.tostring().substr(0,9) + '">\n' + 
+                        '<input type="hidden" name="y" value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
+                        '‹input type="text" name="text" size="15" maxlength="30" value="">\n' +
+                        
+                        '@csrf' + 
+                        '<input type="submit">\n' +
+                        '</form>')
+                    .openOn(mymap);
+            }
+
+            /*cancelButton.addEventListener('click', function() {
+                addObjectForm.classList.add('hidden');
+            })*/;
+
+            mymap.on('click', onMapClick);
+
+        </script>
     </div>
-    <script src="/mapPage/js/script.js"></script>
+    <script src="/PageMap/js/script.js"></script>
     </body>
 </html>

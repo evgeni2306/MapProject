@@ -22,3 +22,6 @@ Route::get('/mypage', function () {
 Route::get('/map', function () {
     return view('map');
 });
+Route::get('/entrance', function () {
+    return view('entrance');
+});
