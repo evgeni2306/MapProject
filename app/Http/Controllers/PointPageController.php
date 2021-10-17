@@ -14,14 +14,17 @@ class PointPageController extends Controller
             $point = DB::table('points')->select('id','type', 'description')
                 ->where('id', $id)->first();
 $_SESSION['CurrentPoint'] = $point;
+$pcomments = DB::table('pcomments')
+    ->join('users', 'pcomments.creatorId', '=', 'users.id')
+    ->select('rating','text','pcomments.created_at','avatar','login')
+    ->where('pointid',$id)->get();
+$_SESSION['Pcomments'] = $pcomments;
+
+
 return view('test');
-
-
         } else {
 
-//            if (!Auth::check()) {
-//                return redirect(route('auth.login'));
-//            } else {
+
                 return redirect(route('login'));
 //            }
         }
