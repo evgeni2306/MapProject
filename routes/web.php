@@ -28,18 +28,18 @@ Route::get('/', function () {
 });
 
 Route::get('/registration', function () {
-    if (Auth::check()) {
-        return redirect(route('private'));
-    }
+//    if (Auth::check()) {
+//        return redirect(route('private'));
+//    }
     return view('registration');
 })->name('registration');
 
-Route::post('/registration', [RegisterController::class, 'save']);
+Route::post('/registration', [RegisterController::class, 'save'])->name('registration');
 
 Route::get('/login', function () {
-    if (Auth::check()) {
-        return redirect(route('private'));
-    }
+//    if (Auth::check()) {
+//        return redirect(route('private'));
+//    }
     return view('login');
 })->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -52,11 +52,11 @@ Route::get('/logout', function () {
 });
 
 
-//Route::get('/map', function () {
-//    return view('map');
-//})->name('map');
-//Route::post('/map', [AddPointController::class, 'AddPoint']);
-//Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
+Route::get('/map', function () {
+    return view('map');
+})->name('map');
+Route::post('/map', [AddPointController::class, 'AddPoint']);
+Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
 
@@ -68,18 +68,11 @@ Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name
 Route::get('/mypage', function () {
     return view('mypage');
 });
-Route::get('/map', function () {
-    return view('map');
-});
+//Route::get('/map', function () {
+//    return view('map');
+//})->name('map');
+
 Route::get('/entrance', function () {
     return view('entrance');
 });
-Route::get('/mypage', function () {
-    return view('mypage');
-});
-Route::get('/map', function () {
-    return view('map');
-});
-Route::get('/entrance', function () {
-    return view('entrance');
-});
+
