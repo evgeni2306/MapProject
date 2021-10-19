@@ -29,7 +29,7 @@
                     </li>
                     <li class="menu__item" id="menu__link__add-route">
                     <button type="button" class="menu__link" ><img src="/PageMap/img/header/04.svg" alt="route">Добавить маршрут</button>
-                    </li>                    
+                    </li>
                 </ul>
                 </nav>
             </div>
@@ -86,19 +86,19 @@
                 tileSize: 512,
                 zoomOffset: -1
             }).addTo(mymap);
-   
+
             var popup = L.popup();
-            
+
             var addObjectForm = document.querySelector('.add-object__container');
             var menuLinks = document.querySelectorAll('.menu__link');
-            var lastClicked = menuLinks[0]; 
+            var lastClicked = menuLinks[0];
 
             for( var i = 0; i < menuLinks.length; i++ ){
                 menuLinks[i].addEventListener('click', function(){
                 lastClicked.classList.remove('active-menu');
                 this.classList.add('active-menu');
-                
-                lastClicked = this; 
+
+                lastClicked = this;
             });
             }
 
@@ -111,9 +111,9 @@
                 }
 
                 if(el.target === addObjectForm) {
-                    addObjectForm.classList.add('hidden'); 
+                    addObjectForm.classList.add('hidden');
                 }
-            });   
+            });
 
             function onMapClick(e) {
                 if(addObjectForm.classList.contains('hidden')) {
@@ -122,12 +122,45 @@
 
                 popup
                     .setLatLng(e.latlng)
-                    .setContent("You clicked the map at " + e.latlng.toString())
+                    .setContent('<div class="add-object__container hidden">'+
+                    '<div class="text-container">'+
+                    '<div class="add-object__title">Добавление объекта</div>'+
+                '<div class="add-object__subtitle">Укажите местоположение объекта, передвигая метку на карте.</div>'+
+                '</div>'+
+                '<div class="form-fields">'+
+                    '<div class="form-field form-name">'+
+                    '<form action="">'+
+                    '<input type="text" placeholder="Введите название" required>'+
+                '</form>'+
+                '</div>'+
+                '<div class="form-field form-object-address">'+
+                    '<form action="">'+
+                    '<input type="text" placeholder="Введите адрес" required>'+
+                '</form>'+
+                '</div>'+
+                '+<div class="form-field form-category">'+
+                    '+<form action="">'+
+                    '+<select name="form-category" required>'+
+                '<option value="" disabled selected style="display:none;">Выберите категорию</option>'+
+                '<option value="Socket"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>'+
+                    '<option value="Attraction"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>'+
+                    '+</select>'+
+                    '</form>'+
+                    '</div>'+
+
+                    '+<div class="form-field form-button">'+
+                    '+<form action="">'+
+                    '<button type="submit" class="form-photos__add">Добавить</button>'+
+                    '</form>'+
+
+                    '</div>'+
+                    '</div>'+
+                    '</div>')
                     .openOn(mymap);
             }
 
             mymap.on('click', onMapClick);
-            
+
         </script>
     </div>
     <script src="/PageMap/js/script.js"></script>
