@@ -116,40 +116,42 @@
             });
 
             function onMapClick(e) {
-                if(addObjectForm.classList.contains('hidden')) {
-                    addObjectForm.classList.remove('hidden');
-                }
+                // if(addObjectForm.classList.contains('hidden')) {
+                //     addObjectForm.classList.remove('hidden');
+                // }
 
                 popup
                     .setLatLng(e.latlng)
-                    .setContent('<div class="add-object__container hidden">'+
+                    .setContent(
+                        // '<div class="add-object__container ">'+
                     '<div class="text-container">'+
                     '<div class="add-object__title">Добавление объекта</div>'+
                 '<div class="add-object__subtitle">Укажите местоположение объекта, передвигая метку на карте.</div>'+
+
                 '</div>'+
                 '<div class="form-fields">'+
                     '<div class="form-field form-name">'+
-                    '<form action="">'+
+                        '<form action="">'+
                     '<input type="text" placeholder="Введите название" required>'+
-                '</form>'+
+
                 '</div>'+
                 '<div class="form-field form-object-address">'+
-                    '<form action="">'+
+
                     '<input type="text" placeholder="Введите адрес" required>'+
-                '</form>'+
+
                 '</div>'+
-                '+<div class="form-field form-category">'+
-                    '+<form action="">'+
-                    '+<select name="form-category" required>'+
+                '<div class="form-field form-category">'+
+
+                    '<select name="form-category" required>'+
                 '<option value="" disabled selected style="display:none;">Выберите категорию</option>'+
                 '<option value="Socket"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>'+
                     '<option value="Attraction"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>'+
-                    '+</select>'+
-                    '</form>'+
+                    '</select>'+
+
                     '</div>'+
 
-                    '+<div class="form-field form-button">'+
-                    '+<form action="">'+
+                    '<div class="form-field form-button">'+
+
                     '<button type="submit" class="form-photos__add">Добавить</button>'+
                     '</form>'+
 
