@@ -74,3 +74,12 @@ Route::get('/map', function () {
 Route::get('/entrance', function () {
     return view('entrance');
 });
+Route::get('/mypage', function () {
+    return view('mypage');
+});
+Route::get('/map', function () {
+    return view('map');
+});
+Route::get('/entrance', function () {
+    return view('entrance');
+});

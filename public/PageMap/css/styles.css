@@ -1,0 +1,246 @@
+/*Обнуление*/
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ul,
+ol,
+li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+html,
+body {
+    height: 100%;
+    line-height: 1;
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+    font-family: "GolosTextRegular", sans-serif;
+}
+
+@font-face {
+    font-family: "GolosTextRegular";
+    src: url("../fonts/GolosTextRegular.woff") format("woff"),
+        url("../fonts/GolosTextRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "GolosTextBold";
+    src: url("../fonts/GolosTextBold.woff") format("woff"),
+        url("../fonts/GolosTextBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+}
+/*--------------------*/
+.wrapper {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 5;
+    padding: 0px 100px;
+    max-height: 76px;
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    max-height: 76px;
+    padding: 16px 0px;
+}
+
+.header__logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: inherit;
+}
+
+/*.search {
+    padding: 12px 16px;
+    margin-left: 32px;
+    background: #f4f7fc;
+    border-radius: 7px;
+    width: 300px;
+    height: 44px;
+}
+
+.search-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 29px;
+    left: 463px;
+}*/
+.header__menu {
+    margin-left: 100px;
+}
+
+.menu {
+    padding: 5px 0px;
+}
+
+.menu__list {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #d3d5da;
+    border-radius: 7px;
+}
+.menu__item {
+    cursor: pointer;
+}
+.menu__item img {
+    margin-right: 15px;
+}
+
+.menu__item:first-child {
+    border-radius: 7px 0px 0px 7px;
+}
+.menu__item:last-child {
+    border-radius: 0px 7px 7px 0px;
+}
+.menu__item:hover {
+    border: 1px solid #27ae60;
+}
+
+.menu__link {
+    color: inherit;
+    line-height: 171%;
+    font-weight: 400;
+    padding: 10px 23px;
+}
+
+.map {
+    width: 100%;
+    height: 90%;
+    position: relative;
+    top: 76px;
+    z-index: 1;
+}
+
+.add-object__container {
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 10;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    padding: 40px;
+    margin: 24px auto;
+}
+.hidden {
+    display: none;
+}
+.add-object__title {
+    font-family: "GolosTextBold";
+    font-size: 24px;
+    line-height: 120%;
+    font-weight: 600;
+    text-align: center;
+}
+.add-object__subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: #000;
+    margin: 24px 0px;
+}
+.form-fields {
+}
+input,
+select,
+textarea {
+    height: 48px;
+    width: 100%;
+    background: #f4f7fc;
+    border: 1px solid #f4f7fc;
+    color: #8c8c95;
+    border-radius: 7px;
+    padding: 15px 20px;
+}
+input:hover {
+    border: 1px solid #27ae60;
+}
+select:hover {
+    border: 1px solid #27ae60;
+}
+.input-icon {
+    position: absolute;
+    top: 172px;
+    left: 63.5px;
+}
+option {
+    background: #ffffff;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    height: 48px;
+    padding: 16px 48px;
+}
+.form-field:not(:last-child) {
+    margin-bottom: 20px;
+}
+.form-geolocation {
+}
+.form-object-name {
+}
+.form-category {
+}
+.form-buttons {
+    width: 100%;
+    display: flex;
+}
+button {
+    background: none;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+.form-photos__add {
+    background: #27ae60;
+    border: 1px solid #27ae60;
+    border-radius: 7px;
+    color: #fff;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 33px;
+}
+.form-photos__add:hover {
+    background: #239452;
+    border: 1px solid #239452;
+}
+.active-menu {
+    background: #d4efdf;
+    transition: 0.5s all;
+}
