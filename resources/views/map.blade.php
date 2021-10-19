@@ -5,7 +5,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/mapPage/css/styles.css">
+    <link rel="stylesheet" href="/PageMap/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -15,20 +15,20 @@
         <header class="header">
             <div class="header__container">
                 <a href="" class="header__logo">LOGO</a>
-                <form action="" method="get">
+                <!--<form action="" method="get">
                     <input class="search" name="search" placeholder="Поиск" type="search">
-                    <button class="search-btn" type="submit"><img src="/mapPage/img/header/01.svg" alt="search"></button>
-                </form>
+                    <button class="search-btn" type="submit"><img src="/PageMap/img/header/01.svg" alt="search"></button>
+                </form>-->
                 <nav class="header__menu menu">
                 <ul class="menu__list">
-                    <li class="menu__item">
-                    <a href="" class="menu__link"><img src="/mapPage/img/header/02.svg" alt="view">Просмотр</a>
+                    <li class="menu__item" id="menu__link__view">
+                    <button type="button" class="menu__link" ><img src="/PageMap/img/header/02.svg" alt="view">Просмотр</button>
                     </li>
-                    <li class="menu__item">
-                    <a href="" class="menu__link"><img src="/mapPage/img/header/03.svg" alt="object">Добавить объект</a>
+                    <li class="menu__item" >
+                    <button type="button" class="menu__link" id="menu__link__add-object"><img src="/PageMap/img/header/03.svg" alt="object">Добавить объект</button>
                     </li>
-                    <li class="menu__item">
-                    <a href="" class="menu__link"><img src="/mapPage/img/header/04.svg" alt="route">Добавить маршрут</a>
+                    <li class="menu__item" id="menu__link__add-route">
+                    <button type="button" class="menu__link" ><img src="/PageMap/img/header/04.svg" alt="route">Добавить маршрут</button>
                     </li>                    
                 </ul>
                 </nav>
@@ -40,50 +40,43 @@
                 <div class="add-object__subtitle">Укажите местоположение объекта, передвигая метку на карте.</div>
             </div>
             <div class="form-fields">
-                <div class="form-field form-geolocation">
+                <div class="form-field form-name">
                     <form action="">
-                        <input type="text"><img class="input-icon" src="/mapPage/img/add-object/04.svg" alt="">
+                        <input type="text" placeholder="Введите название" required>
                     </form>
                 </div>
-                <div class="form-field form-object-name">
+                <div class="form-field form-object-address">
                     <form action="">
-                        <input type="text" placeholder="Добавьте название" required>
+                        <input type="text" placeholder="Введите адрес" required>
                     </form>
                 </div>
                 <div class="form-field form-category">
                     <form action="">
                         <select name="form-category" required>
                             <option value="" disabled selected style='display:none;'>Выберите категорию</option>
-                            <option value="Socket"><img src="/mapPage/img/add-object/01.svg" alt="socket">Розетка</option>
-                            <option value="Attraction"><img src="/mapPage/img/add-object/02.svg" alt="socket">Достопримечательность</option>
-                            <option value="Home"><img src="/mapPage/img/add-object/03.svg" alt="socket">Дом</option>
+                            <option value="Socket"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
+                            <option value="Attraction"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
                         </select>
                     </form>
                 </div>
-                <div class="form-description">
+                <!--<div class="form-description">
                     <form action="">
                         <input type="text" name="form-description" placeholder="Добавьте описание">
                     </form>
-                </div>
-                <div class="form-field form-photos">
-                    <form enctype="multipart/form-data" method="post">
-                        <p>Добавьте фотографии весом не более 50 МБ</p>
-                        <input class="add-file" type="file" name="photo" multiple accept="image/*,image/jpeg">
-                        <div class="form-buttons">
-                            <button type="button" class="form-photos__cancel">Отмена</button>
-                            <button type="submit" class="form-photos__add">Добавить</button>
-                        </div>
+                </div>-->
+                <div class="form-field form-button">
+                    <form action="">
+                        <button type="submit" class="form-photos__add">Добавить</button>
                     </form>
+                    <!--<form enctype="multipart/form-data" method="post">
+                        <p>Добавьте фотографии весом не более 50 МБ</p>
+                        <input class="add-file" type="file" name="photo" multiple accept="image/*,image/jpeg"></form>-->
                 </div>
             </div>
         </div>
         <div class="map" id="mapid"></div>
         <script>
-
             var mymap = L.map('mapid').setView([56.82, 60.6], 13);
-            var popup = L.popup();
-            var addObjectForm = document.querySelector('.add-object__container');
-            var cancelButton = document.querySelector('.form-photos__cancel')
 
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                 maxZoom: 18,
@@ -93,31 +86,48 @@
                 tileSize: 512,
                 zoomOffset: -1
             }).addTo(mymap);
+   
+            var popup = L.popup();
+            
+            var addObjectForm = document.querySelector('.add-object__container');
+            var menuLinks = document.querySelectorAll('.menu__link');
+            var lastClicked = menuLinks[0]; 
+
+            for( var i = 0; i < menuLinks.length; i++ ){
+                menuLinks[i].addEventListener('click', function(){
+                lastClicked.classList.remove('active-menu');
+                this.classList.add('active-menu');
+                
+                lastClicked = this; 
+            });
+            }
+
+            document.addEventListener("click", function(el) {
+                var idItem = el.target.id;
+                if(idItem == 'menu__link__add-object') {
+                    onMapClick(el.target);
+                } else {
+                    addObjectForm.classList.add('hidden');
+                }
+
+                if(el.target === addObjectForm) {
+                    addObjectForm.classList.add('hidden'); 
+                }
+            });   
 
             function onMapClick(e) {
-                /*if(addObjectForm.classList.contains('hidden')) {
+                if(addObjectForm.classList.contains('hidden')) {
                     addObjectForm.classList.remove('hidden');
-                } */
+                }
+
                 popup
                     .setLatLng(e.latlng)
-                    .setContent('<form action="{{route('map')}}" method="POST">\n' + 
-                        '\n' +
-                        '<input type="hidden" name="x" value="' + e.latlng.lat.tostring().substr(0,9) + '">\n' + 
-                        '<input type="hidden" name="y" value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
-                        '‹input type="text" name="text" size="15" maxlength="30" value="">\n' +
-                        
-                        '@csrf' + 
-                        '<input type="submit">\n' +
-                        '</form>')
+                    .setContent("You clicked the map at " + e.latlng.toString())
                     .openOn(mymap);
             }
 
-            /*cancelButton.addEventListener('click', function() {
-                addObjectForm.classList.add('hidden');
-            })*/;
-
             mymap.on('click', onMapClick);
-
+            
         </script>
     </div>
     <script src="/PageMap/js/script.js"></script>
