@@ -35,9 +35,9 @@
         zoomOffset: -1
     }).addTo(mymap);
 
-    <?foreach ($_SESSION['Points'] as $point ) {?>
-    L.marker([{{$point->lat}}, {{$point->lng}}]).addTo(mymap)
-        .bindPopup( "{{$point->description}}").openPopup();
+{{--    <?foreach ($_SESSION['Points'] as $point ) {?>--}}
+{{--    L.marker([{{$point->lat}}, {{$point->lng}}]).addTo(mymap)--}}
+{{--        .bindPopup( "{{$point->description}}").openPopup();--}}
 
     <? }?>
 

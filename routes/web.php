@@ -55,7 +55,7 @@ Route::get('/logout', function () {
 Route::get('/map', function () {
     return view('map');
 })->name('map');
-Route::post('/map', [AddPointController::class, 'AddPoint']);
+Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
 Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);

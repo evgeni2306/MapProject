@@ -15,11 +15,12 @@ class AddPointController extends Controller
         $validateFields = $request->validate([
             'lat' => 'required',
             'lng' => 'required',
-//            'type'=> 'required',
-            'description' => 'required',
+            'address'=>'required',
+            'name'=>'required',
+            'type'=> 'required',
+
         ]);
         $validateFields['creatorid'] = 1;
-        $validateFields['type'] = '123';
         $validateFields['lat'] = (double)$validateFields['lat'];
         $validateFields['lng'] = (double)$validateFields['lng'];
         $point = Point::create($validateFields);
