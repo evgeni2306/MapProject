@@ -34,7 +34,7 @@
                 </nav>
             </div>
         </header>
-        
+
         <div class="map" id="mapid"></div>
         <script>
             var mymap = L.map('mapid').setView([56.82, 60.6], 13);
@@ -74,17 +74,20 @@
                 addObject = true;
                 viewOnly = false;
                 onMapClick(e.target);
+                popup._close()
             });
 
             document.getElementById('menu__link__view').addEventListener("click", function(e) {
                 addObject = false;
                 viewOnly = true;
                 onMapClick(e.target);
+                popup._close()
             });
 
             document.getElementById('menu__link__add-route').addEventListener("click", function(e) {
                 addObject = false;
                 viewOnly = true;
+                popup._close()
             });
 
             function onMapClick(e) {
