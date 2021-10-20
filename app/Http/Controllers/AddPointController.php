@@ -10,16 +10,18 @@ use Illuminate\Support\Facades\DB;
 
 class AddPointController extends Controller
 {
-        public function AddPoint(Request $request)
+    public function AddPoint(Request $request)
     {
         $validateFields = $request->validate([
             'lat' => 'required',
             'lng' => 'required',
+//            'address'=>'required',
+//            'name'=>'required',
 //            'type'=> 'required',
-            'description' => 'required',
+        'description' =>'required'
+
         ]);
         $validateFields['creatorid'] = 1;
-        $validateFields['type'] = '123';
         $validateFields['lat'] = (double)$validateFields['lat'];
         $validateFields['lng'] = (double)$validateFields['lng'];
         $point = Point::create($validateFields);
@@ -34,3 +36,7 @@ class AddPointController extends Controller
 
     }
 }
+
+
+
+

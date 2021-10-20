@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/registration', function () {
     if (Auth::check()) {
-        return redirect(route('private'));
+        return redirect(route('map'));
     }
     return view('registration');
 })->name('registration');
@@ -38,7 +38,7 @@ Route::post('/registration', [RegisterController::class, 'save']);
 
 Route::get('/login', function () {
     if (Auth::check()) {
-        return redirect(route('private'));
+        return redirect(route('map'));
     }
     return view('login');
 })->name('login');
@@ -55,7 +55,7 @@ Route::get('/logout', function () {
 Route::get('/map', function () {
     return view('map');
 })->name('map');
-Route::post('/map', [AddPointController::class, 'AddPoint']);
+Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
 Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);

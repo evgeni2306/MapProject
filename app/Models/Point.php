@@ -12,6 +12,8 @@ class Point extends Model
         'creatorid',
         'lat',
         'lng',
+        'name',
+        'address',
         'type',
         'description'
     ];
