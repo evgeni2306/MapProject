@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class RegisterController extends Controller
@@ -27,10 +28,15 @@ class RegisterController extends Controller
                 'login'=>'Пользователь с таким логином уже зарегистрирован'
             ]);
         }
-
+        $validateFields['avatar'] = '123';
+        $validateFields['transport'] = 'Не указан';
         $user=User::create($validateFields);
         if ($user){
             Auth::login($user);
+            $_SESSION['User'] =DB::table('users')
+                ->where('id', $user->id)
+                ->select('name','surname','avatar','transport')
+                ->first();
             return redirect(route('map'));
         }
 

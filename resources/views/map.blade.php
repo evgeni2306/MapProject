@@ -41,7 +41,9 @@
                         </button>
                     </li>
                 </ul>
+
             </nav>
+            Здравствуйте {{$_SESSION['User']->name}}
         </div>
     </header>
 
@@ -50,7 +52,14 @@
         var mymap = L.map('mapid').setView([56.82, 60.6], 13);
         <?foreach ($_SESSION['Points'] as $point ) {?>
         L.marker([{{$point->lat}}, {{$point->lng}}]).addTo(mymap)
-            .bindPopup("{{$point->name.' '.$point->type.' '.$point->address}}");
+
+            .bindPopup('       <p> {{$point->name}}<p>' +
+                '       <p> {{$point->type}}<p>' +
+                '       <p> {{$point->address}}<p>' +
+                '<p><img src="https://lh3.googleusercontent.com/a/AATXAJzXmi3vaBxeomfM2fPbCZLs9kT3WEANgJW7dfkx=s96-c">');
+
+
+
         <? }?>
 
 

@@ -20,15 +20,17 @@
     <div class="form-fields _container">
         <form action="{{'login'}}" method="post">
       <div class="form-field form-field__email">
-          <input type="email" placeholder="E-mail" name = 'Login'>
+          <input type="text" placeholder="E-mail" name = 'login'>
       </div>
         <div class="form-field form-field__password">
-            <input type="password" placeholder="Пароль" name="Password">
+            <input type="password" placeholder="Пароль" name="password">
         </div>
+            @csrf
+            <input type="submit" class="form-button form-button__createacc" value="Войти">
         </form>
       </div>
+
       <div class="form-buttons _container">
-        <a class="form-button form-button__createacc">Войти</a>
         <div class="divider">или</div>
         <a href="#" class="form-button form-button__google"><img src="PageRegistration/img/01.svg" alt="google">Войти с помощью Google</a>
         <a href="#" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
