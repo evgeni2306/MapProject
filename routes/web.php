@@ -51,6 +51,9 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
 
 Route::get('/map', function () {
     return view('map');

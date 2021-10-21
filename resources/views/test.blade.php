@@ -6,13 +6,12 @@
     <link rel="stylesheet" href="" />
 </head>
 <body>
-
 Тестовая страница
 <?//var_dump($_SESSION['CurrentPoint']) ?>
-<?foreach ($_SESSION['Pcomments'] as $pcomment ) {?>
-<? var_dump($pcomment->avatar).' ';?>
+{{--<?foreach ($_SESSION['Pcomments'] as $pcomment ) {?>--}}
+{{--<? var_dump($pcomment->avatar).' ';?>--}}
 
-<? }?>
+{{--<? }?>--}}
 {{--<form action="{{route('AddPcomment')}}" method="POST">--}}
 {{--      <p>Pcomment:<br>--}}
 {{--            Text: <input type="text" name="text" value=""><br>--}}

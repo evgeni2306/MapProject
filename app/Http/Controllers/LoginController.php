@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -16,6 +17,10 @@ class LoginController extends Controller
 
         $formFields=$request->only(['login','password']);
         if (Auth::attempt($formFields)){
+            $_SESSION['User'] =DB::table('users')
+                ->where('login', $formFields['login'])
+                ->select('name','surname','avatar','transport')
+                ->first();
             return redirect('map');
         }
 
