@@ -125,7 +125,9 @@ body {
 .menu__item img {
     margin-right: 15px;
 }
-
+.menu__item:not(:last-child) {
+    border-right: 1px solid #d3d5da;
+}
 .menu__item:first-child {
     border-radius: 7px 0px 0px 7px;
 }

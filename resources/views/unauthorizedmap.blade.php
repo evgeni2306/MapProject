@@ -26,8 +26,8 @@
             <nav class="header__menu menu">
                 <ul class="menu__list">
                     <li class="menu__item">
-                        <button type="button" disabled class="menu__link" id="menu__link__view"><img
-                                src="/PageUnauthorizedMap/img/01.svg" alt="view">Просмотр
+                        <button type="button" disabled class="menu__link active-menu" id="menu__link__view"><img
+                                src="/PageMap/img/header/02.svg" alt="view">Просмотр
                         </button>
                     </li>
                     <li class="menu__item">
@@ -42,6 +42,9 @@
                     </li>
                 </ul>
             </nav>
+            <div class="authorization-btn">
+              <a href="" class="to-authorization"><img src="/PageUnauthorizedMap/img/04.svg" alt="">Войти</a>
+            </div>
         </div>
     </header>
 

@@ -129,6 +129,7 @@ body {
     margin-right: 15px;
 }
 .menu__item:first-child {
+    border: 1px solid #27ae60;
     border-radius: 7px 0px 0px 7px;
 }
 .menu__item:last-child {
@@ -144,6 +145,23 @@ body {
     padding: 10px 23px;
 }
 
+.active-menu {
+    background: #d4efdf;
+    transition: 0.5s all;
+}
+.authorization-btn {
+    position: absolute;
+    right: 100px;
+}
+.to-authorization {
+    padding: 12px 32px;
+    background: #27ae60;
+    border-radius: 7px;
+    color: #fff;
+}
+.to-authorization img {
+    padding-right: 12px;
+}
 /*--------------------*/
 .map {
     width: 100%;
