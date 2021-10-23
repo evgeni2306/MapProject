@@ -42,7 +42,7 @@
                     </li>
                 </ul>
             </nav>
-            <nav class="user-menu"> 
+            <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
                         <img src="/PageMap/img/user/user.svg" alt="user">
@@ -51,7 +51,7 @@
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Личный кабинет</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
-                        </ul> 
+                        </ul>
                     </li>
                </ul>
             </nav>
@@ -135,8 +135,8 @@
                         '<option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
                         '<option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
                         '</select>' +
-                        '        <input type="hidden" name="lat"  value="' + e.LatLng.lat.toString().substr(0,9) + '">\n' +
-                        '        <input type="hidden" name="lng"  value="' + e.LatLng.lng.toString().substr(0,9) + '">\n' +
+                        '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
+                        '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
 
                         '</div>' +
                         '@csrf' +
@@ -152,15 +152,15 @@
             }
         }
 
-        var Markers = L.Icon.extend({
-		options: {
-			iconSize:     [39, 45],
-			iconAnchor:   [16,37]
-		}
-	});
-
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+    //     var Markers = L.Icon.extend({
+	// 	options: {
+	// 		iconSize:     [39, 45],
+	// 		iconAnchor:   [16,37]
+	// 	}
+	// });
+    //
+	// var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+	// 	house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
 
 	/*L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
 	L.marker([56.826, 60.65], {icon: house}).addTo(mymap);*/
