@@ -24,7 +24,7 @@ session_start();
 //$_SESSION['Points']=Point::all();
 
 Route::get('/', function () {
-    return view('welcome');
+   return redirect(route('registration'));
 });
 
 Route::get('/registration', function () {

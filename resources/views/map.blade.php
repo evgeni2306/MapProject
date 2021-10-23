@@ -72,14 +72,11 @@
         });
         var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
             house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
-        L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
-        L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
 
         <?foreach ($_SESSION['Points'] as $point ) {?>
-        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->type}}).addTo(mymap)
-            .bindPopup('       <p> {{$point->name}}<p>' +
-                '       <p> {{$point->address}}<p>' +
-                '<p><img src="https://lh3.googleusercontent.com/a/AATXAJzXmi3vaBxeomfM2fPbCZLs9kT3WEANgJW7dfkx=s96-c">');
+        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->type}}}).addTo(mymap)
+            .bindPopup('<p> {{$point->name}}<p>' +
+                '       <p> {{$point->address}}<p>' );
 
 
 
