@@ -5,7 +5,7 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/PageMap/css/styles.css">
+    <link rel="stylesheet" href="/PageUnauthorizedMap/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -26,34 +26,21 @@
             <nav class="header__menu menu">
                 <ul class="menu__list">
                     <li class="menu__item">
-                        <button type="button" class="menu__link active-menu" id="menu__link__view"><img
-                                src="/PageMap/img/header/02.svg" alt="view">Просмотр
+                        <button type="button" disabled class="menu__link" id="menu__link__view"><img
+                                src="/PageUnauthorizedMap/img/01.svg" alt="view">Просмотр
                         </button>
                     </li>
                     <li class="menu__item">
-                        <button type="button" class="menu__link" id="menu__link__add-object"><img
-                                src="/PageMap/img/header/03.svg" alt="object">Добавить объект
+                        <button type="button" disabled class="menu__link" id="menu__link__add-object"><img
+                                src="/PageUnauthorizedMap/img/02.svg" alt="object">Добавить объект
                         </button>
                     </li>
                     <li class="menu__item">
-                        <button type="button" class="menu__link" id="menu__link__add-route"><img
-                                src="/PageMap/img/header/04.svg" alt="route">Добавить маршрут
+                        <button type="button" disabled class="menu__link" id="menu__link__add-route"><img
+                                src="/PageUnauthorizedMap/img/03.svg" alt="route">Добавить маршрут
                         </button>
                     </li>
                 </ul>
-            </nav>
-            <nav class="user-menu"> 
-                <ul class="user-menu__list">
-                    <li class="user-name">
-                        <img  class="avatar" src="/PageMap/img/user/user.svg" alt="user">
-                        <a href="#" class="user-menu__link">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
-                        <ul class="sub-menu__list">
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
-                        </ul> 
-                    </li>
-               </ul>
             </nav>
         </div>
     </header>
@@ -89,7 +76,7 @@
         }
 
 
-        document.getElementById('menu__link__add-object').addEventListener("click", function (e) {
+        /*document.getElementById('menu__link__add-object').addEventListener("click", function (e) {
             addObject = true;
             viewOnly = false;
             onMapClick(e.target);
@@ -152,25 +139,7 @@
             }
         }
 
-        var Markers = L.Icon.extend({
-		options: {
-			iconSize:     [39, 45],
-			iconAnchor:   [16,37]
-		}
-	});
-
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
-
-	L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
-	L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
-
-   /* document.querySelector('.form-photos__add').addEventListener("submit", function (e) {
-        L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
-        L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
-    });*/
-
-        mymap.on('click', onMapClick);
+        mymap.on('click', onMapClick);*/
 
     </script>
 </div>

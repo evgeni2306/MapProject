@@ -25,3 +25,6 @@ Route::get('/map', function () {
 Route::get('/entrance', function () {
     return view('entrance');
 });
+Route::get('/unauthorizedmap', function () {
+    return view('unauthorizedmap');
+});
