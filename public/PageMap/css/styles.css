@@ -16,7 +16,7 @@ li {
     list-style: none;
 }
 img {
-    vertical-align: top;
+    vertical-align: middle;
 }
 h1,
 h2,
@@ -40,15 +40,23 @@ body {
 @font-face {
     font-family: "GolosTextRegular";
     src: url("../fonts/GolosTextRegular.woff") format("woff"),
-        url("../fonts/GolosTextRegular.ttf") format("truetype");
+    url("../fonts/GolosTextRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
+    font-family: "GolosTextMedium";
+    src: url("../fonts/GolosTextMedium.woff") format("woff"),
+    url("../fonts/GolosTextMedium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
-        url("../fonts/GolosTextBold.ttf") format("truetype");
+    url("../fonts/GolosTextBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
@@ -90,7 +98,6 @@ body {
     width: 300px;
     height: 44px;
 }
-
 .search-btn {
     cursor: pointer;
     position: absolute;
@@ -135,6 +142,55 @@ body {
     padding: 10px 23px;
 }
 
+.user-menu {
+    position: absolute;
+    right: 100px;
+}
+
+.user-menu li {
+    position: relative;
+    display: block;
+}
+
+.user-menu a {
+    color: #000;
+}
+.user-menu__list {
+}
+.user-menu__link {
+    font-family: "GolosTextMedium", sans-serif;
+    font-weight: 500;
+    padding-left: 12px;
+    display: inline-block;
+}
+
+.user-menu__link img {
+    padding-left: 10px;
+}
+.user-name {
+}
+.sub-menu__list {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    min-width: 200px;
+    background: #fff;
+    line-height: 120%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+}
+.sub-menu__list a {
+    padding: 16px 19px;
+}
+.sub-menu__link {
+    display: inline-block;
+    text-align-last: left;
+}
+.sub-menu__link img {
+    padding-right: 8px;
+}
+/*--------------------*/
 .map {
     width: 100%;
     height: 90%;
@@ -143,7 +199,7 @@ body {
     z-index: 1;
 }
 
-.add-object__container {
+/*.add-object__container {
     max-width: 460px;
     display: flex;
     flex-direction: column;
@@ -159,7 +215,7 @@ body {
 }
 .hidden {
     display: none;
-}
+}*/
 .add-object__title {
     font-family: "GolosTextBold";
     font-size: 24px;

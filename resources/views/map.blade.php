@@ -43,7 +43,19 @@
                 </ul>
 
             </nav>
-            Здравствуйте {{$_SESSION['User']->name}}
+            <nav class="user-menu">
+                <ul class="user-menu__list">
+                    <li class="user-name">
+                        <img src="/PageMap/img/user/user.svg" alt="user">
+                        <a href="#" class="user-menu__link">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <ul class="sub-menu__list">
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Личный кабинет</a></li>
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -150,6 +162,20 @@
                     .openOn(mymap);
             }
         }
+        var Markers = L.Icon.extend({
+            options: {
+                iconSize:     [39, 45],
+                iconAnchor:   [16,37]
+            }
+        });
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+        /*L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
+        L.marker([56.826, 60.65], {icon: house}).addTo(mymap);*/
+        /* document.querySelector('.form-photos__add').addEventListener("submit", function (e) {
+             L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
+             L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
+         });*/
 
         mymap.on('click', onMapClick);
 
