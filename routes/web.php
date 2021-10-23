@@ -16,15 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/mypage', function () {
-    return view('mypage');
-});
+
 Route::get('/map', function () {
     return view('map');
 });
-Route::get('/entrance', function () {
-    return view('entrance');
-});
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+
+Route::get('/registration', function () {
+    return view('registration');
+})->name('registration');
+
 Route::get('/unauthorizedmap', function () {
     return view('unauthorizedmap');
 });
+

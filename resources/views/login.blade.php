@@ -15,7 +15,7 @@
     <div class="logo">LOGO</div>
     <div class="text-container _container">
         <h1 class="text-container__title">Войти в аккаунт</h1>
-        <div class="text-container__subtitle">Еще нет аккаунта? <a href="" class="text-container__subtitle entrance">Зарегистрироваться</a></div>
+        <div class="text-container__subtitle">Еще нет аккаунта? <a href="{{route('registration')}}" class="text-container__subtitle entrance">Зарегистрироваться</a></div>
     </div>
     <form action="" method="">
         <div class="form-fields _container">
