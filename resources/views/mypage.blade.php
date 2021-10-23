@@ -15,11 +15,10 @@
     <div class="logo">LOGO</div>
     <div class="text-container _container">
         <h1 class="text-container__title">Создать аккаунт</h1>
-        <div class="text-container__subtitle">Уже есть аккаунт? <a href=""
-                                                                   class="text-container__subtitle entrance">Войти</a>
+        <div class="text-container__subtitle">Уже есть аккаунт? <a href="" class="text-container__subtitle entrance">Войти</a>
         </div>
     </div>
-    <form          action="" method="">
+    <form action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
                 <input type="text" placeholder="E-mail" name='login'>

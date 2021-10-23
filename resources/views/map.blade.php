@@ -42,14 +42,26 @@
                     </li>
                 </ul>
             </nav>
+            <nav class="user-menu"> 
+                <ul class="user-menu__list">
+                    <li class="user-name">
+                        <img src="/PageMap/img/user/user.svg" alt="user">
+                        <a href="#" class="user-menu__link">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <ul class="sub-menu__list">
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Личный кабинет</a></li>
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                        </ul> 
+                    </li>
+               </ul>
+            </nav>
         </div>
     </header>
 
     <div class="map" id="mapid"></div>
     <script>
+
         var mymap = L.map('mapid').setView([56.82, 60.6], 13);
-
-
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
@@ -97,6 +109,7 @@
             popup._close()
         });
 
+
         function onMapClick(e) {
             if (addObject == true) {
                 popup
@@ -122,8 +135,8 @@
                         '<option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
                         '<option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
                         '</select>' +
-                        '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
-                        '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
+                        '        <input type="hidden" name="lat"  value="' + e.LatLng.lat.toString().substr(0,9) + '">\n' +
+                        '        <input type="hidden" name="lng"  value="' + e.LatLng.lng.toString().substr(0,9) + '">\n' +
 
                         '</div>' +
                         '@csrf' +
@@ -138,6 +151,24 @@
                     .openOn(mymap);
             }
         }
+
+        var Markers = L.Icon.extend({
+		options: {
+			iconSize:     [39, 45],
+			iconAnchor:   [16,37]
+		}
+	});
+
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+
+	/*L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
+	L.marker([56.826, 60.65], {icon: house}).addTo(mymap);*/
+
+   /* document.querySelector('.form-photos__add').addEventListener("submit", function (e) {
+        L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
+        L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
+    });*/
 
         mymap.on('click', onMapClick);
 

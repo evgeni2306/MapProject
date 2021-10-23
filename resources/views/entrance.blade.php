@@ -17,15 +17,15 @@
         <h1 class="text-container__title">Войти в аккаунт</h1>
         <div class="text-container__subtitle">Еще нет аккаунта? <a href="" class="text-container__subtitle entrance">Зарегистрироваться</a></div>
     </div>
-    <div class="form-fields _container">
-        <form action="" method="">
+    <form action="" method="">
+        <div class="form-fields _container">
             <div class="form-field form-field__email">
                 <input type="email" placeholder="E-mail" name = 'Login'>
             </div>
             <div class="form-field form-field__password">
                 <input type="password" placeholder="Пароль" name="Password">
             </div>
-        </form>
+    </form>
     </div>
     <div class="form-buttons _container">
         <a class="form-button form-button__createacc">Войти</a>
