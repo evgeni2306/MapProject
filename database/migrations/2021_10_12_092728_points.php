@@ -23,6 +23,7 @@ class Points extends Migration
             $table->string('address',255)->nullable(true);
             $table->string('type',255)->nullable(true);
             $table->string('description',255)->nullable(true);
+            $table->integer('rating')->unsigned()->nullable(true);
 //            $table->string('photo',255)->nullable(false);
             $table->timestamps();
         });

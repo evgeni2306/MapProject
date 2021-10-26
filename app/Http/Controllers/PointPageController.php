@@ -11,21 +11,21 @@ class PointPageController extends Controller
     {
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0)) {
-            $point = DB::table('points')->select('id','type', 'description')
+            $point = DB::table('points')->select('id', 'type', 'description','rating')
                 ->where('id', $id)->first();
-$_SESSION['CurrentPoint'] = $point;
-$pcomments = DB::table('pcomments')
-    ->join('users', 'pcomments.creatorId', '=', 'users.id')
-    ->select('rating','text','pcomments.created_at','avatar','login')
-    ->where('pointid',$id)->get();
-$_SESSION['Pcomments'] = $pcomments;
+            $_SESSION['CurrentPoint'] = $point;
+            $pcomments = DB::table('pcomments')
+                ->join('users', 'pcomments.creatorId', '=', 'users.id')
+                ->select('rating', 'text', 'pcomments.created_at', 'avatar', 'login')
+                ->where('pointid', $id)->get();
+            $_SESSION['Pcomments'] = $pcomments;
 
 
-return view('test');
+            return view('test');
         } else {
 
 
-                return redirect(route('login'));
+            return redirect(route('login'));
 //            }
         }
 

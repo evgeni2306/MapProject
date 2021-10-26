@@ -11,31 +11,32 @@ use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
-    public function save(Request $request){
-        if(Auth::check()){
+    public function save(Request $request)
+    {
+        if (Auth::check()) {
             return redirect(route('map'));
         }
 
-        $validateFields=$request->validate([
-            'login'=>'required',
-            'password'=>'required',
-            'name'=>'required',
-            'surname'=>'required'
+        $validateFields = $request->validate([
+            'login' => 'required',
+            'password' => 'required',
+            'name' => 'required',
+            'surname' => 'required'
         ]);
 
-        if (User::where('login',$validateFields['login'])->exists()){
+        if (User::where('login', $validateFields['login'])->exists()) {
             return redirect(route('registration'))->withErrors([
-                'login'=>'Пользователь с таким логином уже зарегистрирован'
+                'login' => 'Пользователь с таким логином уже зарегистрирован'
             ]);
         }
-$validateFields['avatar'] = '123';
+        $validateFields['avatar'] = '123';
         $validateFields['transport'] = 'Не указан';
-        $user=User::create($validateFields);
-        if ($user){
+        $user = User::create($validateFields);
+        if ($user) {
             Auth::login($user);
-            $_SESSION['User'] =DB::table('users')
+            $_SESSION['User'] = DB::table('users')
                 ->where('id', $user->id)
-                ->select('name','surname','avatar','transport')
+                ->select('name', 'surname', 'avatar', 'transport')
                 ->first();
             return redirect(route('map'));
         }

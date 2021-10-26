@@ -35,11 +35,7 @@
         zoomOffset: -1
     }).addTo(mymap);
 
-    <?foreach ($_SESSION['Points'] as $point ) {?>
-    L.marker([{{$point->lat}}, {{$point->lng}}]).addTo(mymap)
-        .bindPopup( "{{$point->description}}").openPopup();
 
-    <? }?>
 
 
     mymap.setView([56.838285, 60.603442], 18);
@@ -54,7 +50,11 @@
     //     [51.503, -0.06],
     //     [51.51, -0.047]
     // ]).addTo(mymap).bindPopup("I am a polygon.");
-
+    <?foreach ($_SESSION['Points'] as $point ) {?>
+    L.marker([{{$point->lat}}, {{$point->lng}}]).addTo(mymap)
+        .bindPopup('<p> {{$point->name}}<p>' +
+            '       <p> {{$point->address}}<p>' );
+    <? }?>
 
     var popup = L.popup();
 
@@ -65,7 +65,9 @@
                 '\n' +
                 '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
                 '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
-                '        <input type="text" name="description" size="15" maxlength="30" value="">\n' +
+                '        <input type="text" name="name" size="15" maxlength="30" placeholder="name" value ="">\n' +
+                '        <input type="text" name="address" size="15" maxlength="30" placeholder="address" value ="">\n' +
+                '        <input type="text" name="type" size="15" maxlength="30" placeholder="type" value ="">\n' +
 
                 '@csrf' +
                 '    <input type="submit">\n' +

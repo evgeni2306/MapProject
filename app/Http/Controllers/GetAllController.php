@@ -13,7 +13,7 @@ class GetAllController extends Controller
     {
         $_SESSION['MainX'] = 56.838285;
         $_SESSION['MainY'] = 60.603442;
-        $getpoints = DB::table('points')->select('lat', 'lng', 'description')->get();
+        $getpoints = DB::table('points')->select('lat', 'lng','type','address' ,'name')->get();
         $_SESSION['Points'] = $getpoints;
 
 

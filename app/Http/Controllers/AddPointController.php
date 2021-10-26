@@ -15,10 +15,9 @@ class AddPointController extends Controller
         $validateFields = $request->validate([
             'lat' => 'required',
             'lng' => 'required',
-//            'address'=>'required',
-//            'name'=>'required',
-//            'type'=> 'required',
-        'description' =>'required'
+            'address'=>'required',
+            'name'=>'required',
+            'type'=> 'required',
 
         ]);
         $validateFields['creatorid'] = 1;
@@ -36,7 +35,3 @@ class AddPointController extends Controller
 
     }
 }
-
-
-
-
