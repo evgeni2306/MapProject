@@ -159,8 +159,42 @@ body {
     border-radius: 7px;
     color: #fff;
 }
+.to-authorization:hover {
+    background: #239452;
+}
 .to-authorization img {
     padding-right: 12px;
+}
+.authorization-popup {
+    display: none;
+    position: absolute;
+    width: 300px;
+    left: 610px;
+    top: 60px;
+    background: #4f4f53;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    border-top: 3px solid #4f4f53;
+    color: #fff;
+    font-size: 14px;
+    line-height: 121%;
+    padding: 16px;
+    margin-top: 20px;
+}
+.authorization-popup:before {
+    content: "";
+    border: 12px solid transparent;
+    border-bottom: 12px solid #4f4f53;
+    position: absolute;
+    left: 50%;
+    margin-left: -12px;
+    top: -27px;
+}
+.menu__item:not(:first-child):hover .authorization-popup {
+    display: block;
+}
+.authorization-popup-text {
+    text-align: left;
 }
 /*--------------------*/
 .map {

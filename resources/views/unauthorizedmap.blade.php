@@ -19,10 +19,6 @@
     <header class="header">
         <div class="header__container">
             <a href="" class="header__logo">LOGO</a>
-            <!--<form action="" method="get">
-                <input class="search" name="search" placeholder="Поиск" type="search">
-                <button class="search-btn" type="submit"><img src="/PageMap/img/header/01.svg" alt="search"></button>
-            </form>-->
             <nav class="header__menu menu">
                 <ul class="menu__list">
                     <li class="menu__item">
@@ -43,7 +39,10 @@
                 </ul>
             </nav>
             <div class="authorization-btn">
-              <a href="" class="to-authorization"><img src="/PageUnauthorizedMap/img/04.svg" alt="">Войти</a>
+              <a href="{{route('login')}}" class="to-authorization"><img src="/PageUnauthorizedMap/img/04.svg" alt="">Войти</a>
+            </div>
+            <div class="authorization-popup">
+              <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы создать маршрут.</p>
             </div>
         </div>
     </header>
@@ -61,88 +60,6 @@
             tileSize: 512,
             zoomOffset: -1
         }).addTo(mymap);
-
-        var popup = L.popup();
-
-        var menuLinks = document.querySelectorAll('.menu__link');
-        var lastClicked = menuLinks[0];
-        var viewOnly = false;
-        var addObject = false;
-
-        for (var i = 0; i < menuLinks.length; i++) {
-            menuLinks[i].addEventListener('click', function () {
-                lastClicked.classList.remove('active-menu');
-                this.classList.add('active-menu');
-
-                lastClicked = this;
-            });
-        }
-
-
-        /*document.getElementById('menu__link__add-object').addEventListener("click", function (e) {
-            addObject = true;
-            viewOnly = false;
-            onMapClick(e.target);
-            popup._close()
-        });
-
-        document.getElementById('menu__link__view').addEventListener("click", function (e) {
-            addObject = false;
-            viewOnly = true;
-            onMapClick(e.target);
-            popup._close()
-        });
-
-        document.getElementById('menu__link__add-route').addEventListener("click", function (e) {
-            addObject = false;
-            viewOnly = true;
-            popup._close()
-        });
-
-
-        function onMapClick(e) {
-            if (addObject == true) {
-                popup
-                    .setLatLng(e.latlng)
-                    .setContent(
-                        '<div class="text-container">' +
-                        '<div class="add-object__title">Добавление объекта</div>' +
-                        '<div class="add-object__subtitle">Укажите местоположение объекта, передвигая метку на карте.</div>' +
-
-                        '</div>' +
-                        '<form method="" action ="">' +
-                        '<div class="form-fields">' +
-                        '<div class="form-field form-name">' +
-                        '<input type="text" placeholder="Введите название" required name="name">' +
-                        '</div>' +
-                        '<div class="form-field form-object-address">' +
-                        '<input type="text" placeholder="Введите адрес" required name="address">' +
-                        '</div>' +
-                        '<div class="form-field form-category">' +
-
-                        '<select  required name="type">' +
-                        '<option value="" disabled selected style="display:none;">Выберите категорию</option>' +
-                        '<option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
-                        '<option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
-                        '</select>' +
-                        '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
-                        '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
-
-                        '</div>' +
-                        '@csrf' +
-                        '<div class="form-field form-button">' +
-
-                        '<input type="submit" class="form-photos__add" value ="Добавить"></input>' +
-                        '</form>' +
-
-                        '</div>' +
-                        '</div>' +
-                        '</div>')
-                    .openOn(mymap);
-            }
-        }
-
-        mymap.on('click', onMapClick);*/
 
     </script>
 </div>
