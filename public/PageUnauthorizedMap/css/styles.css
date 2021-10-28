@@ -190,7 +190,7 @@ body {
     margin-left: -12px;
     top: -27px;
 }
-.menu__item:not(:first-child):hover .authorization-popup {
+.menu-item:last-child:hover .authorization-popup {
     display: block;
 }
 .authorization-popup-text {

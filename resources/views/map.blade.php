@@ -57,7 +57,26 @@
             </nav>
         </div>
     </header>
-
+    <div class="marker__container">
+        <div class="marker__title">Музей изобразительных искусств</div>
+        <div class="star-rating star-rating_set">
+            <div class="star-rating__body">
+                <div class="star-rating__active"></div>
+                <div class="star-rating__items">
+                    <input type="radio" class="star-rating__item" value="1" name="star-rating">
+                    <input type="radio" class="star-rating__item" value="2" name="star-rating">
+                    <input type="radio" class="star-rating__item" value="3" name="star-rating">
+                    <input type="radio" class="star-rating__item" value="4" name="star-rating">
+                    <input type="radio" class="star-rating__item" value="5" name="star-rating">
+                </div>
+            </div>
+            <div class="star-rating__value">4.3</div>
+        </div>
+        <div class="marker__address">ул. Авиационная, 123</div>
+        <div class="marker__photo__container">
+            <img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">
+        </div>
+    </div>
     <div class="map" id="mapid"></div>
     <script>
 
@@ -72,12 +91,70 @@
             zoomOffset: -1
         }).addTo(mymap);
 
+        /*-------------star-rating---------------*/
+        const ratings = document.querySelectorAll('.star-rating');
+        if (ratings.length > 0) {
+            initRatings();
+        }
+
+        function initRatings() {
+            let ratingActive, ratingValue;
+            for (let i = 0; i < ratings.length; i++) {
+                const rating = ratings[i];
+                initRating(rating);
+            }
+
+            function initRating(rating) {
+                initRatingVars(rating);
+                setRatingActiveWidth();
+
+                if (rating.classList.contains('star-rating_set')) {
+                    setRating(rating);
+                }
+            }
+
+            function initRatingVars(rating) {
+                ratingActive = rating.querySelector('.star-rating__active');
+                ratingValue = rating.querySelector('.star-rating__value');
+            }
+
+            function setRatingActiveWidth(i = ratingValue.innerHTML) {
+                const ratingActiveWidth = i / 0.05;
+                ratingActive.style.width = `${ratingActiveWidth}%`;
+            }
+
+            function setRating(rating) {
+                const ratingItems = rating.querySelectorAll('.star-rating__item');
+                for (let i = 0; i < ratingItems.length; i++) {
+                    const ratingItem = ratingItems[i];
+                    ratingItem.addEventListener("mouseenter", function(e) {
+                        initRatingVars(rating);
+                        setRatingActiveWidth(ratingItem.value);
+                    });
+                    ratingItem.addEventListener("mouseleave", function(e) {
+                        setRatingActiveWidth();
+                    });
+                    ratingItem.addEventListener("click", function(e) {
+                        initRatingVars(rating);
+
+                        if (rating.dataset.ajax) {
+                            setRatingValue(ratingItem.value, rating);
+                        } else {
+                            ratingValue.innerHTML = i + 1;
+                            setRatingActiveWidth();
+                        }
+                    });
+                }
+            }
+        }
+        /*--------------------------------------*/
         var popup = L.popup();
 
         var menuLinks = document.querySelectorAll('.menu__link');
         var lastClicked = menuLinks[0];
         var viewOnly = false;
         var addObject = false;
+
 
        /* for (var i = 0; i < menuLinks.length; i++) {
             menuLinks[i].addEventListener('click', function () {
