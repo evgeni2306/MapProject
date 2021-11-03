@@ -1,119 +1,52 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="csrf-token" content="{{csrf_token()}}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PageRegistration/css/styles.css">
+    <title>Страница регистрации</title>
 </head>
 <body>
-<div class="login">
-    <div class="login-triangle"></div>
-
-    <h2 class="login-header">Log in</h2>
-
-    <form class="login-container" method="POST" action="{{route('registration')}}">
-        <p><input type="text" name="login" placeholder="Login"></p>
-        {{ $errors->first('login') }}
-        <p><input type="text" name="name" placeholder="FirstName"></p>
-        {{ $errors->first('name') }}
-        <p><input type="text" name="surname" placeholder="SecondName"></p>
-        {{ $errors->first('surname') }}
-        <p><input type="password" name="password" placeholder="Password"></p>
-        {{ $errors->first('password') }}
-        @csrf
-        <p><input type="submit" value="Regsitration"></p>
-
-    </form>
+<div class="main-image _ibg">
+    <img src="PageRegistration/img/main.png" alt="main">
 </div>
+<div class="wrapper">
+    <div class="logo">LOGO</div>
+    <div class="text-container _container">
+        <h1 class="text-container__title">Создать аккаунт</h1>
+        <div class="text-container__subtitle">Уже есть аккаунт? <a href="{{route('login')}}" class="text-container__subtitle entrance">Войти</a>
+        </div>
+    </div>
+    <form action="{{route('registration')}}" method="Post">
+        <div class="form-fields _container">
+            <div class="form-field form-field__email">
+                <input type="text" placeholder="E-mail" name='login'>
+            </div>
+            <div class="form-field__fullname">
+                <div class="form-field form-field__name">
+                    <input type="text" placeholder="Имя" name='name'>
+                </div>
+                <div class="form-field form-field__lastname">
+                    <input type="text" placeholder="Фамилия" name='surname'>
+                </div>
+            </div>
+            <div class="form-field form-field__password">
+                <input type="password" placeholder="Пароль" name="password">
+            </div>
+        </div>
+        @csrf
+        <input type="submit" class="form-button form-button__createacc" value="Создать аккаунт">
+    </form>
+    <div class="form-buttons _container">
+
+        <div class="divider">или</div>
+        <a href="#" class="form-button form-button__google"><img src="PageRegistration/img/01.svg" alt="google">Войти с
+            помощью Google</a>
+        <a href="#" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью
+            ВКонтакте</a>
+    </div>
+</div>
+<!--<script src="/registration/js/script.js"></script>-->
 </body>
-
-<style type="text/css">
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-
-    body {
-        background: #456;
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    .login {
-        width: 400px;
-        margin: 16px auto;
-        font-size: 16px;
-    }
-
-    /* Reset top and bottom margins from certain elements */
-    .login-header,
-    .login p {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    /* The triangle form is achieved by a CSS hack */
-    .login-triangle {
-        width: 0;
-        margin-right: auto;
-        margin-left: auto;
-        border: 12px solid transparent;
-        border-bottom-color: #28d;
-    }
-
-    .login-header {
-        background: #28d;
-        padding: 20px;
-        font-size: 1.4em;
-        font-weight: normal;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-    }
-
-    .login-container {
-        background: #ebebeb;
-        padding: 12px;
-    }
-
-    /* Every row inside .login-container is defined with p tags */
-    .login p {
-        padding: 12px;
-    }
-
-    .login input {
-        box-sizing: border-box;
-        display: block;
-        width: 100%;
-        border-width: 1px;
-        border-style: solid;
-        padding: 16px;
-        outline: 0;
-        font-family: inherit;
-        font-size: 0.95em;
-    }
-
-    .login input[type="email"],
-    .login input[type="password"] {
-        background: #fff;
-        border-color: #bbb;
-        color: #555;
-    }
-
-    /* Text fields' focus effect */
-    .login input[type="email"]:focus,
-    .login input[type="password"]:focus {
-        border-color: #888;
-    }
-
-    .login input[type="submit"] {
-        background: #28d;
-        border-color: transparent;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .login input[type="submit"]:hover {
-        background: #17c;
-    }
-
-    /* Buttons' focus effect */
-    .login input[type="submit"]:focus {
-        border-color: #05a;
-    }
-</style>
+</html>
