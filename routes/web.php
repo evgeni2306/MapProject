@@ -24,7 +24,7 @@ session_start();
 //$_SESSION['Points']=Point::all();
 
 Route::get('/', function () {
-   return redirect(route('registration'));
+   return redirect(route('map'));
 });
 
 Route::get('/registration', function () {
@@ -48,7 +48,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', function () {
     session_destroy();
     Auth::logout();
-    return redirect('/login');
+    return redirect('/map');
 });
 
 

@@ -52,6 +52,21 @@
 
         var mymap = L.map('mapid').setView([56.82, 60.6], 13);
 
+        var Markers = L.Icon.extend({
+            options: {
+                iconSize:     [39, 45],
+                iconAnchor:   [16,37]
+            }
+        });
+
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+        <?foreach ($_SESSION['Points'] as $point ) {?>
+        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->type}}}).addTo(mymap)
+            .bindPopup('<p> {{$point->name}}<p>' +
+                '       <p> {{$point->address}}<p>' );
+        <? }?>
+
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
