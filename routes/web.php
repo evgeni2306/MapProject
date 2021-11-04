@@ -7,6 +7,7 @@ use App\Http\Controllers\AddPointController;
 use App\Http\Controllers\AddPcommentController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
+use App\Http\Controllers\UpdateUserController;
 
 session_start();
 /*
@@ -63,7 +64,8 @@ Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
 
-
+Route::post('/change/userinfo',[UpdateUserController::class,'UpdateUser']);
+Route::get('/change/userinfo',[UpdateUserController::class,'GetUserFields'])->name('userinfo');
 
 
 
