@@ -29,9 +29,10 @@ class UpdateUserController extends Controller
 
     public function GetUserFields(Request $request){
         if(Auth::check()){
-            $userid=Auth::user()->id;
-            $userprofile = User::find($userid);
-            $_SESSION['userinfo']=$userprofile;
+            $_SESSION['User'] = DB::table('users')
+                ->where('id', user()->id)
+                ->select('name', 'surname', 'avatar', 'transport')
+                ->first();
             return view('changeuserinfo');
         }
         return redirect(route('login'));
