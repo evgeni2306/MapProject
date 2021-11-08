@@ -45,8 +45,8 @@
             <nav class="user-menu"> 
                 <ul class="user-menu__list">
                     <li class="user-name">
-                        <img  class="avatar" src="/PageMap/img/user/user.svg" alt="user">
-                        <a href="#" class="user-menu__link">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
+                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
                         <ul class="sub-menu__list">
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
@@ -156,14 +156,14 @@
         var addObject = false;
 
 
-       /* for (var i = 0; i < menuLinks.length; i++) {
+        for (var i = 0; i < menuLinks.length; i++) {
             menuLinks[i].addEventListener('click', function () {
                 lastClicked.classList.remove('active-menu');
                 this.classList.add('active-menu');
 
                 lastClicked = this;
             });
-        }*/
+        }
 
 
         document.getElementById('menu__link__add-object').addEventListener("click", function (e) {
@@ -229,24 +229,28 @@
             }
         }
 
-        var Markers = L.Icon.extend({
+    /*    var Markers = L.Icon.extend({
 		options: {
 			iconSize:     [39, 45],
 			iconAnchor:   [16,37]
 		}
 	});
 
+    var socket = L.layerGroup([socket]);
+    var house = L.layerGroup([house]);
+
 	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
 		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
 
-	L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
-	L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
+	L.marker([56.82, 60.6], {icon: socket}).addTo(mymap).addTo(socket);
+	L.marker([56.826, 60.65], {icon: house}).addTo(mymap).addTo(house);
 
-   /* document.querySelector('.form-photos__add').addEventListener("submit", function (e) {
-        L.marker([56.82, 60.6], {icon: socket}).addTo(mymap);
-        L.marker([56.826, 60.65], {icon: house}).addTo(mymap);
-    });*/
+    var overlayMaps = {
+        "<img src='/PageMap/img/icons/01.png' alt='socket'> Розетки": socket,
+        "<img src='/PageMap/img/icons/02.png' alt='house'> Достопримечательности": house
+    };
 
+    L.control.layers(null, overlayMaps).addTo(mymap);*/
         mymap.on('click', onMapClick);
 
     </script>

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/map', function () {
     return view('map');
-});
+})->name('map');
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -33,3 +33,6 @@ Route::get('/unauthorizedmap', function () {
     return view('unauthorizedmap');
 });
 
+Route::get('/editpoints', function () {
+    return view('editpoints');
+})->name('editpoints');
