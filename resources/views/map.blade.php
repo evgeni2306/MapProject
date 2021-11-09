@@ -69,12 +69,35 @@
             }
         });
 
+
+
+
+
         var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
             house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
         <?foreach ($_SESSION['Points'] as $point ) {?>
         L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->type}}}).addTo(mymap)
-            .bindPopup('<p> {{$point->name}}<p>' +
-                '       <p> {{$point->address}}<p>' );
+            .bindPopup(
+                '<div class="marker__container">'+
+            '<div class="marker__title">{{$point->name}}</div>'+
+                '<div class="star-rating star-rating_set">'+
+            '<div class="star-rating__body">'+
+            '<div class="star-rating__active"></div>'+
+            '<div class="star-rating__items">'+
+            '<input type="radio" class="star-rating__item" value="1" name="star-rating">'+
+            '<input type="radio" class="star-rating__item" value="2" name="star-rating">'+
+            '<input type="radio" class="star-rating__item" value="3" name="star-rating">'+
+            '<input type="radio" class="star-rating__item" value="4" name="star-rating">'+
+            '<input type="radio" class="star-rating__item" value="5" name="star-rating">'+
+            '</div>'+
+            '</div>'+
+            '<div class="star-rating__value">4.3</div>'+
+            '</div>'+
+            '<div class="marker__address">{{$point->address}}</div>'+
+        '<div class="marker__photo__container">'+
+            '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
+            '</div>'+
+            '</div>' );
         <? }?>
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
