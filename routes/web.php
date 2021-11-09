@@ -49,7 +49,7 @@ Route::get('/logout', function () {
     session_destroy();
     Auth::logout();
     return redirect('/map');
-});
+})->name('logout');
 
 
 Route::get('/map', function () {

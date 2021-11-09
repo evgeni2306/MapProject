@@ -28,7 +28,8 @@ class RegisterController extends Controller
                 'login'=>'Пользователь с таким логином уже зарегистрирован'
             ]);
         }
-        $validateFields['avatar'] = '123';
+
+        $validateFields['avatar'] = 'user.png';
         $validateFields['transport'] = 'Не указан';
         $user=User::create($validateFields);
         if ($user){

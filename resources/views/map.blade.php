@@ -45,12 +45,12 @@
             <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
-                        <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
-                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <img  class="avatar" src="/PageMap/img/user/{{$_SESSION['User']->avatar}}" alt="user">
+                        <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}<img src="/PageMap/img/user/arrow.svg" alt=""></a>
                         <ul class="sub-menu__list">
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                            <li><a href="{{route('logout')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul>
                     </li>
                 </ul>
