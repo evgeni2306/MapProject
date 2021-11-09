@@ -45,13 +45,13 @@
             <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
-                        <img  class="avatar" src="/PageMap/img/user/avatar.jpg" alt="user">
-                        <a href="#" class="user-menu__link">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
-{{--                        <ul class="sub-menu__list">--}}
-{{--                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>--}}
-{{--                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>--}}
-{{--                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>--}}
-{{--                        </ul>--}}
+                        <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
+                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <ul class="sub-menu__list">
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                        </ul>
                     </li>
                 </ul>
             </nav>

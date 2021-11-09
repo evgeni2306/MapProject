@@ -40,7 +40,7 @@ body {
 @font-face {
     font-family: "GolosTextRegular";
     src: url("../fonts/GolosTextRegular.woff") format("woff"),
-        url("../fonts/GolosTextRegular.ttf") format("truetype");
+    url("../fonts/GolosTextRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }
@@ -48,7 +48,7 @@ body {
 @font-face {
     font-family: "GolosTextMedium";
     src: url("../fonts/GolosTextMedium.woff") format("woff"),
-        url("../fonts/GolosTextMedium.ttf") format("truetype");
+    url("../fonts/GolosTextMedium.ttf") format("truetype");
     font-style: normal;
     font-weight: 500;
 }
@@ -56,7 +56,7 @@ body {
 @font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
-        url("../fonts/GolosTextBold.ttf") format("truetype");
+    url("../fonts/GolosTextBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
@@ -98,7 +98,6 @@ body {
     width: 300px;
     height: 44px;
 }
-
 .search-btn {
     cursor: pointer;
     position: absolute;
@@ -175,10 +174,8 @@ body {
 .user-menu__link img {
     padding-left: 10px;
 }
-.user-name {
-}
 .sub-menu__list {
-    /*display: none;*/
+    display: none;
     position: absolute;
     right: 0;
     top: 40px;
@@ -189,6 +186,23 @@ body {
     border-radius: 7px;
     border-top: 3px solid #fff;
     margin-top: 20px;
+}
+.user-menu__link:focus ~ .sub-menu__list,
+.user-menu__link:active ~ .sub-menu__list,
+.sub-menu__list:hover {
+    display: block;
+}
+.sub-menu__list li:hover {
+    background-color: #f2f2f5;
+}
+.sub-menu__list li:last-child:hover {
+    border-radius: 0px 0px 7px 7px;
+}
+.sub-menu__list li:first-child:hover {
+    border-radius: 7px 7px 0px 0px;
+}
+.sub-menu__list li:not(:last-child) {
+    border-bottom: 1px solid #f4f7fc;
 }
 .sub-menu__list:before {
     content: "";
@@ -233,7 +247,7 @@ body {
 }
 .form-fields {
 }
-.form-field input,
+input,
 select {
     height: 48px;
     width: 100%;
@@ -302,7 +316,7 @@ button {
 }
 .marker__container {
     width: 240px;
-    height: 238px;
+    height: auto;
     background: #ffffff;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
     border-radius: 7px;
@@ -371,6 +385,7 @@ button {
 .marker__address {
     color: #8c8c95;
     margin-bottom: 16px;
+    width: 208px;
 }
 .marker__photo__container {
     width: 208px;
