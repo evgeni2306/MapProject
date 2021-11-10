@@ -22,6 +22,7 @@ class Points extends Migration
             $table->string('name',255)->nullable(true);
             $table->string('address',255)->nullable(true);
             $table->string('type',255)->nullable(true);
+            $table->string('icon',255)->nullable(true);
             $table->string('description',255)->nullable(true);
             $table->integer('rating')->unsigned()->nullable(true);
 //            $table->string('photo',255)->nullable(false);

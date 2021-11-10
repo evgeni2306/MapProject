@@ -15,6 +15,7 @@ class Point extends Model
         'name',
         'address',
         'type',
+        'icon',
         'description',
         'rating'
     ];
