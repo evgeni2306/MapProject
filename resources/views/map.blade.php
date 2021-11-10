@@ -213,8 +213,8 @@
 
                         '<select  required name="type">' +
                         '<option value="" disabled selected style="display:none;">Выберите категорию</option>' +
-                        '<option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
-                        '<option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
+                        '<option value="Зарядка,zpoints"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
+                        '<option value="Достопримечательность,dpoints"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
                         '</select>' +
                         '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
                         '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
@@ -238,7 +238,7 @@
         };
 
         var overlays = {
-            "зарядки": zpoints,
+            "Розетки": zpoints,
             "Достопримечательности": dpoints
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
