@@ -49,8 +49,8 @@
 
     <div class="map" id="mapid"></div>
     <script>
-
-        var mymap = L.map('mapid').setView([56.82, 60.6], 13);
+        var zpoints = L.layerGroup(); //зарядки
+        var dpoints = L.layerGroup(); //достопримечательности
 
         var Markers = L.Icon.extend({
             options: {
@@ -59,23 +59,32 @@
             }
         });
 
-        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
-        <?foreach ($_SESSION['Points'] as $point ) {?>
-        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->type}}}).addTo(mymap)
-            .bindPopup('<p> {{$point->name}}<p>' +
-                '       <p> {{$point->address}}<p>' );
-        <? }?>
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
                 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1
-        }).addTo(mymap);
+        })
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+        <?foreach ($_SESSION['Points'] as $point ) {?>
+        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->icon}}}).addTo({{$point->type}})
+            .bindPopup('<p> {{$point->name}}<p>' +
+                '       <p> {{$point->address}}<p>' );
+        <? }?>
 
+
+
+        var baseLayers = {
+        };
+        var overlays = {
+            "Розетки": zpoints,
+            "Достопримечательности": dpoints
+        };
+        L.control.layers(baseLayers, overlays).addTo(mymap);
     </script>
 </div>
 <script src="/PageMap/js/script.js"></script>

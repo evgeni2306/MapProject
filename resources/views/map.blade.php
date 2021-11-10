@@ -60,8 +60,9 @@
 
     <div class="map" id="mapid"></div>
     <script>
+        var zpoints = L.layerGroup(); //зарядки
+        var dpoints = L.layerGroup(); //достопримечательности
 
-        var mymap = L.map('mapid').setView([56.82, 60.6], 13);
         var Markers = L.Icon.extend({
             options: {
                 iconSize:     [39, 45],
@@ -70,44 +71,26 @@
         });
 
 
-
-
-
-        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
-        <?foreach ($_SESSION['Points'] as $point ) {?>
-        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->type}}}).addTo(mymap)
-            .bindPopup(
-                '<div class="marker__container">'+
-            '<div class="marker__title">{{$point->name}}</div>'+
-                '<div class="star-rating star-rating_set">'+
-            '<div class="star-rating__body">'+
-            '<div class="star-rating__active"></div>'+
-            '<div class="star-rating__items">'+
-            '<input type="radio" class="star-rating__item" value="1" name="star-rating">'+
-            '<input type="radio" class="star-rating__item" value="2" name="star-rating">'+
-            '<input type="radio" class="star-rating__item" value="3" name="star-rating">'+
-            '<input type="radio" class="star-rating__item" value="4" name="star-rating">'+
-            '<input type="radio" class="star-rating__item" value="5" name="star-rating">'+
-            '</div>'+
-            '</div>'+
-            '<div class="star-rating__value">4.3</div>'+
-            '</div>'+
-            '<div class="marker__address">{{$point->address}}</div>'+
-        '<div class="marker__photo__container">'+
-            '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
-            '</div>'+
-            '</div>' );
-        <? }?>
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
                 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1
-        }).addTo(mymap);
+        })
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
+
+
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+        <?foreach ($_SESSION['Points'] as $point ) {?>
+        L.marker([{{$point->lat}}, {{$point->lng}}],{icon: {{$point->icon}}}).addTo({{$point->type}})
+            .bindPopup('<p> {{$point->name}}<p>' +
+                '       <p> {{$point->address}}<p>' );
+        <? }?>
+
+
 
         /*-------------star-rating---------------*/
         const ratings = document.querySelectorAll('.star-rating');
@@ -227,8 +210,8 @@
 
                         '<select  required name="type">' +
                         '<option value="" disabled selected style="display:none;">Выберите категорию</option>' +
-                        '<option value="socket"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
-                        '<option value="house"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
+                        '<option value="socket,zpoints"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
+                        '<option value="house,dpoints"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>' +
                         '</select>' +
                         '        <input type="hidden" name="lat"  value="' + e.latlng.lat.toString().substr(0,9) + '">\n' +
                         '        <input type="hidden" name="lng"  value="' + e.latlng.lng.toString().substr(0,9) + '">\n' +
@@ -246,6 +229,13 @@
                     .openOn(mymap);
             }
         }
+        var baseLayers = {
+        };
+        var overlays = {
+            "Розетки": zpoints,
+            "Достопримечательности": dpoints
+        };
+        L.control.layers(baseLayers, overlays).addTo(mymap);
 
 
 

@@ -19,10 +19,12 @@ class Points extends Migration
             $table->foreign('creatorid')->references('id')->on('users')->change();
             $table->float('lat', 255,7)->nullable(false);
             $table->float('lng', 255,7)->nullable(false);
-            $table->string('name',255)->nullable(false);
+            $table->string('name',255)->nullable(true);
             $table->string('address',255)->nullable(true);
-            $table->string('type',255)->nullable(false);
+            $table->string('type',255)->nullable(true);
+            $table->string('icon',255)->nullable(true);
             $table->string('description',255)->nullable(true);
+            $table->integer('rating')->unsigned()->nullable(true);
 //            $table->string('photo',255)->nullable(false);
             $table->timestamps();
         });
