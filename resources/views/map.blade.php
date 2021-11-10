@@ -42,7 +42,7 @@
                     </li>
                 </ul>
             </nav>
-            <nav class="user-menu"> 
+            <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
                         <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
@@ -51,7 +51,7 @@
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
-                        </ul> 
+                        </ul>
                     </li>
                </ul>
             </nav>
@@ -80,17 +80,21 @@
     <div class="map" id="mapid"></div>
     <script>
 
-        var mymap = L.map('mapid').setView([56.82, 60.6], 13);
+        var zpoints = L.layerGroup(); //зарядки
+        var dpoints = L.layerGroup(); //достопримечательности
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+       var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
                 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1
-        }).addTo(mymap);
-
+        })
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
+       //тестовые метки
+        L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(zpoints);
+        L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(dpoints);
         /*-------------star-rating---------------*/
         const ratings = document.querySelectorAll('.star-rating');
         if (ratings.length > 0) {
@@ -228,6 +232,16 @@
                     .openOn(mymap);
             }
         }
+
+        var baseLayers = {
+
+        };
+
+        var overlays = {
+            "зарядки": zpoints,
+            "Достопримечательности": dpoints
+        };
+        L.control.layers(baseLayers, overlays).addTo(mymap);
 
     /*    var Markers = L.Icon.extend({
 		options: {
