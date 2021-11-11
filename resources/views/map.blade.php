@@ -193,6 +193,11 @@
 
         function onMapClick(e) {
             if (addObject == true) {
+
+                address = getaddress(e)
+                if(address == undefined){
+                    address = ' '
+                }
                 popup
                     .setLatLng(e.latlng)
                     .setContent(
@@ -207,7 +212,7 @@
                         '<input type="text" placeholder="Введите название" required name="name">' +
                         '</div>' +
                         '<div class="form-field form-object-address">' +
-                        '<input type="text" placeholder="Введите адрес" required name="address">' +
+                        '<input type="text"   placeholder="Введите адрес" required name="address" value="'+address+'">' +
                         '</div>' +
                         '<div class="form-field form-category">' +
 
@@ -243,6 +248,25 @@
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
 
+
+
+        function getaddress( e) {
+             url = 'https://nominatim.openstreetmap.org/reverse.php?lat='+e.latlng.lat+'&lon='+e.latlng.lng+'&format=jsonv2';
+            var req = null;
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            var data = JSON.parse(req.responseText)
+            if(data["address"]["house_number"] == undefined){
+                return data["address"]["road"]
+            }else if(data["address"]["road"] == undefined){
+                return " lol"
+            }else if (data["address"]["house_number"] == undefined && data["address"]["road"] == undefined){
+                return "lol "
+            }else
+                return  data["address"]["road"]+ ','+ data["address"]["house_number"]
+
+        }
     /*    var Markers = L.Icon.extend({
 		options: {
 			iconSize:     [39, 45],
