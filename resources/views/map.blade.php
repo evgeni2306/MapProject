@@ -225,6 +225,11 @@
 
         function onMapClick(e) {
             if (addObject == true) {
+
+                address = getaddress(e)
+                if(address == undefined){
+                    address = ' '
+                }
                 popup
                     .setLatLng(e.latlng)
                     .setContent(
@@ -239,7 +244,7 @@
                         '<input type="text" placeholder="Введите название" required name="name">' +
                         '</div>' +
                         '<div class="form-field form-object-address">' +
-                        '<input type="text" placeholder="Введите адрес" required name="address">' +
+                        '<input type="text"   placeholder="Введите адрес" required name="address" value="'+address+'">' +
                         '</div>' +
                         '<div class="form-field form-category">' +
 
