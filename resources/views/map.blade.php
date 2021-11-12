@@ -49,7 +49,7 @@
                         <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
                         <ul class="sub-menu__list">
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="{{route('settings')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul>
                     </li>
@@ -57,7 +57,7 @@
             </nav>
         </div>
     </header>
-    <div class="marker__container">
+    <!--<div class="marker__container">
         <div class="marker__title">Музей изобразительных искусств</div>
         <div class="star-rating star-rating_set">
             <div class="star-rating__body">
@@ -76,12 +76,22 @@
         <div class="marker__photo__container">
             <img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">
         </div>
-    </div>
+    </div>-->
     <div class="map" id="mapid"></div>
     <script>
 
         var zpoints = L.layerGroup(); //зарядки
         var dpoints = L.layerGroup(); //достопримечательности
+
+        var Markers = L.Icon.extend({
+		options: {
+			iconSize:     [39, 45],
+			iconAnchor:   [16,37]
+		}
+	});
+
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
 
        var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
@@ -93,8 +103,30 @@
         })
         var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
        //тестовые метки
-        L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(zpoints);
-        L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(dpoints);
+        L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' + 
+        '<div class="marker__title">Розетка</div>' + 
+        '<div class="star-rating star-rating_set">' + 
+            '<div class="star-rating__body">' + 
+                '<img class="star-rating__star" src="/PageMap/img/marker/03.svg">'+
+            '</div>'+
+            '<div class="star-rating__value">4.3</div>'+
+        '</div>'+
+        '<div class="marker__photo__container">'+
+            '<img class="marker__photo" src="/PageMap/img/marker/02.png" alt="object">'+
+        '</div>'+
+    '</div>').addTo(zpoints);
+        L.marker([56.826, 60.65], {icon: house}).bindPopup('<div class="marker__container">' + 
+        '<div class="marker__title">Музей изобразительных искусств</div>' + 
+        '<div class="star-rating star-rating_set">' + 
+            '<div class="star-rating__body">' + 
+                '<img class="star-rating__star" src="/PageMap/img/marker/03.svg">'+
+            '</div>'+
+            '<div class="star-rating__value">4.3</div>'+
+        '</div>'+
+        '<div class="marker__photo__container">'+
+            '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
+        '</div>'+
+    '</div>').addTo(dpoints);
         /*-------------star-rating---------------*/
         const ratings = document.querySelectorAll('.star-rating');
         if (ratings.length > 0) {
@@ -238,33 +270,10 @@
         };
 
         var overlays = {
-            "Розетки": zpoints,
-            "Достопримечательности": dpoints
+            "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
+            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
-
-    /*    var Markers = L.Icon.extend({
-		options: {
-			iconSize:     [39, 45],
-			iconAnchor:   [16,37]
-		}
-	});
-
-    var socket = L.layerGroup([socket]);
-    var house = L.layerGroup([house]);
-
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
-
-	L.marker([56.82, 60.6], {icon: socket}).addTo(mymap).addTo(socket);
-	L.marker([56.826, 60.65], {icon: house}).addTo(mymap).addTo(house);
-
-    var overlayMaps = {
-        "<img src='/PageMap/img/icons/01.png' alt='socket'> Розетки": socket,
-        "<img src='/PageMap/img/icons/02.png' alt='house'> Достопримечательности": house
-    };
-
-    L.control.layers(null, overlayMaps).addTo(mymap);*/
         mymap.on('click', onMapClick);
 
     </script>

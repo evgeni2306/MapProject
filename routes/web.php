@@ -36,3 +36,7 @@ Route::get('/unauthorizedmap', function () {
 Route::get('/editpoints', function () {
     return view('editpoints');
 })->name('editpoints');
+
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');
