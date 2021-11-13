@@ -21,6 +21,7 @@ class Users extends Migration
             $table->string('password',255)->nullable(false);
             $table->timestamps();
         });
+
     }
 
     /**

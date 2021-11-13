@@ -17,6 +17,9 @@
         <p><input type="submit" value="Log in"></p>
         {{ $errors->first('login') }}
     </form>
+    <a href="{{route('auth.google')}}">
+        Войти через гугл
+    </a>
 </div>
 </body>
 

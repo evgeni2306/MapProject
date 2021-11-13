@@ -25,6 +25,7 @@ return [
     | services the application utilizes. Set this in your ".env" file.
     |
     */
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     'env' => env('APP_ENV', 'production'),
 

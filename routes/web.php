@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SocialController;
 session_start();
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,7 @@ Route::get('/', function () {
     })->name('registration');
 
     Route::post('/registration',[RegisterController::class,'save']);
+
+    Route::get('/auth/google',[SocialController::class,'googleRedirect'])->name('auth.google');
+    Route::get('/auth/google/callback',[SocialController::class,'loginWithGoogle']);
 
