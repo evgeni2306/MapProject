@@ -83,10 +83,10 @@
         })
         var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
        //тестовые метки
-        L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' + 
-        '<div class="marker__title">Розетка</div>' + 
-        '<div class="star-rating star-rating_set">' + 
-            '<div class="star-rating__body">' + 
+        L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' +
+        '<div class="marker__title">Розетка</div>' +
+        '<div class="star-rating star-rating_set">' +
+            '<div class="star-rating__body">' +
                 '<img class="star-rating__star" src="/PageMap/img/marker/03.svg">'+
             '</div>'+
             '<div class="star-rating__value">4.3</div>'+
@@ -95,10 +95,10 @@
             '<img class="marker__photo" src="/PageMap/img/marker/02.png" alt="object">'+
         '</div>'+
     '</div>').addTo(zpoints);
-        L.marker([56.826, 60.65], {icon: house}).bindPopup('<div class="marker__container">' + 
-        '<div class="marker__title">Музей изобразительных искусств</div>' + 
-        '<div class="star-rating star-rating_set">' + 
-            '<div class="star-rating__body">' + 
+        L.marker([56.826, 60.65], {icon: house}).bindPopup('<div class="marker__container">' +
+        '<div class="marker__title">Музей изобразительных искусств</div>' +
+        '<div class="star-rating star-rating_set">' +
+            '<div class="star-rating__body">' +
                 '<img class="star-rating__star" src="/PageMap/img/marker/03.svg">'+
             '</div>'+
             '<div class="star-rating__value">4.3</div>'+
@@ -270,9 +270,9 @@
             if(data["address"]["house_number"] == undefined){
                 return data["address"]["road"]
             }else if(data["address"]["road"] == undefined){
-                return " lol"
+                return " "
             }else if (data["address"]["house_number"] == undefined && data["address"]["road"] == undefined){
-                return "lol "
+                return " "
             }else
                 return  data["address"]["road"]+ ','+ data["address"]["house_number"]
         }
