@@ -8,6 +8,7 @@ use App\Http\Controllers\AddPcommentController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
 use App\Http\Controllers\UpdateUserController;
+use App\Http\Controllers\SocialController;
 
 session_start();
 /*
@@ -67,6 +68,10 @@ Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
 Route::post('/change/userinfo',[UpdateUserController::class,'UpdateUser']);
 Route::get('/change/userinfo',[UpdateUserController::class,'GetUserFields'])->name('userinfo');
 
+Route::get('auth/google',[SocialController::class,'googleredirect'])->name('google');
+Route::get('auth/google/callback',[SocialController::class,'loginwithgoogle']);
 
+Route::get('auth/vkontakte',[SocialController::class,'vkontakteredirect'])->name('vkontakte');
+Route::get('auth/vkontakte/callback',[SocialController::class,'loginwithvkontakte']);
 
 Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');

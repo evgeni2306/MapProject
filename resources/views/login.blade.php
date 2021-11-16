@@ -32,8 +32,8 @@
 
     <div class="form-buttons _container">
         <div class="divider">или</div>
-        <a href="#" class="form-button form-button__google"><img src="PageRegistration/img/01.svg" alt="google">Войти с помощью Google</a>
-        <a href="#" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
+        <a href="{{route('google')}}" class="form-button form-button__google"><img src="PageRegistration/img/01.svg" alt="google">Войти с помощью Google</a>
+        <a href="{{route('vkontakte')}}" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
     </div>
 </div>
 <!--<script src="/registration/js/script.js"></script>-->

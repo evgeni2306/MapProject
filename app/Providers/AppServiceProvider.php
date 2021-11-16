@@ -12,6 +12,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    protected $listen = [
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
+        ],
+    ];
     public function register()
     {
         //
