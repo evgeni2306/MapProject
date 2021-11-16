@@ -20,6 +20,10 @@
     <a href="{{route('auth.google')}}">
         Войти через гугл
     </a>
+
+    <a href="{{route('auth.vk')}}">
+        Войти через vk
+    </a>
 </div>
 </body>
 
