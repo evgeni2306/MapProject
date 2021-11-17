@@ -8,6 +8,7 @@ use App\Http\Controllers\AddPcommentController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\UpdateUserController;
 
 session_start();
 /*
@@ -81,4 +82,5 @@ Route::get('/mypage', function () {
 Route::get('/edit', function () {
     return view('settings');
 })->name('edit');
+Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
 

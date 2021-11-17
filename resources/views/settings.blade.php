@@ -20,29 +20,14 @@
         <div class="header__container">
             <a href="" class="header__logo">LOGO</a>
             <nav class="header__menu menu">
-                <ul class="menu__list">
-                    <li class="menu__item">
-                        <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__view"><img
-                                src="/PageMap/img/header/02.svg" alt="view">Просмотр
-                        </button></a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__add-object"><img
-                                src="/PageMap/img/header/03.svg" alt="object">Добавить объект
-                        </button></a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__add-route"><img
-                                src="/PageMap/img/header/04.svg" alt="route">Добавить маршрут
-                        </button></a>
-                    </li>
-                </ul>
+                <a href = "{{route('map')}}">На карту</a>
+
             </nav>
             <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
-                        <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
-                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <img  class="avatar" src="{{$_SESSION['User']->avatar}}" alt="user">
+                        <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}<img src="/PageMap/img/user/arrow.svg" alt=""></a>
                         <ul class="sub-menu__list">
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="{{route('edit')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
@@ -54,11 +39,11 @@
         </div>
     </header>
     <div class="container">
-    <form method="" action ="">
+    <form method="Post" action ="{{'edit'}}">
       <h1 class="settings__title">Настройки</h1>
       <div class="content__container">
         <div class="avatar__container">
-          <img  class="avatar-big" src="/PageSettings/img/02.png" alt="user">
+          <img  class="avatar-big" src="{{$_SESSION['User']->avatar}}" alt="user">
           <input type="file" id="files" name="files[]">
           <label for="files"><img src="/PageSettings/img/01.svg">Изменить фото</label>
           <output id="list"></output>
@@ -68,11 +53,12 @@
           <input type="text" placeholder="Введите имя" name="name" value ="{{$_SESSION['User']->name}}">
           <h4 class="sub-title">Фамилия</h4>
           <input type="text" placeholder="Введите фамилию" name="surname" value="{{$_SESSION['User']->surname}}">
-          <h4 class="sub-title">E-mail</h4>
+          <h4 class="sub-title">E-mail(пока не работает)</h4>
           <input type="email" placeholder="Введите e-mail" name="email">
           <h4 class="sub-title">Модель транспорта</h4>
           <input type="text" placeholder="Введите модель своего транспорта" name="transport" value="{{$_SESSION['User']->transport}}">
           <div class="buttons">
+              @csrf
             <input type="reset" class="settings__cancel" value ="Отмена">
             <input type="submit" class="settings__save" value ="Сохранить">
           </div>
