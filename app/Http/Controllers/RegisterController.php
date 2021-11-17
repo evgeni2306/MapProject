@@ -29,7 +29,7 @@ class RegisterController extends Controller
             ]);
         }
 
-        $validateFields['avatar'] = 'user.png';
+        $validateFields['avatar'] = '/PageMap/img/user/user.png';
         $validateFields['transport'] = 'Не указан';
         $user=User::create($validateFields);
         if ($user){

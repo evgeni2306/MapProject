@@ -18,7 +18,7 @@ class GetAllController extends Controller
         $_SESSION['Points'] = $getpoints;
 
 if (Auth::check()){
-            return view('Map');
+            return view('map');
 }else
     return view('unmap');
 

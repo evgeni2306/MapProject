@@ -7,6 +7,7 @@ use App\Http\Controllers\AddPointController;
 use App\Http\Controllers\AddPcommentController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
+use App\Http\Controllers\SocialController;
 
 session_start();
 /*
@@ -52,9 +53,9 @@ Route::get('/logout', function () {
 })->name('logout');
 
 
-Route::get('/map', function () {
-    return view('map');
-})->name('map');
+//Route::get('/map', function () {
+//    return view('map');
+//})->name('map');
 Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
 Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
@@ -62,7 +63,11 @@ Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
 
 
 
+Route::get('auth/google',[SocialController::class,'googleredirect'])->name('google');
+Route::get('auth/google/callback',[SocialController::class,'loginwithgoogle']);
 
+Route::get('auth/vkontakte',[SocialController::class,'vkontakteredirect'])->name('vkontakte');
+Route::get('auth/vkontakte/callback',[SocialController::class,'loginwithvkontakte']);
 
 Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
 Route::get('/mypage', function () {
