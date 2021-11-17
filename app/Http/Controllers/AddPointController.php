@@ -30,11 +30,6 @@ class AddPointController extends Controller
         $validateFields['lat'] = (double)$validateFields['lat'];
         $validateFields['lng'] = (double)$validateFields['lng'];
         $point = Point::create($validateFields);
-//        $_SESSION['MainX']= (double)$validateFields['x'];
-//        $_SESSION['MainY'] =(double)$validateFields['y'];
-
-//        $_SESSION['MainX'] = $validateFields['x'];
-//        $_SESSION['MainY'] = $validateFields['y'];
         return redirect(route('map'));
 
 
