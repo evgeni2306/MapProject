@@ -81,8 +81,8 @@
         var baseLayers = {
         };
         var overlays = {
-            "Розетки": zpoints,
-            "Достопримечательности": dpoints
+            "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
+            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
     </script>

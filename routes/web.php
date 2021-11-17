@@ -77,7 +77,8 @@ Route::get('/mypage', function () {
 //    return view('map');
 //})->name('map');
 
-Route::get('/entrance', function () {
-    return view('entrance');
-});
+
+Route::get('/edit', function () {
+    return view('settings');
+})->name('edit');
 

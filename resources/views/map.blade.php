@@ -49,7 +49,7 @@
                         <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}<img src="/PageMap/img/user/arrow.svg" alt=""></a>
                         <ul class="sub-menu__list">
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="{{route('edit')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="{{route('logout')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul>
                     </li>
@@ -242,9 +242,9 @@
             if(data["address"]["house_number"] == undefined){
                 return data["address"]["road"]
             }else if(data["address"]["road"] == undefined){
-                return " lol"
+                return " "
             }else if (data["address"]["house_number"] == undefined && data["address"]["road"] == undefined){
-                return "lol "
+                return " "
             }else
                 return  data["address"]["road"]+ ','+ data["address"]["house_number"]
         }
