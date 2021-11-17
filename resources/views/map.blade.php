@@ -211,7 +211,6 @@
                         '<input type="text"   placeholder="Введите адрес" required name="address" value="'+address+'">' +
                         '</div>' +
                         '<div class="form-field form-category">' +
-
                         '<select  required name="type">' +
                         '<option value="" disabled selected style="display:none;">Выберите категорию</option>' +
                         '<option value="socket,zpoints"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>' +
@@ -252,8 +251,8 @@
         var baseLayers = {
         };
         var overlays = {
-            "Розетки": zpoints,
-            "Достопримечательности": dpoints
+            "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
+            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
 
