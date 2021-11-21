@@ -237,3 +237,7 @@ input:hover {
         max-width: 500px;
     }
 }
+.error{
+margin-bottom: 5px;
+    text-align: center
+}

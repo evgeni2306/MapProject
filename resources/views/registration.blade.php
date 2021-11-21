@@ -36,6 +36,9 @@
             </div>
         </div>
         @csrf
+        @error('login')
+        <div class="error" role="alert">{{$message}}</div>
+        @enderror
         <input type="submit" class="form-button form-button__createacc" value="Создать аккаунт">
     </form>
     <div class="form-buttons _container">
