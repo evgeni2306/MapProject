@@ -135,7 +135,7 @@ input:hover {
 .form-field__fullname {
     display: flex;
 }
-.form-field__email {
+.form-field__login {
 }
 .form-field__name {
     margin-right: 20px;

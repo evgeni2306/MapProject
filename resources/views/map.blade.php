@@ -35,6 +35,21 @@
                                 src="/PageMap/img/header/03.svg" alt="object">Добавить объект
                         </button>
                     </li>
+                    <li class="menu__item__mobile">
+                        <button type="button" class="menu__link" id="menu__link__view__mobile"><img
+                                src="/PageMap/img/header/02.svg" alt="view">
+                        </button>
+                    </li>
+                    <li class="menu__item__mobile">
+                        <button type="button" class="menu__link" id="menu__link__add-object__mobile"><img
+                                src="/PageMap/img/header/03.svg" alt="object">
+                        </button>
+                    </li>
+                    <li class="menu__item__mobile">
+                        <button type="button" class="menu__link" id="menu__link__add-route__mobile"><img
+                                src="/PageMap/img/header/04.svg" alt="route">
+                        </button>
+                    </li>
                     <li class="menu__item">
                         <button type="button" class="menu__link" id="menu__link__add-route"><img
                                 src="/PageMap/img/header/04.svg" alt="route">Добавить маршрут
@@ -42,11 +57,14 @@
                     </li>
                 </ul>
             </nav>
+            <div class="menu__icon">
+                <span></span>
+            </div>
             <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
                         <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
-                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<!--<img src="/PageMap/img/user/arrow.svg" alt="">--></a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="{{route('settings')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
@@ -60,6 +78,55 @@
     <div class="map" id="mapid"></div>
     <script>
 
+        let menuArrows = document.querySelectorAll('.menu__arrow');
+        if (menuArrows.length > 0) {
+            for (let i = 0; i < menuArrows.length; i++) {
+                const menuArrow = menuArrows[i];
+                document.querySelector('.user-name').addEventListener("click", function(e) {
+                    menuArrow.parentElement.classList.toggle('active__arrow');
+                });
+            }
+        }
+
+        var isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };       
+
+        if (isMobile.any()) {
+            document.body.classList.add('_mobile');
+        } else {
+            document.body.classList.add('_pc');
+        }
+
+        const iconMenu = document.querySelector('.menu__icon');
+        if (iconMenu) {
+            const userMenu = document.querySelector('.user-menu');
+            const headerMenu = document.querySelector('.menu');
+            iconMenu.addEventListener("click", function(e) {
+                document.body.classList.toggle('_lock');
+                iconMenu.classList.toggle('active__user-menu');
+                userMenu.classList.toggle('active__user-menu');
+                headerMenu.classList.toggle('hide');
+            });
+        }
+/*---------------------------------------------------------*/
         var zpoints = L.layerGroup(); //зарядки
         var dpoints = L.layerGroup(); //достопримечательности
 
@@ -197,6 +264,26 @@
         });
 
         document.getElementById('menu__link__add-route').addEventListener("click", function (e) {
+            addObject = false;
+            viewOnly = true;
+            popup._close()
+        });
+
+        document.getElementById('menu__link__add-object__mobile').addEventListener("click", function (e) {
+            addObject = true;
+            viewOnly = false;
+            onMapClick(e.target);
+            popup._close()
+        });
+
+        document.getElementById('menu__link__view__mobile').addEventListener("click", function (e) {
+            addObject = false;
+            viewOnly = true;
+            onMapClick(e.target);
+            popup._close()
+        });
+
+        document.getElementById('menu__link__add-route__mobile').addEventListener("click", function (e) {
             addObject = false;
             viewOnly = true;
             popup._close()

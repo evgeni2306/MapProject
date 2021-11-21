@@ -19,8 +19,8 @@
     </div>
     <form action="" method="">
         <div class="form-fields _container">
-            <div class="form-field form-field__email">
-                <input type="email" placeholder="E-mail" name = 'Login'>
+            <div class="form-field form-field__login">
+                <input type="text" placeholder="Логин" name = 'Login'>
             </div>
             <div class="form-field form-field__password">
                 <input type="password" placeholder="Пароль" name="Password">
