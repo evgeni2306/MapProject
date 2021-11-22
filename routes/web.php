@@ -9,7 +9,7 @@ use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
 use App\Http\Controllers\UpdateUserController;
 use App\Http\Controllers\SocialController;
-
+use App\Http\Controllers\UpdatePointController;
 session_start();
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +75,5 @@ Route::get('auth/vkontakte',[SocialController::class,'vkontakteredirect'])->name
 Route::get('auth/vkontakte/callback',[SocialController::class,'loginwithvkontakte']);
 
 Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
+
+Route::get('/changepoint={id}',[UpdatePointController::class, 'GetPointInfo']);
