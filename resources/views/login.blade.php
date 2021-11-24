@@ -20,10 +20,10 @@
     <form action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__login">
-                <input type="text" placeholder="Логин" name = 'Login'>
+                <input type="text" maxlength="35" placeholder="Логин" name = 'Login'>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" placeholder="Пароль" name="Password">
+                <input type="password"  maxlength="35" placeholder="Пароль" name="Password">
             </div>
         </div>
         <input type="submit" class="form-button form-button__createacc" value="Войти">
