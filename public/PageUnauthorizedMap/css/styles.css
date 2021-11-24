@@ -42,7 +42,7 @@ body._lock {
 @font-face {
     font-family: "GolosTextRegular";
     src: url("../fonts/GolosTextRegular.woff") format("woff"),
-    url("../fonts/GolosTextRegular.ttf") format("truetype");
+        url("../fonts/GolosTextRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }
@@ -50,7 +50,7 @@ body._lock {
 @font-face {
     font-family: "GolosTextMedium";
     src: url("../fonts/GolosTextMedium.woff") format("woff"),
-    url("../fonts/GolosTextMedium.ttf") format("truetype");
+        url("../fonts/GolosTextMedium.ttf") format("truetype");
     font-style: normal;
     font-weight: 500;
 }
@@ -58,7 +58,7 @@ body._lock {
 @font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
-    url("../fonts/GolosTextBold.ttf") format("truetype");
+        url("../fonts/GolosTextBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
@@ -102,6 +102,7 @@ body._lock {
     width: 300px;
     height: 44px;
 }
+
 .search-btn {
     cursor: pointer;
     position: absolute;
@@ -231,6 +232,9 @@ button {
     cursor: pointer;
     font-family: inherit;
     font-size: inherit;
+}
+.star-rating__star{
+    width:125px;
 }
 .marker__title {
     font-family: "GolosTextMedium";

@@ -138,7 +138,7 @@
             '<div class="marker__title">{{$point->name}}</div>' +
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-            '<img class="star-rating__star" src="/PageMap/img/icons/stars-0-5.svg">'+
+            '<img class="star-rating__star" src={{$point->rating}}>'+
             '</div>'+
             '<div class="star-rating__value">4.3</div>'+
             '</div>'+

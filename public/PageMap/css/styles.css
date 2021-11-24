@@ -360,6 +360,9 @@ button {
     height: auto;
     padding: 5px;
 }*/
+.star-rating__star{
+    width:125px;
+}
 .marker__title {
     font-family: "GolosTextMedium";
     font-weight: 500;
