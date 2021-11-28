@@ -11,7 +11,7 @@ class PointPageController extends Controller
     {
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0)) {
-            $point = DB::table('points')->select('id', 'type', 'description')
+            $point = DB::table('points')->select('id', 'type','address', 'description')
                 ->where('id', $id)->first();
             $_SESSION['CurrentPoint'] = $point;
             $pcomments = DB::table('pcomments')

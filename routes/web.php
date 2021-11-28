@@ -9,6 +9,8 @@ use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UpdateUserController;
+use App\Http\Controllers\UpdatePointController;
+
 
 session_start();
 /*
@@ -21,9 +23,7 @@ session_start();
 | contains the "web" middleware group. Now create something great!
 |
 */
-//$_SESSION['MainX']= 56.838285;
-//$_SESSION['MainY'] = 60.603442;
-//$_SESSION['Points']=Point::all();
+
 
 
 //Роуты для авторизованных
@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
+    Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
+    Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
     Route::get('/logout', function () {
         session_destroy();
         Auth::logout();
