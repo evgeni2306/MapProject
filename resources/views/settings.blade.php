@@ -53,8 +53,8 @@
           <input type="text" placeholder="Введите имя" name="name" value ="{{$_SESSION['User']->name}}">
           <h4 class="sub-title">Фамилия</h4>
           <input type="text" placeholder="Введите фамилию" name="surname" value="{{$_SESSION['User']->surname}}">
-          <h4 class="sub-title">E-mail(пока не работает)</h4>
-          <input type="email" placeholder="Введите e-mail" name="email">
+{{--          <h4 class="sub-title">E-mail(пока не работает)</h4>--}}
+{{--          <input type="email" placeholder="Введите e-mail" name="email">--}}
           <h4 class="sub-title">Модель транспорта</h4>
           <input type="text" placeholder="Введите модель своего транспорта" name="transport" value="{{$_SESSION['User']->transport}}">
           <div class="buttons">
