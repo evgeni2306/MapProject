@@ -140,10 +140,10 @@
             '<div class="star-rating__body">' +
             '<img class="star-rating__star" src={{$point->rating}}>'+
             '</div>'+
-            '<div class="star-rating__value">4.3</div>'+
+            '<div class="star-rating__value"></div>'+
             '</div>'+
             '<div class="marker__photo__container">'+
-            '<img class="marker__photo" src="/PageMap/img/icons/socket-picture.svg" alt="object">'+
+            '<img class="marker__photo" src="{{$point->photo1}}" alt="object">'+
             '</div>'+
             '</div>').addTo({{$point->type}});
         <? }?>
