@@ -87,10 +87,8 @@ body {
     padding: 16px 0px;
 }
 
-.header__logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: inherit;
+.header__logo img {
+    width: 52px;
 }
 
 .header__menu {
@@ -380,16 +378,13 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: #27ae60;
+    background: #0c585c;
     color: #fff;
     padding: 38px 150px;
     max-height: 100px;
     line-height: 120%;
 }
-.footer__logo {
-    font-weight: 700;
-    font-size: 24px;
-}
+
 .footer__rights {
 }
 .footer__contacts {

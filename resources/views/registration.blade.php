@@ -12,7 +12,7 @@
     <img src="PageRegistration/img/main.png" alt="main">
 </div>
 <div class="wrapper">
-    <div class="logo">LOGO</div>
+    <div class="logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></div>
     <div class="text-container _container">
         <h1 class="text-container__title">Создать аккаунт</h1>
         <div class="text-container__subtitle">Уже есть аккаунт? <a href="{{route('login')}}" class="text-container__subtitle entrance">Войти</a>
@@ -20,8 +20,8 @@
     </div>
     <form action="" method="">
         <div class="form-fields _container">
-            <div class="form-field form-field__login">
-                <input type="text" placeholder="Логин" name='login'>
+            <div class="form-field form-field__email">
+                <input type="text" placeholder="E-mail" name='email'>
             </div>
             <div class="form-field__fullname">
                 <div class="form-field form-field__name">

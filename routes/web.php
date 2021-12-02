@@ -40,3 +40,7 @@ Route::get('/editpoints', function () {
 Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
+
+Route::get('/pointpersonal', function () {
+    return view('pointpersonal');
+})->name('pointpersonal');

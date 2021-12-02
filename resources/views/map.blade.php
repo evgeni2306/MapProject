@@ -18,11 +18,7 @@
 <div class="wrapper">
     <header class="header">
         <div class="header__container">
-            <a href="" class="header__logo">LOGO</a>
-            <!--<form action="" method="get">
-                <input class="search" name="search" placeholder="Поиск" type="search">
-                <button class="search-btn" type="submit"><img src="/PageMap/img/header/01.svg" alt="search"></button>
-            </form>-->
+            <a href="" class="header__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></a>
             <nav class="header__menu menu">
                 <ul class="menu__list">
                     <li class="menu__item">
@@ -151,24 +147,24 @@
         var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
        //тестовые метки
         L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' +
-        '<div class="marker__title">Розетка</div>' +
+        '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Розетка</a></div>' +
         '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-                '<img class="star-rating__star" src="/PageMap/img/marker/03.svg">'+
+                '<img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">'+
+                '<span class="star-rating__feedback">(35)</span>'+
             '</div>'+
-            '<div class="star-rating__value">4.3</div>'+
         '</div>'+
         '<div class="marker__photo__container">'+
             '<img class="marker__photo" src="/PageMap/img/marker/02.png" alt="object">'+
         '</div>'+
     '</div>').addTo(zpoints);
         L.marker([56.826, 60.65], {icon: house}).bindPopup('<div class="marker__container">' +
-        '<div class="marker__title">Музей изобразительных искусств</div>' +
+        '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Музей изобразительных искусств</a></div>' +
         '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-                '<img class="star-rating__star" src="/PageMap/img/marker/03.svg">'+
+                '<img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">'+
+                '<span class="star-rating__feedback">(35)</span>'+
             '</div>'+
-            '<div class="star-rating__value">4.3</div>'+
         '</div>'+
         '<div class="marker__photo__container">'+
             '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
