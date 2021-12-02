@@ -21,18 +21,18 @@
     <form action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
-                <input type="text" placeholder="E-mail" name='email'>
+                <input type="text" maxlength="35" placeholder="E-mail" name='email'>
             </div>
             <div class="form-field__fullname">
                 <div class="form-field form-field__name">
-                    <input type="text" placeholder="Имя" name='name'>
+                    <input type="text"  maxlength="35" placeholder="Имя" name='name'>
                 </div>
                 <div class="form-field form-field__lastname">
-                    <input type="text" placeholder="Фамилия" name='surname'>
+                    <input type="text"  maxlength="35" placeholder="Фамилия" name='surname'>
                 </div>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" placeholder="Пароль" name="password">
+                <input type="password" maxlength="50" placeholder="Пароль" name="password">
             </div>
         </div>
         @csrf

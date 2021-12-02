@@ -20,10 +20,10 @@
     <form action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
-                <input type="text" placeholder="E-mail" name = 'email'>
+                <input type="text" maxlength="35" placeholder="E-mail" name = 'email'>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" placeholder="Пароль" name="Password">
+                <input type="password"  maxlength="35" placeholder="Пароль" name="Password">
             </div>
         </div>
         <input type="submit" class="form-button form-button__createacc" value="Войти">
