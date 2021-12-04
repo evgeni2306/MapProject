@@ -1,7 +1,7 @@
 <form method="POST" action="" >
     <p>
-        <label>Название</label>
-        <input type="text" name="name" value={{$_SESSION['ChangingPoint']->id}}>
+        <label>Id</label>
+        <input type="text" name="id" value={{$_SESSION['ChangingPoint']->id}}>
     </p>
     <p>
         <label>Название</label>
@@ -9,11 +9,11 @@
     </p>
     <p>
         <label>Адрес</label>
-        <input type="text" name="surname" value="{{$_SESSION['ChangingPoint']->address}}">
+        <input type="text" name="address" value="{{$_SESSION['ChangingPoint']->address}}">
     </p>
     <p>
         <label>Описание</label>
-        <input type="text" name="surname" value="{{$_SESSION['ChangingPoint']->description}}">
+        <input type="text" name="description" value="{{$_SESSION['ChangingPoint']->description}}">
     </p>
     @csrf
     <input type="submit" placeholder="изменить">

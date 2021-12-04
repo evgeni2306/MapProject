@@ -77,3 +77,4 @@ Route::get('auth/vkontakte/callback',[SocialController::class,'loginwithvkontakt
 Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
 
 Route::get('/changepoint={id}',[UpdatePointController::class, 'GetPointInfo']);
+Route::post('/changepoint={id}',[UpdatePointController::class, 'ChangePointInfo']);
