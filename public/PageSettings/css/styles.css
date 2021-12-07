@@ -55,6 +55,14 @@ body {
 }
 
 @font-face {
+    font-family: "GolosTextDemiBold";
+    src: url("../fonts/GolosText-DemiBold.woff") format("woff"),
+        url("../fonts/GolosText-DemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
         url("../fonts/GolosTextBold.ttf") format("truetype");
@@ -107,19 +115,11 @@ body {
 }
 .menu__item {
     cursor: pointer;
+    border-radius: 7px;
 }
 
 .menu__item img {
     margin-right: 15px;
-}
-.menu__item:not(:last-child) {
-    border-right: 1px solid #d3d5da;
-}
-.menu__item:first-child {
-    border-radius: 7px 0px 0px 7px;
-}
-.menu__item:last-child {
-    border-radius: 0px 7px 7px 0px;
 }
 .menu__item:hover {
     border: 1px solid #27ae60;
@@ -241,6 +241,7 @@ body {
     background: #f4f7fc;
 }
 .settings__title {
+    font-family: "GolosTextDemiBold";
     font-weight: 600;
     font-size: 32px;
     line-height: 118%;

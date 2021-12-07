@@ -267,14 +267,6 @@ body._lock {
     text-align: center;
     align-items: center;
 }
-.infoblock__rating__count {
-    font-family: "GolosTextMedium";
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 120%;
-    color: #4f4f53;
-    margin-left: 15px;
-}
 .infoblock__rating__feedback {
     color: #8c8c95;
     margin-left: 12px;
@@ -345,11 +337,28 @@ body._lock {
     font-size: 24px;
     line-height: 120%;
 }
+.information {
+    display: flex;
+}
+.information__content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 530px);
+    height: inherit;
+    margin-right: 60px;
+}
+.information__map {
+    display: flex;
+    max-width: 520px;
+    flex-direction: column;
+    border-radius: 12px;
+    margin-left: 20px;
+}
 .information__description {
     font-size: 16px;
     line-height: 140%;
     padding-top: 12px;
-    width: 50%;
+    width: 100%;
 }
 .information__address__title {
     font-family: "GolosTextMedium";
@@ -357,6 +366,7 @@ body._lock {
     font-size: 20px;
     line-height: 120%;
     padding: 0px 0px 20px 0px;
+    margin-top: auto;
 }
 .information__address {
 }
@@ -364,6 +374,7 @@ body._lock {
     padding-right: 12px;
 }
 .feedback {
+    margin: 20px auto;
 }
 .feedback__title {
 }
@@ -405,7 +416,6 @@ body._lock {
 }
 .rating__label {
     flex: 0 0 20%;
-    height: 100%;
     cursor: pointer;
 }
 .rating__item:checked,
@@ -488,6 +498,120 @@ input:hover {
     align-items: center;
     text-align: center;
 }
+.comments-rating__wrapper {
+    display: flex;
+}
+.comments {
+    width: 50%;
+    margin-right: 20px;
+}
+.comments__comment {
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 20px;
+}
+.comment__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+.comment__user {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.comment__user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.comment__user__content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 16px;
+}
+.comment__user__name {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+    line-height: 118%;
+    margin-bottom: 8px;
+}
+.comment__user__date {
+    font-size: 16px;
+    line-height: 120%;
+    color: #8c8c95;
+}
+.comment__rating {
+}
+.comment__text {
+    margin-bottom: 26px;
+}
+.comment__bottom {
+    display: flex;
+    line-height: 121%;
+    text-align: center;
+    align-items: center;
+}
+.comment__bottom__useful {
+    font-size: 14px;
+    color: #8c8c95;
+}
+.comment__like-icon {
+    margin-left: 22px;
+    margin-right: 10px;
+}
+
+.comment__like-count {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+    font-size: 14px;
+    color: #8c8c95;
+}
+.comment__dislike-icon {
+    margin-left: 22px;
+    margin-right: 10px;
+}
+.comment__dislike-count {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+    font-size: 14px;
+    color: #8c8c95;
+}
+
+.circle__rating {
+    width: 50%;
+    height: 457px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.circle__rating__top {
+    display: flex;
+}
+.circle__rating__info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 32px;
+}
+.circle__rating__title {
+    font-family: "GolosTextDemiBold";
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    margin-bottom: 20px;
+}
+.circle__rating__subtitle {
+    color: #8c8c95;
+}
+.circle__rating__bottom {
+}
 button {
     background: none;
     transition: all 0.3s ease 0s;
@@ -495,7 +619,23 @@ button {
     font-family: inherit;
     font-size: inherit;
 }
+.like-active img {
+    content: url("/PagePointPersonal/img/like-active.svg");
+}
+.like-active__count {
+    color: #27ae60;
+}
+.dislike-active img {
+    content: url("/PagePointPersonal/img/dislike-active.svg");
+}
+.hide {
+    display: none;
+}
+.circle__rating {
+    width: 50%;
+}
 .footer {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

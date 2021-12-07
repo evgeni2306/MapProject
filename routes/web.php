@@ -44,3 +44,7 @@ Route::get('/settings', function () {
 Route::get('/pointpersonal', function () {
     return view('pointpersonal');
 })->name('pointpersonal');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');

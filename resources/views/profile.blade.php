@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Настройки</title>
+    <title>Профиль</title>
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/PageSettings/css/styles.css">
+    <link rel="stylesheet" href="/PageProfile/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -43,33 +43,48 @@
             </nav>
         </div>
     </header>
-    <div class="container">
-    <form method="" action ="">
-      <h1 class="settings__title">Настройки</h1>
-      <div class="content__container">
-        <div class="avatar__container">
-          <img  class="avatar-big" src="/PageSettings/img/02.png" alt="user">
-          <input type="file" id="files" name="files[]">
-          <label for="files"><img src="/PageSettings/img/01.svg">Изменить фото</label>
-          <output id="list"></output>
-        </div>
-        <div class="forms__container">
-          <h4 class="sub-title">Имя</h4>
-          <input type="text" placeholder="Введите имя" name="name">
-          <h4 class="sub-title">Фамилия</h4>
-          <input type="text" placeholder="Введите фамилию" name="surname">
-          <h4 class="sub-title">E-mail</h4>
-          <input type="text" placeholder="Введите e-mail" name="email">
-          <h4 class="sub-title">Модель транспорта</h4>
-          <input type="text" placeholder="Введите модель своего транспорта" name="transport">
-          <div class="buttons">
-            <input type="reset" class="settings__cancel" value ="Отмена">
-            <input type="submit" class="settings__save" value ="Сохранить">
+    <div class="content__wrapper">
+      <h1 class="profile__title">Мой профиль</h1>
+      <div class="container">
+        <div class="content__container">
+          <div class="user">
+            <img class="user__avatar" src="/PageProfile/img/avatar.png" alt="avatar">
+            <div class="user__info">
+              <div class="user__name">Александр Иванов</div>
+              <div class="user__email">alexivanov@gmail.com</div>
+              <div class="edit__page"><img src="/PageProfile/img/05.svg" alt=""><a href="{{route('settings')}}">Редактировать</a></div>
+            </div>
           </div>
-          
+          <div class="achievements">
+            <div class="feedback__count card">
+              <img src="/PageProfile/img/02.png" alt="star">
+              <div class="card__info">
+                <div class="feedback__title title">16</div>
+                <div class="feedback__subtitle">Отзывов</div>
+              </div>
+            </div>
+            <div class="route__count card">
+              <img src="/PageProfile/img/03.png" alt="route">
+              <div class="card__info">
+                <div class="route__title title">1</div>
+                <div class="route__subtitle">Маршрутов</div>
+              </div>
+            </div>
+            <div class="point__count card">
+              <img src="/PageProfile/img/04.png" alt="point">
+              <div class="card__info">
+                <div class="point__title title">5</div>
+                <div class="point__subtitle">Меток</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>            
-    </form>
+          <div class="transport-model">
+            <div class="transport-model__title">Модель транспорта</div>
+            <img class="transport__image" src="/PageProfile/img/01.png" alt="transport">
+            <div class="transport-model__subtitle">KingSong 16S SPORTS 840WH</div>
+          </div>
+      </div>
     </div>
     <footer class="footer">
       <div class="footer__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></div>
@@ -100,7 +115,6 @@
     }
   }
 
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
 /*-------------------------------*/
         var menuLinks = document.querySelectorAll('.menu__link');
         var lastClicked = menuLinks[0];

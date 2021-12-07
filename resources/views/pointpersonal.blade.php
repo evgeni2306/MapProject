@@ -35,8 +35,8 @@
                         <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
                         <a href="#" class="user-menu__link" tabindex="1">Александр Иванов</a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="{{route('profile')}}" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
+                            <li><a href="{{route('settings')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul> 
                     </li>
@@ -49,7 +49,6 @@
       <div class="infoblock">
         <div class="infoblock__rating">
             <img src="/PagePointPersonal/img/stars.svg" alt="rating">
-            <span class="infoblock__rating__count">4.8</span>
             <span class="infoblock__rating__feedback">(35)</span>
         </div>
         <div class="infoblock__category">
@@ -89,13 +88,17 @@
 
         <div class="swiper-scrollbar"></div>
       </div>
-      <div class="information block">
-        <div class="information__title block__title">Информация</div>
-        <div class="information__description">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал».</div>
-        <div class="information__address__title">Адрес</div>
-        <div class="information__address"><img src="/PagePointPersonal/img/04.svg">ул. Авиационная, 123</div>
-      </div>
-      <div class="feedback block">
+    <div class="information block">
+        <div class="information__content">
+            <div class="information__title block__title">Информация</div>
+            <div class="information__description">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал».</div>
+            <div class="information__address__title">Адрес</div>
+            <div class="information__address"><img src="/PagePointPersonal/img/04.svg">ул. Авиационная, 123</div>
+        </div>
+        <div id="map" class="information__map" style="width: 520px; height: 360px;"></div>
+    </div>
+    <div class="feedback block">
+        <form method="" action ="">
         <div class="feedback__title block__title">Написать отзыв</div>
         <p class="feedback__mark block__subtitle">Ваша оценка</p>
         <div class="feedback__rating">
@@ -114,11 +117,70 @@
         </div>
         <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
         <div class="feedback__button__container">
-            <textarea class="feedback__comment" placeholder="Поделитесь своим опытом" name="comment"></textarea>
+            <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="comment"></textarea>
             <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
             <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
         </div>
+        </form>
+    </div>
+      <div class="comments-rating__wrapper">
+      <div class="comments">
+          <div class="comments__comment">
+              <div class="comment__top">
+                <div class="comment__user">
+                    <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                    <div class="comment__user__content">
+                        <div class="comment__user__name">Александр Иванов</div>
+                        <div class="comment__user__date" id="time">22 августа 2021</div>
+                    </div>
+                </div>
+                <div class="comment__rating">
+                    <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                </div>
+              </div>
+              <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+              <div class="comment__bottom">
+                  <span class="comment__bottom__useful">Было полезно?</span>
+                  <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
+                  <div class="comment__like-count">0</div>
+                  <!--<button class="comment__dislike-icon" type="button"><img src="/PagePointPersonal/img/dislike.svg" alt="dislike"></button>
+                  <div class="comment__dislike-count">0</div>-->
+              </div>
+          </div>
+          <div class="comments__comment">
+              <div class="comment__top">
+                <div class="comment__user">
+                    <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                    <div class="comment__user__content">
+                        <div class="comment__user__name">Александр Иванов</div>
+                        <div class="comment__user__date" id="time">22 августа 2021</div>
+                    </div>
+                </div>
+                <div class="comment__rating">
+                    <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                </div>
+              </div>
+              <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+              <div class="comment__bottom">
+                  <span class="comment__bottom__useful">Было полезно?</span>
+                  <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
+                  <div class="comment__like-count">0</div>
+                  <!--<button class="comment__dislike-icon" type="button"><img src="/PagePointPersonal/img/dislike.svg" alt="dislike"></button>
+                  <div class="comment__dislike-count">0</div>-->
+              </div>
+          </div>
       </div>
+      <div class="circle__rating">
+        <div class="circle__rating__top">
+            <img src="/PagePointPersonal/img/circle.svg" alt="">
+            <div class="circle__rating__info">
+                <div class="circle__rating__title">35 отзывов</div>
+                <div class="circle__rating__subtitle">32 из 35 пользователей рекомендуют это место для посещения</div>
+            </div>       
+        </div>
+        <div class="circle__rating__bottom"></div>
+      </div>
+    </div>          
     </div>
     <footer class="footer">
       <div class="footer__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></div>
@@ -128,6 +190,17 @@
 </div>  
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>  
 <script>
+/*-------------MAP------------------------------*/
+    var map = L.map('map').setView([56.826, 60.65], 13);
+
+	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
 /*---------------SWIPER-------------------------*/
     new Swiper('.image-slider', {
         navigation: {
@@ -135,6 +208,32 @@
             prevEl: '.swiper-button-prev'
         },
     });
+/*---------------LIKES-------------------------*/
+    const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
+    const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
+
+    likeButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("like-active");
+            likeCounts[index].classList.toggle("like-active__count");
+            const current = Number(likeCounts[index].innerHTML);
+            const inc = button.classList.contains("like-active") ? 1 : -1;
+            likeCounts[index].innerHTML = current + inc;
+        });
+    });
+
+    /*const dislikeButtons = Array.from(document.querySelectorAll(".comment__dislike-icon"));
+    const dislikeCounts = Array.from(document.querySelectorAll(".comment__dislike-count"));
+
+    dislikeButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("dislike-active");
+            dislikeCounts[index].classList.toggle("like-active__count");
+            const current = Number(dislikeCounts[index].innerHTML);
+            const inc = button.classList.contains("dislike-active") ? 1 : -1;
+            dislikeCounts[index].innerHTML = current + inc;
+        });
+    });*/
 /*---------------------------------------------*/
   let menuArrows = document.querySelectorAll('.menu__arrow');
         if (menuArrows.length > 0) {
