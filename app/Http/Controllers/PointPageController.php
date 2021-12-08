@@ -11,17 +11,20 @@ class PointPageController extends Controller
     {
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0)) {
-            $point = DB::table('points')->select('id', 'type','address', 'description')
-                ->where('id', $id)->first();
+            $point = DB::table('points')
+                ->join('users', 'users.id', '=', 'points.creatorId')
+                ->select('points.id','users.name','users.surname','points.name', 'type','address','lat','lng','icon', 'description')
+                ->where('points.id', $id)->first();
             $_SESSION['CurrentPoint'] = $point;
-            $pcomments = DB::table('pcomments')
-                ->join('users', 'pcomments.creatorId', '=', 'users.id')
-                ->select('rating', 'text', 'pcomments.created_at', 'avatar', 'login')
-                ->where('pointid', $id)->get();
-            $_SESSION['Pcomments'] = $pcomments;
-
-
-            return view('test');
+            print_r($_SESSION['CurrentPoint']);
+//            $pcomments = DB::table('pcomments')
+//                ->join('users', 'pcomments.creatorId', '=', 'users.id')
+//                ->select('rating', 'text', 'pcomments.created_at', 'avatar', 'login')
+//                ->where('pointid', $id)->get();
+//            $_SESSION['Pcomments'] = $pcomments;
+//
+//
+//            return view('pointpersonal');
         } else {
 
 

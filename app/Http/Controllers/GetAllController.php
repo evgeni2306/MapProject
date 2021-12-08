@@ -14,7 +14,7 @@ class GetAllController extends Controller
     {
         $getpoints = DB::table('points')
             ->join('pointphotos', 'pointphotos.pointid', '=', 'points.id')
-            ->select('lat', 'lng','type','icon','address' ,'name','rating','photo1')->get();
+            ->select('points.id','lat', 'lng','type','icon','address' ,'name','rating','photo1')->get();
         foreach ($getpoints as $point ){
             switch ($point->rating) {
                 case 0:

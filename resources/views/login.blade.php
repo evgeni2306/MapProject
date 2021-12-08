@@ -12,18 +12,18 @@
     <img src="PageRegistration/img/main.png" alt="main">
 </div>
 <div class="wrapper">
-    <div class="logo">LOGO</div>
+    <div class="logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></div>
     <div class="text-container _container">
         <h1 class="text-container__title">Войти в аккаунт</h1>
         <div class="text-container__subtitle">Еще нет аккаунта? <a href="{{route('registration')}}" class="text-container__subtitle entrance">Зарегистрироваться</a></div>
     </div>
     <form action="{{'login'}}" method="post">
         <div class="form-fields _container">
-                <div class="form-field form-field__login">
-                    <input type="text" placeholder="Логин" name = 'login'>
+                <div class="form-field form-field__email">
+                    <input type="text"  maxlength="35" placeholder="E-mail" name = 'login'>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" placeholder="Пароль" name="password">
+                <input type="password"  maxlength="35" placeholder="Пароль" name="password">
             </div>
         </div>
         @csrf

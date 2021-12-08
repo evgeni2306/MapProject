@@ -95,6 +95,9 @@ body {
     text-align: center;
     margin-bottom: 20px;
 }
+.logo img {
+    width: 68px;
+}
 .text-container {
 }
 .text-container__title {
@@ -121,7 +124,7 @@ input {
     width: 100%;
     background: #eef1f7;
     border: 1px solid #eef1f7;
-    color: #8c8c95;
+    color: #000;
     border-radius: 7px;
     padding: 15px 20px;
     font-size: 15px;
@@ -134,8 +137,6 @@ input:hover {
 }
 .form-field__fullname {
     display: flex;
-}
-.form-field__login {
 }
 .form-field__name {
     margin-right: 20px;

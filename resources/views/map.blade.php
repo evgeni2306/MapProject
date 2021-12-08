@@ -18,7 +18,7 @@
 <div class="wrapper">
     <header class="header">
         <div class="header__container">
-            <a href="" class="header__logo">LOGO</a>
+            <a href="" class="header__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></a>
             <!--<form action="" method="get">
                 <input class="search" name="search" placeholder="Поиск" type="search">
                 <button class="search-btn" type="submit"><img src="/PageMap/img/header/01.svg" alt="search"></button>
@@ -135,12 +135,12 @@
             house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
         <?foreach ($_SESSION['Points'] as $point ) {?>
         L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup('<div class="marker__container">' +
-            '<div class="marker__title">{{$point->name}}</div>' +
+            '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
             '<img class="star-rating__star" src={{$point->rating}}>'+
+            '<span class="star-rating__feedback"></span>'+
             '</div>'+
-            '<div class="star-rating__value"></div>'+
             '</div>'+
             '<div class="marker__photo__container">'+
             '<img class="marker__photo" src="{{$point->photo1}}" alt="object">'+

@@ -12,7 +12,7 @@
     <img src="PageRegistration/img/main.png" alt="main">
 </div>
 <div class="wrapper">
-    <div class="logo">LOGO</div>
+    <div class="logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></div>
     <div class="text-container _container">
         <h1 class="text-container__title">Создать аккаунт</h1>
         <div class="text-container__subtitle">Уже есть аккаунт? <a href="{{route('login')}}" class="text-container__subtitle entrance">Войти</a>
@@ -20,19 +20,19 @@
     </div>
     <form action="{{route('registration')}}" method="POST">
         <div class="form-fields _container">
-            <div class="form-field form-field__login">
-                <input type="text" maxlength="35" placeholder="Логин" name='login'>
+            <div class="form-field form-field__email">
+                <input type="text" maxlength="35" placeholder="E-mail" name='login'>
             </div>
             <div class="form-field__fullname">
                 <div class="form-field form-field__name">
-                    <input type="text" placeholder="Имя" name='name'>
+                    <input type="text"  maxlength="35"placeholder="Имя" name='name'>
                 </div>
                 <div class="form-field form-field__lastname">
-                    <input type="text" placeholder="Фамилия" name='surname'>
+                    <input type="text" maxlength="35"  placeholder="Фамилия" name='surname'>
                 </div>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" placeholder="Пароль" name="password">
+                <input type="password" maxlength="35" placeholder="Пароль" name="password">
             </div>
         </div>
         @csrf
