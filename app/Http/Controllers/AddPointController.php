@@ -28,6 +28,7 @@ class AddPointController extends Controller
         $validateFields['type'] = $typeAndIcon[1];
         $validateFields['creatorid'] = Auth::id();
         $validateFields['rating'] = 0;
+        $validateFields['description'] = 'Отсутствует';
         $validateFields['lat'] = (double)$validateFields['lat'];
         $validateFields['lng'] = (double)$validateFields['lng'];
         $point = Point::create($validateFields);

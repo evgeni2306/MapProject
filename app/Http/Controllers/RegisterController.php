@@ -36,7 +36,7 @@ class RegisterController extends Controller
             Auth::login($user);
             $_SESSION['User'] =DB::table('users')
                 ->where('id', $user->id)
-                ->select('name','surname','avatar','transport')
+                ->select('id','name','surname','avatar','transport')
                 ->first();
             return redirect(route('map'));
         }

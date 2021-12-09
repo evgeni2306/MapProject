@@ -33,11 +33,11 @@
                 <ul class="user-menu__list">
                     <li class="user-name">
                         <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
-                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов</a><span class="menu__arrow"></span>
+                        <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}</a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
                             <li><a href="" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
-                            <li><a href="" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                            <li><a href="{{route('edit')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
+                            <li><a href="{{route('logout')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul>
                     </li>
                </ul>
@@ -48,17 +48,17 @@
       <h1 class="point__title">{{$_SESSION['CurrentPoint']->name}}</h1>
       <div class="infoblock">
         <div class="infoblock__rating">
-            <img src="/PagePointPersonal/img/stars.svg" alt="rating">
+            <img src="{{$_SESSION['CurrentPoint']->rating}}" alt="rating">
             <span class="infoblock__rating__feedback">(35)</span>
         </div>
         <div class="infoblock__category">
-            <img src="/PagePointPersonal/img/building.svg" alt="category">
-            <span class="infoblock__category__name">Достопримечательность</span>
+            <img src="/PagePointPersonal/img/{{$_SESSION['CurrentPoint']->type[0]}}" alt="category">
+            <span class="infoblock__category__name">{{$_SESSION['CurrentPoint']->type[1]}}</span>
         </div>
         <div class="infoblock__user">
             <span class="infoblock__user__add">добавил(-а)</span>
-            <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
-            <span class="infoblock__user__name">Алексей Петров</span>
+            <img src="{{$_SESSION['CurrentPoint']->avatar}}" class="infoblock__user__photo" alt="">
+            <span class="infoblock__user__name">{{$_SESSION['CurrentPoint']->uname.' '.$_SESSION['CurrentPoint']->usurname}}</span>
         </div>
       </div>
       <div class="swiper">
@@ -91,46 +91,49 @@
     <div class="information block">
         <div class="information__content">
             <div class="information__title block__title">Информация</div>
-            <div class="information__description">отсутствует</div>
+            <div class="information__description">{{$_SESSION['CurrentPoint']->description}}</div>
             <div class="information__address__title">Адрес</div>
             <div class="information__address"><img src="/PagePointPersonal/img/04.svg">{{$_SESSION['CurrentPoint']->address}}</div>
         </div>
         <div id="map" class="information__map" style="width: 520px; height: 360px;"></div>
     </div>
     <div class="feedback block">
-        <form method="" action ="">
+        <form method="Post" action ="{{route('AddPcomment')}}">
         <div class="feedback__title block__title">Написать отзыв</div>
         <p class="feedback__mark block__subtitle">Ваша оценка</p>
         <div class="feedback__rating">
             <div class="rating__items">
-                <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating__item">
+                <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
                 <label for="rating__item__5" class="rating__label"></label>
-                <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating__item">
+                <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
                 <label for="rating__item__4" class="rating__label"></label>
-                <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating__item">
+                <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
                 <label for="rating__item__3" class="rating__label"></label>
-                <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating__item">
+                <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
                 <label for="rating__item__2" class="rating__label"></label>
-                <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating__item">
+                <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
                 <label for="rating__item__1" class="rating__label"></label>
             </div>
         </div>
         <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+            @csrf
         <div class="feedback__button__container">
-            <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="comment"></textarea>
+            <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="text"></textarea>
             <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
             <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
         </div>
         </form>
     </div>
       <div class="comments-rating__wrapper">
+
+<!--          --><?//foreach($_SESSION['Pcomments'] as $pcomment) {?>
       <div class="comments">
           <div class="comments__comment">
               <div class="comment__top">
                 <div class="comment__user">
-                    <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                    <img class="comment__user-avatar" src="" alt="user">
                     <div class="comment__user__content">
-                        <div class="comment__user__name">{{$_SESSION['CurrentPoint']->name.' '.$_SESSION['CurrentPoint']->surname}}</div>
+                        <div class="comment__user__name">Александр Иванов</div>
                         <div class="comment__user__date" id="time">22 августа 2021</div>
                     </div>
                 </div>
@@ -141,7 +144,25 @@
               <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
 
           </div>
+          <div class="comments">
+              <div class="comments__comment">
+                  <div class="comment__top">
+                      <div class="comment__user">
+                          <img class="comment__user-avatar" src="" alt="user">
+                          <div class="comment__user__content">
+                              <div class="comment__user__name">Александр Иванов</div>
+                              <div class="comment__user__date" id="time">22 августа 2021</div>
+                          </div>
+                      </div>
+                      <div class="comment__rating">
+                          <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                      </div>
+                  </div>
+                  <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
 
+              </div>
+
+<?// } ?>
 {{--          макет коммента с лайком--}}
 {{--          <div class="comments__comment">--}}
 {{--              <div class="comment__top">--}}

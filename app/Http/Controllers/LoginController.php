@@ -19,7 +19,7 @@ class LoginController extends Controller
         if (Auth::attempt($formFields)){
             $_SESSION['User'] =DB::table('users')
                 ->where('login', $formFields['login'])
-                ->select('name','surname','avatar','transport')
+                ->select('id','name','surname','avatar','transport')
                 ->first();
             return redirect('map');
         }
