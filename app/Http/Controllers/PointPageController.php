@@ -47,7 +47,7 @@ class PointPageController extends Controller
 
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
-                ->select('rating', 'text', 'pcomments.created_at', 'avatar', 'login')
+                ->select('users.name','users.surname','rating', 'text', 'pcomments.created_at', 'avatar', 'login')
                 ->where('pointid', $id)->get();
             foreach($_SESSION['Pcomments'] as $pcomment){
                 switch ($pcomment->rating) {

@@ -32,7 +32,7 @@
             <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
-                        <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
+                        <img  class="avatar" src="{{$_SESSION['User']->avatar}}" alt="user">
                         <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}</a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
                             <li><a href="" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
@@ -133,7 +133,7 @@
                 <div class="comment__user">
                     <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
                     <div class="comment__user__content">
-                        <div class="comment__user__name">Александр Иванов</div>
+                        <div class="comment__user__name">{{$pcomment->name.' '.$pcomment->surname}}</div>
                         <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
                     </div>
                 </div>
