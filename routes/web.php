@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
@@ -48,10 +49,17 @@ Route::middleware('auth')->group(function () {
 
 //Роуты для неавторизованных
 Route::get('/registration', function () {
+    if(Auth::check()){
+        return  redirect('/map');
+    }
     return view('registration');
+
 })->name('registration');
 Route::post('/registration', [RegisterController::class, 'save'])->name('registration');
 Route::get('/login', function () {
+    if(Auth::check()){
+        return  redirect('/map');
+    }
     return view('login');
 })->name('login');
 Route::post('/login', [LoginController::class, 'login']);
