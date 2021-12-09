@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit', function () {
         return view('settings');
     })->name('edit');
+    Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
     Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
@@ -64,7 +65,7 @@ Route::get('auth/vkontakte/callback', [SocialController::class, 'loginwithvkonta
 Route::get('/', function () {
     return redirect(route('map'));
 });
-Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
+
 Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 

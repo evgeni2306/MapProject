@@ -48,8 +48,8 @@
       <h1 class="point__title">{{$_SESSION['CurrentPoint']->name}}</h1>
       <div class="infoblock">
         <div class="infoblock__rating">
-            <img src="{{$_SESSION['CurrentPoint']->rating}}" alt="rating">
-            <span class="infoblock__rating__feedback">(35)</span>
+            <img src="{{$_SESSION['CurrentPoint']->rating[0]}}" alt="rating">
+            <span class="infoblock__rating__feedback">({{$_SESSION['CurrentPoint']->rating[1]}})</span>
         </div>
         <div class="infoblock__category">
             <img src="/PagePointPersonal/img/{{$_SESSION['CurrentPoint']->type[0]}}" alt="category">
@@ -125,44 +125,26 @@
         </form>
     </div>
       <div class="comments-rating__wrapper">
-
-<!--          --><?//foreach($_SESSION['Pcomments'] as $pcomment) {?>
       <div class="comments">
+
+          <?foreach($_SESSION['Pcomments'] as $pcomment) {?>
           <div class="comments__comment">
               <div class="comment__top">
                 <div class="comment__user">
-                    <img class="comment__user-avatar" src="" alt="user">
+                    <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
                     <div class="comment__user__content">
                         <div class="comment__user__name">Александр Иванов</div>
-                        <div class="comment__user__date" id="time">22 августа 2021</div>
+                        <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
                     </div>
                 </div>
                 <div class="comment__rating">
-                    <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                    <img class="star-rating__star" src="{{$pcomment->rating}}">
                 </div>
               </div>
-              <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+              <div class="comment__text">{{$pcomment->text}}</div>
 
           </div>
-          <div class="comments">
-              <div class="comments__comment">
-                  <div class="comment__top">
-                      <div class="comment__user">
-                          <img class="comment__user-avatar" src="" alt="user">
-                          <div class="comment__user__content">
-                              <div class="comment__user__name">Александр Иванов</div>
-                              <div class="comment__user__date" id="time">22 августа 2021</div>
-                          </div>
-                      </div>
-                      <div class="comment__rating">
-                          <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
-                      </div>
-                  </div>
-                  <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
-
-              </div>
-
-<?// } ?>
+<? } ?>
 {{--          макет коммента с лайком--}}
 {{--          <div class="comments__comment">--}}
 {{--              <div class="comment__top">--}}
@@ -191,7 +173,7 @@
         <div class="circle__rating__top">
             <img src="/PagePointPersonal/img/circle.svg" alt="">
             <div class="circle__rating__info">
-                <div class="circle__rating__title">35 отзывов</div>
+                <div class="circle__rating__title">{{$_SESSION['CurrentPoint']->rating[1]}} отзывов</div>
                 <div class="circle__rating__subtitle"></div>
             </div>
         </div>
