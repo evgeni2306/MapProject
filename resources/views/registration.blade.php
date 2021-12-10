@@ -32,7 +32,8 @@
                 </div>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" maxlength="50" placeholder="Пароль" name="password">
+                <input type="password" id="password-input" maxlength="50" placeholder="Пароль" name="password">
+                <a href="#" class="password-control-reg" onclick="return show_hide_password(this);"></a>
             </div>
         </div>
         @csrf
@@ -47,6 +48,18 @@
             ВКонтакте</a>
     </div>
 </div>
-<!--<script src="/registration/js/script.js"></script>-->
+<script>
+    function show_hide_password(target){
+        var input = document.getElementById('password-input');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+</script>>
 </body>
 </html>

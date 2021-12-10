@@ -201,6 +201,16 @@
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
+
+    var Markers = L.Icon.extend({
+		options: {
+			iconSize: [39, 45],
+			iconAnchor: [16,37]
+		}
+	});
+
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
+		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
 /*---------------SWIPER-------------------------*/
     new Swiper('.image-slider', {
         navigation: {

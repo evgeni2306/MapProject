@@ -23,7 +23,8 @@
                 <input type="text" maxlength="35" placeholder="E-mail" name = 'email'>
             </div>
             <div class="form-field form-field__password">
-                <input type="password"  maxlength="35" placeholder="Пароль" name="Password">
+                <input type="password" id="password-input" maxlength="35" placeholder="Пароль" name="Password">
+                <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
             </div>
         </div>
         <input type="submit" class="form-button form-button__createacc" value="Войти">
@@ -36,6 +37,18 @@
         <a href="#" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
     </div>
 </div>
-<!--<script src="/registration/js/script.js"></script>-->
+<script>
+    function show_hide_password(target){
+        var input = document.getElementById('password-input');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+</script>
 </body>
 </html>

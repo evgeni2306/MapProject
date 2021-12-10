@@ -147,6 +147,30 @@ input:hover {
 }
 .form-field__password {
 }
+.password-control {
+    position: absolute;
+    top: 355px;
+    right: 80px;
+    display: inline-block;
+    width: 24px;
+    height: 22px;
+    background: url(/PageRegistration/img/04.svg) 0 0 no-repeat;
+}
+.password-control.view {
+    background: url(/PageRegistration/img/05.svg) 0 0 no-repeat;
+}
+.password-control-reg {
+    position: absolute;
+    top: 420px;
+    right: 80px;
+    display: inline-block;
+    width: 24px;
+    height: 22px;
+    background: url(/PageRegistration/img/04.svg) 0 0 no-repeat;
+}
+.password-control-reg.view {
+    background: url(/PageRegistration/img/05.svg) 0 0 no-repeat;
+}
 .form-buttons {
     width: 100%;
 }
@@ -201,6 +225,29 @@ input:hover {
 .form-button img {
     padding-right: 12px;
 }
+
+@media (max-width: 767px) {
+    .wrapper {
+        max-width: 500px;
+    }
+}
+@media (max-width: 567px) {
+    ._ibg img {
+        display: none;
+    }
+    .wrapper {
+        margin: 10px auto;
+        padding: 30px;
+    }
+    .password-control {
+        top: 325px;
+        right: 60px;
+    }
+    .password-control-reg {
+        top: 393px;
+        right: 50px;
+    }
+}
 @media (max-width: 479px) {
     .form-field__fullname {
         display: block;
@@ -223,18 +270,18 @@ input:hover {
     .form-button:not(:last-child) {
         margin-bottom: 15px;
     }
-}
-@media (max-width: 567px) {
-    ._ibg img {
-        display: none;
+    .password-control {
+        top: 305px;
+        right: 55px;
     }
-    .wrapper {
-        margin: 10px auto;
-        padding: 30px;
+    .password-control-reg {
+        top: 420px;
+        right: 50px;
     }
 }
-@media (max-width: 767px) {
-    .wrapper {
-        max-width: 500px;
+@media (max-width: 374px) {
+    .password-control {
+        top: 323px;
+        right: 45px;
     }
 }
