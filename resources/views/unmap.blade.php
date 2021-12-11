@@ -18,7 +18,7 @@
 <div class="wrapper">
     <header class="header">
         <div class="header__container">
-            <a href="" class="header__logo">LOGO</a>
+            <a href="" class="header__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></a>
             <nav class="header__menu menu">
                 <ul class="menu__list">
                     <li class="menu__item">

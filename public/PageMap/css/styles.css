@@ -88,11 +88,14 @@ body._lock {
 }
 
 .header__logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: inherit;
     z-index: 5;
 }
-.header__logo img {
-    width: 52px;
-}
+/*.header__logo img {*/
+/*    width: 52px;*/
+/*}*/
 
 /*.search {
     padding: 12px 16px;
@@ -491,9 +494,9 @@ button {
         padding: 0px 25px;
         z-index: 5;
     }
-    .header__logo img {
-        width: 36px;
-    }
+    /*.header__logo img {*/
+    /*    width: 36px;*/
+    /*}*/
     .menu__arrow {
         display: none;
     }
