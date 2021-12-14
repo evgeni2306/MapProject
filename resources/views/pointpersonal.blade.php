@@ -29,6 +29,9 @@
                     </li>
                 </ul>
             </nav>
+            <div class="menu__icon">
+                <span></span>
+            </div>
             <nav class="user-menu"> 
                 <ul class="user-menu__list">
                     <li class="user-name">
@@ -44,7 +47,13 @@
             </nav>
         </div>
     </header>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
     <div class="container">
+    <div class="infoblock__category__mobile">
+        <img src="/PagePointPersonal/img/building.svg" alt="category">
+        <span class="infoblock__category__name">Достопримечательность</span>
+    </div>
       <h1 class="point__title">Музей изобразительных искусств</h1>
       <div class="infoblock">
         <div class="infoblock__rating">
@@ -71,6 +80,7 @@
                 </div>
                 <div class="image-slider__slide swiper-slide">
                     <div class="image-slider__image">
+                        <img src="/PagePointPersonal/img/slider.png" alt="">
                     </div>
                 </div>
                 <div class="image-slider__slide swiper-slide">
@@ -83,15 +93,12 @@
         
         <div class="swiper-pagination"></div>
 
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
         <div class="swiper-scrollbar"></div>
       </div>
     <div class="information block">
         <div class="information__content">
             <div class="information__title block__title">Информация</div>
-            <div class="information__description">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал».</div>
+            <div class="information__description">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал».</div>
             <div class="information__address__title">Адрес</div>
             <div class="information__address"><img src="/PagePointPersonal/img/04.svg">ул. Авиационная, 123</div>
         </div>
@@ -124,6 +131,15 @@
         </form>
     </div>
       <div class="comments-rating__wrapper">
+        <div class="circle__rating__mobile">
+        <div class="circle__rating__left">
+            <img src="/PagePointPersonal/img/circlemobile.svg" alt="">
+            <div class="circle__rating__title__mobile">35 отзывов</div>       
+        </div>
+        <div class="circle__rating__info">
+
+        </div>
+      </div>
       <div class="comments">
           <div class="comments__comment">
               <div class="comment__top">
@@ -216,6 +232,12 @@
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
+        },
+
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
         },
     });
 /*---------------LIKES-------------------------*/
