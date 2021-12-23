@@ -31,7 +31,7 @@ Route::get('/registration', function () {
 
 Route::get('/unauthorizedmap', function () {
     return view('unauthorizedmap');
-});
+})->name('unauthorizedmap');
 
 Route::get('/editpoints', function () {
     return view('editpoints');

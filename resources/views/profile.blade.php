@@ -28,6 +28,9 @@
                     </li>
                 </ul>
             </nav>
+            <div class="menu__icon">
+                <span></span>
+            </div>
             <nav class="user-menu"> 
                 <ul class="user-menu__list">
                     <li class="user-name">
@@ -36,7 +39,7 @@
                         <ul class="sub-menu__list">
                             <li><a href="{{route('profile')}}" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="{{route('settings')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                            <li><a href="{{route('unauthorizedmap')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul> 
                     </li>
                </ul>
@@ -52,7 +55,6 @@
             <div class="user__info">
               <div class="user__name">Александр Иванов</div>
               <div class="user__email">alexivanov@gmail.com</div>
-              <div class="edit__page"><img src="/PageProfile/img/05.svg" alt=""><a href="{{route('settings')}}">Редактировать</a></div>
             </div>
           </div>
           <div class="achievements">
@@ -63,6 +65,13 @@
                 <div class="feedback__subtitle">Отзывов</div>
               </div>
             </div>
+            <div class="feedback__count__mobile card__mobile">
+              <div class="card__info">
+                <img src="/PageProfile/img/01.svg" alt="star">
+                <div class="feedback__title title">16</div>
+              </div>
+                <div class="feedback__subtitle">Отзывов</div>
+            </div>
             <div class="route__count card">
               <img src="/PageProfile/img/03.png" alt="route">
               <div class="card__info">
@@ -70,12 +79,26 @@
                 <div class="route__subtitle">Маршрутов</div>
               </div>
             </div>
+            <div class="route__count__mobile card__mobile">
+              <div class="card__info">
+                <img src="/PageProfile/img/02.svg" alt="route">
+                <div class="route__title title">1</div>
+              </div>
+                <div class="route__subtitle">Маршрутов</div>
+            </div>
             <div class="point__count card">
               <img src="/PageProfile/img/04.png" alt="point">
               <div class="card__info">
                 <div class="point__title title">5</div>
                 <div class="point__subtitle">Меток</div>
               </div>
+            </div>
+            <div class="point__count__mobile card__mobile">
+              <div class="card__info">
+                <img src="/PageProfile/img/03.svg" alt="point">
+                <div class="point__title title">5</div>
+              </div>
+                <div class="point__subtitle">Меток</div>
             </div>
           </div>
         </div>
@@ -171,8 +194,8 @@ let menuArrows = document.querySelectorAll('.menu__arrow');
 
         const iconMenu = document.querySelector('.menu__icon');
         if (iconMenu) {
-            const userMenu = document.querySelector('.user-menu');
-            const headerMenu = document.querySelector('.menu');
+          const userMenu = document.querySelector('.user-menu');
+          const headerMenu = document.querySelector('.menu');
             iconMenu.addEventListener("click", function(e) {
                 document.body.classList.toggle('_lock');
                 iconMenu.classList.toggle('active__user-menu');

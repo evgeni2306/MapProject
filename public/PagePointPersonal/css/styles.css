@@ -232,7 +232,7 @@ body._lock {
 }
 .sub-menu__link {
     display: inline-block;
-    text-align-last: left;
+    text-align: left;
 }
 .sub-menu__link img {
     padding-right: 8px;
@@ -259,7 +259,6 @@ body._lock {
     display: flex;
     width: 100%;
     text-align: center;
-    justify-content: space-between;
     margin-bottom: 40px;
     align-items: center;
 }
@@ -274,6 +273,7 @@ body._lock {
 }
 .infoblock__category {
     color: #8c8c95;
+    margin-left: 40px;
 }
 .infoblock__category__mobile {
     display: none;
@@ -287,6 +287,7 @@ body._lock {
     display: flex;
     text-align: center;
     align-items: center;
+    margin-left: auto;
 }
 .infoblock__user__add {
     color: #8c8c95;
@@ -363,6 +364,7 @@ body._lock {
     flex-direction: column;
     border-radius: 12px;
     margin-left: 20px;
+    z-index: 2;
 }
 .information__description {
     font-size: 16px;
@@ -708,6 +710,9 @@ button {
     .infoblock__rating {
         margin-bottom: 15px;
     }
+    .infoblock__user {
+        margin-left: 0;
+    }
     .swiper-button-prev,
     .swiper-button-next {
         display: none !important;
@@ -743,6 +748,7 @@ button {
 @media (max-width: 767px) {
     .header {
         padding: 0px 25px;
+        position: fixed;
         z-index: 5;
     }
     .footer {
@@ -866,7 +872,9 @@ button {
     .sub-menu__list:before {
         content: none;
     }
-
+    .infoblock__category__mobile {
+        padding: 80px 10px 0px 10px;
+    }
     .block {
         margin: 15px auto;
         background: #ffffff;
@@ -965,7 +973,6 @@ button {
     }
     .infoblock__category__mobile {
         font-size: 14px;
-        padding: 0 10px;
     }
     .infoblock {
         font-size: 14px;
