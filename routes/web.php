@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\GetAllController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UpdateUserController;
 use App\Http\Controllers\UpdatePointController;
+use App\Http\Controllers\GetProfileController;
 
 
 session_start();
@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit', function () {
         return view('settings');
     })->name('edit');
+    Route::get('/profile', [GetProfileController::class, 'GetMyProfile'])->name('myprofile');
     Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
     Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');

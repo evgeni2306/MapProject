@@ -66,7 +66,7 @@
                         <img  class="avatar" src="{{$_SESSION['User']->avatar}}" alt="user">
                         <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}</a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
+                            <li><a href="{{route('myprofile')}}" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="{{route('edit')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="{{route('logout')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul>
