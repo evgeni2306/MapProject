@@ -29,9 +29,6 @@
                     </li>
                 </ul>
             </nav>
-            <div class="menu__icon">
-                <span></span>
-            </div>
             <nav class="user-menu">
                 <ul class="user-menu__list">
                     <li class="user-name">
@@ -43,22 +40,16 @@
                             <li><a href="{{route('logout')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul>
                     </li>
-                </ul>
+               </ul>
             </nav>
         </div>
     </header>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
     <div class="container">
-    <div class="infoblock__category__mobile">
-        <img src="/PagePointPersonal/img/{{$_SESSION['CurrentPoint']->type[0]}}" alt="category">
-        <span class="infoblock__category__name">{{$_SESSION['CurrentPoint']->type[1]}}</span>
-    </div>
       <h1 class="point__title">{{$_SESSION['CurrentPoint']->name}}</h1>
       <div class="infoblock">
         <div class="infoblock__rating">
             <img src="{{$_SESSION['CurrentPoint']->rating[0]}}" alt="rating">
-            <span class="infoblock__rating__feedback">{{$_SESSION['CurrentPoint']->rating[1]}}</span>
+            <span class="infoblock__rating__feedback">({{$_SESSION['CurrentPoint']->rating[1]}})</span>
         </div>
         <div class="infoblock__category">
             <img src="/PagePointPersonal/img/{{$_SESSION['CurrentPoint']->type[0]}}" alt="category">
@@ -80,7 +71,6 @@
                 </div>
                 <div class="image-slider__slide swiper-slide">
                     <div class="image-slider__image">
-                        <img src="/PagePointPersonal/img/slider.png" alt="">
                     </div>
                 </div>
                 <div class="image-slider__slide swiper-slide">
@@ -92,6 +82,9 @@
         </div>
 
         <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
 
         <div class="swiper-scrollbar"></div>
       </div>
@@ -106,68 +99,60 @@
     </div>
     <div class="feedback block">
         <form method="Post" action ="{{route('AddPcomment')}}">
-            <div class="feedback__title block__title">Написать отзыв</div>
-            <p class="feedback__mark block__subtitle">Ваша оценка</p>
-            <div class="feedback__rating">
-                <div class="rating__items">
-                    <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
-                    <label for="rating__item__5" class="rating__label"></label>
-                    <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
-                    <label for="rating__item__4" class="rating__label"></label>
-                    <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
-                    <label for="rating__item__3" class="rating__label"></label>
-                    <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
-                    <label for="rating__item__2" class="rating__label"></label>
-                    <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
-                    <label for="rating__item__1" class="rating__label"></label>
-                </div>
+        <div class="feedback__title block__title">Написать отзыв</div>
+        <p class="feedback__mark block__subtitle">Ваша оценка</p>
+        <div class="feedback__rating">
+            <div class="rating__items">
+                <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
+                <label for="rating__item__5" class="rating__label"></label>
+                <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
+                <label for="rating__item__4" class="rating__label"></label>
+                <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
+                <label for="rating__item__3" class="rating__label"></label>
+                <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
+                <label for="rating__item__2" class="rating__label"></label>
+                <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
+                <label for="rating__item__1" class="rating__label"></label>
             </div>
+        </div>
         <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
             @csrf
-            <div class="feedback__button__container">
-                <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="text"></textarea>
-                <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
-                <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
-            </div>
+        <div class="feedback__button__container">
+            <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="text"></textarea>
+            <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
+            <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
+        </div>
         </form>
     </div>
       <div class="comments-rating__wrapper">
-        <div class="circle__rating__mobile">
-        <div class="circle__rating__left">
-            <img src="/PagePointPersonal/img/circlemobile.svg" alt="">
-            <div class="circle__rating__title__mobile">Отзывов : {{$_SESSION['CurrentPoint']->rating[1]}}</div>
-        </div>
-        <div class="circle__rating__info">
-
-        </div>
-      </div>
       <div class="comments">
+
           <?foreach($_SESSION['Pcomments'] as $pcomment) {?>
           <div class="comments__comment">
               <div class="comment__top">
-                  <div class="comment__user">
-                      <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
-                      <div class="comment__user__content">
-                          <div class="comment__user__name">{{$pcomment->name.' '.$pcomment->surname}}</div>
-                          <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
-                      </div>
-                  </div>
-                  <div class="comment__rating">
-                      <img class="star-rating__star" src="{{$pcomment->rating}}">
-                  </div>
+                <div class="comment__user">
+                    <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
+                    <div class="comment__user__content">
+                        <div class="comment__user__name">{{$pcomment->name.' '.$pcomment->surname}}</div>
+                        <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
+                    </div>
+                </div>
+                <div class="comment__rating">
+                    <img class="star-rating__star" src="{{$pcomment->rating}}">
+                </div>
               </div>
               <div class="comment__text">{{$pcomment->text}}</div>
 
           </div>
-          <? } ?>
+<? } ?>
 
       </div>
       <div class="circle__rating">
         <div class="circle__rating__top">
             <img src="/PagePointPersonal/img/circle.svg" alt="">
             <div class="circle__rating__info">
-                <div class="circle__rating__title">{{$_SESSION['CurrentPoint']->rating[1]}}</div>
-                <div class="circle__rating__subtitle">32 из 35 пользователей рекомендуют это место для посещения</div>
+                <div class="circle__rating__title">{{$_SESSION['CurrentPoint']->rating[1]}} отзывов</div>
+                <div class="circle__rating__subtitle"></div>
             </div>
         </div>
         <div class="circle__rating__bottom"></div>
@@ -183,7 +168,7 @@
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script>
 /*-------------MAP------------------------------*/
-var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
+    var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
 
 	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -194,12 +179,12 @@ var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION[
 		zoomOffset: -1
 	}).addTo(map);
 
-    var Markers = L.Icon.extend({
-		options: {
-			iconSize: [39, 45],
-			iconAnchor: [16,37]
-		}
-	});
+var Markers = L.Icon.extend({
+    options: {
+        iconSize:     [39, 45],
+        iconAnchor:   [16,37]
+    }
+});
 
 var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
     house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
@@ -209,12 +194,6 @@ L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
-        },
-
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true,
         },
     });
 /*---------------LIKES-------------------------*/
