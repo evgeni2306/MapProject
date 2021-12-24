@@ -35,7 +35,7 @@ class UpdateUserController extends Controller
         if(Auth::check()){
             $_SESSION['User'] = DB::table('users')
                 ->where('id', Auth::id())
-                ->select('name', 'surname', 'avatar', 'transport')
+                ->select('id','name', 'surname', 'avatar', 'transport')
                 ->first();;
         }
         return redirect(route('login'));
