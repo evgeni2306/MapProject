@@ -13,18 +13,15 @@ class GetProfileController extends Controller
     public function GetMyProfile()
     {
         if (Auth::check()) {
-
-
-$_SESSION['UserInfo'] = $this->GetInformation($_SESSION['User']->id);
-
-
+            $_SESSION['UserInfo'] = $this->GetInformation($_SESSION['User']->id);
             return view('profile');
-
-        }else{
+        } else {
             redirect(route('map'));
         }
     }
-    public function GetInformation($id){
+
+    public function GetInformation($id)
+    {
         $Pointscount = Count(DB::table('points')
             ->select('id')
             ->where('creatorid', $id)->get());
@@ -33,8 +30,9 @@ $_SESSION['UserInfo'] = $this->GetInformation($_SESSION['User']->id);
             ->where('creatorid', $id)->get());//Тут нужно будет еще посчитать количество комментов у маршрутов и суммировать
         $arr = array(
             "points" => $Pointscount,
-            "comments"=>$Commentscount,
+            "comments" => $Commentscount,
+            "routes"=>0
         );
-        return $arr ;
+        return $arr;
     }
 }

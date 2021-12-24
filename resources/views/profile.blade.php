@@ -74,14 +74,14 @@
             <div class="route__count card">
               <img src="/PageProfile/img/03.png" alt="route">
               <div class="card__info">
-                <div class="route__title title">0</div>
+                <div class="route__title title">{{$_SESSION['UserInfo']['routes']}}</div>
                 <div class="route__subtitle">Маршрутов</div>
               </div>
             </div>
             <div class="route__count__mobile card__mobile">
               <div class="card__info">
                 <img src="/PageProfile/img/02.svg" alt="route">
-                <div class="route__title title">0</div>
+                <div class="route__title title">{{$_SESSION['UserInfo']['routes']}}</div>
               </div>
                 <div class="route__subtitle">Маршрутов</div>
             </div>
