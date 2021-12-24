@@ -167,7 +167,7 @@
             <img src="/PagePointPersonal/img/circle.svg" alt="">
             <div class="circle__rating__info">
                 <div class="circle__rating__title">{{$_SESSION['CurrentPoint']->rating[1]}}</div>
-                <div class="circle__rating__subtitle">32 из 35 пользователей рекомендуют это место для посещения</div>
+                <div class="circle__rating__subtitle"></div>
             </div>
         </div>
         <div class="circle__rating__bottom"></div>
