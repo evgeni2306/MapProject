@@ -17,7 +17,7 @@ class SocialController extends Controller
     public function loginwithgoogle(){
 
 
-        $user = Socialite::driver('google')->user();
+        $user = Socialite::driver('google')->stateless()->user();
         $isUser = User::where('social_id', $user->id)->first();
         if($isUser){
             $_SESSION['User'] = $isUser;
@@ -36,7 +36,7 @@ class SocialController extends Controller
             ]);
             $_SESSION['User'] =DB::table('users')
                 ->where('social_id', $user->id)
-                ->select('name','surname','avatar','transport')
+                ->select('id','name','surname','avatar','transport')
                 ->first();
 
             Auth::login($createUser);
@@ -74,7 +74,7 @@ class SocialController extends Controller
             ]);
             $_SESSION['User'] =DB::table('users')
                 ->where('social_id', $user->id)
-                ->select('name','surname','avatar','transport')
+                ->select('id','name','surname','avatar','transport')
                 ->first();
 
             Auth::login($createUser);
