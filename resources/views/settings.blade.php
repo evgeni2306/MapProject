@@ -28,6 +28,9 @@
                     </li>
                 </ul>
             </nav>
+            <div class="menu__icon">
+                <span></span>
+            </div>
             <nav class="user-menu"> 
                 <ul class="user-menu__list">
                     <li class="user-name">
@@ -49,9 +52,16 @@
       <div class="content__container">
         <div class="avatar__container">
           <img  class="avatar-big" src="/PageSettings/img/02.png" alt="user">
-          <input type="file" id="files" name="files[]">
-          <label for="files"><img src="/PageSettings/img/01.svg">Изменить фото</label>
-          <output id="list"></output>
+          <div class="change-photo">
+            <input type="file" id="files" name="files[]">
+            <label for="files"><img src="/PageSettings/img/02.svg">Изменить фото</label>
+            <output id="list"></output>
+          </div>
+          <!--<div class="change-photo__mobile">
+            <input type="file" id="files__mobile" name="files[]">
+            <label for="files__mobile"><img src="/PageSettings/img/02.svg"></label>
+            <output id="list"></output>
+          </div>-->
         </div>
         <div class="forms__container">
           <h4 class="sub-title">Имя</h4>
