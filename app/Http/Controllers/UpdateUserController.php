@@ -18,7 +18,9 @@ class UpdateUserController extends Controller
             'surname'=>['max:255'],
             'transport'=>['max:255'],
         ]);
-        //change user data
+if($validateFields['transport'] == null){
+    $validateFields['transport']="Не указан";
+}
         DB::table('users')
             ->where('id', Auth::user()->id)
             ->update(['name' => $validateFields['name'],
@@ -28,7 +30,7 @@ class UpdateUserController extends Controller
         return redirect(route('edit'));
         }
         return redirect(route('login'));
-        //return the page
+
     }
 
     public function GetUserFields(){
