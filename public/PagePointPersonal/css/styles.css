@@ -517,6 +517,13 @@ input:hover {
     width: 50%;
     margin-right: 20px;
 }
+.comments__title {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.count__comments {
+}
 .comments__comment {
     margin: 20px auto;
     background: #ffffff;
@@ -987,5 +994,8 @@ button {
     }
     .block__title {
         font-size: 18px;
+    }
+    .comments__title {
+        margin-left: 10px;
     }
 }

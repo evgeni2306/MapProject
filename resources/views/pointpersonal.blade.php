@@ -130,7 +130,7 @@
         </div>
         </form>
     </div>
-      <div class="comments-rating__wrapper">
+      <!--<div class="comments-rating__wrapper">
         <div class="circle__rating__mobile">
         <div class="circle__rating__left">
             <img src="/PagePointPersonal/img/circlemobile.svg" alt="">
@@ -139,8 +139,9 @@
         <div class="circle__rating__info">
 
         </div>
-      </div>
+      </div>-->
       <div class="comments">
+          <div class="comments__title">Отзывов: <span class="count__comments">2</span></div>
           <div class="comments__comment">
               <div class="comment__top">
                 <div class="comment__user">
@@ -186,7 +187,7 @@
               </div>
           </div>
       </div>
-      <div class="circle__rating">
+      <!--<div class="circle__rating">
         <div class="circle__rating__top">
             <img src="/PagePointPersonal/img/circle.svg" alt="">
             <div class="circle__rating__info">
@@ -195,7 +196,7 @@
             </div>       
         </div>
         <div class="circle__rating__bottom"></div>
-      </div>
+      </div>-->
     </div>          
     </div>
     <footer class="footer">

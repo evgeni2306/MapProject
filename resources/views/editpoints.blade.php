@@ -23,33 +23,26 @@
                 <ul class="menu__list">
                     <li class="menu__item">
                         <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__view"><img
-                                    src="/PageMap/img/header/02.svg" alt="view">Просмотр
-                            </button></a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__add-object"><img
-                                    src="/PageMap/img/header/03.svg" alt="object">Добавить объект
-                            </button></a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__add-route"><img
-                                    src="/PageMap/img/header/04.svg" alt="route">Добавить маршрут
-                            </button></a>
+                                src="/PageMap/img/header/02.svg" alt="view">Карта
+                        </button></a> 
                     </li>
                 </ul>
             </nav>
-            <nav class="user-menu">
+            <div class="menu__icon">
+                <span></span>
+            </div>
+            <nav class="user-menu"> 
                 <ul class="user-menu__list">
                     <li class="user-name">
                         <img  class="avatar" src="/PageMap/img/user/user.png" alt="user">
-                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов<img src="/PageMap/img/user/arrow.svg" alt=""></a>
+                        <a href="#" class="user-menu__link" tabindex="1">Александр Иванов</a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
                             <li><a href="{{route('profile')}}" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
                             <li><a href="{{route('settings')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
-                            <li><a href="#" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
-                        </ul>
+                            <li><a href="{{route('unauthorizedmap')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
+                        </ul> 
                     </li>
-                </ul>
+               </ul>
             </nav>
         </div>
     </header>
