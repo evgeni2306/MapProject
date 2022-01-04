@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\helpfunc;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,9 +11,13 @@ use PHPUnit\Framework\Constraint\Count;
 
 class GetProfileController extends Controller
 {
+    use helpfunc;
     public function GetMyProfile()
     {
         if (Auth::check()) {
+            if(!isset($_SESSION['User'])){
+                $this->GetUser();
+            }
             $_SESSION['UserInfo'] = $this->GetInformation($_SESSION['User']->id);
             return view('profile');
         } else {

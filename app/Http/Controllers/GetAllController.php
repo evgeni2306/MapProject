@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\helpfunc;
 use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class GetAllController extends Controller
 {
+    use helpfunc;
     public function GetPoints(Request $request)
     {
         $getpoints = DB::table('points')
@@ -40,6 +41,9 @@ class GetAllController extends Controller
         $_SESSION['Points'] = $getpoints;
 
 if (Auth::check()){
+    if(!isset($_SESSION['User'])){
+        $this->GetUser();
+    }
             return view('map');
 }else
     return view('unmap');

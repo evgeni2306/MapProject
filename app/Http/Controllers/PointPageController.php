@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\helpfunc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
 use App\Models\Point;
 
 class PointPageController extends Controller
-{
+{    use helpfunc;
     public function GetCurrentPoint($id)
     {
+
+        if(!isset($_SESSION['User'])){
+            $this->GetUser();
+        }
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Point::where('id',$id)->exists()) {
             $_SESSION['CurrentPoint']= DB::table('points')
