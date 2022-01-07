@@ -78,6 +78,11 @@ Route::get('/', function () {
 Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
 
 
+Route::fallback(function(){
+return redirect(route('map'));
+});
+
+
 
 
 
