@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Pointphotos extends Migration
+class CreatePointphotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,10 +17,10 @@ class Pointphotos extends Migration
             $table->increments('id')->unsigned();
             $table->integer('pointid')->unsigned()->default();
             $table->foreign('pointid')->references('id')->on('points')->change();
+            $table->timestamps();
             $table->string('photo1',255)->nullable(true);
             $table->string('photo2',255)->nullable(true);
             $table->string('photo3',255)->nullable(true);
-            $table->timestamps();
         });
     }
 

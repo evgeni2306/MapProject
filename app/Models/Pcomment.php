@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pcomment extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'creatorid',
         'pointid',

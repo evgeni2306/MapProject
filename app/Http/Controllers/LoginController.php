@@ -13,9 +13,11 @@ class LoginController extends Controller
         if(Auth::check()) {
             return redirect('map');
         }
+        $formFields=$request->validate([
+            'login'=>['required','string','exists:users,login','email'],
+            'password'=>['required','string'],
+        ]);
 
-
-        $formFields=$request->only(['login','password']);
         if (Auth::attempt($formFields)){
             $_SESSION['User'] =DB::table('users')
                 ->where('login', $formFields['login'])

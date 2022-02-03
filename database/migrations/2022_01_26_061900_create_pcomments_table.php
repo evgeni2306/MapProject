@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Pcomments extends Migration
+class CreatePcommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,9 +19,10 @@ class Pcomments extends Migration
             $table->foreign('creatorid')->references('id')->on('users')->change();
             $table->integer('pointid')->unsigned()->default();
             $table->foreign('pointid')->references('id')->on('points')->change();
+            $table->timestamps();
             $table->integer('rating')->nullable(false);
             $table->string('text', 255)->nullable(false);
-            $table->timestamps();
+
         });
     }
 

@@ -28,7 +28,7 @@ class SocialController extends Controller
             $createUser = User::create([
                 'name'=>$nameAndSurname[0],
                 'surname'=>$nameAndSurname[1],
-                'login' =>$nameAndSurname[0].time(),
+                'login' =>$user->email,
                 'social_id'=>$user->id,
                 'password' => encrypt('user'),
                 'avatar'=> $user->getAvatar(),

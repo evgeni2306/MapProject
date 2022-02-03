@@ -18,10 +18,10 @@ class RegisterController extends Controller
         }
 
         $validateFields=$request->validate([
-            'login'=>'required',
-            'password'=>'required',
-            'name'=>'required',
-            'surname'=>'required'
+            'login'=>['required','string','email'],
+            'password'=>['required','string'],
+            'name'=>['required','string'],
+            'surname'=>['required','string'],
         ]);
 
         if (User::where('login',$validateFields['login'])->exists()){

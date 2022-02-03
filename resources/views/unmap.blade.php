@@ -81,12 +81,12 @@
             house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
         <?foreach ($_SESSION['Points'] as $point ) {?>
         L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup('<div class="marker__container">' +
-            '<div class="marker__title">{{$point->name}}</div>' +
+            '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-            '<img class="star-rating__star" src="/PageMap/img/icons/stars-0-5.svg">'+
+            '<img class="star-rating__star" src={{$point->rating}}>'+
+            '<span class="star-rating__feedback"></span>'+
             '</div>'+
-            '<div class="star-rating__value">4.3</div>'+
             '</div>'+
             '<div class="marker__photo__container">'+
             '<img class="marker__photo" src="{{$point->photo1}}" alt="object">'+
