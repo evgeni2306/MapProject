@@ -12,10 +12,11 @@ use PHPUnit\Framework\Constraint\Count;
 class GetProfileController extends Controller
 {
     use helpfunc;
+
     public function GetMyProfile()
     {
         if (Auth::check()) {
-            if(!isset($_SESSION['User'])){
+            if (!isset($_SESSION['User'])) {
                 $this->GetUser();
             }
             $_SESSION['UserInfo'] = $this->GetInformation($_SESSION['User']->id);
@@ -24,7 +25,7 @@ class GetProfileController extends Controller
             redirect(route('map'));
         }
     }
-
+//метод для получения данных юзера(кол-во маршуртов комментов и точек)
     public function GetInformation($id)
     {
         $Pointscount = Count(DB::table('points')
@@ -36,7 +37,7 @@ class GetProfileController extends Controller
         $arr = array(
             "points" => $Pointscount,
             "comments" => $Commentscount,
-            "routes"=>0
+            "routes" => 0
         );
         return $arr;
     }

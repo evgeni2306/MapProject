@@ -15,22 +15,27 @@ class AddPointController extends Controller
     public function AddPoint(Request $request)
     {
         $validateFields = $request->validate([
-            'lat' => 'required',
-            'lng' => 'required',
-            'address'=>'required',
-            'name'=>'required',
-            'type'=> 'required',
+            'lat' => ['required','numeric'],
+            'lng' => ['required','numeric'],
+            'address' => ['required','string'],
+            'name' => ['required','string'],
+            'type' => ['required','string'],
 
         ]);
-        $typeAndIcon = $validateFields['type'];
-        $typeAndIcon = explode(',',$typeAndIcon);
-        $validateFields['icon'] = $typeAndIcon[0];
-        $validateFields['type'] = $typeAndIcon[1];
-        $validateFields['creatorid'] = Auth::id();
-        $validateFields['rating'] = 0;
-        $validateFields['description'] = 'Отсутствует';
-        $validateFields['lat'] = (double)$validateFields['lat'];
-        $validateFields['lng'] = (double)$validateFields['lng'];
+        $typeAndIcon = explode(',', $validateFields['type']);
+
+        $validateFields = array(
+            "lat" => (double)$validateFields['lat'],
+            "lng" => (double)$validateFields['lng'],
+            "address" => $validateFields['address'],
+            "name" => $validateFields['name'],
+            "type" => $typeAndIcon[1],
+            "icon" => $typeAndIcon[0],
+            "creatorid" => Auth::id(),
+            "rating" => 0,
+            "description" => 'Отсутствует',
+        );
+//        dd($validateFields);
         $point = Point::create($validateFields);
         if($validateFields['type']=='zpoints' ){
             $mainphoto = "/PageMap/img/icons/socket-picture.svg";
@@ -43,7 +48,6 @@ class AddPointController extends Controller
         $pointphoto = Pointphoto::create($photofields);
 
         return redirect(route('map'));
-
 
 
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -10,33 +11,36 @@ use Illuminate\Support\Facades\DB;
 
 class SocialController extends Controller
 {
-    public function googleredirect(){
+    public function googleredirect()
+    {
 
         return Socialite::driver('google')->redirect();
     }
-    public function loginwithgoogle(){
+
+    public function loginwithgoogle()
+    {
 
 
         $user = Socialite::driver('google')->stateless()->user();
         $isUser = User::where('social_id', $user->id)->first();
-        if($isUser){
+        if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
             return redirect('map');
-        }else{
-            $nameAndSurname = explode(' ',$user->name);
+        } else {
+            $nameAndSurname = explode(' ', $user->name);
             $createUser = User::create([
-                'name'=>$nameAndSurname[0],
-                'surname'=>$nameAndSurname[1],
-                'login' =>$user->email,
-                'social_id'=>$user->id,
+                'name' => $nameAndSurname[0],
+                'surname' => $nameAndSurname[1],
+                'login' => $user->email,
+                'social_id' => $user->id,
                 'password' => encrypt('user'),
-                'avatar'=> $user->getAvatar(),
-                'transport'=>'Не указан'
+                'avatar' => $user->getAvatar(),
+                'transport' => 'Не указан'
             ]);
-            $_SESSION['User'] =DB::table('users')
+            $_SESSION['User'] = DB::table('users')
                 ->where('social_id', $user->id)
-                ->select('id','name','surname','avatar','transport')
+                ->select('id', 'name', 'surname', 'avatar', 'transport')
                 ->first();
 
             Auth::login($createUser);
@@ -47,34 +51,37 @@ class SocialController extends Controller
 
 
     }
-    public function vkontakteredirect(){
+
+    public function vkontakteredirect()
+    {
 
         return Socialite::driver('vkontakte')->redirect();
     }
 
-    public function loginwithvkontakte(){
+    public function loginwithvkontakte()
+    {
 
 
         $user = Socialite::driver('vkontakte')->user();
         $isUser = User::where('social_id', $user->id)->first();
-        if($isUser){
+        if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
             return redirect('map');
-        }else{
-            $nameAndSurname = explode(' ',$user->name);
+        } else {
+            $nameAndSurname = explode(' ', $user->name);
             $createUser = User::create([
-                'name'=>$nameAndSurname[0],
-                'surname'=>$nameAndSurname[1],
-                'login' =>$nameAndSurname[0].time(),
-                'social_id'=>$user->id,
+                'name' => $nameAndSurname[0],
+                'surname' => $nameAndSurname[1],
+                'login' => $nameAndSurname[0] . time(),
+                'social_id' => $user->id,
                 'password' => encrypt('user'),
-                'avatar'=> $user->getAvatar(),
-                'transport'=>'Не указан'
+                'avatar' => $user->getAvatar(),
+                'transport' => 'Не указан'
             ]);
-            $_SESSION['User'] =DB::table('users')
+            $_SESSION['User'] = DB::table('users')
                 ->where('social_id', $user->id)
-                ->select('id','name','surname','avatar','transport')
+                ->select('id', 'name', 'surname', 'avatar', 'transport')
                 ->first();
 
             Auth::login($createUser);

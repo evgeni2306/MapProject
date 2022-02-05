@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\helpfunc;
 use App\Models\Point;
 use Illuminate\Http\Request;
@@ -11,12 +12,15 @@ use Illuminate\Support\Facades\DB;
 class GetAllController extends Controller
 {
     use helpfunc;
+
     public function GetPoints(Request $request)
     {
+        //получение всех точек из бд
         $getpoints = DB::table('points')
             ->join('pointphotos', 'pointphotos.pointid', '=', 'points.id')
-            ->select('points.id','lat', 'lng','type','icon','address' ,'name','rating','photo1')->get();
-        foreach ($getpoints as $point ){
+            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo1')->get();
+        //определение иконок для рейтинга точки
+        foreach ($getpoints as $point) {
             switch ($point->rating) {
                 case 0:
                     $point->rating = "/PageMap/img/icons/stars-0-5.svg";
@@ -40,14 +44,13 @@ class GetAllController extends Controller
         }
         $_SESSION['Points'] = $getpoints;
 
-if (Auth::check()){
-    if(!isset($_SESSION['User'])){
-        $this->GetUser();
-    }
+        if (Auth::check()) {
+            if (!isset($_SESSION['User'])) {
+                $this->GetUser();
+            }
             return view('map');
-}else
-    return view('unmap');
-
+        } else
+            return view('unmap');
 
 
     }

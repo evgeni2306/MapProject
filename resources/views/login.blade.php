@@ -20,7 +20,7 @@
     <form action="{{'login'}}" method="post">
         <div class="form-fields _container">
                 <div class="form-field form-field__email">
-                    <input type="text"  maxlength="35" placeholder="E-mail" name = 'login'>
+                    <input type="email"  maxlength="35" placeholder="E-mail" name = 'login'>
             </div>
             <div class="form-field form-field__password">
                 <input type="password"  maxlength="35" placeholder="Пароль" name="password">

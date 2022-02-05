@@ -13,7 +13,7 @@ class AddPcommentController extends Controller
     {
         $validateFields = $request->validate([
             'rating'=> 'required',
-            'text' => 'required',
+            'text' => ['required','string'],
         ]);
         $validateFields['creatorid'] = $_SESSION['User']->id;
         $validateFields['pointid'] = $_SESSION['CurrentPoint']->id;
