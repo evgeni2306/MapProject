@@ -52,7 +52,7 @@
             any: function() {
                 return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
             }
-        };       
+        };
 
         if (isMobile.any()) {
             document.body.classList.add('_mobile');
@@ -182,6 +182,8 @@
         var lastClicked = menuLinks[0];
         var viewOnly = false;
         var addObject = false;
+        var addRoute = false;
+
 
 
         for (var i = 0; i < menuLinks.length; i++) {
@@ -197,6 +199,10 @@
         document.getElementById('menu__link__add-object').addEventListener("click", function (e) {
             addObject = true;
             viewOnly = false;
+            addRoute = false;
+            arr = new Array();
+            route.remove();
+            route = L.polyline({weight:55 ,color:'red'} ).addTo(mymap);
             onMapClick(e.target);
             popup._close()
         });
@@ -204,13 +210,18 @@
         document.getElementById('menu__link__view').addEventListener("click", function (e) {
             addObject = false;
             viewOnly = true;
+            addRoute = false;
+            arr = new Array();
+            route.remove();
+            route = L.polyline({weight:55 ,color:'red'} ).addTo(mymap);
             onMapClick(e.target);
             popup._close()
         });
 
         document.getElementById('menu__link__add-route').addEventListener("click", function (e) {
             addObject = false;
-            viewOnly = true;
+            viewOnly = false;
+            addRoute = true;
             popup._close()
         });
 
@@ -233,7 +244,8 @@
             viewOnly = true;
             popup._close()
         });
-
+        let arr = new Array();
+        var route = L.polyline({weight:55 ,color:'red'} ).addTo(mymap);
 
         function onMapClick(e) {
             if (addObject == true) {
@@ -278,6 +290,23 @@
                         '</div>' +
                         '</div>' +
                         '</div>')
+                    .openOn(mymap);
+            }
+            if(addRoute == true){
+                var arrr = new Array();
+                arrr.push(e.latlng.lat.toString().substr(0,9));
+                arrr.push(e.latlng.lng.toString().substr(0,9));
+                arr.push(arrr)
+
+                route.addLatLng(e.latlng);popup
+                    .setLatLng(e.latlng)
+
+                    .setContent('<form action="#" method="POST">\n' +
+                        '        <input type="hidden" name="cord"  value="' + arr + '">\n' +
+
+                        '@csrf' +
+                        '    <input type="submit">\n' +
+                        '</form>')
                     .openOn(mymap);
             }
         }
