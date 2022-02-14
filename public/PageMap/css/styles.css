@@ -251,7 +251,7 @@ button {
     align-items: center;
     justify-content: space-between;
 }
-.leaflet-control-layers-overlays label:first-child {
+.leaflet-control-layers-overlays label:not(:last-child) {
     border-bottom: 1px solid #f4f7fc;
 }
 .leaflet-control-layers-overlays label {
@@ -267,6 +267,7 @@ button {
     order: 2;
     margin-top: 0 !important;
     cursor: pointer;
+    margin-left: 10px;
 }
 .hide {
     display: none;

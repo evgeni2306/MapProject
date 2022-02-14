@@ -74,6 +74,7 @@
 /*---------------------------------------------------------*/
         var zpoints = L.layerGroup(); //зарядки
         var dpoints = L.layerGroup(); //достопримечательности
+        var routes = L.layerGroup(); //маршруты
 
         var Markers = L.Icon.extend({
 		options: {
@@ -93,7 +94,7 @@
             tileSize: 512,
             zoomOffset: -1
         })
-        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, routes]}).setView([56.82, 60.6], 13);
        //тестовые метки
         L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' +
         '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Розетка</a></div>' +
@@ -307,7 +308,7 @@
                         '@csrf' +
                         '    <input type="submit">\n' +
                         '</form>')
-                    .openOn(mymap);
+                    .openOn(mymap).addTo(routes);
             }
         }
 
@@ -317,7 +318,8 @@
 
         var overlays = {
             "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
-            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints
+            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints,
+            "<img src='/PageMap/img/icons/route.svg'>Маршруты": routes
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
 
