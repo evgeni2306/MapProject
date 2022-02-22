@@ -71,6 +71,13 @@ body._lock {
     font-style: normal;
     font-weight: 700;
 }
+@font-face {
+    font-family: "TTFirsNeue";
+    src: url("../fonts/TTFirsNeue-DemiBold.woff") format("woff"),
+        url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+}
 /*--------------------*/
 .wrapper {
     min-height: 100%;
@@ -95,114 +102,121 @@ body._lock {
     background: #ffffff;
     border-radius: 12px;
     margin-bottom: 120px;
-    padding: 60px;
-    display: flex;
 }
 .content__container {
-    width: 70%;
+    height: 586px;
     display: flex;
-    flex-direction: column;
 }
 .user {
     display: flex;
+    width: 380px;
+    height: inherit;
+    padding: 40px 60px;
     margin-bottom: 40px;
+    flex-direction: column;
+    border-right: 1px solid #d3d5da;
+    align-items: center;
 }
 .user__avatar {
-    height: 128px;
-    width: 128px;
+    height: 260px;
+    width: 260px;
     border-radius: 50%;
-}
-.user__info {
-    margin-left: 24px;
+    margin-bottom: 20px;
 }
 .user__name {
     font-family: "GolosTextMedium";
     font-weight: 500;
     font-size: 20px;
     line-height: 120%;
+    margin-bottom: 24px;
+}
+.user__grade {
+    color: #8c8c95;
+    line-height: 118%;
+}
+.user__grade img {
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.user__info {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: calc(100% - 380px);
+}
+.user__rating {
+    margin-bottom: 40px;
+}
+.rating__points {
     margin-bottom: 12px;
 }
-.user__email {
-    line-height: 120%;
+.rating__points span,
+.rating__level span {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+}
+.rating__level {
+    margin-bottom: 20px;
+}
+.rating__nextlevel {
+    margin-bottom: 12px;
+}
+.rating__nextlevel__progress {
+}
+.rating__nextlevel__hint {
+    width: 80%;
+    font-size: 14px;
+    line-height: 121%;
     color: #8c8c95;
-    margin-bottom: 26px;
+}
+.title {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    margin-bottom: 20px;
 }
 .achievements {
+    margin-bottom: 40px;
+}
+.achievements__cards {
     display: flex;
     flex-direction: row;
 }
 .card {
     border-radius: 7px;
-    padding: 20px;
-    display: flex;
-    width: 220px;
-    margin-right: 20px;
-}
-.card__mobile {
-    display: none;
-}
-.card__info {
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
-}
-.feedback__count {
-    background: #ffefe0;
-}
-.title {
-    font-family: "GolosTextMedium";
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 118%;
-    margin-bottom: 3px;
-}
-.route__count {
-    background: #dbf4e6;
-}
-.point__count {
-    background: #ffe8e8;
-}
-.transport-model {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 120px;
+    margin-right: 12px;
     text-align: center;
+    align-items: center;
     background: #f4f7fc;
-    border-radius: 12px;
-    padding: 32px 40px;
-    width: 320px;
 }
-.transport-model__title {
-    font-family: "GolosTextMedium";
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 122%;
-    margin-bottom: 25px;
+.card__count {
+    display: flex;
+    margin-bottom: 5px;
 }
-.transport__image {
-    margin-bottom: 22px;
+.card__count img {
+    margin-right: 8px;
 }
-.transport-model__subtitle {
+.point__title,
+.route__title,
+.feedback__title {
+    margin-bottom: 0;
+}
+.transport-model__type {
+    background: #f4f7fc;
+    border-radius: 7px;
+    padding: 20px;
+    width: 100%;
 }
 .avatar {
     width: 45px;
     height: 45px;
     top: 16px;
     border-radius: 50%;
-}
-input {
-    height: 48px;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #d3d5da;
-    color: #000;
-    border-radius: 7px;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-    font-size: 15px;
-}
-input:hover {
-    border: 1px solid #27ae60;
 }
 button {
     background: none;
@@ -211,25 +225,10 @@ button {
     font-family: inherit;
     font-size: inherit;
 }
-.footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background: #0c585c;
-    color: #fff;
-    padding: 38px 150px;
-    max-height: 100px;
-    line-height: 120%;
-    text-align: center;
-    align-items: center;
-}
 .hide {
     display: none;
 }
 @media (min-width: 1950px) {
-    .footer {
-        padding: 0px 200px;
-    }
     .container {
         padding: 0px 200px;
     }
@@ -245,94 +244,34 @@ button {
     .content__container {
         width: 100%;
     }
-    .transport-model {
-        width: 50%;
-        margin-top: 20px;
-    }
 }
 @media (max-width: 1200px) {
-    .footer {
+    .content__wrapper {
         padding: 0px 50px;
     }
 }
 @media (max-width: 1068px) {
-    .container {
-        align-items: center;
-        padding: 20px;
-    }
     .user {
-        flex-direction: column;
-        align-items: center;
+        padding: 40px;
+        width: 310px;
+    }
+    .user__avatar {
+        width: 220px;
+        height: 220px;
     }
     .user__info {
-        margin-left: 0px;
+        width: calc(100% - 310px);
     }
-    .card {
-        width: 200px;
-        padding: 15px;
-        margin-right: 10px;
-    }
-    .achievements {
-        display: flex;
-        justify-content: center;
+    .rating__nextlevel__hint {
+        width: 100%;
     }
 }
 @media (max-width: 935px) {
     .content__wrapper {
         padding: 0px 50px;
     }
-    .card {
-        display: none;
-    }
-    .card__mobile {
-        border-radius: 7px;
-        padding: 15px;
-        display: flex;
-        width: 180px;
-        flex-direction: column;
-        align-items: center;
-    }
-    .card__info {
-        flex-direction: row;
-        margin: 0;
-        align-items: center;
-        margin-bottom: 6px;
-    }
-    .card__info img {
-        height: 18px;
-        margin-right: 11px;
-    }
-    .feedback__count__mobile {
-        background: #ffefe0;
-        margin-right: 10px;
-    }
-    .route__count__mobile {
-        background: #dbf4e6;
-        margin-right: 10px;
-    }
-    .point__count__mobile {
-        background: #ffe8e8;
-    }
-    .title {
-        font-size: 20px;
-        margin: 0;
-    }
 }
 @media (max-width: 767px) {
-    .footer {
-        flex-direction: column;
-        padding: 0px 25px;
-        align-items: center;
-        text-align: center;
-        padding: 0;
-        max-height: 191px;
-    }
-    .footer__logo {
-        margin-top: 32px;
-    }
-    .footer__rights {
-        margin: 20px 0px;
-    }
     .container {
         padding: 0px 25px;
     }
@@ -342,16 +281,8 @@ button {
     .user {
         margin: 20px 0px;
     }
-    .transport-model {
-        width: 100%;
-        border-radius: 0px;
-        background-color: #fff;
-    }
 }
 @media (max-width: 568px) {
-    .footer {
-        padding: 0px 10px;
-    }
     .container {
         padding: 0px 0px;
         border-radius: 0px;
@@ -376,10 +307,5 @@ button {
     }
     .menu__item img {
         margin-right: 10px;
-    }
-}
-@media (max-width: 425px) {
-    .card__mobile {
-        width: 100px;
     }
 }

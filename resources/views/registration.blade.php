@@ -21,7 +21,7 @@
     <form action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
-                <input type="text" maxlength="35" placeholder="E-mail" name='email'>
+                <input type="email" maxlength="35" placeholder="E-mail" name='email'>
             </div>
             <div class="form-field__fullname">
                 <div class="form-field form-field__name">
@@ -37,6 +37,7 @@
             </div>
         </div>
         @csrf
+        <div class="error-block hide"><img src="PageRegistration/img/information.svg" alt=""></div>
         <input type="submit" class="form-button form-button__createacc" value="Создать аккаунт">
     </form>
     <div class="form-buttons _container">

@@ -20,13 +20,14 @@
     <form action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
-                <input type="text" maxlength="35" placeholder="E-mail" name = 'email'>
+                <input type="email" maxlength="35" placeholder="E-mail" name = 'email'>
             </div>
             <div class="form-field form-field__password">
                 <input type="password" id="password-input" maxlength="35" placeholder="Пароль" name="Password">
                 <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
             </div>
         </div>
+        <div class="error-block hide"><img src="PageRegistration/img/information.svg" alt=""></div>
         <input type="submit" class="form-button form-button__createacc" value="Войти">
     </form>
 

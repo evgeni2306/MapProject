@@ -19,9 +19,17 @@
 }
 .header__logo {
     z-index: 5;
+    font-family: TTFirsNeue;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 127%;
+}
+.header__logo span {
+    color: #27ae60;
 }
 .header__logo img {
     width: 52px;
+    margin-right: 12px;
 }
 .menu {
     padding: 5px 0px;

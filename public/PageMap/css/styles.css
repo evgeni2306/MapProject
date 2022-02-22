@@ -62,6 +62,13 @@ body._lock {
     font-style: normal;
     font-weight: 700;
 }
+@font-face {
+    font-family: "TTFirsNeue";
+    src: url("../fonts/TTFirsNeue-DemiBold.woff") format("woff"),
+        url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+}
 /*--------------------*/
 .wrapper {
     height: 100%;

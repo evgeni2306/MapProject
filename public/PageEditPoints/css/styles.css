@@ -60,6 +60,13 @@ body {
     font-style: normal;
     font-weight: 700;
 }
+@font-face {
+    font-family: "TTFirsNeue";
+    src: url("../fonts/TTFirsNeue-DemiBold.woff") format("woff"),
+        url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+}
 /*--------------------*/
 body._lock {
     overflow: hidden;
@@ -231,16 +238,6 @@ button {
     width: auto;
     border-radius: 12px;
 }
-.footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background: #0c585c;
-    color: #fff;
-    padding: 38px 150px;
-    max-height: 100px;
-    line-height: 120%;
-}
 .photo1 {
     margin-right: 20px;
     width: 300px;
@@ -249,14 +246,7 @@ button {
 .photo2 {
     margin-bottom: 20px;
 }
-.footer__rights {
-}
-.footer__contacts {
-}
 @media (min-width: 1950px) {
-    .footer {
-        padding: 0px 200px;
-    }
     .container {
         padding: 0px 200px;
     }
@@ -273,22 +263,11 @@ button {
     }
 }
 @media (max-width: 1200px) {
-    .footer {
-        padding: 0px 50px;
-    }
     .container {
         padding: 0px 50px;
     }
 }
 @media (max-width: 767px) {
-    .footer {
-        flex-direction: column;
-        padding: 0px 25px;
-        align-items: center;
-        text-align: center;
-        padding: 0;
-        max-height: 191px;
-    }
     .container {
         padding: 0px 25px;
     }
@@ -337,9 +316,6 @@ button {
     }
 }
 @media (max-width: 568px) {
-    .footer {
-        padding: 0px 10px;
-    }
     .container {
         padding: 0px 0px;
     }
