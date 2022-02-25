@@ -1,0 +1,58 @@
+.footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #0c585c;
+    color: #fff;
+    padding: 38px 150px;
+    max-height: 100px;
+    line-height: 120%;
+    text-align: center;
+    align-items: center;
+}
+.footer__logo {
+    z-index: 5;
+    font-family: TTFirsNeue;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 127%;
+    color: #fff;
+}
+.footer__logo span {
+    color: #27ae60;
+}
+.footer__logo img {
+    margin-right: 12px;
+}
+@media (min-width: 1950px) {
+    .footer {
+        padding: 0px 200px;
+    }
+}
+@media (max-width: 1200px) {
+    .footer {
+        padding: 0px 50px;
+    }
+}
+@media (max-width: 767px) {
+    .footer {
+        flex-direction: column;
+        padding: 0px 25px;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        max-height: 191px;
+    }
+    .footer__logo {
+        margin-top: 32px;
+    }
+    .footer__rights {
+        margin: 20px 0px;
+    }
+}
+@media (max-width: 568px) {
+    .footer {
+        padding: 0px 10px;
+    }
+}

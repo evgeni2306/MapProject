@@ -5,6 +5,8 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
+    <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageSettings/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -15,37 +17,9 @@
             crossorigin=""></script>
 </head>
 <body>
-<div class="wrapper">
-    <header class="header">
-        <div class="header__container">
-            <a href="" class="header__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></a>
-            <nav class="header__menu menu">
-                <ul class="menu__list">
-                    <li class="menu__item">
-                        <a href="{{route('map')}}"><button type="button" class="menu__link" id="menu__link__view"><img
-                                    src="/PageMap/img/header/02.svg" alt="view">Карта
-                             </button></a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="menu__icon">
-                <span></span>
-            </div>
-            <nav class="user-menu">
-                <ul class="user-menu__list">
-                    <li class="user-name">
-                        <img  class="avatar" src="{{$_SESSION['User']->avatar}}" alt="user">
-                        <a href="#" class="user-menu__link" tabindex="1">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}</a><span class="menu__arrow"></span>
-                        <ul class="sub-menu__list">
-                            <li><a href="{{route('myprofile')}}" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
-                            <li><a href="{{route('edit')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
-                            <li><a href="{{route('logout')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!--------------HEADER-------------------->
+@include('Components.headerPages')
+<!--------------/HEADER-------------------->
     <div class="container">
         <form method="Post" action ="{{'edit'}}">
             <h1 class="settings__title">Настройки</h1>
@@ -82,11 +56,9 @@
             </div>
         </form>
     </div>
-    <footer class="footer">
-        <div class="footer__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></div>
-        <div class="footer__rights">@Название 2021. Все права защищены</div>
-        <div class="footer__contacts">Контакты</div>
-    </footer>
+<!--------------FOOTER-------------------->
+@include('Components.footer')
+<!--------------/FOOTER-------------------->
 </div>
 <script>
     function handleFileSelect(evt) {
