@@ -5,7 +5,7 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
+    <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
@@ -20,7 +20,7 @@
 <body>
 <div class="wrapper">
     <!--------------HEADER-------------------->
-    @include('Components.headerPages')
+    @include('Components.headerUnauthPages')
     <!--------------/HEADER-------------------->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
@@ -29,7 +29,10 @@
         <img src="/PagePointPersonal/img/building.svg" alt="category">
         <span class="infoblock__category__name">Достопримечательность</span>
     </div>
+    <div class="infoblock__header">
       <h1 class="point__title">Музей изобразительных искусств</h1>
+      <div class="infoblock__header__button"><a href="{{route('editpoints')}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>  
+    </div>
       <div class="infoblock">
         <div class="infoblock__rating">
             <img src="/PagePointPersonal/img/stars.svg" alt="rating">
@@ -40,7 +43,7 @@
             <span class="infoblock__category__name">Достопримечательность</span>
         </div>
         <div class="infoblock__user">
-            <span class="infoblock__user__add">добавил(-а)</span>
+            <span class="infoblock__user__add">Автор</span>
             <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
             <span class="infoblock__user__name">Алексей Петров</span>
         </div>

@@ -1,6 +1,6 @@
 <header class="header">
         <div class="header__container">
-            <a href="" class="header__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"></a>
+            <a href="" class="header__logo"><img src="/PageRegistration/img/logo.svg" alt="logo"><p class="header__logo__name">unicycle<span>map</span></p></a>
             <nav class="header__menu menu">
                 <ul class="menu__list">
                     <li class="menu__item">

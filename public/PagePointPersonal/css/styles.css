@@ -103,6 +103,10 @@ body._lock {
     top: 16px;
     border-radius: 50%;
 }
+.infoblock__header {
+    display: flex;
+    align-items: center;
+}
 .infoblock {
     display: flex;
     width: 100%;
@@ -322,7 +326,8 @@ input:hover {
 .feedback__button__image {
     user-select: none;
 }
-.feedback__button__container label {
+.feedback__button__container label,
+.infoblock__header__button {
     height: 48px;
     background: #27ae60;
     color: #fff;
@@ -333,7 +338,8 @@ input:hover {
     align-items: center;
     margin: 0 auto;
 }
-.feedback__button__container label:hover {
+.feedback__button__container label:hover,
+.infoblock__header__button:hover {
     cursor: pointer;
     background: #239452;
 }
@@ -346,6 +352,18 @@ input:hover {
     opacity: 0;
     position: absolute;
     z-index: -10;
+}
+.infoblock__header__button {
+    display: inline-block;
+    margin: 0 0 0 auto;
+}
+.infoblock__header__button a {
+    font-family: "GolosTextMedium";
+    color: #fff;
+    font-weight: 500;
+}
+.infoblock__header__button img {
+    margin-right: 14px;
 }
 .feedback__button__add {
     background: #27ae60;
@@ -518,6 +536,13 @@ button {
     }
 }
 @media (max-width: 900px) {
+    .infoblock__header {
+        flex-direction: column;
+        align-items: start;
+    }
+    .infoblock__header__button {
+        margin: 0px 0px 20px 0px;
+    }
     .infoblock {
         flex-direction: column;
         align-items: baseline;
@@ -666,6 +691,14 @@ button {
     .point__title {
         font-size: 20px;
         padding: 12px 10px;
+    }
+    .infoblock__header__button {
+        margin: 0px 0px 20px 10px;
+        padding: 10px 15px;
+        height: 38px;
+    }
+    .infoblock__header__button img {
+        margin-right: 8px;
     }
     .infoblock__category__mobile {
         font-size: 14px;

@@ -22,8 +22,7 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="content__wrapper">
-      <h1 class="profile__title">Профиль пользователя</h1>
-      <div class="container">
+      <h1 class="profile__title">Мой профиль</h1>
         <div class="content__container">
           <div class="user">
             <img class="user__avatar" src="/PageProfile/img/avatar.png" alt="avatar">
@@ -47,14 +46,14 @@
                     <img src="/PageProfile/img/point.svg" alt="point">
                     <div class="point__title title">5</div>
                   </div>
-                  <div class="point__subtitle">меток</div>
+                <div class="point__subtitle">меток</div>
+            </div>
+            <div class="route__count card">
+              <div class="card__count">
+                <img src="/PageProfile/img/route.svg" alt="route">
+                <div class="route__title title">1</div>
               </div>
-              <div class="route__count card">
-                <div class="card__count">
-                  <img src="/PageProfile/img/route.svg" alt="route">
-                  <div class="route__title title">1</div>
-                </div>
-                  <div class="route__subtitle">маршрутов</div>
+              <div class="route__subtitle">маршрутов</div>
               </div>
               <div class="feedback__count card">
                 <div class="card__count">
@@ -63,15 +62,13 @@
                 </div>
                   <div class="feedback__subtitle">отзывов</div>
               </div>
-              </div>      
+            </div>      
           </div>
           <div class="transport-model">
             <div class="transport-model__title title">Модель транспорта</div>
             <div class="transport-model__type">KingSong 16S SPORTS 840WH</div>
           </div>
           </div>
-          
-        </div>
       </div>
     </div>
     <!--------------FOOTER-------------------->

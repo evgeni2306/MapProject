@@ -98,14 +98,12 @@ body._lock {
     line-height: 118%;
     padding: 40px 0px 40px 0px;
 }
-.container {
-    background: #ffffff;
-    border-radius: 12px;
-    margin-bottom: 120px;
-}
 .content__container {
+    background: #ffffff;
     height: 586px;
     display: flex;
+    border-radius: 12px;
+    margin-bottom: 120px;
 }
 .user {
     display: flex;
@@ -229,7 +227,7 @@ button {
     display: none;
 }
 @media (min-width: 1950px) {
-    .container {
+    .content__wrapper {
         padding: 0px 200px;
     }
     .buttons {
@@ -237,7 +235,7 @@ button {
     }
 }
 @media (max-width: 1520px) {
-    .container {
+    .content__wrapper {
         display: flex;
         flex-direction: column;
     }
@@ -270,20 +268,37 @@ button {
     .content__wrapper {
         padding: 0px 50px;
     }
+    .content__container {
+        height: 100%;
+        flex-direction: column;
+        background-color: #f4f7fc;
+    }
+    .user {
+        width: 100%;
+        background-color: #fff;
+        border-right: none;
+        border-radius: 12px;
+    }
+    .user__info {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 12px;
+    }
 }
 @media (max-width: 767px) {
-    .container {
+    .content__wrapper {
         padding: 0px 25px;
     }
     .profile__title {
-        padding: 100px 10px 20px 10px;
+        padding: 100px 10px 20px 0px;
+        font-size: 26px;
     }
     .user {
         margin: 20px 0px;
     }
 }
 @media (max-width: 568px) {
-    .container {
+    .content__wrapper {
         padding: 0px 0px;
         border-radius: 0px;
         margin-bottom: 0;
@@ -292,20 +307,51 @@ button {
     .content__wrapper {
         padding: 0px 0px;
     }
-    .content__container {
-        background-color: #fff;
-        padding-bottom: 20px;
+    .content__container,
+    .user__info {
+        margin-bottom: 0;
     }
     .profile__title {
+        padding: 100px 10px 20px 10px;
         font-size: 20px;
     }
-    .achievements {
-        padding: 0px 10px;
+    .user,
+    .user__info {
+        border-radius: 0px;
+    }
+    .user {
+        margin-top: 0;
+        padding: 20px;
+    }
+    .user__avatar {
+        width: 128px;
+        height: 128px;
+        margin-bottom: 16px;
+    }
+    .user__name {
+        margin-bottom: 16px;
+    }
+    .user__info {
+        padding: 20px 10px;
+    }
+    .title {
+        font-size: 18px;
+    }
+    .user__rating {
+        margin-bottom: 32px;
     }
     .menu__link {
         padding: 5px 10px;
     }
     .menu__item img {
         margin-right: 10px;
+    }
+    .card {
+        width: 94px;
+        font-size: 14px;
+        margin-right: 9px;
+    }
+    .feedback__count {
+        margin-right: 0;
     }
 }
