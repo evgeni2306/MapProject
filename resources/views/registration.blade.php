@@ -18,7 +18,7 @@
         <div class="text-container__subtitle">Уже есть аккаунт? <a href="{{route('login')}}" class="text-container__subtitle entrance">Войти</a>
         </div>
     </div>
-    <form action="" method="">
+    <form class="form-registration" action="" method="">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
                 <input type="email" maxlength="35" placeholder="E-mail" name='email'>
@@ -37,7 +37,10 @@
             </div>
         </div>
         @csrf
-        <div class="error-block hide"><img src="PageRegistration/img/information.svg" alt=""></div>
+        <div class="error-block hide">
+            <img src="PageRegistration/img/information.svg" alt="">
+            <p class="error-block__text"></p>
+        </div>
         <input type="submit" class="form-button form-button__createacc" value="Создать аккаунт">
     </form>
     <div class="form-buttons _container">
@@ -49,18 +52,6 @@
             ВКонтакте</a>
     </div>
 </div>
-<script>
-    function show_hide_password(target){
-        var input = document.getElementById('password-input');
-        if (input.getAttribute('type') == 'password') {
-            target.classList.add('view');
-            input.setAttribute('type', 'text');
-        } else {
-            target.classList.remove('view');
-            input.setAttribute('type', 'password');
-        }
-        return false;
-    }
-</script>>
+<script src="Script/login.js"></script>
 </body>
 </html>

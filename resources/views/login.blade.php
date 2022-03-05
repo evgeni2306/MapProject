@@ -27,7 +27,10 @@
                 <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
             </div>
         </div>
-        <div class="error-block hide"><img src="PageRegistration/img/information.svg" alt=""></div>
+        <div class="error-block hide">
+            <img src="PageRegistration/img/information.svg" alt="">
+            <p class="error-block__text"></p>
+        </div>
         <input type="submit" class="form-button form-button__createacc" value="Войти">
     </form>
 
@@ -38,18 +41,6 @@
         <a href="#" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
     </div>
 </div>
-<script>
-    function show_hide_password(target){
-        var input = document.getElementById('password-input');
-        if (input.getAttribute('type') == 'password') {
-            target.classList.add('view');
-            input.setAttribute('type', 'text');
-        } else {
-            target.classList.remove('view');
-            input.setAttribute('type', 'password');
-        }
-        return false;
-    }
-</script>
+<script src="Script/login.js"></script>
 </body>
 </html>
