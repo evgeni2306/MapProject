@@ -25,31 +25,33 @@
             </div>
             <div class="form-field__fullname">
                 <div class="form-field form-field__name">
-                    <input type="text"  maxlength="35"placeholder="Имя" name='name'>
+                    <input type="text"  maxlength="50" placeholder="Имя" name='name'>
                 </div>
                 <div class="form-field form-field__lastname">
-                    <input type="text" maxlength="35"  placeholder="Фамилия" name='surname'>
+                    <input type="text" maxlength="50"  placeholder="Фамилия" name='surname'>
                 </div>
             </div>
             <div class="form-field form-field__password">
-                <input type="password" maxlength="35" placeholder="Пароль" name="password">
+                <input type="password" id="password-input" maxlength="50" placeholder="Пароль" name='password'>
+                <a href="#" class="password-control-reg" onclick="return show_hide_password(this);"></a>
             </div>
         </div>
         @csrf
         @error('login')
-        <div class="error" role="alert">{{$message}}</div>
+        <div class="error-block hide">
+            <img src="PageRegistration/img/information.svg" alt="">
+            <p class="error-block__text">{{$message}}</p>
+        </div>
         @enderror
         <input type="submit" class="form-button form-button__createacc" value="Создать аккаунт">
     </form>
     <div class="form-buttons _container">
 
         <div class="divider">или</div>
-        <a href="#" class="form-button form-button__google"><img src="PageRegistration/img/01.svg" alt="google">Войти с
-            помощью Google</a>
-        <a href="#" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью
-            ВКонтакте</a>
+        <a href="{{route('google')}}" class="form-button form-button__google"><img src="PageRegistration/img/01.svg" alt="google">Войти с помощью Google</a>
+        <a href="{{route('vkontakte')}}" class="form-button form-button__vk"><img src="PageRegistration/img/02.svg" alt="vk">Войти с помощью ВКонтакте</a>
     </div>
 </div>
-<!--<script src="/registration/js/script.js"></script>-->
+<script src="Script/login.js"></script>
 </body>
 </html>
