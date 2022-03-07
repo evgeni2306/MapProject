@@ -28,12 +28,12 @@
             </div>
         </div>
         @csrf
-        @error('login')
+        @if ($errors->any())
         <div class="error-block hide">
             <img src="PageRegistration/img/information.svg" alt="">
-            <p class="error-block__text">{{$message}}</p>
+            <p class="error-block__text">{{$errors->first()}}</p>
         </div>
-        @enderror
+        @endif
         <input type="submit" class="form-button form-button__createacc" value="Войти">
     </form>
 

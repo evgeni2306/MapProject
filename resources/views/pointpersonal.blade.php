@@ -5,6 +5,7 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
@@ -19,9 +20,17 @@
 </head>
 <body>
 <div class="wrapper">
+    @if(isset($_SESSION['User']))
     <!--------------HEADER-------------------->
-@include('Components.headerPages')
+        @include('Components.headerPages')
 <!--------------/HEADER-------------------->
+    @endif
+
+    @if(!isset($_SESSION['User']))
+        <!--------------HEADER-------------------->
+        @include('Components.headerUnauthPages')
+        <!--------------/HEADER-------------------->
+        @endif
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="container">
@@ -79,6 +88,7 @@
             </div>
             <div id="map" class="information__map" style="width: 520px; height: 360px;"></div>
         </div>
+        @if(isset($_SESSION['User']))
     <div class="feedback block">
         <form method="Post" action ="{{route('AddPcomment')}}">
             <div class="feedback__title block__title">Написать отзыв</div>
@@ -106,6 +116,7 @@
             </div>
         </form>
     </div>
+        @endif
 
       <div class="comments">
           <div class="comments__title">Отзывов:  <span class="count__comments">{{$_SESSION['CurrentPoint']->rating[1]}}</span></div>

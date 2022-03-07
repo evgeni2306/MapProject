@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
         return view('settings');
     })->name('edit');
     Route::get('/profile', [GetProfileController::class, 'GetMyProfile'])->name('myprofile');
-    Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
+
     Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     })->name('logout');
 
 });
-
+Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
 //Роуты для неавторизованных
 Route::get('/registration', function () {
     if(Auth::check()){
