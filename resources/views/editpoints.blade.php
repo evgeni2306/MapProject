@@ -23,47 +23,42 @@
     <!--------------/HEADER-------------------->
     <div class="container">
         <form method="" action ="">
-            <div class="edit-point__forms">
-                <h1 class="edit-point__title">Редактирование точки</h1>
-                <h4 class="sub-title">Название</h4>
-                <input type="text" placeholder="Введите название" name="name">
-                <h4 class="sub-title">Адрес</h4>
-                <input type="text" placeholder="Введите адрес" name="address">
-                <h4 class="sub-title">Категория</h4>
-                <select  required name="type">
-                    <option value="" disabled selected style="display:none;">Выберите категорию</option>
-                    <option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
-                    <option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
-                </select>
-                <h4 class="sub-title">Описание</h4>
-                <textarea class="edit-point__description" placeholder="Добавьте описание объекта" name="description"></textarea>
-                <input type="reset" class="edit-point__cancel" value ="Отмена">
-                <input type="submit" class="edit-point__add" value ="Сохранить">
-
-            </div>
-            <div class="edit-point__photos">
-                <h4 class="sub-title">Фотографии</h4>
-
-                <div class="upload-container photo1  ">
-                    <img class="upload-image " src="/PageEditPoints/img/01.png">
-                    <input type="file" id="files" name="files[]">
-                    <label for="files">Добавить фото</label>
-                    <output id="list"></output>
+            <h1 class="edit-point__title">Редактирование метки</h1>
+            <div class="content__container">
+                <div class="edit-point__forms">
+                    <h4 class="sub-title">Название<span class="required-form">*</span></h4>
+                    <input type="text" placeholder="Введите название" name="name">
+                    <h4 class="sub-title">Категория<span class="required-form">*</span></h4>
+                    <select required name="type">
+                        <option value="" disabled selected style="display:none;">Выберите категорию</option>
+                        <option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
+                        <option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
+                    </select>
+                    <h4 class="sub-title">Адрес<span class="required-form">*</span></h4>
+                    <input type="text" placeholder="Введите адрес" name="address">
+                    <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
+                    <select required name="status">
+                        <option value="Статус неизвестен">Статус неизвестен</option>                    
+                        <option value="Работает">Работает</option>
+                        <option value="Не работает">Не работает</option>
+                    </select>
+                    <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
+                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="short-description">
+                    <h4 class="sub-title">Полное описание</h4>
+                    <textarea class="edit-point__description" placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description"></textarea>
+                    <h4 class="sub-title">Фотографии</h4>
+                    <div class="add-photo">
+                        <input type="file" id="files" name="files[]" accept="image/*,image/jpeg">
+                        <label for="files"><img src="/PageSettings/img/02.svg">Добавить фото</label>
+                        <output id="list"></output>
+                    </div>
+                    <div class="edit-point__warning">Вы можете добавить до 3 фото в формате JPG, JPEG, PNG</div>
+                    <div class="edit-buttons">
+                        <input type="reset" class="edit-point__cancel" value ="Отмена">
+                        <input type="submit" class="edit-point__add" value ="Сохранить">
+                    </div>                
                 </div>
-                <div class="upload-container photo2">
-                    <img class="upload-image" src="/PageEditPoints/img/01.png">
-                    <input type="file" id="files" name="files[]">
-                    <label for="files">Добавить фото</label>
-                    <output id="list"></output>
-                </div>
-                <div class="upload-container">
-                    <img class="upload-image" src="/PageEditPoints/img/01.png">
-                    <input type="file" id="files" name="files[]">
-                    <label for="files">Добавить фото</label>
-                    <output id="list"></output>
-                </div>
-
-                <div class="edit-point__warning">Вы можете добавить до 3 фото в формате JPG, JPEG, PNG.</div>
+                <div class="edit-point__photos"></div>
             </div>
         </form>
     </div>
