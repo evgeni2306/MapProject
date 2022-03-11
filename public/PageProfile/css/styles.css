@@ -160,6 +160,19 @@ body._lock {
     margin-bottom: 12px;
 }
 .rating__nextlevel__progress {
+    width: 100%;
+    height: 24px;
+    position: relative;
+    background: #f4f7fc;
+    border-radius: 7px;
+    margin-bottom: 12px;
+}
+.rating__nextlevel__progress span {
+    display: block;
+    height: 100%;
+    background: #ffa235;
+    border-radius: 7px;
+    overflow: hidden;
 }
 .rating__nextlevel__hint {
     width: 80%;

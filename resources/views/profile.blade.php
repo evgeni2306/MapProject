@@ -35,7 +35,9 @@
               <div class="rating__points">Набрано очков: <span>25</span></div>
               <div class="rating__level">Уровень: <span>Мастер колеса</span></div>
               <div class="rating__nextlevel">Следующий уровень</div>
-              <div class="rating__nextlevel__progress"></div>
+              <div class="rating__nextlevel__progress">
+                <span></span>
+              </div>
               <div class="rating__nextlevel__hint">Делитесь интересными местами, маршрутами, оценивайте и комментируйте существующие, чтобы зарабатывать очки опыта!</div>
             </div>
             <div class="achievements">
@@ -74,30 +76,9 @@
     <!--------------FOOTER-------------------->
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
-</div>    
+</div>
+<script src="Script/menu.js"></script>    
 <script>
-  function handleFileSelect(evt) {
-    let files = evt.target.files;
-
-    for (let i = 0, f; f = files[i]; i++) {
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-
-      let reader = new FileReader();
-      reader.onload = (function(theFile) {
-        return function(e) {
-          let span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', theFile.name, '"/>'].join('');
-          document.getElementById('list').insertBefore(span, null);
-        };
-      })(f);
-
-      reader.readAsDataURL(f);
-    }
-  }
-
 /*-------------------------------*/
         var menuLinks = document.querySelectorAll('.menu__link');
         var lastClicked = menuLinks[0];
@@ -115,54 +96,6 @@
         }        
 
 /*--------------------------------*/
-let menuArrows = document.querySelectorAll('.menu__arrow');
-        if (menuArrows.length > 0) {
-            for (let i = 0; i < menuArrows.length; i++) {
-                const menuArrow = menuArrows[i];
-                document.querySelector('.user-name').addEventListener("click", function(e) {
-                    menuArrow.parentElement.classList.toggle('active__arrow');
-                });
-            }
-        }
-
-        var isMobile = {
-            Android: function() {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function() {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function() {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function() {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function() {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function() {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };       
-
-        if (isMobile.any()) {
-            document.body.classList.add('_mobile');
-        } else {
-            document.body.classList.add('_pc');
-        }
-
-        const iconMenu = document.querySelector('.menu__icon');
-        if (iconMenu) {
-          const userMenu = document.querySelector('.user-menu');
-          const headerMenu = document.querySelector('.menu');
-            iconMenu.addEventListener("click", function(e) {
-                document.body.classList.toggle('_lock');
-                iconMenu.classList.toggle('active__user-menu');
-                userMenu.classList.toggle('active__user-menu');
-                headerMenu.classList.toggle('hide');
-            });
-        }
 </script>
 </body>
 </html>

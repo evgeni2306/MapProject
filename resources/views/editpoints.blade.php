@@ -66,6 +66,7 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
+<script src="Script/menu.js"></script> 
 <script>
       function handleFileSelect(evt) {
         let files = evt.target.files;

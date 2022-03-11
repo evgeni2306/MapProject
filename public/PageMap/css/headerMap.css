@@ -74,18 +74,12 @@
 .menu__item:hover {
     border: 1px solid #27ae60;
 }
-
 .menu__link {
     color: inherit;
     line-height: 171%;
     font-weight: 400;
     padding: 10px 23px;
 }
-
-/*.user-menu {
-    position: absolute;
-    right: 100px;
-}*/
 .user-name {
     cursor: pointer;
 }
