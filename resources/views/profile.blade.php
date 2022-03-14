@@ -32,11 +32,18 @@
           <div class="user__info">
             <div class="user__rating">
               <div class="rating__title title">Рейтинг</div>
-              <div class="rating__points">Набрано очков: <span>25</span></div>
+              <div class="rating__points">Набрано очков: <span class="points">63</span></div>
               <div class="rating__level">Уровень: <span>Мастер колеса</span></div>
-              <div class="rating__nextlevel">Следующий уровень</div>
-              <div class="rating__nextlevel__progress">
-                <span></span>
+              <div class="rating__nextlevel">
+                <div class="nextlevel">Следующий уровень</div>
+                <div class="points-received">
+                  <span class="points">63</span>/<span class="target">100</span>
+                </div>
+              </div>
+              <div class="rating__nextlevel__progress">                
+                <div class="progress-bar">
+                  <div class="percent-count"></div>
+                </div>
               </div>
               <div class="rating__nextlevel__hint">Делитесь интересными местами, маршрутами, оценивайте и комментируйте существующие, чтобы зарабатывать очки опыта!</div>
             </div>
@@ -94,8 +101,15 @@
                 lastClicked = this;
             });
         }        
-
 /*--------------------------------*/
+let points = document.querySelector('.points').textContent;
+const progress = document.querySelector('.progress-bar');
+let percent = document.querySelector('.percent-count');
+setTimeout(() => {
+  progress.style.opacity = 1;
+  progress.style.width = points + '%';
+  percent.textContent = points + '%';
+})
 </script>
 </body>
 </html>

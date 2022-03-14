@@ -49,24 +49,29 @@
        //тестовые метки
         L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' +
         '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Розетка</a></div>' +
+        '<div class="short-description">Розетка во дворе</div>' +
         '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
                 '<img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">'+
                 '<span class="star-rating__feedback">(35)</span>'+
             '</div>'+
         '</div>'+
+        '<div class="marker__address">Адрес</div>' +
+        '<div class="marker-status status-unknown">Статус неизвестен</div>' +
         '<div class="marker__photo__container">'+
             '<img class="marker__photo" src="/PageMap/img/marker/02.png" alt="object">'+
         '</div>'+
     '</div>').addTo(zpoints);
         L.marker([56.826, 60.65], {icon: house}).bindPopup('<div class="marker__container">' +
         '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Музей изобразительных искусств</a></div>' +
+        '<div class="short-description">Музей</div>' +
         '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
                 '<img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">'+
                 '<span class="star-rating__feedback">(35)</span>'+
             '</div>'+
         '</div>'+
+        '<div class="marker__address">Адрес</div>' +
         '<div class="marker__photo__container">'+
             '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
         '</div>'+

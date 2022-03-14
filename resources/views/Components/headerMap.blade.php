@@ -13,7 +13,7 @@
                                 src="/PageMap/img/header/03.svg" alt="object">Добавить объект
                         </button>
                     </li>
-                    <li class="menu__item__mobile">
+                    <li class="menu__item__mobile active-menu">
                         <button type="button" class="menu__link" id="menu__link__view__mobile"><img
                                 src="/PageMap/img/header/02.svg" alt="view">
                         </button>
@@ -23,7 +23,7 @@
                                 src="/PageMap/img/header/03.svg" alt="object">
                         </button>
                     </li>
-                    <li class="menu__item__mobile">
+                    <li class="menu__item__mobile last">
                         <button type="button" class="menu__link" id="menu__link__add-route__mobile"><img
                                 src="/PageMap/img/header/04.svg" alt="route">
                         </button>

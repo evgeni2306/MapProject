@@ -157,7 +157,14 @@ body._lock {
     margin-bottom: 20px;
 }
 .rating__nextlevel {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 12px;
+}
+.points-received {
+    font-family: "GolosTextMedium";
+    font-weight: 500;
+    line-height: 120%;
 }
 .rating__nextlevel__progress {
     width: 100%;
@@ -166,13 +173,19 @@ body._lock {
     background: #f4f7fc;
     border-radius: 7px;
     margin-bottom: 12px;
+    overflow: hidden;
 }
-.rating__nextlevel__progress span {
-    display: block;
+.progress-bar {
     height: 100%;
     background: #ffa235;
     border-radius: 7px;
-    overflow: hidden;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    width: 0;
+    transition: 1s ease;
 }
 .rating__nextlevel__hint {
     width: 80%;

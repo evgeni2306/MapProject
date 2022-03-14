@@ -53,8 +53,11 @@
 .menu__item__mobile {
     display: none;
 }
-.menu__item__mobile:not(:last-child) {
+.menu__item__mobile {
     border-right: 1px solid #d3d5da;
+}
+.last {
+    border-right: none;
 }
 .menu__item {
     cursor: pointer;
