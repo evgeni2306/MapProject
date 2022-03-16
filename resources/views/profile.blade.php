@@ -40,7 +40,7 @@
                   <span class="points">63</span>/<span class="target">100</span>
                 </div>
               </div>
-              <div class="rating__nextlevel__progress">                
+              <div class="rating__nextlevel__progress">
                 <div class="progress-bar">
                   <div class="percent-count"></div>
                 </div>
@@ -71,7 +71,7 @@
                 </div>
                   <div class="feedback__subtitle">отзывов</div>
               </div>
-            </div>      
+            </div>
           </div>
           <div class="transport-model">
             <div class="transport-model__title title">Модель транспорта</div>
@@ -84,7 +84,7 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script>    
+<script src="Script/menu.js"></script>
 <script>
 /*-------------------------------*/
         var menuLinks = document.querySelectorAll('.menu__link');
@@ -100,7 +100,7 @@
 
                 lastClicked = this;
             });
-        }        
+        }
 /*--------------------------------*/
 let points = document.querySelector('.points').textContent;
 const progress = document.querySelector('.progress-bar');

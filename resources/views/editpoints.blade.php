@@ -38,7 +38,7 @@
                     <input type="text" placeholder="Введите адрес" name="address">
                     <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
                     <select required name="status">
-                        <option value="Статус неизвестен">Статус неизвестен</option>                    
+                        <option value="Статус неизвестен">Статус неизвестен</option>
                         <option value="Работает">Работает</option>
                         <option value="Не работает">Не работает</option>
                     </select>
@@ -48,7 +48,7 @@
                     <textarea class="edit-point__description" placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description"></textarea>
                     <h4 class="sub-title">Фотографии</h4>
                     <div class="add-photo">
-                        <input type="file" id="files" name="files[]" accept="image/*,image/jpeg">
+                        <input type="file" id="files" name="files[]" accept="image/*,image/jpeg" onchange="previewFile()">
                         <label for="files"><img src="/PageSettings/img/02.svg">Добавить фото</label>
                         <output id="list"></output>
                     </div>
@@ -56,39 +56,69 @@
                     <div class="edit-buttons">
                         <input type="reset" class="edit-point__cancel" value ="Отмена">
                         <input type="submit" class="edit-point__add" value ="Сохранить">
-                    </div>                
+                    </div>
                 </div>
-                <div class="edit-point__photos"></div>
+                {{--                тут будет картинка--}}
+                <div class="edit-point__photos">
+                    <img  id="photo" style = 'width:400px; height:400px;'src = '123.jpg'>
+                </div>
+                {{--                кнопка - крестик для удаления--}}
+                <button id = "crossbutton" style = 'background-color:red; width:100px; height:100px;'>крестик для удаления</button>
+
+{{--                Всю конструкцию с картинкой наверное нужно будет вынести из формы, т.к форма каким-то образом реагирует на нажатие кнопки--}}
             </div>
         </form>
+
     </div>
     <!--------------FOOTER-------------------->
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script> 
+<script src="Script/menu.js"></script>
 <script>
-      function handleFileSelect(evt) {
-        let files = evt.target.files;
+    // сохранение старого пути к фотке
+const oldway = document.getElementById('photo').src
 
-        for (let i = 0, f; f = files[i]; i++) {
-          if (!f.type.match('image.*')) {
-            continue;
-          }
-
-          let reader = new FileReader();
-          reader.onload = (function(theFile) {
-            return function(e) {
-              let span = document.createElement('span');
-              span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                                '" title="', theFile.name, '"/>'].join('');
-              document.getElementById('list').insertBefore(span, null);
-            };
-          })(f);
-
-          reader.readAsDataURL(f);
+    //Превью - замена имеющейся фотки на загруженную
+    function previewFile() {
+        const preview = document.getElementById('photo');
+        const file = document.querySelector('input[type=file]').files[0];
+        const reader = new FileReader();
+        reader.addEventListener("load", function () {
+            // convert image file to base64 string
+            preview.src = reader.result;
+        }, false);
+        if (file) {
+            reader.readAsDataURL(file);
         }
-      }
+    }
+//отмена загруженной фотки, загруженная удаляется, возвращается старая
+    document.getElementById("crossbutton").onclick = function(){
+        const preview = document.getElementById('photo');
+        document.getElementById('files').value = null;//сброс файла в форме
+        preview.src = oldway;//сброс картинки
+    }
+      // function handleFileSelect(evt) {
+      //   let files = evt.target.files;
+      //
+      //   for (let i = 0, f; f = files[i]; i++) {
+      //     if (!f.type.match('image.*')) {
+      //       continue;
+      //     }
+      //
+      //     let reader = new FileReader();
+      //     reader.onload = (function(theFile) {
+      //       return function(e) {
+      //         let span = document.createElement('span');
+      //         span.innerHTML = ['<img class="thumb" src="', e.target.result,
+      //                           '" title="', theFile.name, '"/>'].join('');
+      //         document.getElementById('list').insertBefore(span, null);
+      //       };
+      //     })(f);
+      //
+      //     reader.readAsDataURL(f);
+      //   }
+      // }
 
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     /*-------------------------------*/
