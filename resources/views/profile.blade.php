@@ -32,12 +32,12 @@
           <div class="user__info">
             <div class="user__rating">
               <div class="rating__title title">Рейтинг</div>
-              <div class="rating__points">Набрано очков: <span class="points">63</span></div>
+              <div class="rating__points">Набрано очков: <span class="points">67</span></div>
               <div class="rating__level">Уровень: <span>Мастер колеса</span></div>
               <div class="rating__nextlevel">
                 <div class="nextlevel">Следующий уровень</div>
                 <div class="points-received">
-                  <span class="points">63</span>/<span class="target">100</span>
+                  <span class="points">67</span>/<span class="target">140</span>
                 </div>
               </div>
               <div class="rating__nextlevel__progress">
@@ -103,12 +103,14 @@
         }
 /*--------------------------------*/
 let points = document.querySelector('.points').textContent;
+let target = document.querySelector('.target').textContent;
 const progress = document.querySelector('.progress-bar');
 let percent = document.querySelector('.percent-count');
+let result = (points * 100) / target;
 setTimeout(() => {
   progress.style.opacity = 1;
-  progress.style.width = points + '%';
-  percent.textContent = points + '%';
+  progress.style.width = result + '%';
+  percent.textContent = Math.round(result) + '%';
 })
 </script>
 </body>
