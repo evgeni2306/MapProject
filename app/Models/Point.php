@@ -17,7 +17,8 @@ class Point extends Model
         'type',
         'icon',
         'description',
-        'rating'
+        'rating',
+        'photo'
     ];
     protected $hidden = [
     ];

@@ -35,17 +35,13 @@ class AddPointController extends Controller
             "rating" => 0,
             "description" => 'Отсутствует',
         );
-//        dd($validateFields);
-        $point = Point::create($validateFields);
         if($validateFields['type']=='zpoints' ){
-            $mainphoto = "/PageMap/img/icons/socket-picture.svg";
+            $validateFields['photo'] = "/PageMap/img/icons/socket-picture.svg";
         }else{
-            $mainphoto = "/PageMap/img/icons/landmark-picture.svg";
+            $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
         }
+        $point = Point::create($validateFields);
 
-        $photofields  = array("pointid"=>$point->id,"photo1" =>$mainphoto,"photo2"=>'',"photo3"=>'');
-
-        $pointphoto = Pointphoto::create($photofields);
 
         return redirect(route('map'));
 

@@ -17,8 +17,7 @@ class GetAllController extends Controller
     {
         //получение всех точек из бд
         $getpoints = DB::table('points')
-            ->join('pointphotos', 'pointphotos.pointid', '=', 'points.id')
-            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo1')->get();
+            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo')->get();
         //определение иконок для рейтинга точки
         foreach ($getpoints as $point) {
             switch ($point->rating) {

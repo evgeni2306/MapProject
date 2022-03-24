@@ -24,7 +24,7 @@ class PointPageController extends Controller
             //Получение точки из бд
             $_SESSION['CurrentPoint'] = DB::table('points')
                 ->join('users', 'users.id', '=', 'points.creatorId')
-                ->select('points.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'points.name', 'type', 'rating', 'address', 'lat', 'lng', 'icon', 'description')
+                ->select('points.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'points.name', 'type', 'rating', 'address', 'lat', 'lng', 'icon', 'description','photo')
                 ->where('points.id', $id)->first();
 //Определение типа и иконки по группe type
             if ($_SESSION['CurrentPoint']->type == 'zpoints') {
