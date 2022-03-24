@@ -43,7 +43,7 @@ return [
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => 'The :attribute must be a valid email address.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
-    'exists' => 'Аккаунт с таким :attribute не существует',
+    'exists' => 'Аккаунт с таким :attribute'.'ом '. 'не существует',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
@@ -120,7 +120,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid timezone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'Этот :attribute уже был занят другим пользователем.',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
@@ -154,7 +154,7 @@ return [
     */
 
     'attributes' => [
-
+'login'=>'логин'
     ],
 
 ];

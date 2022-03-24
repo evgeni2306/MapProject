@@ -17,19 +17,14 @@ class RegisterController extends Controller
         if (Auth::check()) {
             return redirect(route('map'));
         }
-
         $validateFields = $request->validate([
-            'login' => ['required', 'string', 'email'],
+            'login' => ['required', 'string', 'email', 'unique:users,login'],
             'password' => ['required', 'string'],
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
         ]);
 
-        if (User::where('login', $validateFields['login'])->exists()) {
-            return redirect(route('registration'))->withErrors([
-                'login' => 'Пользователь с таким логином уже зарегистрирован'
-            ]);
-        }
+
         $av = $this->randomAvatar();
 
         $validateFields['avatar'] = '/PageMap/img/user/' . $av;

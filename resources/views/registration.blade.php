@@ -21,14 +21,14 @@
     <form action="{{route('registration')}}" method="POST">
         <div class="form-fields _container">
             <div class="form-field form-field__email">
-                <input type="email" maxlength="35" placeholder="E-mail" name='login'>
+                <input type="email" maxlength="35" placeholder="E-mail" name='login' value = "{{old('login')}}">
             </div>
             <div class="form-field__fullname">
                 <div class="form-field form-field__name">
-                    <input type="text"  maxlength="50" placeholder="Имя" name='name'>
+                    <input type="text"  maxlength="50" placeholder="Имя" name='name' value = "{{old('name')}}">
                 </div>
                 <div class="form-field form-field__lastname">
-                    <input type="text" maxlength="50"  placeholder="Фамилия" name='surname'>
+                    <input type="text" maxlength="50"  placeholder="Фамилия" name='surname' value = "{{old('surname')}}">
                 </div>
             </div>
             <div class="form-field form-field__password">
