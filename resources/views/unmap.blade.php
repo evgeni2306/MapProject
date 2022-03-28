@@ -90,7 +90,7 @@
             '</div>'+
             '</div>'+
             '<div class="marker__photo__container">'+
-            '<img class="marker__photo" src="{{$point->photo1}}" alt="object">'+
+            '<img class="marker__photo" src="{{$point->photo}}" alt="object">'+
             '</div>'+
             '</div>').addTo({{$point->type}});
         <? }?>
