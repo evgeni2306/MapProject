@@ -22,10 +22,10 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
-        <form method="" action ="">
-            <h1 class="edit-point__title">Редактирование метки</h1>
-            <div class="content__container">
-                <div class="edit-point__forms">
+        <h1 class="edit-point__title">Редактирование метки</h1>
+        <div class="content__container">
+            <div class="edit-point__forms">
+                <form method="" action ="">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name">
                     <h4 class="sub-title">Категория<span class="required-form">*</span></h4>
@@ -57,17 +57,13 @@
                         <input type="reset" class="edit-point__cancel" value ="Отмена">
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
-                </div>
-                {{--                тут будет картинка--}}
-                <div class="edit-point__photos">
-                    <img  id="photo" style = 'width:400px; height:400px;'src = '123.jpg'>
-                </div>
-                {{--                кнопка - крестик для удаления--}}
-                <button id = "crossbutton" style = 'background-color:red; width:100px; height:100px;'>крестик для удаления</button>
-
-{{--                Всю конструкцию с картинкой наверное нужно будет вынести из формы, т.к форма каким-то образом реагирует на нажатие кнопки--}}
+                </form>
             </div>
-        </form>
+        <div class="edit-point__photos">
+            <img  id="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
+            <button id = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
+        </div>
+        </div>
 
     </div>
     <!--------------FOOTER-------------------->
@@ -98,28 +94,6 @@ const oldway = document.getElementById('photo').src
         document.getElementById('files').value = null;//сброс файла в форме
         preview.src = oldway;//сброс картинки
     }
-      // function handleFileSelect(evt) {
-      //   let files = evt.target.files;
-      //
-      //   for (let i = 0, f; f = files[i]; i++) {
-      //     if (!f.type.match('image.*')) {
-      //       continue;
-      //     }
-      //
-      //     let reader = new FileReader();
-      //     reader.onload = (function(theFile) {
-      //       return function(e) {
-      //         let span = document.createElement('span');
-      //         span.innerHTML = ['<img class="thumb" src="', e.target.result,
-      //                           '" title="', theFile.name, '"/>'].join('');
-      //         document.getElementById('list').insertBefore(span, null);
-      //       };
-      //     })(f);
-      //
-      //     reader.readAsDataURL(f);
-      //   }
-      // }
-
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     /*-------------------------------*/
             var menuLinks = document.querySelectorAll('.menu__link');
@@ -137,22 +111,7 @@ const oldway = document.getElementById('photo').src
                 });
             }
     /*----------------------------*/
-            /*function previewFile() {
-                var preview = document.querySelector('img');
-                var file    = document.querySelector('input[type=file]').files[0];
-                var reader  = new FileReader();
-
-                reader.onloadend = function () {
-                    preview.src = reader.result;
-                }
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                } else {
-                    preview.src = "";
-                }
-            }*/
-
+            
 </script>
 </body>
 </html>

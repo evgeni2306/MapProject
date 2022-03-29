@@ -5,7 +5,7 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthPages.css">
+    <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
@@ -20,7 +20,7 @@
 <body>
 <div class="wrapper">
     <!--------------HEADER-------------------->
-    @include('Components.headerUnauthPages')
+    @include('Components.headerPages')
     <!--------------/HEADER-------------------->
 
     <div class="container">
@@ -81,7 +81,7 @@
         </div>
         <div class="location block">
             <div class="location__title title">Местоположение</div>
-            <div id="map" class="location__map" style="width: 520px; height: 360px;"></div>
+            <div id="map" class="location__map" style="width: 50%; height: 360px;"></div>
         </div>
         <div class="feedback block">
             <div class="feedback__title title">Написать отзыв</div>
@@ -155,24 +155,6 @@
         </div>
         </div>
     </div>
-
-    <!--<div class="container">
-    <div class="infoblock__category__mobile">
-        <img src="/PagePointPersonal/img/building.svg" alt="category">
-        <span class="infoblock__category__name">Достопримечательность</span>
-    </div>
-    <div class="infoblock__header">
-    </div>-->
-      <!--<div class="comments-rating__wrapper">
-        <div class="circle__rating__mobile">
-        <div class="circle__rating__left">
-            <img src="/PagePointPersonal/img/circlemobile.svg" alt="">
-            <div class="circle__rating__title__mobile">35 отзывов</div>       
-        </div>
-        <div class="circle__rating__info">
-
-        </div>
-      </div>-->
     </div>          
     </div>
     <!--------------FOOTER-------------------->

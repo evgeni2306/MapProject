@@ -166,7 +166,6 @@ body._lock {
     border-radius: 50%;
 }
 .swiper {
-    height: 100%;
 }
 .image-slider {
 }
@@ -198,7 +197,7 @@ body._lock {
     text-align: center;
 }
 .image-slider__image img {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
 }
 .description {
@@ -219,44 +218,15 @@ body._lock {
 .block:not(:last-child) {
     border-bottom: 1px solid #d3d5da;
 }
-.block__title {
-    font-family: "GolosTextDemiBold", sans-serif;
-    margin-bottom: 32px;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 120%;
-}
-.information {
-    display: flex;
-}
-.information__content {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 530px);
-    height: inherit;
-    margin-right: 60px;
-}
-.information__map {
-    display: flex;
-    max-width: 520px;
-    flex-direction: column;
+.location__map {
     border-radius: 12px;
-    margin-left: 20px;
     z-index: 2;
-}
-.information__description {
-    font-size: 16px;
-    line-height: 140%;
-    padding-top: 12px;
-    width: 100%;
 }
 .feedback {
     margin: 20px auto;
 }
 .feedback__form {
     width: 50%;
-}
-.feedback__title {
 }
 .block__subtitle {
     font-family: "GolosTextMedium";
@@ -278,7 +248,6 @@ body._lock {
 .rating__items {
     position: absolute;
     width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
     display: flex;
@@ -325,6 +294,9 @@ textarea {
     font-size: 15px;
     resize: none;
 }
+textarea:hover {
+    border: 1px solid #27ae60;
+}
 .feedback__comment {
     font-family: "GolosTextRegular", sans-serif;
     font-size: 16px;
@@ -332,9 +304,6 @@ textarea {
     height: 220px;
     color: #000;
     margin: 16px 0px 32px 0px;
-}
-textarea:hover {
-    border: 1px solid #27ae60;
 }
 input:hover {
     border: 1px solid #27ae60;
@@ -391,9 +360,6 @@ input:hover {
     padding: 15px 20px;
     align-items: center;
     text-align: center;
-}
-.comments-rating__wrapper {
-    display: flex;
 }
 .comments {
     width: 50%;
@@ -456,6 +422,7 @@ input:hover {
 }
 .comment__text {
     margin-bottom: 26px;
+    line-height: 140%;
     word-wrap: break-word;
 }
 .comment__bottom {
@@ -505,6 +472,19 @@ button {
 @media (max-width: 1200px) {
     .container {
         padding: 0px 50px;
+        margin: 50px;
+    }
+}
+@media (max-width: 1024px) {
+    .infoblock {
+        flex-direction: column;
+    }
+    .infoblock__info {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .infoblock__slider {
+        width: 100%;
     }
 }
 @media (max-width: 900px) {
@@ -522,37 +502,14 @@ button {
     .point__title {
         padding: 15px 0px 20px 0px;
     }
-    .infoblock__category__mobile {
-        display: block;
-        margin-top: 20px;
-    }
-    .infoblock__category {
-        display: none;
-    }
     .infoblock__rating {
         margin-bottom: 15px;
-    }
-    .infoblock__user {
-        margin-left: 0;
-    }
-    .swiper-button-prev,
-    .swiper-button-next {
-        display: none !important;
-    }
-    .information__content {
-        width: calc(100% - 240px);
     }
     .information__title {
         margin-bottom: 25px;
     }
     .information__address__title {
         margin-top: 25px;
-    }
-    .information__map {
-        margin-left: auto;
-        max-width: 350px !important;
-        height: 250px !important;
-        border-radius: 7px;
     }
     .comments-rating__wrapper {
         flex-direction: column-reverse;
@@ -561,62 +518,43 @@ button {
         width: 100%;
         margin-right: 0px;
     }
-    .circle__rating {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-    }
 }
 @media (max-width: 767px) {
     .container {
         padding: 0px 25px;
-    }
-    .infoblock__category__mobile {
-        padding: 80px 10px 0px 10px;
+        margin: 70px 0px 0px 0px;
     }
     .block {
+        display: flex;
+        flex-direction: column;
         margin: 15px auto;
         background: #ffffff;
         padding: 20px 10px;
         border-radius: 0px;
     }
-    .block__title {
+    .title {
+        width: 100%;
         font-size: 18px;
         margin-bottom: 12px;
+    }
+    .description {
+        width: 100%;
     }
     .block__subtitle {
         font-size: 14px;
         margin: 16px 0;
     }
-    .information {
-        display: block;
-    }
-    .information__content {
-        display: block;
-        width: 100%;
-    }
-    .information__description {
-        font-size: 14px;
-        width: 100%;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #d3d5da;
-    }
-    .information__address__title {
-        padding-top: 16px;
-    }
-    .information__address {
-        margin-bottom: 20px;
-        font-size: 14px;
-    }
-    .information__map {
-        margin: 0;
+    .location__map {
         width: 100% !important;
         height: 250px !important;
         border-radius: 7px;
     }
+    .feedback__form {
+        width: 100%;
+    }
     .feedback__comment {
         font-size: 14px;
-        margin-bottom: 20px;
+        margin: 0px 0px 20px 0px;
     }
     .feedback__button__container label {
         width: 100%;
@@ -633,27 +571,6 @@ button {
         padding: 20px 10px;
         border-radius: 0px;
         font-size: 14px;
-        border-bottom: 1px solid #d3d5da;
-    }
-    .circle__rating {
-        display: none;
-    }
-    .circle__rating__mobile {
-        display: flex;
-        width: 100%;
-        height: 135px;
-        margin: 0px;
-        padding: 20px;
-        background: #fff;
-        border-bottom: 1px solid #d3d5da;
-    }
-    .circle__rating__title__mobile {
-        font-size: 14px;
-        margin-top: 8px;
-    }
-    .circle__rating__left {
-        display: flex;
-        flex-direction: column;
     }
 }
 @media (max-width: 568px) {
@@ -662,7 +579,7 @@ button {
     }
     .point__title {
         font-size: 20px;
-        padding: 12px 10px;
+        padding: 12px 0px;
     }
     .infoblock__header__button {
         margin: 0px 0px 20px 10px;
@@ -672,16 +589,9 @@ button {
     .infoblock__header__button img {
         margin-right: 8px;
     }
-    .infoblock__category__mobile {
-        font-size: 14px;
-    }
     .infoblock {
         font-size: 14px;
         margin-bottom: 20px;
-        padding: 0px 10px 0px 10px;
-    }
-    .block__title {
-        font-size: 18px;
     }
     .comments__title {
         margin-left: 10px;
