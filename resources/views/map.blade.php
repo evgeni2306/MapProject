@@ -8,12 +8,8 @@
     <link rel="stylesheet" href="/PageMap/css/headerMap.css">
     <link rel="stylesheet" href="/PageMap/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
+    <link rel="stylesheet" href="/Script/leaflet/dist/leaflet.css"/>
+    <script src="/Script/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -21,7 +17,7 @@
     @include('Components.headerMap')
     <!--------------/HEADER-------------------->
     <div class="map" id="mapid"></div>
-    <script src="Script/menu.js"></script> 
+    <script src="Script/menu.js"></script>
     <script>
         var zpoints = L.layerGroup(); //зарядки
         var dpoints = L.layerGroup(); //достопримечательности
@@ -46,6 +42,15 @@
             zoomOffset: -1
         })
         var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, routes]}).setView([56.82, 60.6], 13);
+        // var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints]}).fitWorld(); //Не убирать
+        // ------- Определение местоположения на карте---------//может не работать
+        mymap.locate({setView: true, maxZoom: 16});
+        function onLocationFound(e) {
+            L.marker(e.latlng).addTo(mymap)
+                .bindPopup("You are within " + radius + " meters from this point").openPopup();
+        }
+        mymap.on('locationfound', onLocationFound);
+        // ----------------------------------
        //тестовые метки
         L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' +
         '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Розетка</a></div>' +
@@ -259,11 +264,12 @@
                     .setLatLng(e.latlng)
 
                     .setContent('<form action="#" method="POST">\n' +
-                        '        <input type="hidden" name="cord"  value="' + arr + '">\n' +
+                        '        <input type="hidden" id ="routecord" name="cord"  value="' + arr + '">\n' +
 
                         '@csrf' +
                         '    <input type="submit">\n' +
-                        '</form>')
+                        '</form>'+
+                        '<button id = "mybutton" style="background:red" onclick="deleterpoint();">отмена точки<button/>')
                     .openOn(mymap).addTo(routes);
             }
         }
@@ -279,6 +285,7 @@
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
 
+        //Получение адреса точки
         function getaddress( e) {
              url = 'https://nominatim.openstreetmap.org/reverse.php?lat='+e.latlng.lat+'&lon='+e.latlng.lng+'&format=jsonv2';
             var req = null;
@@ -297,7 +304,18 @@
         }
 
         mymap.on('click', onMapClick);
-
+        // Отмена добавленной точки маршрута
+        function deleterpoint() {
+            startstr = document.getElementById('routecord').value.split(',');
+            startstr.pop();
+            startstr.pop();
+            finishstr = "";
+            for (let i = 0; i < startstr.length; i++) {
+                finishstr = finishstr + startstr[i] + ',';
+            }
+            document.getElementById('routecord').value = finishstr.slice(0, -1);
+            route.deleteLat();
+        }
     </script>
 </div>
 </body>

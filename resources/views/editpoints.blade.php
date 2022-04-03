@@ -25,14 +25,14 @@
         <h1 class="edit-point__title">Редактирование метки</h1>
         <div class="content__container">
             <div class="edit-point__forms">
-                <form method="" action ="" id="edit-form">
+                <form method="" action ="" id="edit-form" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name">
                     <h4 class="sub-title">Категория<span class="required-form">*</span></h4>
                     <select required name="type">
                         <option value="" disabled selected style="display:none;">Выберите категорию</option>
-                        <option value="Зарядка"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
-                        <option value="Достопримечательность"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
+                        <option value="socket,zpoints"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
+                        <option value="house,dpoints"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
                     </select>
                     <h4 class="sub-title">Адрес<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите адрес" name="address">
@@ -43,16 +43,16 @@
                         <option value="Не работает">Не работает</option>
                     </select>
                     <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="short-description">
+                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription">
                     <h4 class="sub-title">Полное описание</h4>
                     <textarea class="edit-point__description" placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description"></textarea>
                     <h4 class="sub-title">Фотографии</h4>
                     <div class="add-photo">
-                        <input type="file" id="files" name="files[]" accept="image/*,image/jpeg" onchange="previewFile()">
+                        <input type="file" id="files" name="photo" accept="image/*,image/jpeg" onchange="previewFile()">
                         <label for="files"><img src="/PageSettings/img/02.svg">Добавить фото</label>
                         <output id="list"></output>
                     </div>
-                    <div class="edit-point__warning">Вы можете добавить до 3 фото в формате JPG, JPEG, PNG</div>
+                    <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
                     <div class="edit-buttons">
                         <input type="reset" class="edit-point__cancel" value ="Отмена">
                         <input type="submit" class="edit-point__add" value ="Сохранить">
@@ -115,7 +115,7 @@ const oldway = document.getElementById('photo').src
                 });
             }
     /*----------------------------*/
-            
+
 </script>
 </body>
 </html>

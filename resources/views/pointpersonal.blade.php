@@ -9,13 +9,9 @@
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
+    <link rel="stylesheet" href="/Script/leaflet/dist/leaflet.css"/>
+    <script src="/Script/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -43,7 +39,7 @@
                     <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
                     <span class="infoblock__user__name">Алексей Петров</span>
                 </div>
-                <div class="infoblock__button-edit"><a href="{{route('editpoints')}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div> 
+                <div class="infoblock__button-edit"><a href="{{route('editpoints')}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
             </div>
             <div class="infoblock__slider">
                 <div class="swiper">
@@ -68,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="swiper-pagination"></div>
 
                 <div class="swiper-scrollbar"></div>
@@ -89,15 +85,15 @@
             <p class="feedback__mark block__subtitle">Ваша оценка</p>
             <div class="feedback__rating">
                 <div class="rating__items">
-                    <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating__item">
+                    <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
                     <label for="rating__item__5" class="rating__label"></label>
-                    <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating__item">
+                    <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
                     <label for="rating__item__4" class="rating__label"></label>
-                    <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating__item">
+                    <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
                     <label for="rating__item__3" class="rating__label"></label>
-                    <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating__item">
+                    <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
                     <label for="rating__item__2" class="rating__label"></label>
-                    <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating__item">
+                    <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
                     <label for="rating__item__1" class="rating__label"></label>
                 </div>
             </div>
@@ -155,14 +151,14 @@
         </div>
         </div>
     </div>
-    </div>          
+    </div>
     </div>
     <!--------------FOOTER-------------------->
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
-</div>  
+</div>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script src="Script/menu.js"></script>   
+<script src="Script/menu.js"></script>
 <script>
 /*-------------MAP------------------------------*/
     var map = L.map('map').setView([56.826, 60.65], 13);
@@ -225,7 +221,7 @@
 
                 lastClicked = this;
             });
-        }        
+        }
 </script>
 </body>
 </html>
