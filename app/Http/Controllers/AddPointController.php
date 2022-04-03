@@ -33,6 +33,8 @@ class AddPointController extends Controller
             "icon" => $typeAndIcon[0],
             "creatorid" => Auth::id(),
             "rating" => 0,
+            "status"=> "Под вопросом",
+            "shortdescription"=> "",
             "description" => 'Отсутствует',
         );
         if($validateFields['type']=='zpoints' ){

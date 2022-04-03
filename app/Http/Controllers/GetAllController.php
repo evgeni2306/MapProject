@@ -17,7 +17,8 @@ class GetAllController extends Controller
     {
         //получение всех точек из бд
         $getpoints = DB::table('points')
-            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo')->get();
+            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo','shortdescription',
+            'status')->get();
         //определение иконок для рейтинга точки
         foreach ($getpoints as $point) {
             switch ($point->rating) {
@@ -43,6 +44,25 @@ class GetAllController extends Controller
         }
         $_SESSION['Points'] = $getpoints;
 
+        $getroutes = DB::table('routes')
+            ->select('id', 'text')->get();
+        $Routes = array();
+        foreach ($getroutes as $getroute) {
+            $route = new Route;
+            $route->id = $getroute->id;
+            $route->name = $getroute->text;
+            array_push($Routes, $route);
+        }
+        foreach ($Routes as $rpoint) {
+            $getrpoints = DB::table('rpoints')
+                ->where('rpoints.routeid', '=', $rpoint->id)
+                ->select('lat', 'lng')->get();
+            array_push($rpoint->rpoints, $getrpoints);
+        }
+
+        $_SESSION['Routes'] = $Routes;
+
+
         if (Auth::check()) {
             if (!isset($_SESSION['User'])) {
                 $this->GetUser();
@@ -53,4 +73,11 @@ class GetAllController extends Controller
 
 
     }
+}
+
+class Route
+{
+    public $id = 0;
+    public $name = 'd';
+    public $rpoints = array();
 }

@@ -23,6 +23,9 @@
     font-weight: 700;
     font-size: 22px;
     line-height: 127%;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }
 .header__logo span {
     color: #27ae60;
@@ -281,6 +284,9 @@
 @media (max-width: 568px) {
     .header {
         padding: 0px 10px;
+    }
+    .header__logo__name {
+        display: none;
     }
     .menu__link {
         padding: 5px 10px;

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddPointController;
+use App\Http\Controllers\AddRouteController;
 use App\Http\Controllers\AddPcommentController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\GetAllController;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
     Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
     Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
+    Route::post('/Route', [AddRouteController::class,'AddRoute'])->name('Addroute');
     Route::get('/logout', function () {
         session_destroy();
         Auth::logout();

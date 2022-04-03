@@ -14,8 +14,10 @@ class Point extends Model
         'lng',
         'name',
         'address',
+        'status',
         'type',
         'icon',
+        'shortdescription',
         'description',
         'rating',
         'photo'
