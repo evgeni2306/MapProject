@@ -73,6 +73,8 @@
 </div>
 <script src="Script/menu.js"></script>
 <script>
+
+    //-----------------Механизм предпросмотра фотке в рамке при загрузке новой---------------
     // сохранение старого пути к фотке
 const oldway = document.getElementById('photo').src
 
@@ -96,6 +98,8 @@ const oldway = document.getElementById('photo').src
         preview.src = oldway;//сброс картинки
     }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+
     /*-------------------------------*/
             var menuLinks = document.querySelectorAll('.menu__link');
             var lastClicked = menuLinks[0];

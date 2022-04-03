@@ -5,17 +5,14 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="stylesheet" href="/Script/leaflet/dist/leaflet.css"/>
+    <script src="/Script/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -51,7 +48,9 @@
                     <img src="{{$_SESSION['CurrentPoint']->avatar}}" class="infoblock__user__photo" alt="">
                     <span class="infoblock__user__name">{{$_SESSION['CurrentPoint']->uname.' '.$_SESSION['CurrentPoint']->usurname}}</span>
                 </div>
+                @if(isset($_SESSION['User']))
                 <div class="infoblock__button-edit"><a href="/editpoint={{$_SESSION['CurrentPoint']->id}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+                @endif
             </div>
             <div class="infoblock__slider">
                 <div class="swiper">
@@ -123,7 +122,8 @@
         <div class="comments-block block">
             <div class="comments__title title">Отзывы<span class="count__comments">{{$_SESSION['CurrentPoint']->rating[1]}}</span></div>
             <?foreach($_SESSION['Pcomments'] as $pcomment) {?>
-          <div class="comments">  {{--  коммент--}}
+            {{--  коммент--}}
+          <div class="comments">
                 <div class="comments__comment">
                 <div class="comment__top">
                     <div class="comment__user">
@@ -138,12 +138,8 @@
                     </div>
                 </div>
                 <div class="comment__text">{{$pcomment->text}}</div>
-{{--                <div class="comment__bottom">--}}
-{{--                    <span class="comment__bottom__useful">Было полезно?</span>--}}
-{{--                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>--}}
-{{--                    <div class="comment__like-count">0</div>--}}
-{{--                </div>--}}
-            </div>{{--  коммент--}}
+            </div>
+              {{--  коммент--}}
               <? } ?>
         </div>
         </div>
@@ -176,8 +172,8 @@ var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION[
 		}
 	});
 
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
+		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
 L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}],{icon: {{$_SESSION['CurrentPoint']->icon}}} ).addTo(map);
 /*---------------SWIPER-------------------------*/
     new Swiper('.image-slider', {

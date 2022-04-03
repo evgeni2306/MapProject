@@ -17,63 +17,24 @@
 @include('Components.headerMap')
 <!--------------/HEADER-------------------->
     <div class="map" id="mapid"></div>
+    <script src="Script/menu.js"></script>
     <script>
-        let menuArrows = document.querySelectorAll('.menu__arrow');
-        if (menuArrows.length > 0) {
-            for (let i = 0; i < menuArrows.length; i++) {
-                const menuArrow = menuArrows[i];
-                document.querySelector('.user-name').addEventListener("click", function (e) {
-                    menuArrow.parentElement.classList.toggle('active__arrow');
-                });
-            }
-        }
-        var isMobile = {
-            Android: function () {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function () {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function () {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function () {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function () {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function () {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };
-        if (isMobile.any()) {
-            document.body.classList.add('_mobile');
-        } else {
-            document.body.classList.add('_pc');
-        }
-        const iconMenu = document.querySelector('.menu__icon');
-        if (iconMenu) {
-            const userMenu = document.querySelector('.user-menu');
-            const headerMenu = document.querySelector('.menu');
-            iconMenu.addEventListener("click", function (e) {
-                document.body.classList.toggle('_lock');
-                iconMenu.classList.toggle('active__user-menu');
-                userMenu.classList.toggle('active__user-menu');
-                headerMenu.classList.toggle('hide');
-            });
-        }
-        /*---------------------------------------------------------*/
+
+        //--------Настройка иконок и слоев для вывода на карту----------
         var zpoints = L.layerGroup(); //зарядки
         var dpoints = L.layerGroup(); //достопримечательности
+        var routes = L.layerGroup(); //маршруты
+
         var Markers = L.Icon.extend({
             options: {
                 iconSize: [39, 45],
                 iconAnchor: [16, 37]
             }
         });
-        var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
-            house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
+            house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+        //-----------------------------------------------------------------
+
         //---------------Вывод точек на карту--------------------
         <?foreach ($_SESSION['Points'] as $point ) {?>
         L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup(
@@ -95,6 +56,7 @@
         <? }?>
         // ----------------------------------------
 
+        //---------механизм создания карты----------
         var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -103,8 +65,10 @@
             tileSize: 512,
             zoomOffset: -1
         })
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, routes]}).setView([56.82, 60.6], 13);
+        // var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints]}).fitWorld();
+        //-----------------------------------------
 
-        var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints]}).fitWorld();
 
         // ------- Определение местоположения на карте---------
         mymap.locate({setView: true, maxZoom: 16});
@@ -124,6 +88,8 @@
         rout.addLatLng([{{$r->lat}},{{$r->lng}}]);
         <?}}}?>
         //-------------------------------------------------------
+
+        //---------кнопки и смена режимов----------------------
         var popup = L.popup();
         var menuLinks = document.querySelectorAll('.menu__link');
         var lastClicked = menuLinks[0];
@@ -180,6 +146,9 @@
             viewOnly = true;
             popup._close()
         });
+        //-------------------------------------------------------
+
+        //----------добавление меток и маршрутов------------------
         let arr = new Array();
         var route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
 
@@ -239,17 +208,20 @@
                         '    <input type="submit">\n' +
                         '</form>' +
                         '<button id = "mybutton" style="background:red" onclick="deleterpoint();">123<button/>')
-                    .openOn(mymap);
+                    .openOn(mymap).addTo(routes);
             }
         }
 
         var baseLayers = {};
         var overlays = {
             "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
-            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints
+            "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints,
+            "<img src='/PageMap/img/icons/route.svg'>Маршруты": routes
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
+        //------------------------------------------------------------------
 
+///---------получение адреса при добавлении точки---------
         function getaddress(e) {
             url = 'https://nominatim.openstreetmap.org/reverse.php?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '&format=jsonv2';
             var req = null;
@@ -266,10 +238,10 @@
             } else
                 return data["address"]["road"] + ',' + data["address"]["house_number"]
         }
-
+///---------------------------------------------------------
         mymap.on('click', onMapClick);
 
-        // Удаление точки маршрута во врем ядобавления маршрута
+        //------ Удаление точки маршрута во врем ядобавления маршрута---------
         function deleterpoint() {
             startstr = document.getElementById('routecord').value.split(',');
             startstr.pop();
@@ -281,8 +253,8 @@
             document.getElementById('routecord').value = finishstr.slice(0, -1);
             route.deleteLat();
         }
+        //----------------------------------------------------------------------
     </script>
 </div>
-<script src="/PageMap/js/script.js"></script>
 </body>
 </html>
