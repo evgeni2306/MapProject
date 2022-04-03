@@ -127,7 +127,7 @@
                 <div class="comments__comment">
                 <div class="comment__top">
                     <div class="comment__user">
-                        <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                        <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
                         <div class="comment__user__content">
                             <div class="comment__user__name">{{$pcomment->name.' '.$pcomment->surname}}</div>
                             <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
@@ -138,11 +138,11 @@
                     </div>
                 </div>
                 <div class="comment__text">{{$pcomment->text}}</div>
-                <div class="comment__bottom">
-                    <span class="comment__bottom__useful">Было полезно?</span>
-                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
-                    <div class="comment__like-count">0</div>
-                </div>
+{{--                <div class="comment__bottom">--}}
+{{--                    <span class="comment__bottom__useful">Было полезно?</span>--}}
+{{--                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>--}}
+{{--                    <div class="comment__like-count">0</div>--}}
+{{--                </div>--}}
             </div>{{--  коммент--}}
               <? } ?>
         </div>
@@ -158,7 +158,7 @@
 <script src="Script/menu.js"></script>
 <script>
 /*-------------MAP------------------------------*/
-    var map = L.map('map').setView([56.826, 60.65], 13);
+var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
 
 	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -176,8 +176,9 @@
 		}
 	});
 
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/01.png'}),
+		house = new Markers({iconUrl: '/PageMap/img/icons/02.png'});
+L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}],{icon: {{$_SESSION['CurrentPoint']->icon}}} ).addTo(map);
 /*---------------SWIPER-------------------------*/
     new Swiper('.image-slider', {
         navigation: {
