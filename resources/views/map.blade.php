@@ -207,7 +207,7 @@
                         '@csrf' +
                         '    <input type="submit">\n' +
                         '</form>' +
-                        '<button id = "mybutton" style="background:red" onclick="deleterpoint();">123<button/>')
+                        '<button id = "mybutton" style="background:red" onclick="deleterpoint();">отмена точки<button/>')
                     .openOn(mymap).addTo(routes);
             }
         }

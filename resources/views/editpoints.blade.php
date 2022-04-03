@@ -29,16 +29,17 @@
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name" value ="{{$_SESSION['CurrentEditPoint']->name}}">
                     <h4 class="sub-title">Категория<span class="required-form">*</span></h4>
-                    <select required name="type">
-                        <option value="{{$_SESSION['CurrentEditPoint']->type}}" disabled selected style="display:none;">Выберите категорию</option>
-                        <option value="socket,zpoints"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
-                        <option value="house,dpoints"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
+                    <select id = 'category' required name="type">
+                        <option  value="{{$_SESSION['CurrentEditPoint']->type}}" disabled   style="display:none;">Выберите категорию</option>
+                        <option  value="socket,zpoints"><img src="/PageMap/img/add-object/01.svg" alt="socket">Розетка</option>
+                        <option  value="house,dpoints"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
                     </select>
                     <h4 class="sub-title">Адрес<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите адрес" name="address" value ="{{$_SESSION['CurrentEditPoint']->address}}">
                     <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
-                    <select required name="status">
-                        <option value="Статус неизвестен">Статус неизвестен</option>
+                    <select  id="status"  required name="status">
+                        <option value="{{$_SESSION['CurrentEditPoint']->status}}" disabled style="display:none;"></option>
+                        <option value="Под вопросом">Под вопросом</option>
                         <option value="Работает">Работает</option>
                         <option value="Не работает">Не работает</option>
                     </select>
@@ -55,14 +56,14 @@
                     @csrf
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
                     <div class="edit-buttons">
-                        <input type="reset" class="edit-point__cancel" value ="Отмена">
+                        <input type="reset" class="edit-point__cancel"  value ="Отмена">
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
             </div>
         <div class="edit-point__photos">
             <img  id="photo" style = 'width:100%' src ="{{$_SESSION['CurrentEditPoint']->photo}}">
-            <button id = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
+            <button id = "crossbutton" style="display: none"><img src="/PageEditPoints/img/crossbutton.svg"  alt=""></button>
         </div>
         </div>
 
@@ -74,12 +75,28 @@
 <script src="Script/menu.js"></script>
 <script>
 
+    // //-------Подстановка по умолчанию  значения полей с выбором------
+
+    const select1 = document.getElementById('category').getElementsByTagName('option');//Категория
+    for (let i = 1; i < select1.length; i++) {
+        if ( select1[i].value === select1[0].value  ) select1[i].setAttribute('selected','selected')
+    }
+
+    const select2 = document.getElementById('status').getElementsByTagName('option');//Статус
+    for (let i = 1; i < select2.length; i++) {
+        if ( select2[i].value === select2[0].value  ) select2[i].setAttribute('selected','selected')
+    }
+    // //---------------------------------------------------------------------------
+
+
+
     //-----------------Механизм предпросмотра фотке в рамке при загрузке новой---------------
     // сохранение старого пути к фотке
 const oldway = document.getElementById('photo').src
 
     //Превью - замена имеющейся фотки на загруженную
     function previewFile() {
+        document.getElementById("crossbutton").style.display = "";
         const preview = document.getElementById('photo');
         const file = document.querySelector('input[type=file]').files[0];
         const reader = new FileReader();
@@ -96,6 +113,7 @@ const oldway = document.getElementById('photo').src
         const preview = document.getElementById('photo');
         document.getElementById('files').value = null;//сброс файла в форме
         preview.src = oldway;//сброс картинки
+        document.getElementById("crossbutton").style.display = "none";
     }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
