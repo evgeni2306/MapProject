@@ -25,7 +25,7 @@
         <h1 class="edit-point__title">Редактирование метки</h1>
         <div class="content__container">
             <div class="edit-point__forms">
-                <form method="" action ="">
+                <form method="" action ="" id="edit-form">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name">
                     <h4 class="sub-title">Категория<span class="required-form">*</span></h4>
@@ -59,10 +59,14 @@
                     </div>
                 </form>
             </div>
-        <div class="edit-point__photos">
-            <img  id="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
-            <button id = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
-        </div>
+            <div class="edit-point__photos">
+                <img  id="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
+                <button id = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
+            </div>
+            <div class="edit-buttons__mobile">
+                <input type="reset" form="edit-form" class="edit-point__cancel" value ="Отмена">
+                <input type="submit" form="edit-form" class="edit-point__add" value ="Сохранить">
+            </div>
         </div>
 
     </div>

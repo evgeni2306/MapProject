@@ -236,6 +236,9 @@ button {
     margin: 16px 0px 40px 0px;
     color: #8c8c95;
 }
+.edit-buttons__mobile {
+    display: none;
+}
 #photo {
     height: 350px;
     border-radius: 12px;
@@ -275,6 +278,13 @@ button {
     }
     .edit-point__photos {
         width: 100%;
+    }
+    .edit-buttons {
+        display: none;
+    }
+    .edit-buttons__mobile {
+        display: flex;
+        margin-top: 32px;
     }
 }
 @media (max-width: 767px) {
