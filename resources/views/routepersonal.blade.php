@@ -225,22 +225,7 @@
             const inc = button.classList.contains("dislike-active") ? 1 : -1;
             dislikeCounts[index].innerHTML = current + inc;
         });
-    });*/
-/*---------------------------------------------*/
-        var menuLinks = document.querySelectorAll('.menu__link');
-        var lastClicked = menuLinks[0];
-        var viewOnly = false;
-        var addObject = false;
-
-
-        for (var i = 0; i < menuLinks.length; i++) {
-            menuLinks[i].addEventListener('click', function () {
-                lastClicked.classList.remove('active-menu');
-                this.classList.add('active-menu');
-
-                lastClicked = this;
-            });
-        }        
+    });*/        
 </script>
 </body>
 </html>

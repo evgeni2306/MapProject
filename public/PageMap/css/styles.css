@@ -252,7 +252,38 @@ button {
 .marker__photo {
     width: 100%;
 }
-
+.button__end-route {
+    font-family: "GolosTextRegular";
+    font-weight: 400;
+    background: #27ae60;
+    border-radius: 6px;
+    color: #fff;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 12px 0px;
+    padding: 0px 20px;
+}
+.button__end-route:hover {
+    background: #239452;
+}
+.button__delete-point {
+    font-family: "GolosTextRegular";
+    font-weight: 400;
+    border-radius: 6px;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ff5732;
+    border: 1px solid #ff5732;
+    padding: 0px 20px;
+}
+.button__delete-point:hover {
+    color: #fff;
+    background: #ff5732;
+}
 .leaflet-control-layers-overlays {
     /*width: 287px;*/
     font-family: "GolosTextRegular";

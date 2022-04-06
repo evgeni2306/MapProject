@@ -17,6 +17,9 @@
                         <button type="button" disabled class="menu__link" id="menu__link__add-object"><img
                                 src="/PageUnauthorizedMap/img/02.svg" alt="object">Добавить объект
                         </button>
+                        <div class="authorization-popup">
+                            <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы добавить объект.</p>
+                        </div>
                     </li>
                     <li class="menu__item__mobile">
                         <button type="button" disabled class="menu__link" id="menu__link__add-object"><img
@@ -27,6 +30,9 @@
                         <button type="button" disabled class="menu__link" id="menu__link__add-route"><img
                                 src="/PageUnauthorizedMap/img/03.svg" alt="route">Добавить маршрут
                         </button>
+                        <div class="authorization-popup">
+                            <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы создать маршрут.</p>
+                        </div>
                     </li>
                     <li class="menu__item__mobile">
                         <button type="button" disabled class="menu__link" id="menu__link__add-route"><img
@@ -41,9 +47,6 @@
             <div class="authorization-btn">
             <p class="authorization-notification">Войдите или создайте аккаунт</p>
               <a href="{{route('login')}}" class="to-authorization"><img src="/PageUnauthorizedMap/img/04.svg" alt="">Войти</a>
-            </div>
-            <div class="authorization-popup">
-              <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы создать маршрут.</p>
             </div>
         </div>
     </header>
