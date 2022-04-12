@@ -40,7 +40,7 @@ body {
 @font-face {
     font-family: "GolosTextRegular";
     src: url("../fonts/GolosTextRegular.woff") format("woff"),
-        url("../fonts/GolosTextRegular.ttf") format("truetype");
+    url("../fonts/GolosTextRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }
@@ -48,7 +48,7 @@ body {
 @font-face {
     font-family: "GolosTextMedium";
     src: url("../fonts/GolosTextMedium.woff") format("woff"),
-        url("../fonts/GolosTextMedium.ttf") format("truetype");
+    url("../fonts/GolosTextMedium.ttf") format("truetype");
     font-style: normal;
     font-weight: 500;
 }
@@ -56,14 +56,14 @@ body {
 @font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
-        url("../fonts/GolosTextBold.ttf") format("truetype");
+    url("../fonts/GolosTextBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
 @font-face {
     font-family: "TTFirsNeue";
     src: url("../fonts/TTFirsNeue-DemiBold.woff") format("woff"),
-        url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+    url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
@@ -167,6 +167,7 @@ body._lock {
 }
 .edit-buttons {
     display: flex;
+    margin-top: 40px;
 }
 .edit-point__photos {
     display: inline-block;
@@ -233,8 +234,11 @@ button {
 }
 .edit-point__warning {
     line-height: 140%;
-    margin: 16px 0px 40px 0px;
+    margin: 16px 0px 0px 0px;
     color: #8c8c95;
+}
+.edit-buttons__mobile {
+    display: none;
 }
 #photo {
     height: 350px;
@@ -275,6 +279,13 @@ button {
     }
     .edit-point__photos {
         width: 100%;
+    }
+    .edit-buttons {
+        display: none;
+    }
+    .edit-buttons__mobile {
+        display: flex;
+        margin-top: 32px;
     }
 }
 @media (max-width: 767px) {

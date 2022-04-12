@@ -201,13 +201,13 @@
                 popup
                     .setLatLng(e.latlng)
 
-                    .setContent('<form action="{{route('Addroute')}}" method="POST">\n' +
+                    .setContent( '<form action="{{route('Addroute')}}" method="POST">\n' +
                         '        <input type="hidden" id ="routecord" name="cord"  value="' + arr + '">\n' +
 
                         '@csrf' +
-                        '    <input type="submit">\n' +
-                        '</form>' +
-                        '<button id = "mybutton" style="background:red" onclick="deleterpoint();">отмена точки<button/>')
+                        '    <input type="submit" class="button__end-route" value="Закончить маршрут">\n' +
+                        '</form>'+
+                        '<button id = "mybutton" class="button__delete-point" onclick="deleterpoint();">Удалить точку<button/>')
                     .openOn(mymap).addTo(routes);
             }
         }

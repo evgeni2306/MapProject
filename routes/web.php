@@ -12,6 +12,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UpdateUserController;
 use App\Http\Controllers\UpdatePointController;
 use App\Http\Controllers\GetProfileController;
+use App\Http\Controllers\UploadRouteController;
 
 
 session_start();
@@ -26,7 +27,10 @@ session_start();
 |
 */
 
-
+Route::get('/form', function () {
+    return view('form');
+})->name('form');
+Route::post('/form', [UploadRouteController::class, 'Test'])->name('formput');
 
 //Роуты для авторизованных
 Route::middleware('auth')->group(function () {

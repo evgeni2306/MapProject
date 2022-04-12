@@ -54,31 +54,31 @@
             </div>
             <div class="infoblock__slider">
                 <div class="swiper">
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="image-slider swiper-container">
-                    <div class="image-slider__wrapper swiper-wrapper">
-                        <div class="image-slider__slide swiper-slide">
-                            <div class="image-slider__image">
-                                <img src="{{$_SESSION['CurrentPoint']->photo}}" alt="">
-                            </div>
+                    <!--<div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="image-slider swiper-container">
+                        <div class="image-slider__wrapper swiper-wrapper">-->
+                    <div class="image-slider__slide swiper-slide">
+                        <div class="image-slider__image">
+                            <img src="{{$_SESSION['CurrentPoint']->photo}}" alt="">
                         </div>
-                        <div class="image-slider__slide swiper-slide">
-                            <div class="image-slider__image">
-                                <img src="/PagePointPersonal/img/slider.png" alt="">
-                            </div>
+                    </div>
+                    <!--<div class="image-slider__slide swiper-slide">
+                        <div class="image-slider__image">
+                            <img src="/PagePointPersonal/img/slider.png" alt="">
                         </div>
-                        <div class="image-slider__slide swiper-slide">
-                            <div class="image-slider__image">
-                                <img src="/PagePointPersonal/img/slider.png" alt="">
-                            </div>
+                    </div>
+                    <div class="image-slider__slide swiper-slide">
+                        <div class="image-slider__image">
+                            <img src="/PagePointPersonal/img/slider.png" alt="">
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="swiper-pagination"></div>
+            <div class="swiper-pagination"></div>
 
-                <div class="swiper-scrollbar"></div>
+            <div class="swiper-scrollbar"></div>-->
                 </div>
             </div>
         </div>
@@ -202,20 +202,6 @@ L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}
         });
     });
 /*-------------------------------*/
-        var menuLinks = document.querySelectorAll('.menu__link');
-        var lastClicked = menuLinks[0];
-        var viewOnly = false;
-        var addObject = false;
-
-
-        for (var i = 0; i < menuLinks.length; i++) {
-            menuLinks[i].addEventListener('click', function () {
-                lastClicked.classList.remove('active-menu');
-                this.classList.add('active-menu');
-
-                lastClicked = this;
-            });
-        }
 </script>
 </body>
 </html>

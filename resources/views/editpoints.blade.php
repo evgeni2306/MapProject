@@ -116,24 +116,7 @@ const oldway = document.getElementById('photo').src
         document.getElementById("crossbutton").style.display = "none";
     }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
-
-
-    /*-------------------------------*/
-            var menuLinks = document.querySelectorAll('.menu__link');
-            var lastClicked = menuLinks[0];
-            var viewOnly = false;
-            var addObject = false;
-
-
-            for (var i = 0; i < menuLinks.length; i++) {
-                menuLinks[i].addEventListener('click', function () {
-                    lastClicked.classList.remove('active-menu');
-                    this.classList.add('active-menu');
-
-                    lastClicked = this;
-                });
-            }
-    /*----------------------------*/
+    //-------------------------------------------------------------------------------------
 
 </script>
 </body>

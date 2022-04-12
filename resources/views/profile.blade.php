@@ -83,20 +83,7 @@
 <script src="Script/menu.js"></script>
 <script>
     /*-------------------------------*/
-    var menuLinks = document.querySelectorAll('.menu__link');
-    var lastClicked = menuLinks[0];
-    var viewOnly = false;
-    var addObject = false;
 
-
-    for (var i = 0; i < menuLinks.length; i++) {
-        menuLinks[i].addEventListener('click', function () {
-            lastClicked.classList.remove('active-menu');
-            this.classList.add('active-menu');
-
-            lastClicked = this;
-        });
-    }
     /*--------------------------------*/
     let points = document.querySelector('.points').textContent;
     let target = document.querySelector('.target').textContent;
