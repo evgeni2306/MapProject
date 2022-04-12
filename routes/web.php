@@ -52,3 +52,7 @@ Route::get('/profile', function () {
 Route::get('/routepersonal', function () {
     return view('routepersonal');
 })->name('routepersonal');
+
+Route::get('/loadroute', function () {
+    return view('loadroute');
+})->name('loadroute');

@@ -167,6 +167,7 @@ body._lock {
 }
 .edit-buttons {
     display: flex;
+    margin-top: 40px;
 }
 .edit-point__photos {
     display: inline-block;
@@ -233,7 +234,7 @@ button {
 }
 .edit-point__warning {
     line-height: 140%;
-    margin: 16px 0px 40px 0px;
+    margin: 16px 0px 0px 0px;
     color: #8c8c95;
 }
 .edit-buttons__mobile {

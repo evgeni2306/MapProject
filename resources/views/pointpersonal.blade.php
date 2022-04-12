@@ -43,16 +43,16 @@
             </div>
             <div class="infoblock__slider">
                 <div class="swiper">
-                <div class="swiper-button-prev"></div>
+                <!--<div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
                 <div class="image-slider swiper-container">
-                    <div class="image-slider__wrapper swiper-wrapper">
+                    <div class="image-slider__wrapper swiper-wrapper">-->
                         <div class="image-slider__slide swiper-slide">
                             <div class="image-slider__image">
                                 <img src="/PagePointPersonal/img/slider.png" alt="">
                             </div>
                         </div>
-                        <div class="image-slider__slide swiper-slide">
+                        <!--<div class="image-slider__slide swiper-slide">
                             <div class="image-slider__image">
                                 <img src="/PagePointPersonal/img/slider.png" alt="">
                             </div>
@@ -67,7 +67,7 @@
 
                 <div class="swiper-pagination"></div>
 
-                <div class="swiper-scrollbar"></div>
+                <div class="swiper-scrollbar"></div>-->
                 </div>
             </div>
         </div>
