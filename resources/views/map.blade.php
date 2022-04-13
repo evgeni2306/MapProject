@@ -132,18 +132,27 @@
         document.getElementById('menu__link__add-object__mobile').addEventListener("click", function (e) {
             addObject = true;
             viewOnly = false;
+            addRoute = false;
+            arr = new Array();
+            route.remove();
+            route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
             onMapClick(e.target);
             popup._close()
         });
         document.getElementById('menu__link__view__mobile').addEventListener("click", function (e) {
             addObject = false;
             viewOnly = true;
+            addRoute = false;
+            arr = new Array();
+            route.remove();
+            route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
             onMapClick(e.target);
             popup._close()
         });
         document.getElementById('menu__link__add-route__mobile').addEventListener("click", function (e) {
             addObject = false;
-            viewOnly = true;
+            viewOnly = false;
+            addRoute = true;
             popup._close()
         });
         //-------------------------------------------------------
@@ -192,6 +201,7 @@
                     .openOn(mymap);
             }
             if (addRoute == true) {
+
                 var arrr = new Array();
                 arrr.push(e.latlng.lat.toString().substr(0, 9));
                 arrr.push(e.latlng.lng.toString().substr(0, 9));
@@ -202,7 +212,7 @@
                     .setLatLng(e.latlng)
 
                     .setContent( '<form action="{{route('Addroute')}}" method="POST">\n' +
-                        '        <input type="hidden" id ="routecord" name="cord"  value="' + arr + '">\n' +
+                        '        <input type="hidden"  id ="routecord" name="cord"  value="' + arr + '">\n' +
 
                         '@csrf' +
                         '    <input type="submit" class="button__end-route" value="Закончить маршрут">\n' +
@@ -241,7 +251,7 @@
 ///---------------------------------------------------------
         mymap.on('click', onMapClick);
 
-        //------ Удаление точки маршрута во врем ядобавления маршрута---------
+        //------ Удаление точки маршрута во время добавления маршрута---------
         function deleterpoint() {
             startstr = document.getElementById('routecord').value.split(',');
             startstr.pop();
@@ -251,6 +261,7 @@
                 finishstr = finishstr + startstr[i] + ',';
             }
             document.getElementById('routecord').value = finishstr.slice(0, -1);
+            arr = document.getElementById('routecord').value.split(',');
             route.deleteLat();
         }
         //----------------------------------------------------------------------
