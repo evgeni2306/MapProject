@@ -15,11 +15,11 @@ class AddPointController extends Controller
     public function AddPoint(Request $request)
     {
         $validateFields = $request->validate([
-            'lat' => ['required','numeric'],
-            'lng' => ['required','numeric'],
-            'address' => ['required','string'],
-            'name' => ['required','string'],
-            'type' => ['required','string'],
+            'lat' => ['required', 'numeric'],
+            'lng' => ['required', 'numeric'],
+            'address' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'type' => ['required', 'string'],
 
         ]);
         $typeAndIcon = explode(',', $validateFields['type']);
@@ -33,20 +33,53 @@ class AddPointController extends Controller
             "icon" => $typeAndIcon[0],
             "creatorid" => Auth::id(),
             "rating" => 0,
-            "status"=> "Под вопросом",
-            "shortdescription"=> "",
+            "status" => "Под вопросом",
+            "shortdescription" => "",
             "description" => 'Отсутствует',
         );
-        if($validateFields['type']=='zpoints' ){
+        if ($validateFields['type'] == 'zpoints') {
             $validateFields['photo'] = "/PageMap/img/icons/socket-picture.svg";
-        }else{
+        } else {
             $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
         }
         $point = Point::create($validateFields);
-
-
         return redirect(route('map'));
-
-
     }
+//    public function SavePoint(Request $request)
+//    {
+//        $validateFields = $request->validate([
+//            'lat' => ['required','numeric'],
+//            'lng' => ['required','numeric'],
+//            'address' => ['required','string'],
+//            'name' => ['required','string'],
+//            'type' => ['required','string'],
+//
+//        ]);
+//        $typeAndIcon = explode(',', $validateFields['type']);
+//
+//        $validateFields = array(
+//            "lat" => (double)$validateFields['lat'],
+//            "lng" => (double)$validateFields['lng'],
+//            "address" => $validateFields['address'],
+//            "name" => $validateFields['name'],
+//            "type" => $typeAndIcon[1],
+//            "icon" => $typeAndIcon[0],
+//            "creatorid" => Auth::id(),
+//            "rating" => 0,
+//            "status"=> "Под вопросом",
+//            "shortdescription"=> "",
+//            "description" => 'Отсутствует',
+//        );
+//        if($validateFields['type']=='zpoints' ){
+//            $validateFields['photo'] = "/PageMap/img/icons/socket-picture.svg";
+//        }else{
+//            $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
+//        }
+//        $point = Point::create($validateFields);
+//
+//
+//        return redirect(route('map'));
+//
+//
+//    }
 }

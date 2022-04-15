@@ -24,7 +24,7 @@ class UpdatePointController extends Controller
                 'status' => ['string','required'],
                 'description' => ['max:255'],
                 'shortdescription' => ['max:255'],
-                'photo'=> ['max:255']
+                'photo'=> ['mimes:jpeg,jpg,png']
                 //Допилить валидацию, как минимум, чтобы статус был только одной из возможных переменных
 
 

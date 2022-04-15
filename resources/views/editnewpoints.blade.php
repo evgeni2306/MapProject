@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Редактирование точки</title>
+    <title>Добавление точки</title>
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
-        <h1 class="edit-point__title">Редактирование метки</h1>
+        <h1 class="edit-point__title">Добавление метки</h1>
         <div class="content__container">
             <div class="edit-point__forms">
                 <form method="post" action ="{{route('UpdatePoint',$_SESSION['CurrentEditPoint']->id)}}" enctype="multipart/form-data">
@@ -32,15 +32,12 @@
                     <input type="text" placeholder="Введите адрес" name="address" value ="{{$_SESSION['CurrentEditPoint']->address}}">
                     <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
                     <select  id="status"  required name="status">
-                        <option value="{{$_SESSION['CurrentEditPoint']->status}}" disabled style="display:none;"></option>
-                        <option value="Под вопросом">Под вопросом</option>
-                        <option value="Работает">Работает</option>
-                        <option value="Не работает">Не работает</option>
+                        <option value="Под вопросом" disabled selected>Под вопросом</option>
                     </select>
                     <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description" maxlength="200" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
+                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
                     <h4 class="sub-title">Полное описание</h4>
-                    <textarea class="edit-point__description"  maxlength="300"placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description">{{$_SESSION['CurrentEditPoint']->description}}</textarea>
+                    <textarea class="edit-point__description"  placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description">{{$_SESSION['CurrentEditPoint']->description}}</textarea>
                     <h4 class="sub-title">Фотографии</h4>
                     <div class="add-photo">
                         <input type="file" id="files" name="photo" accept="image/*,image/jpeg" onchange="previewFile()">
@@ -76,10 +73,6 @@
         if ( select1[i].value === select1[0].value  ) select1[i].setAttribute('selected','selected')
     }
 
-    const select2 = document.getElementById('status').getElementsByTagName('option');//Статус
-    for (let i = 1; i < select2.length; i++) {
-        if ( select2[i].value === select2[0].value  ) select2[i].setAttribute('selected','selected')
-    }
     // //---------------------------------------------------------------------------
 
 

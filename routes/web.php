@@ -27,6 +27,10 @@ session_start();
 |
 */
 
+//Route::get('/new', function () {
+//    return view('editnewpoints');
+//})->name('new');
+
 Route::get('/form', function () {
     return view('form');
 })->name('form');
