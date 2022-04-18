@@ -25,8 +25,8 @@ class CreatePointsTable extends Migration
             $table->string('status',255)->nullable(true);
             $table->string('type',255)->nullable(true);
             $table->string('icon',255)->nullable(true);
-            $table->string('shortdescription',255)->nullable(true);
-            $table->string('description',255)->nullable(true);
+            $table->mediumText('shortdescription')->nullable(true);
+            $table->longText('description')->nullable(true);
             $table->integer('rating')->unsigned()->nullable(true);
             $table->string('photo',255)->nullable(true);
         });
