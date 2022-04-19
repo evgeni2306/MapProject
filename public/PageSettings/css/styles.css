@@ -99,7 +99,7 @@ body._lock {
     padding: 40px 0px 40px 0px;
 }
 .content__container {
-    height: 544px;
+    height: auto;
     background: #fff;
     margin-bottom: 120px;
     border-radius: 12px;
@@ -207,9 +207,15 @@ select {
     border: 1px solid #d3d5da;
     color: #000;
     border-radius: 7px;
-    padding: 15px 20px;
+    padding: 14px 20px;
     margin-bottom: 20px;
     font-size: 15px;
+}
+input::placeholder {
+    color: #000;
+}
+input:focus {
+    outline: none;
 }
 input:hover {
     border: 1px solid #27ae60;

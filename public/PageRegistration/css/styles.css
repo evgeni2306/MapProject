@@ -129,6 +129,9 @@ input {
     padding: 15px 20px;
     font-size: 15px;
 }
+input:focus {
+    outline: none;
+}
 input:hover {
     border: 1px solid #27ae60;
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -46,8 +46,10 @@
                     <h4 class="sub-title">Файл маршрута<span class="required-form">*</span></h4>
                     <div class="add-photo">
                       <select required name="complexity">
+                        <option value="" disabled selected style="display:none;">Выберите тип файла</option>
                         <option value="">GPX</option>
-                    </select>
+                        <option value="">CSV</option>
+                      </select>
                         <input type="file" id="files" name="route">
                         <label for="files"><img src="/PageLoadRoute/img/download.svg">Загрузить файл</label>
                         <output id="list"></output>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageSettings/css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -47,6 +47,12 @@
           <input type="text" placeholder="Введите e-mail" name="email">
           <h4 class="sub-title">Модель транспорта</h4>
           <input type="text" placeholder="Введите модель своего транспорта" name="transport">
+          <h4 class="sub-title">Вид карты</h4>
+          <select required name="complexity">
+            <option value="" disabled selected style="display:none;">Выберите вид карты</option>
+            <option value="">Стандартный</option>
+            <option value="">Топографический</option>
+          </select>
           <div class="buttons">
             <input type="reset" class="settings__cancel" value ="Отмена">
             <input type="submit" class="settings__save" value ="Сохранить">

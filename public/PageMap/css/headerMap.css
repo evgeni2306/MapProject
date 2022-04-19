@@ -46,7 +46,6 @@
 
 .menu__list {
     display: flex;
-    flex-wrap: wrap;
     border: 1px solid #d3d5da;
     border-radius: 7px;
 }
@@ -63,7 +62,7 @@
     cursor: pointer;
 }
 .menu__item img {
-    margin-right: 15px;
+    margin-right: 13px;
 }
 .menu__item:not(:first-child) {
     border-left: 1px solid #d3d5da;
@@ -81,7 +80,10 @@
     color: inherit;
     line-height: 171%;
     font-weight: 400;
-    padding: 10px 23px;
+    padding: 10px 15px;
+}
+.button-name {
+    display: inline-block;
 }
 .user-name {
     cursor: pointer;
@@ -192,11 +194,11 @@
     }
 }
 @media (max-width: 1180px) {
-    .menu__item {
+    .button-name {
         display: none;
     }
-    .menu__item__mobile {
-        display: block;
+    .menu__item img {
+        margin-right: 0;
     }
 }
 @media (max-width: 767px) {

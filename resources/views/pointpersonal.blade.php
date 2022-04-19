@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="/Script/leaflet/dist/leaflet.css"/>
     <script src="/Script/leaflet/dist/leaflet.js"></script>

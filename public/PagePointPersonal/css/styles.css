@@ -463,7 +463,8 @@ button {
 }
 @media (min-width: 1950px) {
     .container {
-        padding: 0px 200px;
+        padding: 0px 40px;
+        margin: 40px 200px;
     }
     .user-menu {
         right: 200px;
