@@ -45,12 +45,12 @@ class GetAllController extends Controller
         $_SESSION['Points'] = $getpoints;
 
         $getroutes = DB::table('routes')
-            ->select('id', 'text')->get();
+            ->select('id','name')->get();
         $Routes = array();
         foreach ($getroutes as $getroute) {
             $route = new Route;
             $route->id = $getroute->id;
-            $route->name = $getroute->text;
+            $route->name = $getroute->name;
             array_push($Routes, $route);
         }
         foreach ($Routes as $rpoint) {

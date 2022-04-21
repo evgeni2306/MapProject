@@ -187,6 +187,9 @@ select {
     font-size: 15px;
     line-height: 120%;
 }
+input:focus {
+    outline: none;
+}
 input:hover {
     border: 1px solid #27ae60;
 }

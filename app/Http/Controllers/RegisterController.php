@@ -26,7 +26,7 @@ class RegisterController extends Controller
 
 
         $av = $this->randomAvatar();
-
+        $validateFields['mapstyle'] = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         $validateFields['avatar'] = '/PageMap/img/user/' . $av;
         $validateFields['transport'] = 'Не указан';
         $user = User::create($validateFields);
@@ -34,7 +34,7 @@ class RegisterController extends Controller
             Auth::login($user);
             $_SESSION['User'] = DB::table('users')
                 ->where('id', $user->id)
-                ->select('id', 'name', 'surname', 'avatar', 'transport')
+                ->select('id', 'name', 'surname', 'avatar', 'transport','mapstyle')
                 ->first();
             return redirect(route('map'));
         }

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password',255)->nullable(false);
             $table->string('avatar', 255)->nullable('true');
             $table->string('transport', 255)->nullable('true');
+            $table->text('mapstyle')->nullable(true);
             $table->string('social_id')->nullable();
 
         });

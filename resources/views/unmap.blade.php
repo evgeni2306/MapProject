@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthMap.css">
     <link rel="stylesheet" href="/PageUnauthorizedMap/css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
     <link rel="stylesheet" href="/Script/leaflet/dist/leaflet.css"/>
     <script src="/Script/leaflet/dist/leaflet.js"></script>
 </head>

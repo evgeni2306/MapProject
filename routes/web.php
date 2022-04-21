@@ -42,8 +42,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit', function () {
         return view('settings');
     })->name('edit');
+
+    Route::get('/loadroute', function () {
+        return view('loadroute');
+    })->name('loadroute');
+
     Route::get('/profile', [GetProfileController::class, 'GetMyProfile'])->name('myprofile');
 
+    Route::post('/loadroute', [UploadRouteController::class, 'UploadRoute'])->name('loadroute');
     Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');

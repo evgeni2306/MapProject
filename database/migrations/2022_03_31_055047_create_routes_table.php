@@ -15,7 +15,17 @@ class CreateRoutesTable extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('text',255)->nullable(false);
+            $table->integer('creatorid')->unsigned()->default();
+            $table->foreign('creatorid')->references('id')->on('users')->change();
+            $table->string('status',255)->nullable(true);
+            $table->string('name',255)->nullable(true);
+            $table->mediumText('shortdescription')->nullable(true);
+            $table->longText('description')->nullable(true);
+            $table->string('difficult',255)->nullable(true);
+            $table->string('distance',255)->nullable(true);
+            $table->string('time',255)->nullable(true);
+            $table->integer('rating')->unsigned()->nullable(true);
+
             $table->timestamps();
 
         });

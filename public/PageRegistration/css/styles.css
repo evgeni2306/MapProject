@@ -54,7 +54,7 @@ body {
 @font-face {
     font-family: "GolosTextRegular";
     src: url("../fonts/GolosTextRegular.woff") format("woff"),
-        url("../fonts/GolosTextRegular.ttf") format("truetype");
+    url("../fonts/GolosTextRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }
@@ -62,7 +62,7 @@ body {
 @font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
-        url("../fonts/GolosTextBold.ttf") format("truetype");
+    url("../fonts/GolosTextBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
@@ -128,6 +128,9 @@ input {
     border-radius: 7px;
     padding: 15px 20px;
     font-size: 15px;
+}
+input:focus {
+    outline: none;
 }
 input:hover {
     border: 1px solid #27ae60;

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PagePointPersonal/css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
     <link rel="stylesheet" href="/Script/leaflet/dist/leaflet.css"/>
     <script src="/Script/leaflet/dist/leaflet.js"></script>
 </head>
@@ -156,6 +156,18 @@
 /*-------------MAP------------------------------*/
 var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
 
+@if(isset($_SESSION['User']))
+var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1
+}).addTo(map);
+@endif
+
+@if(!isset($_SESSION['User']))
 	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -164,7 +176,7 @@ var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION[
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
-
+@endif
     var Markers = L.Icon.extend({
 		options: {
 			iconSize: [39, 45],

@@ -9,7 +9,15 @@ class Route extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'text'
+        'creatorid',
+        'status',
+        'name',
+        'shortdescription',
+        'description',
+        'difficult',
+        'distance',
+        'time',
+        'rating',
     ];
     protected $hidden = [
     ];

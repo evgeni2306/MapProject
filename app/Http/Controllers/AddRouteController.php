@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Route;
 use App\Models\Rpoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddRouteController extends Controller
 {
@@ -14,7 +15,16 @@ class AddRouteController extends Controller
         $validateFields = $request->validate([
             'cord' => 'required',
         ]);
-        $rroute = array("text"=>'123');
+        $rroute = array(
+            'creatorid'=>Auth::id(),
+            'status'=>'Под вопросом',
+            'name'=>'TEXT',
+            'shortdescription'=>'TEXT',
+            'description'=>'TEXT',
+            'difficult'=>'TEXT',
+            'distance'=>'TEXT',
+            'time'=>'TEXT',
+            'rating'=>0);
         $Route = Route::create($rroute);
         $arr =  explode(',',$validateFields['cord']);
 

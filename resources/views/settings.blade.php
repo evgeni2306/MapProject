@@ -40,6 +40,12 @@
 {{--                    <input type="text" placeholder="Введите e-mail" name="email">--}}
                     <h4 class="sub-title">Модель транспорта</h4>
                     <input type="text" placeholder="Введите модель своего транспорта"  value="{{$_SESSION['User']->transport}}"name="transport">
+                    <h4 class="sub-title">Вид карты</h4>
+                    <select required id="mapstyle" name="mapstyle">
+                        <option value="{{$_SESSION['User']->mapstyle}}" disabled selected style="display:none;">Выберите вид карты</option>
+                        <option value="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw">Стандартный</option>
+                        <option value="https://tile-{s}.opentopomap.ru/{z}/{x}/{y}.png">Топографический</option>
+                    </select>
                     @csrf
                     <div class="buttons">
                         <input type="reset" class="settings__cancel" value ="Отмена">
@@ -56,6 +62,12 @@
 </div>
 <script src="Script/menu.js"></script>
 <script>
+    //-------Подстановка по умолчанию  значения полей с выбором------
+    const select1 = document.getElementById('mapstyle').getElementsByTagName('option');//Категория
+    for (let i = 1; i < select1.length; i++) {
+        if ( select1[i].value === select1[0].value  ) select1[i].setAttribute('selected','selected')
+    }
+    //-------------------------------------------------------------------
     function handleFileSelect(evt) {
         let files = evt.target.files;
 
