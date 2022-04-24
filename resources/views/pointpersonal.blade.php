@@ -156,8 +156,14 @@
 /*-------------MAP------------------------------*/
 var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
 
-@if(isset($_SESSION['User']))
-var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
+//---------------стиль карты для авторизованного/неавторизованного
+        @if(isset($_SESSION['User']))
+    var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
+        @endif
+        @if(!isset($_SESSION['User']))
+    var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        @endif
+        //-----------------
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -165,18 +171,9 @@ var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
     tileSize: 512,
     zoomOffset: -1
 }).addTo(map);
-@endif
 
-@if(!isset($_SESSION['User']))
-	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox/streets-v11',
-		tileSize: 512,
-		zoomOffset: -1
-	}).addTo(map);
-@endif
+
+
     var Markers = L.Icon.extend({
 		options: {
 			iconSize: [39, 45],
@@ -185,7 +182,7 @@ var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
 	});
 
 	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+	var	house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
 L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}],{icon: {{$_SESSION['CurrentPoint']->icon}}} ).addTo(map);
 /*---------------SWIPER-------------------------*/
     new Swiper('.image-slider', {

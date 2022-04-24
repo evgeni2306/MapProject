@@ -19,49 +19,46 @@ class UploadRouteController extends Controller
     {
         Artisan::call('storage:link');
         $validateFields = $request->validate([
-            'name'=>['required'],
-            'shortdescription'=>['required'],
-            'description'=>['required'],
-            'difficult'=>['required'],
-            'distance'=>['required'],
-            'time'=>['required'],
-            'file' => ['required'],
-            'type' => ['required']
+            'name' => ['required', 'string'],
+            'shortdescription' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'difficult' => ['required', 'string'],
+            'distance' => ['required', 'string'],
+            'time' => ['required', 'string'],
+            'file' => ['required','file','mimes:csv,txt,xml'],
+            'type' => ['required', 'string','ends_with:CSV,GPX']
 
         ]);
         $rroute = array(
-            'creatorid'=>Auth::id(),
-            'status'=>'Под вопросом',
-            'name'=>$validateFields['name'],
-            'shortdescription'=>$validateFields['shortdescription'],
-            'description'=>$validateFields['description'],
-            'difficult'=>$validateFields['difficult'],
-            'distance'=>$validateFields['distance'],
-            'time'=>$validateFields['time'],
-            'rating'=> 0,
-            );
+            'creatorid' => Auth::id(),
+            'status' => 'Под вопросом',
+            'name' => $validateFields['name'],
+            'shortdescription' => $validateFields['shortdescription'],
+            'description' => $validateFields['description'],
+            'difficult' => $validateFields['difficult'],
+            'distance' => $validateFields['distance'],
+            'time' => $validateFields['time'],
+            'rating' => 0,
+        );
 
         $path = Storage::putFile('routes', $request->file('file'));
         switch ($validateFields['type']) {
             case "CSV":
-                $this->CSVparse($path,$rroute);
+                $this->CSVparse($path, $rroute);
                 break;
             case "GPX":
-                $this->XMLparse($path,$rroute);
+                $this->XMLparse($path, $rroute);
                 break;
 
         }
+        return redirect(route('map'));
     }
 
-    public function XMLparse($path,$rroute)
+    public function XMLparse($path, $rroute)
     {
         $xml = new SimpleXMLElement(file_get_contents(storage_path('app\\' . $path)));
         $count = Count($xml->trk->trkseg->trkpt);
-        //Додумать цифру для скачков по списку
-//        $cr =pow(10,strlen($str)-4);
-
         $Route = Route::create($rroute);
-
         for ($i = 0; $i <= $count - 10; $i += 10) {
             $point = array("routeid" => $Route->id, "lat" => $xml->trk->trkseg->trkpt[$i]['lat'], "lng" => $xml->trk->trkseg->trkpt[$i]['lon']);
             set_time_limit(20);
@@ -70,12 +67,10 @@ class UploadRouteController extends Controller
         $this->DeleteFile($path);
     }
 
-    public function CSVparse($path,$rroute)
+    public function CSVparse($path, $rroute)
     {
         $file = explode("\r\n", (string)file_get_contents(storage_path('app\\' . $path)));
         $count = Count($file);
-        $str = (string)$count;
-//        dd($str);
         $Route = Route::create($rroute);
 //        //$i=1 т.к там первая строчка - шапка таблицы
         for ($i = 1; $i <= $count - 10; $i += 10) {
@@ -86,13 +81,11 @@ class UploadRouteController extends Controller
         }
         $this->DeleteFile($path);
     }
-    public function DeleteFile($path){
+
+    public function DeleteFile($path)
+    {
         $delete = Storage::delete($path);
-        if ($delete) {
-            return redirect(route('map'));
-//            echo 'удалено';
-        }
-   }
+    }
 
 
 }

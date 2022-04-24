@@ -18,10 +18,10 @@ class UpdatePointController extends Controller
             $validateFields = $request->validate([
                 'name' => ['string','required'],
                 'address' => ['string','required'],
-                'type' => ['string','required'],
-                'status' => ['string','required'],
-                'description' => ['max:255'],
-                'shortdescription' => ['max:255'],
+                'type' => ['string','required','ends_with:zpoints,dpoints'],
+                'status' => ['string','required','ends_with:Под вопросом,Работает,Не работает'],
+                'description' => ['max:500','string'],
+                'shortdescription' => ['max:255','string'],
                 'photo'=> ['mimes:jpeg,jpg,png']
                 //Допилить валидацию, как минимум, чтобы статус был только одной из возможных переменных
 

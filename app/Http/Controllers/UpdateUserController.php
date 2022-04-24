@@ -13,10 +13,10 @@ class UpdateUserController extends Controller
     {
         if (Auth::check()) {
             $validateFields = $request->validate([
-                'name' => ['max:255','string'],
-                'surname' => ['max:255','string'],
-                'transport' => ['max:255','string'],
-                'mapstyle'=>['string'],
+                'name' => ['required','max:255','string'],
+                'surname' => ['required','max:255','string'],
+                'transport' => ['required','max:255','string'],
+                'mapstyle'=>['required','string','ends_with:ISLbB6B5aw,{x}/{y}.png'],
             ]);
             if ($validateFields['transport'] == null) {
                 $validateFields['transport'] = "Не указан";

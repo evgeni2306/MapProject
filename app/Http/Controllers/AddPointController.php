@@ -19,7 +19,7 @@ class AddPointController extends Controller
             'lng' => ['required', 'numeric'],
             'address' => ['required', 'string'],
             'name' => ['required', 'string'],
-            'type' => ['required', 'string'],
+            'type' => ['required', 'string','ends_with:zpoints,dpoints'],
 
         ]);
         $typeAndIcon = explode(',', $validateFields['type']);

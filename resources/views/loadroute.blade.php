@@ -27,22 +27,22 @@
             <div class="edit-point__forms">
                 <form method="post" action ="{{route('loadroute')}}" id="edit-form" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
-                    <input type="text" placeholder="Введите название" name="name" required>
+                    <input type="text" placeholder="Введите название" name="name" required value="{{old('name')}}">
                     <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription" required>
+                    <input type="text" class="short-description"value="{{old('shortdescription')}}" placeholder="Информация будет отображена на карте" name="shortdescription" value="{{old('shortdescription')}}" required>
                     <h4 class="sub-title">Сложность<span class="required-form">*</span></h4>
-                    <select required name="difficult">
-                        <option value="" disabled selected style="display:none;">Выберите сложность</option>
+                    <select required id="difficult" name="difficult">
+                        <option  disabled value="{{old('difficult')}}" selected style="display:none;">Выберите сложность</option>
                         <option value="Легко">Для новичков</option>
                         <option value="Средне">Средняя</option>
                         <option value="Сложно">Для продвинутых</option>
                     </select>
                     <h4 class="sub-title">Протяженность</h4>
-                    <input type="text" placeholder="Введите протяженность" name="distance">
+                    <input type="text" value="{{old('distance')}}"placeholder="Введите протяженность" name="distance">
                     <h4 class="sub-title">Примерное время</h4>
-                    <input type="text" placeholder="Введите время" name="time">
+                    <input type="text" placeholder="Введите время" name="time" value="{{old('time')}}">
                     <h4 class="sub-title">Описание</h4>
-                    <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
+                    <textarea class="edit-point__description"value="{{old('description')}}" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
                     <h4 class="sub-title">Файл маршрута<span class="required-form">*</span></h4>
                     <div class="add-photo">
                         <select required name="type">
@@ -70,7 +70,10 @@
 </div>
 <script src="Script/menu.js"></script>
 <script>
-
+    const select1 = document.getElementById('difficult').getElementsByTagName('option');//Категория
+    for (let i = 1; i < select1.length; i++) {
+        if ( select1[i].value === select1[0].value  ) select1[i].setAttribute('selected','selected')
+    }
 </script>
 </body>
 </html>
