@@ -26,9 +26,9 @@
       <h1 class="settings__title">Настройки</h1>
       <div class="content__container">
         <div class="avatar__container">
-          <img  class="avatar-big" src="/PageSettings/img/02.png" alt="user">
+          <img id="photo" class="avatar-big" src="/PageSettings/img/02.png" alt="user">
           <div class="change-photo">
-            <input type="file" id="files" name="files[]">
+            <input type="file" id="files" name="photo" accept="image/*,image/jpeg" onchange="previewFile()">
             <label for="files"><img src="/PageSettings/img/02.svg">Изменить фото</label>
             <output id="list"></output>
           </div>
@@ -68,30 +68,30 @@
 </div>
 <script src="Script/menu.js"></script>     
 <script>
-  function handleFileSelect(evt) {
-    let files = evt.target.files;
+  // сохранение старого пути к фотке
+const oldway = document.getElementById('photo').src
 
-    for (let i = 0, f; f = files[i]; i++) {
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-
-      let reader = new FileReader();
-      reader.onload = (function(theFile) {
-        return function(e) {
-          let span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', theFile.name, '"/>'].join('');
-          document.getElementById('list').insertBefore(span, null);
-        };
-      })(f);
-
-      reader.readAsDataURL(f);
+    //Превью - замена имеющейся фотки на загруженную
+    function previewFile() {
+        const preview = document.getElementById('photo');
+        const file = document.querySelector('input[type=file]').files[0];
+        const reader = new FileReader();
+        reader.addEventListener("load", function () {
+            // convert image file to base64 string
+            preview.src = reader.result;
+        }, false);
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
-  }
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
-/*-------------------------------*/   
+//отмена загруженной фотки, загруженная удаляется, возвращается старая
+    /*document.getElementById("crossbutton").onclick = function(){
+        const preview = document.getElementById('photo');
+        document.getElementById('files').value = null;//сброс файла в форме
+        preview.src = oldway;//сброс картинки
+    }*/
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    /*-------------------------------*/
 </script>
 </body>
 </html>

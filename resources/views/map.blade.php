@@ -126,8 +126,8 @@
                     .setLatLng(e.latlng)
                     .setContent(
                         '<div class="text-container">' +
-                        '<div class="add-object__title">Добавление объекта</div>' +
-                        '<div class="add-object__subtitle">Укажите местоположение объекта, передвигая метку на карте.</div>' +
+                        '<div class="add-object__title">Добавление точки</div>' +
+                        '<div class="add-object__subtitle">Укажите местоположение точки, кликая по карте.</div>' +
 
                         '</div>' +
                         '<form method="" action ="">' +

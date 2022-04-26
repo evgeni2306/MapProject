@@ -244,13 +244,12 @@ button {
     width: 208px;
 }
 .marker__photo__container {
-    width: 240px;
-    height: 100px;
-    border-radius: 3px;
     margin-bottom: 30px;
 }
 .marker__photo {
-    width: 100%;
+    width: 240px;
+    height: 100px;
+    border-radius: 3px;
 }
 .button__end-route {
     font-family: "GolosTextRegular";

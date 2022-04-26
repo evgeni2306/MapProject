@@ -56,3 +56,7 @@ Route::get('/routepersonal', function () {
 Route::get('/loadroute', function () {
     return view('loadroute');
 })->name('loadroute');
+
+Route::get('/editroutes', function () {
+    return view('editroutes');
+})->name('editroutes');
