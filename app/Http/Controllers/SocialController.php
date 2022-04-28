@@ -36,11 +36,12 @@ class SocialController extends Controller
                 'social_id' => $user->id,
                 'password' => encrypt('user'),
                 'avatar' => $user->getAvatar(),
-                'transport' => 'Не указан'
+                'transport' => 'Не указан',
+                'mapstyle' => 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
             ]);
             $_SESSION['User'] = DB::table('users')
                 ->where('social_id', $user->id)
-                ->select('id', 'name', 'surname', 'avatar', 'transport')
+                ->select('id', 'name', 'surname', 'avatar', 'transport','mapstyle')
                 ->first();
 
             Auth::login($createUser);
@@ -77,11 +78,12 @@ class SocialController extends Controller
                 'social_id' => $user->id,
                 'password' => encrypt('user'),
                 'avatar' => $user->getAvatar(),
-                'transport' => 'Не указан'
+                'transport' => 'Не указан',
+                'mapstyle' => 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
             ]);
             $_SESSION['User'] = DB::table('users')
                 ->where('social_id', $user->id)
-                ->select('id', 'name', 'surname', 'avatar', 'transport')
+                ->select('id', 'name', 'surname', 'avatar', 'transport', 'mapstyle')
                 ->first();
 
             Auth::login($createUser);
