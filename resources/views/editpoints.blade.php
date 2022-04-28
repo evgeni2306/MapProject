@@ -59,6 +59,10 @@
             <img  id="photo" style = 'width:100%' src ="{{$_SESSION['CurrentEditPoint']->photo}}">
             <button id = "crossbutton" style="display: none"><img src="/PageEditPoints/img/crossbutton.svg"  alt=""></button>
         </div>
+            <div class="edit-buttons__mobile">
+                <input type="reset" form="edit-form" class="edit-point__cancel" value ="Отмена">
+                <input type="submit" form="edit-form" class="edit-point__add" value ="Сохранить">
+            </div>
         </div>
 
     </div>

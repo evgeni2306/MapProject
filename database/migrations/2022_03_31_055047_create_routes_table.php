@@ -19,6 +19,8 @@ class CreateRoutesTable extends Migration
             $table->foreign('creatorid')->references('id')->on('users')->change();
             $table->string('status',255)->nullable(true);
             $table->string('name',255)->nullable(true);
+            $table->string('type',255)->nullable(true);
+            $table->string('icon',255)->nullable(true);
             $table->mediumText('shortdescription')->nullable(true);
             $table->longText('description')->nullable(true);
             $table->string('difficult',255)->nullable(true);

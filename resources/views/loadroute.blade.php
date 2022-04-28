@@ -33,9 +33,9 @@
                     <h4 class="sub-title">Сложность<span class="required-form">*</span></h4>
                     <select required id="difficult" name="difficult">
                         <option  disabled value="{{old('difficult')}}" selected style="display:none;">Выберите сложность</option>
-                        <option value="Легко">Для новичков</option>
-                        <option value="Средне">Средняя</option>
-                        <option value="Сложно">Для продвинутых</option>
+                        <option value="Легко,groutes,greenroute">Для новичков</option>
+                        <option value="Средне,yroutes,yellowroute">Средняя</option>
+                        <option value="Сложно,rroutes,redroute">Для продвинутых</option>
                     </select>
                     <h4 class="sub-title">Протяженность</h4>
                     <input type="text" value="{{old('distance')}}"placeholder="Введите протяженность" name="distance">

@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="comment__rating">
-                        <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                        <img class="star-rating__star" src="{{$pcomment->rating}}">
                     </div>
                 </div>
                 <div class="comment__text">{{$pcomment->text}}</div>

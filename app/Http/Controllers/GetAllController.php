@@ -45,21 +45,28 @@ class GetAllController extends Controller
         $_SESSION['Points'] = $getpoints;
 
         $getroutes = DB::table('routes')
-            ->select('id','name')->get();
+            ->select('id','name','icon','type','shortdescription','difficult','distance','time','rating')->get();
         $Routes = array();
         foreach ($getroutes as $getroute) {
             $route = new Route;
             $route->id = $getroute->id;
             $route->name = $getroute->name;
+            $route->type = $getroute->type;
+            $route->icon = $getroute->icon;
+            $route->shortdescription = $getroute->shortdescription;
+            $route->difficult = $getroute->difficult;
+            $route->distance = $getroute->distance;
+            $route->time = $getroute->time;
+            $route->rating = $getroute->rating;
             array_push($Routes, $route);
         }
         foreach ($Routes as $rpoint) {
             $getrpoints = DB::table('rpoints')
                 ->where('rpoints.routeid', '=', $rpoint->id)
-                ->select('lat', 'lng')->get();
-            array_push($rpoint->rpoints, $getrpoints);
+                ->select('lat', 'lng')->first();
+            $rpoint->lat = $getrpoints->lat;
+            $rpoint->lng = $getrpoints->lng;
         }
-
         $_SESSION['Routes'] = $Routes;
 
 
@@ -74,10 +81,17 @@ class GetAllController extends Controller
 
     }
 }
-
 class Route
 {
-    public $id = 0;
-    public $name = 'd';
-    public $rpoints = array();
+    public $id;
+    public $name;
+    public $type;
+    public $icon;
+    public $shortdescription;
+    public $difficult;
+    public $distance;
+    public $time;
+    public $rating;
+    public $lat;
+    public $lng;
 }

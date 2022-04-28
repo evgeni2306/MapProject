@@ -23,7 +23,9 @@
         //--------Настройка иконок и слоев для вывода на карту----------
         var zpoints = L.layerGroup(); //зарядки
         var dpoints = L.layerGroup(); //достопримечательности
-        var routes = L.layerGroup(); //маршруты
+        var groutes = L.layerGroup(); //легкие маршруты
+        var yroutes = L.layerGroup(); //средние маршруты
+        var rroutes = L.layerGroup(); //сложные маршруты
 
         var Markers = L.Icon.extend({
             options: {
@@ -32,7 +34,10 @@
             }
         });
         var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-            house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+            house = new Markers({iconUrl: '/PageMap/img/icons/house.png'})
+            greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
+            yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
+            redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
         //-----------------------------------------------------------------
 
         //---------------Вывод точек на карту--------------------
@@ -65,8 +70,8 @@
             tileSize: 512,
             zoomOffset: -1
         })
-        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, routes]}).setView([56.82, 60.6], 13);
-        // var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints]}).fitWorld();
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, groutes, yroutes, rroutes ]}).setView([56.82, 60.6], 13);
+        // var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints, groutes, yroutes, rroutes ]}).fitWorld();
         //-----------------------------------------
 
 
@@ -79,14 +84,25 @@
         mymap.on('locationfound', onLocationFound);
         // ----------------------------------
 
-        //-------------Вывод маршрутов на карту-----------------
+        //-------------------Вывод маршрутов------------------
         <?    foreach ($_SESSION['Routes'] as $route){?>
-        var rout = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
-        <?       foreach($route->rpoints as $rpoint){?>
-        <?foreach($rpoint as $r){?>
-
-        rout.addLatLng([{{$r->lat}},{{$r->lng}}]);
-        <?}}}?>
+        L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
+            '<div class="marker__container">' +
+            '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +
+            '<div class="short-description">{{$route->shortdescription}}</div>' +
+            '<div class="star-rating star-rating_set">' +
+            '<div class="star-rating__body">' +
+            '<img class="star-rating__star" src="{{$route->rating}}">'+
+            '<span class="star-rating__feedback">()</span>'+
+            '</div>'+
+            '</div>'+
+            '<div class="marker__address">{{$route->distance}}</div>' +
+            '<div class="marker-status status-unknown">Статус : {{$route->time}}</div>' +
+            '<div class="marker__photo__container">'+
+            '<img class="marker__photo" src="{{$route->difficult}}" alt="object">'+
+            '</div>'+
+            '</div>').addTo({{$route->type}});
+        <?}?>
         //-------------------------------------------------------
 
         //---------кнопки и смена режимов----------------------
@@ -171,8 +187,8 @@
                     .setLatLng(e.latlng)
                     .setContent(
                         '<div class="text-container">' +
-                        '<div class="add-object__title">Добавление объекта</div>' +
-                        '<div class="add-object__subtitle">Укажите местоположение объекта, передвигая метку на карте.</div>' +
+                        '<div class="add-object__title">Добавление точки</div>' +
+                        '<div class="add-object__subtitle">Укажите местоположение точки, кликая по карте.</div>' +
                         '</div>' +
                         '<form method="Post" action ="{{route('AddPoint')}}">' +
                         '<div class="form-fields">' +
@@ -226,7 +242,9 @@
         var overlays = {
             "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
             "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints,
-            "<img src='/PageMap/img/icons/route.svg'>Маршруты": routes
+            "<img src='/PageMap/img/route/greenroute.svg'>Легкие маршруты": groutes,
+            "<img src='/PageMap/img/route/yellowroute.svg'>Средние маршруты": yroutes,
+            "<img src='/PageMap/img/route/redroute.svg'>Сложные маршруты": rroutes,
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
         //------------------------------------------------------------------

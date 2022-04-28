@@ -22,20 +22,23 @@ class UploadRouteController extends Controller
             'name' => ['required', 'string'],
             'shortdescription' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'difficult' => ['required', 'string'],
+            'difficult' => ['required', 'string','ends_with:greenroute,yellowroute,redroute'],
             'distance' => ['required', 'string'],
             'time' => ['required', 'string'],
             'file' => ['required','file','mimes:csv,txt,xml'],
             'type' => ['required', 'string','ends_with:CSV,GPX']
 
         ]);
+        $difficulttype = explode(',',$validateFields['difficult']);
         $rroute = array(
             'creatorid' => Auth::id(),
             'status' => 'Под вопросом',
+            'type'=>$difficulttype[1],
+            'icon'=>$difficulttype[2],
             'name' => $validateFields['name'],
             'shortdescription' => $validateFields['shortdescription'],
             'description' => $validateFields['description'],
-            'difficult' => $validateFields['difficult'],
+            'difficult' => $difficulttype[0],
             'distance' => $validateFields['distance'],
             'time' => $validateFields['time'],
             'rating' => 0,

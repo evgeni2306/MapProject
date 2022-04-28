@@ -5,21 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Route extends Model
+class Rcomment extends Model
 {
     use HasFactory;
     protected $fillable = [
         'creatorid',
-        'status',
-        'name',
-        'type',
-        'icon',
-        'shortdescription',
-        'description',
-        'difficult',
-        'distance',
-        'time',
+        'routeid',
         'rating',
+        'text'
+
     ];
     protected $hidden = [
     ];

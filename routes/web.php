@@ -7,6 +7,7 @@ use App\Http\Controllers\AddPointController;
 use App\Http\Controllers\AddRouteController;
 use App\Http\Controllers\AddPcommentController;
 use App\Http\Controllers\PointPageController;
+use App\Http\Controllers\RoutePageController;
 use App\Http\Controllers\GetAllController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UpdateUserController;
@@ -64,6 +65,7 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
+Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute']);
 //Роуты для неавторизованных
 Route::get('/registration', function () {
     if(Auth::check()){
