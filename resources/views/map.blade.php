@@ -227,7 +227,7 @@
                 popup
                     .setLatLng(e.latlng)
 
-                    .setContent( '<form action="{{route('Addroute')}}" method="POST">\n' +
+                    .setContent( '<form action="{{route('Addrouteredir')}}" method="POST">\n' +
                         '        <input type="hidden"  id ="routecord" name="cord"  value="' + arr + '">\n' +
 
                         '@csrf' +

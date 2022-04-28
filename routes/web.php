@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -28,60 +29,71 @@ session_start();
 |
 */
 
-//Route::get('/new', function () {
-//    return view('editnewpoints');
-//})->name('new');
-
-Route::get('/form', function () {
-    return view('form');
-})->name('form');
-Route::post('/form', [UploadRouteController::class, 'Test'])->name('formput');
 
 //Роуты для авторизованных
 Route::middleware('auth')->group(function () {
 
+    //---связанные с юзером---//
+    Route::get('/profile', [GetProfileController::class, 'GetMyProfile'])->name('myprofile');
     Route::get('/edit', function () {
         return view('settings');
     })->name('edit');
-
-    Route::get('/loadroute', function () {
-        return view('loadroute');
-    })->name('loadroute');
-
-    Route::get('/profile', [GetProfileController::class, 'GetMyProfile'])->name('myprofile');
-
-    Route::post('/loadroute', [UploadRouteController::class, 'UploadRoute'])->name('loadroute');
-    Route::post('/map', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
-    Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
-    Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
-    Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
-    Route::post('/Route', [AddRouteController::class,'AddRoute'])->name('Addroute');
     Route::get('/logout', function () {
         session_destroy();
         Auth::logout();
         return redirect('/map');
     })->name('logout');
+    //-------------------------//
 
+
+
+    //---связанные с маршрутами---//
+    Route::get('/loadroute', function () {
+        return view('loadroute');
+    })->name('loadroute');
+    Route::post('/loadroute', [UploadRouteController::class, 'UploadRoute'])->name('loadroute');
+
+    Route::get('/editroute', function () {
+        return view('editroutes');
+    })->name('editroute');
+
+//    Route::get('/editroute={idd}', [)->name();
+//    Route::post('/editroute={idd}', [])->name();
+
+    Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
+    Route::post('/Addroute', [AddRouteController::class, 'AddRoute'])->name('Addroute');//добавление
+
+    //----------------------------//
+
+
+    //---связанные с точкой---//
+    Route::post('/Addpoint', [AddPointController::class, 'AddPoint'])->name('AddPoint');
+    Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
+    Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
+    Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
+    //------------------------//
 });
-Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
-Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute']);
+
+
 //Роуты для неавторизованных
 Route::get('/registration', function () {
-    if(Auth::check()){
-        return  redirect('/map');
+    if (Auth::check()) {
+        return redirect('/map');
     }
     return view('registration');
 
 })->name('registration');
 Route::post('/registration', [RegisterController::class, 'save'])->name('registration');
+
 Route::get('/login', function () {
-    if(Auth::check()){
-        return  redirect('/map');
+    if (Auth::check()) {
+        return redirect('/map');
     }
     return view('login');
 })->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+
 Route::get('auth/google', [SocialController::class, 'googleredirect'])->name('google');
 Route::get('auth/google/callback', [SocialController::class, 'loginwithgoogle']);
 Route::get('auth/vkontakte', [SocialController::class, 'vkontakteredirect'])->name('vkontakte');
@@ -89,15 +101,14 @@ Route::get('auth/vkontakte/callback', [SocialController::class, 'loginwithvkonta
 
 
 //Роуты для всех юзеров
-Route::get('/', function () {
+Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
+Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute']);
+
+Route::get('/map', [GetAllController::class, 'GetAll'])->name('map');
+
+
+Route::fallback(function () {
     return redirect(route('map'));
-});
-
-Route::get('/map', [GetAllController::class, 'GetPoints'])->name('map');
-
-
-Route::fallback(function(){
-return redirect(route('map'));
 });
 
 

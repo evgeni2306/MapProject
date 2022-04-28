@@ -13,17 +13,26 @@ class AddRouteController extends Controller
     public function AddRoute(Request $request)
     {
         $validateFields = $request->validate([
-            'cord' => 'required',
+            'name' => ['required', 'string'],
+            'shortdescription' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'difficult' => ['required', 'string','ends_with:greenroute,yellowroute,redroute'],
+            'distance' => ['required', 'string'],
+            'time' => ['required', 'string'],
+            'cord' => ['required'],
         ]);
+        $difficulttype = explode(',',$validateFields['difficult']);
         $rroute = array(
             'creatorid'=>Auth::id(),
             'status'=>'Под вопросом',
-            'name'=>'TEXT',
-            'shortdescription'=>'TEXT',
-            'description'=>'TEXT',
-            'difficult'=>'TEXT',
-            'distance'=>'TEXT',
-            'time'=>'TEXT',
+            'name'=>$validateFields['name'],
+            'type'=>$difficulttype[1],
+            'icon'=>$difficulttype[2],
+            'shortdescription'=>$validateFields['shortdescription'],
+            'description'=>$validateFields['description'],
+            'difficult' => $difficulttype[0],
+            'distance'=>$validateFields['distance'],
+            'time'=>$validateFields['time'],
             'rating'=>0);
         $Route = Route::create($rroute);
         $arr =  explode(',',$validateFields['cord']);
@@ -39,5 +48,8 @@ class AddRouteController extends Controller
 
 
 
+    }
+    public function Redirect(){
+        return view('addroutes');
     }
 }

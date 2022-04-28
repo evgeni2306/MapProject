@@ -13,7 +13,7 @@ class GetAllController extends Controller
 {
     use helpfunc;
 
-    public function GetPoints(Request $request)
+    public function GetAll(Request $request)
     {
         //получение всех точек из бд
         $getpoints = DB::table('points')

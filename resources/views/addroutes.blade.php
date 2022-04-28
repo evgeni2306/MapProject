@@ -16,27 +16,28 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
-        <h1 class="edit-point__title">Редактирование маршрута</h1>
+        <h1 class="edit-point__title">Добавление маршрута</h1>
         <div class="content__container">
             <div class="edit-point__forms">
-                <form method="" action ="" id="edit-form" enctype="multipart/form-data">
+                <form method="post" action ="{{route('Addroute')}}" id="edit-form" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name" required>
                     <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
                     <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription" required>
                     <h4 class="sub-title">Сложность<span class="required-form">*</span></h4>
-                    <select required name="complexity">
+                    <select required name="difficult">
                         <option value="" disabled selected style="display:none;">Выберите сложность</option>
                         <option value="Легко,groutes,greenroute">Для новичков</option>
                         <option value="Средне,yroutes,yellowroute">Средняя</option>
                         <option value="Сложно,rroutes,redroute">Для продвинутых</option>
                     </select>
                     <h4 class="sub-title">Протяженность</h4>
-                    <input type="text" placeholder="Введите протяженность" name="length">
+                    <input type="text" placeholder="Введите протяженность" name="distance">
                     <h4 class="sub-title">Примерное время</h4>
                     <input type="text" placeholder="Введите время" name="time">
                     <h4 class="sub-title">Описание</h4>
                     <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
+                    <input type="hidden"   name="cord"  value="{{$_POST['cord']}}">
                     @csrf
                     <div class="edit-buttons">
                         <input type="reset" class="edit-point__cancel" value ="Отмена">
