@@ -18,12 +18,17 @@
                                 src="/PageMap/img/header/04.svg" alt="route"><p class="button-name">Проложить маршрут</p>
                         </button>
                     </li>
-                    <li class="menu__item">
-                        <button type="button" class="menu__link" id="menu__link__load-route"><img
-                                src="/PageMap/img/header/loadroute.svg" alt="route"><p class="button-name">Загрузить маршрут</p>
+                    <li class="menu__item menu__load-route__mobile">
+                        <button type="button" class="menu__link" id="menu__link__load-route__mobile"><img
+                                src="/PageMap/img/header/loadroute.svg" alt="route">
                         </button>
                     </li>
                 </ul>
+                <li class="menu__load-route">
+                    <button type="button" class="menu__link" id="menu__link__load-route"><img
+                            src="/PageMap/img/header/loadroute.svg" alt="route">
+                    </button>
+                </li>
             </nav>
             <div class="menu__icon">
                 <span></span>
