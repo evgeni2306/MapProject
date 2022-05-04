@@ -145,32 +145,6 @@
             addRoute = true;
             popup._close()
         });
-        // document.getElementById('menu__link__add-object__mobile').addEventListener("click", function (e) {
-        //     addObject = true;
-        //     viewOnly = false;
-        //     addRoute = false;
-        //     arr = new Array();
-        //     route.remove();
-        //     route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
-        //     onMapClick(e.target);
-        //     popup._close()
-        // });
-        // document.getElementById('menu__link__view__mobile').addEventListener("click", function (e) {
-        //     addObject = false;
-        //     viewOnly = true;
-        //     addRoute = false;
-        //     arr = new Array();
-        //     route.remove();
-        //     route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
-        //     onMapClick(e.target);
-        //     popup._close()
-        // });
-        // document.getElementById('menu__link__add-route__mobile').addEventListener("click", function (e) {
-        //     addObject = false;
-        //     viewOnly = false;
-        //     addRoute = true;
-        //     popup._close()
-        // });
         //-------------------------------------------------------
 
         //----------добавление меток и маршрутов------------------
