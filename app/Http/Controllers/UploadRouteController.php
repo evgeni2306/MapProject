@@ -21,10 +21,10 @@ class UploadRouteController extends Controller
         $validateFields = $request->validate([
             'name' => ['required', 'string'],
             'shortdescription' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'description' => ['nullable','string'],
             'difficult' => ['required', 'string','ends_with:greenroute,yellowroute,redroute'],
-            'distance' => ['required', 'string'],
-            'time' => ['required', 'string'],
+            'distance' => ['nullable','string' ],
+            'time' => [ 'nullable','string'],
             'file' => ['required','file','mimes:csv,txt,xml'],
             'type' => ['required', 'string','ends_with:CSV,GPX']
 

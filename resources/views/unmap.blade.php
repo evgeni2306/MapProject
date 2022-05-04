@@ -22,6 +22,9 @@
     /*----------------------------------------------*/
     var zpoints = L.layerGroup(); //зарядки
     var dpoints = L.layerGroup(); //достопримечательности
+    var groutes = L.layerGroup(); //легкие маршруты
+    var yroutes = L.layerGroup(); //средние маршруты
+    var rroutes = L.layerGroup(); //сложные маршруты
 
     var Markers = L.Icon.extend({
         options: {
@@ -31,7 +34,12 @@
     });
 
     var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-        house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+        house = new Markers({iconUrl: '/PageMap/img/icons/house.png'})
+        greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
+        yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
+        redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
+
+
     //--------Вывод точек на карту--------
     <?foreach ($_SESSION['Points'] as $point ) {?>
     L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup('<div class="marker__container">' +
@@ -47,7 +55,7 @@
         '</div>'+
         '</div>').addTo({{$point->type}});
     <? }?>
-//--------------------------------------------
+    //---------механизм создания карты----------
     var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -56,7 +64,39 @@
         tileSize: 512,
         zoomOffset: -1
     })
-    var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints]}).setView([56.82, 60.6], 13);
+    var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, groutes, yroutes, rroutes ]}).setView([56.82, 60.6], 13);
+    // var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints, groutes, yroutes, rroutes ]}).fitWorld();
+    //-----------------------------------------
+
+    // ------- Определение местоположения на карте---------
+    mymap.locate({setView: true, maxZoom: 16});
+    function onLocationFound(e) {
+        L.marker(e.latlng).addTo(mymap)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    }
+    mymap.on('locationfound', onLocationFound);
+    // ----------------------------------
+
+    //-------------------Вывод маршрутов------------------
+    <?    foreach ($_SESSION['Routes'] as $route){?>
+    L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
+        '<div class="marker__container">' +
+        '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +
+        '<div class="short-description">{{$route->shortdescription}}</div>' +
+        '<div class="star-rating star-rating_set">' +
+        '<div class="star-rating__body">' +
+        '<img class="star-rating__star" src="{{$route->rating}}">'+
+        '<span class="star-rating__feedback">()</span>'+
+        '</div>'+
+        '</div>'+
+        '<div class="marker__address">{{$route->distance}}</div>' +
+        '<div class="marker-status status-unknown">Статус : {{$route->time}}</div>' +
+        '<div class="marker__photo__container">'+
+        '<img class="marker__photo" src="{{$route->difficult}}" alt="object">'+
+        '</div>'+
+        '</div>').addTo({{$route->type}});
+    <?}?>
+    //-------------------------------------------------------
 
     var baseLayers = {
 
@@ -64,7 +104,10 @@
 
     var overlays = {
         "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
-        "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints
+        "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints,
+        "<img src='/PageMap/img/route/greenroute.svg'>Легкие маршруты": groutes,
+        "<img src='/PageMap/img/route/yellowroute.svg'>Средние маршруты": yroutes,
+        "<img src='/PageMap/img/route/redroute.svg'>Сложные маршруты": rroutes,
     };
     L.control.layers(baseLayers, overlays).addTo(mymap);
 </script>

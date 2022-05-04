@@ -23,15 +23,132 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
+        <div class="infoblock block">
+            <h1 class="route__title">Маршрут от метро Орехово до метро Семеновская</h1>
+            <div class="infoblock__info">
+                <div class="infoblock__rating">
+                    <div class="infoblock__rating__title">Отзывы</div>
+                    <img src="/PagePointPersonal/img/stars.svg" alt="rating">
+                    <span class="infoblock__rating__feedback">(35)</span>
+                </div>
+                <div class="infoblock__status-block">
+                    <div class="infoblock__status__title">Статус работы</div>
+                    <div class="infoblock__status">Работает</div>
+                </div>      
+                <div class="infoblock__user">
+                    <span class="infoblock__user__add">Автор</span>
+                    <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
+                    <span class="infoblock__user__name">Алексей Петров</span>
+                </div>
+                <div class="infoblock__button-edit"><a href="{{route('editpoints')}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+            </div>
+            <div id="map" class="information__map" style="width: 100%; height: 600px;"></div>
+        </div>
+        <div class="data-block block">
+            <div class="data-block__title title">Данные о маршруте</div>
+            <div class="data">
+                <div class="complexity">
+                    <div class="complexity__title">Сложность</div>
+                    <img src="/PageRoutePersonal/img/icons/middle.svg" alt="middle"><p class="complexity__name">Средняя</p>
+                </div>
+                <div class="length">
+                    <div class="length__title">Протяженность</div>
+                    <img src="/PageRoutePersonal/img/icons/road.svg" alt="road"><p class="length__distance">24.6 км</p>
+                </div>
+                <div class="time">
+                    <div class="time__title">Время прохождения</div>
+                    <img src="/PageRoutePersonal/img/icons/time.svg" alt="time"><p class="time__duration">1 час</p>
+                </div>
+            </div>
+        </div>
+        <div class="description-block block">
+            <div class="description__title title">Описание</div>
+            <div class="description">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал».</div>
+        </div>
+        <div class="feedback block">
+            <div class="feedback__title title">Написать отзыв</div>
+            <form class="feedback__form" method="" action ="">
+            <p class="feedback__mark block__subtitle">Ваша оценка</p>
+            <div class="feedback__rating">
+                <div class="rating__items">
+                    <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
+                    <label for="rating__item__5" class="rating__label"></label>
+                    <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
+                    <label for="rating__item__4" class="rating__label"></label>
+                    <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
+                    <label for="rating__item__3" class="rating__label"></label>
+                    <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
+                    <label for="rating__item__2" class="rating__label"></label>
+                    <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
+                    <label for="rating__item__1" class="rating__label"></label>
+                </div>
+            </div>
+        <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+        <div class="feedback__button__container">
+            <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="comment"></textarea>
+            <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
+            <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
+        </div>
+        </form>
+        </div>
+        <div class="comments-block block">
+            <div class="comments__title title">Отзывы<span class="count__comments">2</span></div>
+            <div class="comments">
+                <div class="comments__comment">
+                <div class="comment__top">
+                    <div class="comment__user">
+                        <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                        <div class="comment__user__content">
+                            <div class="comment__user__name">Александр Иванов</div>
+                            <div class="comment__user__date" id="time">22 августа 2021</div>
+                        </div>
+                    </div>
+                    <div class="comment__rating">
+                        <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                    </div>
+                </div>
+                <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <div class="comment__bottom">
+                    <span class="comment__bottom__useful">Было полезно?</span>
+                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
+                    <div class="comment__like-count">0</div>
+                </div>
+            </div>
+            <div class="comments__comment">
+                <div class="comment__top">
+                    <div class="comment__user">
+                        <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                        <div class="comment__user__content">
+                            <div class="comment__user__name">Александр Иванов</div>
+                            <div class="comment__user__date" id="time">22 августа 2021</div>
+                        </div>
+                    </div>
+                    <div class="comment__rating">
+                        <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                    </div>
+                </div>
+                <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <div class="comment__bottom">
+                    <span class="comment__bottom__useful">Было полезно?</span>
+                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
+                    <div class="comment__like-count">0</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!--<div class="container">
     <div class="infoblock__category__mobile">
         <img src="/PageMap/img/icons/route.svg" alt="category">
         <span class="infoblock__category__name">Маршрут</span>
     </div>
-      <h1 class="point__title">{{$_SESSION['CurrentRoute']->name}}</h1>
+      <h1 class="point__title">Маршрут от цирка до Динамо</h1>
       <div class="infoblock">
         <div class="infoblock__rating">
-            <img src="{{$_SESSION['CurrentRoute']->rating[0]}}" alt="rating">
-            <span class="infoblock__rating__feedback">{{$_SESSION['CurrentRoute']->rating[1]}}</span>
+            <img src="/PagePointPersonal/img/stars.svg" alt="rating">
+            <span class="infoblock__rating__feedback">(35)</span>
         </div>
         <div class="infoblock__category">
             <img src="/PageMap/img/icons/route.svg" alt="category">
@@ -40,27 +157,27 @@
         <div class="infoblock__user">
             <span class="infoblock__user__add">добавил(-а)</span>
             <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
-            <span class="infoblock__user__name">{{$_SESSION['CurrentRoute']->uname.' '.$_SESSION['CurrentRoute']->usurname}}</span>
+            <span class="infoblock__user__name">Алексей Петров</span>
         </div>
       </div>
     <div id="map" class="information__map" style="width: 100%; height: 600px;"></div>
     <div class="information">
       <div class="information__description block">
         <div class="information__description__title block__title">Описание</div>
-        <div class="information__description__text">{{$_SESSION['CurrentRoute']->description}}</div>
+        <div class="information__description__text">Красивые маршрут поездка из одной части города в другую, В основном маршрут проходит по набережной, и парку, но есть места где приходится пересекать дорогу. Утром этим маршрутом езжу на работу, по времени приблизительно столько же сколько и на машине, через пробки, если срезать маршрут по проспекту Андропова, далее по Велозаводской, через Таганскую площадь и сразу на набережную Яузы, получится быстрее всего 55 мин, но часть маршрута будет проходить по проезжей части.</div>
       </div>
       <div class="information__parameters block">
         <div class="information__parameters__parameter">
           <div class="information__parameters__title">Протяженность</div>
-          <div class="information__parameters__value"><img src="/PageRoutePersonal/img/icons/road.svg" alt="">{{$_SESSION['CurrentRoute']->distance}}</div>
+          <div class="information__parameters__value"><img src="/PageRoutePersonal/img/icons/road.svg" alt="">24.6 км</div>
         </div>
         <div class="information__parameters__parameter">
           <div class="information__parameters__title">Время прохождения</div>
-          <div class="information__parameters__value"><img src="/PageRoutePersonal/img/icons/time.svg" alt="">{{$_SESSION['CurrentRoute']->time}}</div>
+          <div class="information__parameters__value"><img src="/PageRoutePersonal/img/icons/time.svg" alt="">Примерно 1 час</div>
         </div>
         <div class="information__parameters__parameter">
           <div class="information__parameters__title">Сложность</div>
-          <div class="information__parameters__value"><img src="/PageRoutePersonal/img/icons/middle.svg" alt="">{{$_SESSION['CurrentRoute']->difficult}}</div>
+          <div class="information__parameters__value"><img src="/PageRoutePersonal/img/icons/middle.svg" alt="">Средняя</div>
         </div>
       </div>
     </div>
@@ -90,70 +207,75 @@
         </div>
         </form>
     </div>
-
+      
       <div class="comments">
-          <div class="comments__title">Отзывов: <span class="count__comments">{{$_SESSION['CurrentRoute']->rating[1]}}</span></div>
-          <?foreach($_SESSION['Rcomments'] as $rcomment) {?>
+          <div class="comments__title">Отзывов: <span class="count__comments">2</span></div>
           <div class="comments__comment">
               <div class="comment__top">
                 <div class="comment__user">
-                    <img class="comment__user-avatar" src="{{$rcomment->avatar}}" alt="user">
+                    <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                     <div class="comment__user__content">
-                        <div class="comment__user__name">{{$rcomment->name.' '.$rcomment->surname}}</div>
-                        <div class="comment__user__date" id="time">{{$rcomment->created_at}}</div>
+                        <div class="comment__user__name">Александр Иванов</div>
+                        <div class="comment__user__date" id="time">22 августа 2021</div>
                     </div>
                 </div>
                 <div class="comment__rating">
-                    <img class="star-rating__star" src="{{$rcomment->rating}}">
+                    <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
                 </div>
               </div>
-              <div class="comment__text">{{$rcomment->description}}</div>
+              <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
               <div class="comment__bottom">
                   <span class="comment__bottom__useful">Было полезно?</span>
                   <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
                   <div class="comment__like-count">0</div>
-                  <!--<button class="comment__dislike-icon" type="button"><img src="/PagePointPersonal/img/dislike.svg" alt="dislike"></button>
-                  <div class="comment__dislike-count">0</div>-->
+                  <button class="comment__dislike-icon" type="button"><img src="/PagePointPersonal/img/dislike.svg" alt="dislike"></button>
+                  <div class="comment__dislike-count">0</div>
               </div>
           </div>
-          <? }?>
+          <div class="comments__comment">
+              <div class="comment__top">
+                <div class="comment__user">
+                    <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
+                    <div class="comment__user__content">
+                        <div class="comment__user__name">Александр Иванов</div>
+                        <div class="comment__user__date" id="time">22 августа 2021</div>
+                    </div>
+                </div>
+                <div class="comment__rating">
+                    <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                </div>
+              </div>
+              <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+              <div class="comment__bottom">
+                  <span class="comment__bottom__useful">Было полезно?</span>
+                  <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
+                  <div class="comment__like-count">0</div>
+                  <button class="comment__dislike-icon" type="button"><img src="/PagePointPersonal/img/dislike.svg" alt="dislike"></button>
+                  <div class="comment__dislike-count">0</div>
+              </div>
+          </div>
       </div>
-
-    </div>
-    </div>
+      
+    </div>          
+    </div>-->
     <!--------------FOOTER-------------------->
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
-</div>
+</div>  
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script src="Script/menu.js"></script>
+<script src="Script/menu.js"></script>   
 <script>
 /*-------------MAP------------------------------*/
     var map = L.map('map').setView([56.826, 60.65], 13);
 
-//---------------стиль карты для авторизованного/неавторизованного
-@if(isset($_SESSION['User']))
-var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
-    @endif
-        @if(!isset($_SESSION['User']))
-    var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        @endif
-        //-----------------
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1
-    }).addTo(map);
-
-    var rout = L.polyline({weight: 55, color: 'red'}).addTo(map);
-//-------------Вывод маршрутов на карту-----------------
-<?    foreach ($_SESSION['CurrentRoute']->rpoints as $rpoint){?>
-
-rout.addLatLng([{{$rpoint->lat}},{{$rpoint->lng}}]);
-<?}?>
-//-------------------------------------------------------
+	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
 
     var Markers = L.Icon.extend({
 		options: {
@@ -177,6 +299,32 @@ rout.addLatLng([{{$rpoint->lat}},{{$rpoint->lng}}]);
             dynamicBullets: true,
         },
     });
+/*---------------LIKES-------------------------*/
+    const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
+    const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
+
+    likeButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("like-active");
+            likeCounts[index].classList.toggle("like-active__count");
+            const current = Number(likeCounts[index].innerHTML);
+            const inc = button.classList.contains("like-active") ? 1 : -1;
+            likeCounts[index].innerHTML = current + inc;
+        });
+    });
+
+    /*const dislikeButtons = Array.from(document.querySelectorAll(".comment__dislike-icon"));
+    const dislikeCounts = Array.from(document.querySelectorAll(".comment__dislike-count"));
+
+    dislikeButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            button.classList.toggle("dislike-active");
+            dislikeCounts[index].classList.toggle("like-active__count");
+            const current = Number(dislikeCounts[index].innerHTML);
+            const inc = button.classList.contains("dislike-active") ? 1 : -1;
+            dislikeCounts[index].innerHTML = current + inc;
+        });
+    });*/        
 </script>
 </body>
 </html>
