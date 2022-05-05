@@ -7,24 +7,22 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
-use App\Http\Controllers\Route;
+use App\Models\Route;
 
 class AddRcommentController extends Controller
 {
     public function AddRcomment(Request $request)
     {
-//        $validateFields = $request->validate([
-//            'rating'=> ['required',],
-//            'text' => ['required','string'],
-//        ]);
-//        $validateFields['creatorid'] = $_SESSION['User']->id;
-//
-       dd($_SESSION['CurrentRoute']->id);
-//        $validateFields['routeid'] = $_SESSION['CurrentRoute']->id;
-//        $rcomment = Rcomment::create($validateFields);
-//        $rate = $this->RatingCalculate();
-//
-//        return redirect()->intended('/route=' . $_SESSION['CurrentRoute']->id);
+        $validateFields = $request->validate([
+            'rating'=> ['required',],
+            'text' => ['required','string'],
+        ]);
+        $validateFields['creatorid'] = $_SESSION['User']->id;
+        $validateFields['routeid'] = $_SESSION['CurrentRoute']->id;
+        $rcomment = Rcomment::create($validateFields);
+        $rate = $this->RatingCalculate();
+
+        return redirect()->intended('/route=' . $_SESSION['CurrentRoute']->id);
 
 
 

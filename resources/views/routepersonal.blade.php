@@ -29,7 +29,7 @@
                 </div>
                 <div class="infoblock__status-block">
                     <div class="infoblock__status__title">Статус работы</div>
-                    <div class="infoblock__status">Работает</div>
+                    <div class="infoblock__status">{{$_SESSION['CurrentRoute']->status}}</div>
                 </div>
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
@@ -116,7 +116,7 @@
                             <img class="star-rating__star" src="{{$rcomment->rating}}">
                         </div>
                     </div>
-                    <div class="comment__text">{{$rcomment->description}}
+                    <div class="comment__text">{{$rcomment->text}}
                     </div>
 {{--                    <div class="comment__bottom">--}}
 {{--                        <span class="comment__bottom__useful">Было полезно?</span>--}}

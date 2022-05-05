@@ -16,6 +16,7 @@ use App\Http\Controllers\UpdatePointController;
 use App\Http\Controllers\GetProfileController;
 use App\Http\Controllers\UploadRouteController;
 use App\Http\Controllers\AddRcommentController;
+use App\Classes\RoutePageClass;
 
 
 session_start();

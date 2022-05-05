@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\RoutePageClass;
 use App\Http\helpfunc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class RoutePageController extends Controller
 
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id','users.name as uname', 'users.avatar', 'users.surname as usurname','creatorid','routes.name','description','difficult','distance','time','rating')
+                ->select('routes.id','users.name as uname', 'users.avatar', 'users.surname as usurname','creatorid','routes.name','description','status','difficult','distance','time','rating')
                 ->where('routes.id',$id)
                 ->first();
 
@@ -33,9 +34,10 @@ class RoutePageController extends Controller
                 ->where('rpoints.routeid', '=', $getroute->id)
                 ->select('lat', 'lng')->get();
 
-                $route = new Route;
+                $route = new RoutePageClass();
                 $route->id = $getroute->id;
                 $route->name = $getroute->name;
+                $route->status = $getroute->status;
                 $route->creatorid = $getroute->creatorid;
                 $route->description=$getroute->description;
                 $route->difficult=$getroute->difficult;
@@ -113,20 +115,4 @@ class RoutePageController extends Controller
             return redirect(route('map'));
         }
     }
-}
-class Route
-{
-    public $id;
-    public $creatorid;
-    public $name;
-    public $description;
-    public $difficult;
-    public $distance;
-    public $time;
-    public $rating;
-    public $rpoints = array();
-    //Данные владельца
-    public $avatar;
-    public $uname;
-    public $usurname;
 }
