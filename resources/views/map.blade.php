@@ -97,9 +97,8 @@
             '</div>'+
             '</div>'+
             '<div class="marker__address">{{$route->distance}}</div>' +
-            '<div class="marker-status status-unknown">Статус : {{$route->time}}</div>' +
+            '<div class="marker-status status-unknown">Статус : {{$route->status}}</div>' +
             '<div class="marker__photo__container">'+
-            '<img class="marker__photo" src="{{$route->difficult}}" alt="object">'+
             '</div>'+
             '</div>').addTo({{$route->type}});
         <?}?>

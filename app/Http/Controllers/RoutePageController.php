@@ -7,7 +7,6 @@ use App\Http\helpfunc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PHPUnit\Framework\Constraint\Count;
 use App\Models\Route as Rout;
 
 class RoutePageController extends Controller
@@ -26,28 +25,29 @@ class RoutePageController extends Controller
 
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id','users.name as uname', 'users.avatar', 'users.surname as usurname','creatorid','routes.name','description','status','difficult','distance','time','rating')
-                ->where('routes.id',$id)
+                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'rating')
+                ->where('routes.id', $id)
                 ->first();
 
             $getrpoints = DB::table('rpoints')
                 ->where('rpoints.routeid', '=', $getroute->id)
                 ->select('lat', 'lng')->get();
 
-                $route = new RoutePageClass();
-                $route->id = $getroute->id;
-                $route->name = $getroute->name;
-                $route->status = $getroute->status;
-                $route->creatorid = $getroute->creatorid;
-                $route->description=$getroute->description;
-                $route->difficult=$getroute->difficult;
-                $route->distace = $getroute->distance;
-                $route->time = $getroute->time;
-                $route->rating = $getroute->rating;
-                $route->rpoints = $getrpoints;
-                $route->uname = $getroute->uname;
-                $route->usurname = $getroute->usurname;
-                $route->avatar=$getroute->avatar;
+            $route = new RoutePageClass(
+                $getroute->id,
+                $getroute->creatorid,
+                $getroute->name,
+                $getroute->status,
+                $getroute->description,
+                $getroute->difficult,
+                $getroute->distance,
+                $getroute->time,
+                $getroute->rating,
+                $getrpoints,
+                $getroute->avatar,
+                $getroute->uname,
+                $getroute->usurname
+            );
 
             $_SESSION['CurrentRoute'] = $route;
 
