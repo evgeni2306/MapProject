@@ -15,6 +15,7 @@ use App\Http\Controllers\UpdateUserController;
 use App\Http\Controllers\UpdatePointController;
 use App\Http\Controllers\GetProfileController;
 use App\Http\Controllers\UploadRouteController;
+use App\Http\Controllers\AddRcommentController;
 
 
 session_start();
@@ -63,7 +64,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
     Route::post('/Addroute', [AddRouteController::class, 'AddRoute'])->name('Addroute');//добавление
-
+    Route::post('/addRcomment', [AddRcommentController::class, 'AddRcomment'])->name('AddRcomment');
     //----------------------------//
 
 
@@ -101,8 +102,8 @@ Route::get('auth/vkontakte/callback', [SocialController::class, 'loginwithvkonta
 
 
 //Роуты для всех юзеров
-Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint']);
-Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute']);
+Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint'])->name('getpointpage');
+Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute'])->name('getroutepage');
 
 Route::get('/map', [GetAllController::class, 'GetAll'])->name('map');
 

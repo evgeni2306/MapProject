@@ -16,34 +16,32 @@ class UpdatePointController extends Controller
         Artisan::call('storage:link');
         if (Auth::check()) {
             $validateFields = $request->validate([
-                'name' => ['string','required'],
-                'address' => ['string','required'],
-                'type' => ['string','required','ends_with:zpoints,dpoints'],
-                'status' => ['string','required','ends_with:Под вопросом,Работает,Не работает'],
-                'description' => ['max:500','string'],
-                'shortdescription' => ['max:255','string'],
-                'photo'=> ['mimes:jpeg,jpg,png']
+                'name' => ['string', 'required'],
+                'address' => ['string', 'required'],
+                'type' => ['string', 'required', 'ends_with:zpoints,dpoints'],
+                'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
+                'description' => ['nullable', 'max:500', 'string'],
+                'shortdescription' => ['max:255', 'string'],
+                'photo' => ['mimes:jpeg,jpg,png']
                 //Допилить валидацию, как минимум, чтобы статус был только одной из возможных переменных
-
-
             ]);
-            if(isset($validateFields['photo'])){
+
+            if (isset($validateFields['photo'])) {
                 $path = Storage::putFile('public/pointphoto', $request->file('photo'));
                 $path = 'storage/pointphoto/' . explode('/', $path)[2];
                 $oldpath = 'public/pointphoto/' . explode('/', $_SESSION['CurrentEditPoint']->photo)[2];
                 $delete = Storage::delete($oldpath);
-            }else{
+            } else {
                 $path = $_SESSION['CurrentEditPoint']->photo;
 
             }
-
-
 
 
             $typeAndIcon = explode(',', $validateFields['type']);
             $validateFields['type'] = $typeAndIcon[1];
             $validateFields['icon'] = $typeAndIcon[0];
 
+            //----Обновление точки----
             DB::table('points')
                 ->where('id', $_SESSION['CurrentEditPoint']->id)
                 ->update([
@@ -55,10 +53,9 @@ class UpdatePointController extends Controller
                     'description' => $validateFields['description'],
                     'shortdescription' => $validateFields['shortdescription'],
                     'photo' => $path,
-
-
                 ]);
-            return redirect(route('GetUpdatePoint', $_SESSION['CurrentEditPoint']->id));
+            //-----------------------//
+            return redirect(route('getpointpage', $_SESSION['CurrentEditPoint']->id));
         }
         return redirect(route('login'));
     }

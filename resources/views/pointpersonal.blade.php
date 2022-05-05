@@ -172,8 +172,6 @@ var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION[
     zoomOffset: -1
 }).addTo(map);
 
-
-
     var Markers = L.Icon.extend({
 		options: {
 			iconSize: [39, 45],
@@ -181,35 +179,36 @@ var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION[
 		}
 	});
 
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
 	var	house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+
 L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}],{icon: {{$_SESSION['CurrentPoint']->icon}}} ).addTo(map);
 /*---------------SWIPER-------------------------*/
-    new Swiper('.image-slider', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true,
-        },
-    });
+    // new Swiper('.image-slider', {
+    //     navigation: {
+    //         nextEl: '.swiper-button-next',
+    //         prevEl: '.swiper-button-prev'
+    //     },
+    //
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //         clickable: true,
+    //         dynamicBullets: true,
+    //     },
+    // });
 /*---------------LIKES-------------------------*/
-    const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
-    const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
-
-    likeButtons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-            button.classList.toggle("like-active");
-            likeCounts[index].classList.toggle("like-active__count");
-            const current = Number(likeCounts[index].innerHTML);
-            const inc = button.classList.contains("like-active") ? 1 : -1;
-            likeCounts[index].innerHTML = current + inc;
-        });
-    });
+    // const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
+    // const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
+    //
+    // likeButtons.forEach((button, index) => {
+    //     button.addEventListener("click", () => {
+    //         button.classList.toggle("like-active");
+    //         likeCounts[index].classList.toggle("like-active__count");
+    //         const current = Number(likeCounts[index].innerHTML);
+    //         const inc = button.classList.contains("like-active") ? 1 : -1;
+    //         likeCounts[index].innerHTML = current + inc;
+    //     });
+    // });
 /*-------------------------------*/
 </script>
 </body>
