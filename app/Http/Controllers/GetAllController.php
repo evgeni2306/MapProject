@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\helpfunc;
-use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;

@@ -72,13 +72,20 @@ class UploadRouteController extends Controller
 
     public function CSVparse($path, $rroute)
     {
-        $file = explode("\r\n", (string)file_get_contents(storage_path('app\\' . $path)));
+        $file = explode("\n", (string)file_get_contents(storage_path('app\\' . $path)));
         $count = Count($file);
         $Route = Route::create($rroute);
+
+        $abc = explode(',',$file[0]);
+        for($i = 0; $i<count($abc); $i++){
+            $abc[$i] = mb_strtolower(trim($abc[$i]));
+        }
+        $indexlat = array_search('latitude',$abc);
+        $indexlng = array_search('longitude',$abc);
 //        //$i=1 т.к там первая строчка - шапка таблицы
         for ($i = 1; $i <= $count - 10; $i += 10) {
             $row = explode(',', $file[$i]);
-            $point = array("routeid" => $Route->id, "lat" => $row[2], "lng" => $row[3]);
+            $point = array("routeid" => $Route->id, "lat" => $row[$indexlat], "lng" => $row[$indexlng]);
             set_time_limit(20);
             Rpoint::create($point);
         }
