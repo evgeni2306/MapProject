@@ -26,12 +26,12 @@
             <div class="user__info">
                 <div class="user__rating">
                     <div class="rating__title title">Рейтинг</div>
-                    <div class="rating__points">Набрано очков: <span class="points">67</span></div>
+                    <div class="rating__points">Набрано очков: <span class="points">60</span></div>
                     <div class="rating__level">Уровень: <span>Мастер колеса</span></div>
                     <div class="rating__nextlevel">
                         <div class="nextlevel">Следующий уровень</div>
                         <div class="points-received">
-                            <span class="points">67</span>/<span class="target">140</span>
+                            <span class="points">60</span>/<span class="target">100</span>
                         </div>
                     </div>
                     <div class="rating__nextlevel__progress">
