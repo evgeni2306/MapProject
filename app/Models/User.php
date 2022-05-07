@@ -26,6 +26,8 @@ class User extends Authenticatable
         'avatar',
         'transport',
         'mapstyle',
+        'rating',
+        'rank',
         'social_id'
     ];
 

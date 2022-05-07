@@ -21,17 +21,17 @@
             <div class="user">
                 <img class="user__avatar" src="{{$_SESSION['User']->avatar}}" alt="avatar">
                 <div class="user__name">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}</div>
-                <div class="user__grade"><img src="/PageProfile/img/cool-watermelon.svg" alt="">Мастер колеса</div>
+                <div class="user__grade"><img src="/PageProfile/img/cool-watermelon.svg" alt="">{{$_SESSION['User']->rank}}</div>
             </div>
             <div class="user__info">
                 <div class="user__rating">
                     <div class="rating__title title">Рейтинг</div>
-                    <div class="rating__points">Набрано очков: <span class="points">60</span></div>
-                    <div class="rating__level">Уровень: <span>Мастер колеса</span></div>
+                    <div class="rating__points">Набрано очков: <span class="points">{{$_SESSION['User']->rating}}</span></div>
+                    <div class="rating__level">Уровень: <span>{{$_SESSION['User']->rank}}</span></div>
                     <div class="rating__nextlevel">
                         <div class="nextlevel">Следующий уровень</div>
                         <div class="points-received">
-                            <span class="points">60</span>/<span class="target">100</span>
+                            <span class="points">{{$_SESSION['User']->rating}}</span>/<span class="target">{{$_SESSION['User']->maxrating}}</span>
                         </div>
                     </div>
                     <div class="rating__nextlevel__progress">

@@ -22,8 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password',255)->nullable(false);
             $table->string('avatar', 255)->nullable('true');
             $table->string('transport', 255)->nullable('true');
-            $table->smallInteger('rating')->nullable(false);
-            $table->tinyInteger('rank')->nullable(false);
+            $table->integer('rating')->nullable(false);
+            $table->integer('rank')->unsigned()->default();
+            $table->foreign('rank')->references('id')->on('ranks')->change();
             $table->text('mapstyle')->nullable(true);
             $table->string('social_id')->nullable();
 

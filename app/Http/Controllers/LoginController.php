@@ -22,7 +22,9 @@ class LoginController extends Controller
         if (Auth::attempt($formFields)) {
             $_SESSION['User'] = DB::table('users')
                 ->where('login', $formFields['login'])
-                ->select('id', 'name', 'surname', 'avatar', 'transport','mapstyle')
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport','mapstyle','rating','ranks.name as rank',
+                'maxrating')
                 ->first();
             return redirect('map');
         }

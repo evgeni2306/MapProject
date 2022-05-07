@@ -7,19 +7,20 @@ use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Array_;
+use App\Http\helpfunc;
 
 class AddPointController extends Controller
 {
+    use helpfunc;
+
     public function AddPoint(Request $request)
     {
         $validateFields = $request->validate([
             'lat' => ['required', 'numeric'],
             'lng' => ['required', 'numeric'],
-            'address' => ['required', 'string'],
+            'address' => ['nullable', 'string',],
             'name' => ['required', 'string'],
-            'type' => ['required', 'string','ends_with:zpoints,dpoints'],
+            'type' => ['required', 'string', 'ends_with:zpoints,dpoints'],
 
         ]);
         $typeAndIcon = explode(',', $validateFields['type']);
@@ -43,6 +44,7 @@ class AddPointController extends Controller
             $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
         }
         $point = Point::create($validateFields);
-        return redirect(route('GetUpdatePoint',$point->id));
+        $this->UpdateUserRating(5);
+        return redirect(route('GetUpdatePoint', $point->id));
     }
 }

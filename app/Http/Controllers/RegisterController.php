@@ -29,12 +29,15 @@ class RegisterController extends Controller
         $validateFields['mapstyle'] = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         $validateFields['avatar'] = '/PageMap/img/user/' . $av;
         $validateFields['transport'] = 'Не указан';
+        $validateFields['rank'] = 1;
+        $validateFields['rating'] = 0;
         $user = User::create($validateFields);
         if ($user) {
             Auth::login($user);
             $_SESSION['User'] = DB::table('users')
-                ->where('id', $user->id)
-                ->select('id', 'name', 'surname', 'avatar', 'transport','mapstyle')
+                ->where('users.id', $user->id)
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport','mapstyle','rating','ranks.name as rank','maxrating')
                 ->first();
             return redirect(route('map'));
         }

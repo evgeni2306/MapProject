@@ -21,27 +21,30 @@ class SocialController extends Controller
     {
 
 
-        $user = Socialite::driver('google')->stateless()->user();
-        $isUser = User::where('social_id', $user->id)->first();
+        $socialuserid = Socialite::driver('google')->stateless()->user();
+        $isUser = User::where('social_id', $socialuserid->id)->first();
         if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
             return redirect('map');
         } else {
-            $nameAndSurname = explode(' ', $user->name);
+            $nameAndSurname = explode(' ', $socialuserid->name);
             $createUser = User::create([
                 'name' => $nameAndSurname[0],
                 'surname' => $nameAndSurname[1],
-                'login' => $user->email,
-                'social_id' => $user->id,
-                'password' => encrypt('user'),
-                'avatar' => $user->getAvatar(),
+                'login' => $socialuserid->email,
+                'social_id' => $socialuserid->id,
+                'password' => encrypt('socialuserid'),
+                'avatar' => $socialuserid->getAvatar(),
                 'transport' => 'Не указан',
+                'rating' => 0,
+                'rank' => 1,
                 'mapstyle' => 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
             ]);
             $_SESSION['User'] = DB::table('users')
-                ->where('social_id', $user->id)
-                ->select('id', 'name', 'surname', 'avatar', 'transport','mapstyle')
+                ->where('social_id', $socialuserid->id)
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rank', 'maxrating')
                 ->first();
 
             Auth::login($createUser);
@@ -62,28 +65,30 @@ class SocialController extends Controller
     public function loginwithvkontakte()
     {
 
-
-        $user = Socialite::driver('vkontakte')->user();
-        $isUser = User::where('social_id', $user->id)->first();
+        $socialuserid = Socialite::driver('vkontakte')->user();
+        $isUser = User::where('social_id', $socialuserid->id)->first();
         if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
             return redirect('map');
         } else {
-            $nameAndSurname = explode(' ', $user->name);
+            $nameAndSurname = explode(' ', $socialuserid->name);
             $createUser = User::create([
                 'name' => $nameAndSurname[0],
                 'surname' => $nameAndSurname[1],
                 'login' => $nameAndSurname[0] . time(),
-                'social_id' => $user->id,
-                'password' => encrypt('user'),
-                'avatar' => $user->getAvatar(),
+                'social_id' => $socialuserid->id,
+                'password' => encrypt('socialuserid'),
+                'avatar' => $socialuserid->getAvatar(),
                 'transport' => 'Не указан',
+                'rating' => 0,
+                'rank' => 1,
                 'mapstyle' => 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
             ]);
             $_SESSION['User'] = DB::table('users')
-                ->where('social_id', $user->id)
-                ->select('id', 'name', 'surname', 'avatar', 'transport', 'mapstyle')
+                ->where('social_id', $socialuserid->id)
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rank', 'maxrating')
                 ->first();
 
             Auth::login($createUser);

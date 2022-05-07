@@ -160,22 +160,30 @@
         }).addTo(map);
 
         var rout = L.polyline({weight: 55, color: 'red'}).addTo(map);
-//-------------Вывод маршрутов на карту-----------------
+        var Markers = L.Icon.extend({
+            options: {
+                iconSize: [39, 45],
+                iconAnchor: [16, 37]
+            }
+        });
+
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
+        var house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+
+        //-------------Вывод маршрутa на карту-----------------
         <?    foreach ($_SESSION['CurrentRoute']->rpoints as $rpoint){?>
 
         rout.addLatLng([{{$rpoint->lat}},{{$rpoint->lng}}]);
         <?}?>
         //-------------------------------------------------------
 
-    var Markers = L.Icon.extend({
-        options: {
-            iconSize: [39, 45],
-            iconAnchor: [16, 37]
-        }
-    });
 
-    var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-        house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+        //---------------Вывод точек на карту--------------------
+        <?foreach ($_SESSION['CurrentRoute']->pointsnear as $point ) {?>
+        L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).addTo(map);
+        <? }?>
+        //-------------------------------------------------------
+
     /*---------------SWIPER-------------------------*/
     new Swiper('.image-slider', {
         navigation: {

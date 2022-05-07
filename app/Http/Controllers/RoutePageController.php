@@ -23,15 +23,37 @@ class RoutePageController extends Controller
         if ((is_numeric($id)) and ($id > 0) and Rout::where('id', $id)->exists()) {
             //Получение точки из бд
 
+// var_dump(abs($z));
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'rating')
+                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
 
             $getrpoints = DB::table('rpoints')
                 ->where('rpoints.routeid', '=', $getroute->id)
                 ->select('lat', 'lng')->get();
+
+
+            $rpointsarr = array();
+            $pointarr = array();
+            for ($i = 0; $i < count($getrpoints) - 2; $i += 3) {
+                array_push($rpointsarr, $getrpoints[$i]);
+            }
+            $getpoints = DB::table('points')
+                ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+                    'status')
+                ->get();
+            for ($i = 0; $i < count($rpointsarr); $i+=1) {
+                foreach ($getpoints as $point) {
+                    if (abs($rpointsarr[$i]->lat - $point->lat) < 0.00875 and abs($rpointsarr[$i]->lng - $point->lng) < 0.00875) {
+                        if (!in_array($point, $pointarr)) {
+                            array_push($pointarr, $point);
+                        }
+
+                    }
+                }
+            }
 
             $route = new RoutePageClass(
                 $getroute->id,
@@ -46,7 +68,8 @@ class RoutePageController extends Controller
                 $getrpoints,
                 $getroute->avatar,
                 $getroute->uname,
-                $getroute->usurname
+                $getroute->usurname,
+                $pointarr
             );
 
             $_SESSION['CurrentRoute'] = $route;
@@ -78,7 +101,7 @@ class RoutePageController extends Controller
 //Получение комментов из бд
             $_SESSION['Rcomments'] = DB::table('rcomments')
                 ->join('users', 'rcomments.creatorId', '=', 'users.id')
-                ->select('users.name', 'users.surname', 'rating', 'text', 'rcomments.created_at', 'avatar', 'login')
+                ->select('users.name', 'users.surname', 'rcomments.rating', 'text', 'rcomments.created_at', 'avatar', 'login')
                 ->where('routeid', $id)
                 ->latest()
                 ->get();

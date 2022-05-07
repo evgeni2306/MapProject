@@ -24,7 +24,7 @@ class PointPageController extends Controller
             //Получение точки из бд
             $_SESSION['CurrentPoint'] = DB::table('points')
                 ->join('users', 'users.id', '=', 'points.creatorId')
-                ->select('points.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'points.name', 'type', 'rating', 'address', 'lat', 'lng', 'icon', 'description','photo')
+                ->select('points.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description','photo')
                 ->where('points.id', $id)->first();
 //Определение типа и иконки по группe type
             if ($_SESSION['CurrentPoint']->type == 'zpoints') {
@@ -59,7 +59,7 @@ class PointPageController extends Controller
 //Получение комментов из бд
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
-                ->select('users.name', 'users.surname', 'rating', 'text', 'pcomments.created_at', 'avatar', 'login')
+                ->select('users.name', 'users.surname', 'pcomments.rating', 'text', 'pcomments.created_at', 'avatar', 'login')
                 ->where('pointid', $id)
                 ->latest()
                 ->get();

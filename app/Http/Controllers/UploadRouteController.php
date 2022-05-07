@@ -2,39 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\File;
+
 use App\Models\Route;
 use App\Models\Rpoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\Component;
-use PHPUnit\Framework\Constraint\Count;
+use App\Http\helpfunc;
 use SimpleXMLElement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 
 class UploadRouteController extends Controller
 {
+    use helpfunc;
+
     public function UploadRoute(Request $request)
     {
         Artisan::call('storage:link');
         $validateFields = $request->validate([
             'name' => ['required', 'string'],
             'shortdescription' => ['required', 'string'],
-            'description' => ['nullable','string'],
-            'difficult' => ['required', 'string','ends_with:greenroute,yellowroute,redroute'],
-            'distance' => ['nullable','string' ],
-            'time' => [ 'nullable','string'],
-            'file' => ['required','file','mimes:csv,txt,xml'],
-            'type' => ['required', 'string','ends_with:CSV,GPX']
+            'description' => ['nullable', 'string'],
+            'difficult' => ['required', 'string', 'ends_with:greenroute,yellowroute,redroute'],
+            'distance' => ['nullable', 'string'],
+            'time' => ['nullable', 'string'],
+            'file' => ['required', 'file', 'mimes:csv,txt,xml'],
+            'type' => ['required', 'string', 'ends_with:CSV,GPX']
 
         ]);
-        $difficulttype = explode(',',$validateFields['difficult']);
+        $difficulttype = explode(',', $validateFields['difficult']);
         $rroute = array(
             'creatorid' => Auth::id(),
             'status' => 'Под вопросом',
-            'type'=>$difficulttype[1],
-            'icon'=>$difficulttype[2],
+            'type' => $difficulttype[1],
+            'icon' => $difficulttype[2],
             'name' => $validateFields['name'],
             'shortdescription' => $validateFields['shortdescription'],
             'description' => $validateFields['description'],
@@ -54,6 +55,7 @@ class UploadRouteController extends Controller
                 break;
 
         }
+        $this->UpdateUserRating(25);
         return redirect(route('map'));
     }
 
@@ -76,12 +78,12 @@ class UploadRouteController extends Controller
         $count = Count($file);
         $Route = Route::create($rroute);
 
-        $abc = explode(',',$file[0]);
-        for($i = 0; $i<count($abc); $i++){
+        $abc = explode(',', $file[0]);
+        for ($i = 0; $i < count($abc); $i++) {
             $abc[$i] = mb_strtolower(trim($abc[$i]));
         }
-        $indexlat = array_search('latitude',$abc);
-        $indexlng = array_search('longitude',$abc);
+        $indexlat = array_search('latitude', $abc);
+        $indexlng = array_search('longitude', $abc);
 //        //$i=1 т.к там первая строчка - шапка таблицы
         for ($i = 1; $i <= $count - 10; $i += 10) {
             $row = explode(',', $file[$i]);
