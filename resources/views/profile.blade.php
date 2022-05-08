@@ -71,7 +71,7 @@
                 </div>
                 <div class="transport-model">
                     <div class="transport-model__title title">Модель транспорта</div>
-                    <div class="transport-model__type">KingSong 16S SPORTS 840WH</div>
+                    <div class="transport-model__type">{{$_SESSION['User']->transport}}</div>
                 </div>
             </div>
         </div>

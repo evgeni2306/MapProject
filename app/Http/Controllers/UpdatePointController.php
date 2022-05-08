@@ -17,11 +17,11 @@ class UpdatePointController extends Controller
         if (Auth::check()) {
             $validateFields = $request->validate([
                 'name' => ['string', 'required'],
-                'address' => ['string', 'required'],
+                'address' => ['string', 'nullable'],
                 'type' => ['string', 'required', 'ends_with:zpoints,dpoints'],
                 'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
                 'description' => ['nullable', 'max:500', 'string'],
-                'shortdescription' => ['max:255', 'string'],
+                'shortdescription' => ['max:255', 'string','nullable'],
                 'photo' => ['mimes:jpeg,jpg,png']
                 //Допилить валидацию, как минимум, чтобы статус был только одной из возможных переменных
             ]);

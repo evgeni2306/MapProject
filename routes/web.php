@@ -18,6 +18,9 @@ use App\Http\Controllers\UploadRouteController;
 use App\Http\Controllers\AddRcommentController;
 use App\Classes\RoutePageClass;
 
+use Illuminate\Support\Facades\Artisan;
+
+
 
 session_start();
 /*
@@ -30,7 +33,7 @@ session_start();
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Artisan::call('storage:link');
 
 //Роуты для авторизованных
 Route::middleware('auth')->group(function () {

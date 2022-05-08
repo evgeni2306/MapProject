@@ -30,7 +30,7 @@ trait helpfunc
 //        dd($_SESSION['User']->rating);
         if ($_SESSION['User']->rating >= $_SESSION['User']->maxrating) {
             switch ($_SESSION['User']->rank) {
-                case 'Новичек':
+                case 'Новичок':
                     $this->UpdateUserRank(2);
                     break;
                 case 'Любитель':

@@ -22,7 +22,7 @@ class CreateRanksTable extends Migration
 
         DB::table('ranks')->insert(
             array(
-                'name' => 'Новичек',
+                'name' => 'Новичок',
                 'icon' => 'green',
                 'maxrating'=>200
             )

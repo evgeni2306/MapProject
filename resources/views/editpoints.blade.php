@@ -21,7 +21,7 @@
             <div class="edit-point__forms">
                 <form method="post" action ="{{route('UpdatePoint',$_SESSION['CurrentEditPoint']->id)}}" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
-                    <input type="text" placeholder="Введите название" name="name" value ="{{$_SESSION['CurrentEditPoint']->name}}">
+                    <input type="text" required placeholder="Введите название" name="name" value ="{{$_SESSION['CurrentEditPoint']->name}}">
                     <h4 class="sub-title">Категория<span class="required-form">*</span></h4>
                     <select id = 'category' required name="type">
                         <option  value="{{$_SESSION['CurrentEditPoint']->type}}" disabled   style="display:none;">Выберите категорию</option>
@@ -29,7 +29,7 @@
                         <option  value="house,dpoints"><img src="/PageMap/img/add-object/02.svg" alt="socket">Достопримечательность</option>
                     </select>
                     <h4 class="sub-title">Адрес<span class="required-form">*</span></h4>
-                    <input type="text" placeholder="Введите адрес" name="address" value ="{{$_SESSION['CurrentEditPoint']->address}}">
+                    <input type="text" placeholder="Введите адрес"   name="address" value ="{{$_SESSION['CurrentEditPoint']->address}}">
                     <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
                     <select  id="status"  required name="status">
                         <option value="{{$_SESSION['CurrentEditPoint']->status}}" disabled style="display:none;"></option>
@@ -38,7 +38,7 @@
                         <option value="Не работает">Не работает</option>
                     </select>
                     <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description" maxlength="255" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
+                    <input type="text"  required class="short-description" maxlength="255" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
                     <h4 class="sub-title">Полное описание</h4>
                     <textarea class="edit-point__description"  maxlength="500"placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description">{{$_SESSION['CurrentEditPoint']->description}}</textarea>
                     <h4 class="sub-title">Фотографии</h4>
