@@ -128,9 +128,13 @@ body._lock {
     color: #8c8c95;
     margin-left: 12px;
 }
-.infoblock__address__title {
+.infoblock__address__title,
+.infoblock__status__title {
     color: #8c8c95;
     margin-bottom: 15px;
+}
+.infoblock__address {
+    margin-bottom: 24px;
 }
 .infoblock__address img {
     margin-right: 12px;

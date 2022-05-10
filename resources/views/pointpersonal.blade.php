@@ -34,6 +34,8 @@
                 </div>
                 <div class="infoblock__address__title">Адрес</div>
                 <div class="infoblock__address"><img src="/PagePointPersonal/img/04.svg">ул. Авиационная, 123</div>
+                <div class="infoblock__status__title">Статус работы</div>
+                <div class="infoblock__status">Работает</div>
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
