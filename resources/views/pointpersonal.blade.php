@@ -43,6 +43,8 @@
                 </div>
                 <div class="infoblock__address__title">Адрес</div>
                 <div class="infoblock__address"><img src="/PagePointPersonal/img/04.svg">{{$_SESSION['CurrentPoint']->address}}</div>
+                <div class="infoblock__status__title">Статус работы</div>
+                <div class="infoblock__status">{{$_SESSION['CurrentPoint']->status}}</div>
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="{{$_SESSION['CurrentPoint']->avatar}}" class="infoblock__user__photo" alt="">

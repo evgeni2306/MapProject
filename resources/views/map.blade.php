@@ -215,9 +215,9 @@
         var overlays = {
             "<img src='/PageMap/img/icons/03.svg'>Розетки": zpoints,
             "<img src='/PageMap/img/icons/04.svg'>Достопримечательности": dpoints,
-            "<img src='/PageMap/img/route/greenroute.svg'>Легкие маршруты": groutes,
-            "<img src='/PageMap/img/route/yellowroute.svg'>Средние маршруты": yroutes,
-            "<img src='/PageMap/img/route/redroute.svg'>Сложные маршруты": rroutes,
+            "<img src='/PageMap/img/route/filtergreenroute.svg'>Легкие маршруты": groutes,
+            "<img src='/PageMap/img/route/filteryellowroute.svg'>Средние маршруты": yroutes,
+            "<img src='/PageMap/img/route/filterredroute.svg'>Сложные маршруты": rroutes,
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
         //------------------------------------------------------------------

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/styles.css">
+    <link rel="stylesheet" href="/PageLoadRoute/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
 </head>
 <body>

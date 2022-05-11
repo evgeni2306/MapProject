@@ -44,7 +44,7 @@ class AddPointController extends Controller
             $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
         }
         $point = Point::create($validateFields);
-        $this->UpdateUserRating(5);
+        $this->UpdateUserRating(10);
         return redirect(route('GetUpdatePoint', $point->id));
     }
 }
