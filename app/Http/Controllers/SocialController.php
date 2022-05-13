@@ -44,7 +44,7 @@ class SocialController extends Controller
             $_SESSION['User'] = DB::table('users')
                 ->where('social_id', $socialuserid->id)
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rank', 'maxrating')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
                 ->first();
 
             Auth::login($createUser);
@@ -88,7 +88,7 @@ class SocialController extends Controller
             $_SESSION['User'] = DB::table('users')
                 ->where('social_id', $socialuserid->id)
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rank', 'maxrating')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
                 ->first();
 
             Auth::login($createUser);

@@ -14,8 +14,8 @@
 <body>
 <div class="wrapper">
     <!--------------HEADER-------------------->
-@include('Components.headerPages')
-<!--------------/HEADER-------------------->
+    @include('Components.headerPages')
+    <!--------------/HEADER-------------------->
     <div class="container">
         <h1 class="edit-point__title">Загрузка маршрута</h1>
         <div class="content__container">
@@ -24,7 +24,7 @@
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name" required value="{{old('name')}}">
                     <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description"value="{{old('shortdescription')}}" placeholder="Информация будет отображена на карте" name="shortdescription" value="{{old('shortdescription')}}" required>
+                    <input type="text" class="short-description"  value="{{old('shortdescription')}}" placeholder="Информация будет отображена на карте" name="shortdescription" required>
                     <h4 class="sub-title">Сложность<span class="required-form">*</span></h4>
                     <select required id="difficult" name="difficult">
                         <option  disabled value="{{old('difficult')}}" selected style="display:none;">Выберите сложность</option>
@@ -60,8 +60,8 @@
 
     </div>
     <!--------------FOOTER-------------------->
-@include('Components.footer')
-<!--------------/FOOTER-------------------->
+    @include('Components.footer')
+    <!--------------/FOOTER-------------------->
 </div>
 <script src="Script/menu.js"></script>
 <script>

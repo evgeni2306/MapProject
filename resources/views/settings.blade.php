@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageSettings/css/styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
+
 </head>
 <body>
-<!--------------HEADER-------------------->
+<div class="wrapper">
+    <!--------------HEADER-------------------->
 @include('Components.headerPages')
 <!--------------/HEADER-------------------->
     <div class="container">
@@ -39,7 +41,7 @@
 {{--                    <h4 class="sub-title">E-mail</h4>--}}
 {{--                    <input type="text" placeholder="Введите e-mail" name="email">--}}
                     <h4 class="sub-title">Модель транспорта</h4>
-                    <input type="text" placeholder="Введите модель своего транспорта"  value="{{$_SESSION['User']->transport}}"name="transport">
+                    <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$_SESSION['User']->transport}}">
                     <h4 class="sub-title">Вид карты</h4>
                     <select required id="mapstyle" name="mapstyle">
                         <option value="{{$_SESSION['User']->mapstyle}}" disabled selected style="display:none;">Выберите вид карты</option>
@@ -56,7 +58,7 @@
             </div>
         </form>
     </div>
-<!--------------FOOTER-------------------->
+    <!--------------FOOTER-------------------->
 @include('Components.footer')
 <!--------------/FOOTER-------------------->
 </div>

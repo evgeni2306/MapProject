@@ -37,7 +37,7 @@ class RegisterController extends Controller
             $_SESSION['User'] = DB::table('users')
                 ->where('users.id', $user->id)
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport','mapstyle','rating','ranks.name as rank','maxrating')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport','mapstyle','rating','ranks.name as rname','maxrating')
                 ->first();
             return redirect(route('map'));
         }

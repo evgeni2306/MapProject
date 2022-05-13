@@ -13,7 +13,7 @@ trait helpfunc
         $_SESSION['User'] = DB::table('users')
             ->where('users.id', Auth::id())
             ->join('ranks', 'ranks.id', '=', 'users.rank')
-            ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rank', 'maxrating')
+            ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
             ->first();
     }
 
@@ -29,7 +29,7 @@ trait helpfunc
             ]);
 //        dd($_SESSION['User']->rating);
         if ($_SESSION['User']->rating >= $_SESSION['User']->maxrating) {
-            switch ($_SESSION['User']->rank) {
+            switch ($_SESSION['User']->rname) {
                 case 'Новичок':
                     $this->UpdateUserRank(2);
                     break;
@@ -54,7 +54,7 @@ trait helpfunc
             ->select('id', 'name', 'maxrating', 'icon')
             ->get();
 
-        $_SESSION['User']->rank = $updaterank[0]->name;
+        $_SESSION['User']->rname = $updaterank[0]->name;
         $_SESSION['User']->maxrating = $updaterank[0]->maxrating;
         DB::table('users')
             ->where('id', Auth::user()->id)
