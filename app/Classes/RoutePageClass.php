@@ -5,7 +5,7 @@ class RoutePageClass
 {
     public $id;
     public $creatorid;
-    public  $name;
+    public $name;
     public $status;
     public $description;
     public $difficult;
@@ -33,7 +33,8 @@ class RoutePageClass
         string $avatar,
         string $uname,
         string $usurname,
-    $pointsnear
+        $icon,
+        $pointsnear
 
     )
     {
@@ -50,7 +51,9 @@ class RoutePageClass
         $this->avatar = $avatar;
         $this->uname = $uname;
         $this->usurname = $usurname;
+        $this->icon = $icon;
         $this->pointsnear = $pointsnear;
+
     }
 
 }

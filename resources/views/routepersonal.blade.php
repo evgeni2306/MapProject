@@ -5,6 +5,7 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageRoutePersonal/css/styles.css">
@@ -14,9 +15,17 @@
 </head>
 <body>
 <div class="wrapper">
+@if(isset($_SESSION['User']))
     <!--------------HEADER-------------------->
-@include('Components.headerPages')
-<!--------------/HEADER-------------------->
+    @include('Components.headerPages')
+    <!--------------/HEADER-------------------->
+@endif
+
+@if(!isset($_SESSION['User']))
+    <!--------------HEADER-------------------->
+    @include('Components.headerUnauthPages')
+    <!--------------/HEADER-------------------->
+    @endif
     <div class="container">
         {{--Блок с инфой--}}
         <div class="infoblock block">
@@ -37,6 +46,7 @@
                     <span
                         class="infoblock__user__name">{{$_SESSION['CurrentRoute']->uname.' '.$_SESSION['CurrentRoute']->usurname}}</span>
                 </div>
+
                 <div class="infoblock__button-edit"><a href=""><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a>
                 </div>
             </div>
@@ -47,7 +57,7 @@
             <div class="data">
                 <div class="complexity">
                     <div class="complexity__title">Сложность</div>
-                    <img src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+                    <img src="/PageRoutePersonal/img/icons/{{$_SESSION['CurrentRoute']->icon}}.svg" alt="middle">
                     <p class="complexity__name">{{$_SESSION['CurrentRoute']->difficult}}</p>
                 </div>
                 <div class="length">
@@ -68,6 +78,7 @@
         </div>
         {{--Блок с инфой--}}
 
+        @if(isset($_SESSION['User']))
         {{--Блок для отзывов--}}
         <div class="feedback block">
             <div class="feedback__title title">Написать отзыв</div>
@@ -97,7 +108,7 @@
                     @csrf
                 </div>
             </form>
-        </div>
+        </div>@endif
         <div class="comments-block block">
             <div class="comments__title title">Отзывы<span class="count__comments">{{$_SESSION['CurrentRoute']->rating[1]}}</span></div>
             <div class="comments">
@@ -142,7 +153,7 @@
 <script src="Script/menu.js"></script>
 <script>
     /*-------------MAP------------------------------*/
-    var map = L.map('map').setView([56.826, 60.65], 13);
+    var map = L.map('map').setView([{{$_SESSION['CurrentRoute']->rpoints[0]->lat}}, {{$_SESSION['CurrentRoute']->rpoints[0]->lng}}], 13);
 
     @if(isset($_SESSION['User']))
     var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {

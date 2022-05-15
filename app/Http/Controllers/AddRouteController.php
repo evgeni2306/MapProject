@@ -18,7 +18,7 @@ class AddRouteController extends Controller
     {
         $validateFields = $request->validate([
             'name' => ['required', 'string'],
-            'shortdescription' => ['required', 'string'],
+            'shortdescription' => [ 'string'],
             'description' => ['nullable', 'string'],
             'difficult' => ['required', 'string', 'ends_with:greenroute,yellowroute,redroute'],
             'distance' => ['nullable', 'string'],

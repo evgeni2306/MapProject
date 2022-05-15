@@ -22,8 +22,8 @@
                 <form method="post" action ="{{route('Addroute')}}" id="edit-form" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input type="text" placeholder="Введите название" name="name" required>
-                    <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription" required>
+                    <h4 class="sub-title">Краткое описание</h4>
+                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription" >
                     <h4 class="sub-title">Сложность<span class="required-form">*</span></h4>
                     <select required name="difficult">
                         <option value="" disabled selected style="display:none;">Выберите сложность</option>

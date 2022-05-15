@@ -37,8 +37,8 @@
                         <option value="Работает">Работает</option>
                         <option value="Не работает">Не работает</option>
                     </select>
-                    <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text"  required class="short-description" maxlength="255" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
+                    <h4 class="sub-title">Краткое описание</h4>
+                    <input type="text"   class="short-description" maxlength="255" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
                     <h4 class="sub-title">Полное описание</h4>
                     <textarea class="edit-point__description"  maxlength="500"placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description">{{$_SESSION['CurrentEditPoint']->description}}</textarea>
                     <h4 class="sub-title">Фотографии</h4>
@@ -53,16 +53,17 @@
                         <input type="reset" class="edit-point__cancel"  value ="Отмена">
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
+                    <div class="edit-buttons__mobile">
+                        <input type="reset"  class="edit-point__cancel" value ="Отмена">
+                        <input type="submit"  class="edit-point__add" value ="Сохранить">
+                    </div>
                 </form>
             </div>
         <div class="edit-point__photos">
             <img  id="photo" style = 'width:100%' src ="{{$_SESSION['CurrentEditPoint']->photo}}">
             <button id = "crossbutton" style="display: none"><img src="/PageEditPoints/img/crossbutton.svg"  alt=""></button>
         </div>
-            <div class="edit-buttons__mobile">
-                <input type="reset" form="edit-form" class="edit-point__cancel" value ="Отмена">
-                <input type="submit" form="edit-form" class="edit-point__add" value ="Сохранить">
-            </div>
+
         </div>
 
     </div>

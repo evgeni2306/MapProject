@@ -40,21 +40,26 @@
         redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
 
 
-    //--------Вывод точек на карту--------
+    //---------------Вывод точек на карту--------------------
     <?foreach ($_SESSION['Points'] as $point ) {?>
-    L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup('<div class="marker__container">' +
+    L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup(
+        '<div class="marker__container">' +
         '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
+        '<div class="short-description">{{$point->shortdescription}}</div>' +
         '<div class="star-rating star-rating_set">' +
         '<div class="star-rating__body">' +
-        '<img class="star-rating__star" src={{$point->rating}}>'+
-        '<span class="star-rating__feedback"></span>'+
+        '<img class="star-rating__star" src="{{$point->rating}}">'+
+        '<span class="star-rating__feedback">()</span>'+
         '</div>'+
         '</div>'+
+        '<div class="marker__address">{{$point->address}}</div>' +
+        '<div class="marker-status status-unknown">Статус : {{$point->status}}</div>' +
         '<div class="marker__photo__container">'+
         '<img class="marker__photo" src="{{$point->photo}}" alt="object">'+
         '</div>'+
         '</div>').addTo({{$point->type}});
     <? }?>
+    // ----------------------------------------
     //---------механизм создания карты----------
     var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -78,6 +83,7 @@
     // ----------------------------------
 
     //-------------------Вывод маршрутов------------------
+    //-------------------Вывод маршрутов------------------
     <?    foreach ($_SESSION['Routes'] as $route){?>
     L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
         '<div class="marker__container">' +
@@ -90,9 +96,8 @@
         '</div>'+
         '</div>'+
         '<div class="marker__address">{{$route->distance}}</div>' +
-        '<div class="marker-status status-unknown">Статус : {{$route->time}}</div>' +
+        '<div class="marker-status status-unknown">Статус : {{$route->status}}</div>' +
         '<div class="marker__photo__container">'+
-        '<img class="marker__photo" src="{{$route->difficult}}" alt="object">'+
         '</div>'+
         '</div>').addTo({{$route->type}});
     <?}?>

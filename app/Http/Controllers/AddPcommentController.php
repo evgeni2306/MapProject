@@ -23,7 +23,7 @@ class AddPcommentController extends Controller
         $pcomment = Pcomment::create($validateFields);
         $rate = $this->RatingCalculate();
         $this->UpdateUserRating(3);
-        return redirect()->intended('/point=' . $_SESSION['CurrentPoint']->id);
+        return redirect(route('getpointpage',$_SESSION['CurrentPoint']->id));
 
 
     }

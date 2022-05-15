@@ -26,7 +26,7 @@ class RoutePageController extends Controller
 // var_dump(abs($z));
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'routes.rating')
+                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time','icon', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
 
@@ -69,11 +69,13 @@ class RoutePageController extends Controller
                 $getroute->avatar,
                 $getroute->uname,
                 $getroute->usurname,
+                $getroute->icon,
                 $pointarr
             );
 
             $_SESSION['CurrentRoute'] = $route;
 
+//                dd($_SESSION['CurrentRoute']);
             //Определение нужной иконки звездочек в зависимости от значения rating
             switch ($_SESSION['CurrentRoute']->rating) {
                 case 0:

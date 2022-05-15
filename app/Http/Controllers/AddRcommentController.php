@@ -24,7 +24,7 @@ class AddRcommentController extends Controller
         $rcomment = Rcomment::create($validateFields);
         $rate = $this->RatingCalculate();
         $this->UpdateUserRating(3);
-        return redirect()->intended('/route=' . $_SESSION['CurrentRoute']->id);
+        return redirect(route('getroutepage',$_SESSION['CurrentRoute']->id));
 
 
     }

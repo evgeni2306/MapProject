@@ -20,7 +20,7 @@ class UploadRouteController extends Controller
         Artisan::call('storage:link');
         $validateFields = $request->validate([
             'name' => ['required', 'string'],
-            'shortdescription' => ['required', 'string'],
+            'shortdescription' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
             'difficult' => ['required', 'string', 'ends_with:greenroute,yellowroute,redroute'],
             'distance' => ['nullable', 'string'],

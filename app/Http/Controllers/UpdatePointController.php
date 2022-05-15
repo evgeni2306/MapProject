@@ -21,9 +21,8 @@ class UpdatePointController extends Controller
                 'type' => ['string', 'required', 'ends_with:zpoints,dpoints'],
                 'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
                 'description' => ['nullable', 'max:500', 'string'],
-                'shortdescription' => ['max:255', 'string','nullable'],
+                'shortdescription' => ['max:255', 'string', 'nullable'],
                 'photo' => ['mimes:jpeg,jpg,png']
-                //Допилить валидацию, как минимум, чтобы статус был только одной из возможных переменных
             ]);
 
             if (isset($validateFields['photo'])) {
@@ -57,7 +56,7 @@ class UpdatePointController extends Controller
             //-----------------------//
             return redirect(route('getpointpage', $_SESSION['CurrentEditPoint']->id));
         }
-        return redirect(route('login'));
+        return redirect(route('map'));
     }
 
     public function GetUpdatePoint($id)
