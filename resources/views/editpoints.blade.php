@@ -54,7 +54,7 @@
                     </div>
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
                     <div class="edit-buttons">
-                        <input type="reset" class="edit-point__cancel" value ="Отмена">
+                        <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
@@ -64,7 +64,7 @@
                 <button id = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
             </div>
             <div class="edit-buttons__mobile">
-                <input type="reset" form="edit-form" class="edit-point__cancel" value ="Отмена">
+                <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
                 <input type="submit" form="edit-form" class="edit-point__add" value ="Сохранить">
             </div>
         </div>

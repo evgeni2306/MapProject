@@ -103,9 +103,25 @@ button {
 .marker__title {
     font-family: "GolosTextMedium";
     font-weight: 500;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 16px;
     width: 240px;
+}
+.short-description {
+    font-family: "GolosTextRegular";
+    font-size: 14px;
+    line-height: 121%;
+    color: #8c8c95;
+    margin-bottom: 8px;
+}
+.marker-status {
+    font-family: "GolosTextRegular";
+    font-size: 14px;
+    line-height: 121%;
+    margin-bottom: 16px;
+}
+.status-unknown {
+    color: #8c8c95;
 }
 .star-rating {
     margin-bottom: 8px;
@@ -146,19 +162,28 @@ button {
     padding-left: 5px;
     color: #ffa235;
 }
-.marker__address {
+.star-rating__feedback {
+    font-size: 15px;
+    line-height: 121%;
     color: #8c8c95;
-    margin-bottom: 16px;
+    margin-left: 9px;
+}
+.marker__link:hover {
+    text-decoration: underline;
+}
+.marker__address {
+    font-family: "GolosTextRegular";
+    font-size: 14px;
+    margin-bottom: 8px;
     width: 208px;
 }
 .marker__photo__container {
-    width: 240px;
-    height: 100px;
-    border-radius: 3px;
     margin-bottom: 30px;
 }
 .marker__photo {
-    width: 100%;
+    width: 240px;
+    height: 100px;
+    border-radius: 3px;
 }
 .leaflet-control-layers-overlays {
     /*width: 287px;*/

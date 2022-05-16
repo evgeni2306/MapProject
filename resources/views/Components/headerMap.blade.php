@@ -19,15 +19,15 @@
                         </button>
                     </li>
                     <li class="menu__item menu__load-route__mobile">
-                        <div class="menu__link" id="menu__link__load-route"><a href="{{route('loadroute')}}"><img
-                            src="/PageMap/img/header/loadroute.svg" alt="route"></a>
-                        </div>
+                        <a href="{{route('loadroute')}}"><div class="menu__link" id="menu__link__load-route"><img
+                            src="/PageMap/img/header/loadroute.svg" alt="route">
+                        </div></a>
                     </li>
                 </ul>
                 <li class="menu__load-route">
-                    <div class="menu__link" id="menu__link__load-route"><a href="{{route('loadroute')}}"><img
-                            src="/PageMap/img/header/loadroute.svg" alt="route"></a>
-                    </div>
+                    <a href="{{route('loadroute')}}"><div class="menu__link" id="menu__link__load-route"><img
+                            src="/PageMap/img/header/loadroute.svg" alt="route">
+                    </div></a>
                 </li>
             </nav>
             <div class="menu__icon">

@@ -493,13 +493,6 @@ button {
     }
 }
 @media (max-width: 900px) {
-    .infoblock__header {
-        flex-direction: column;
-        align-items: start;
-    }
-    .infoblock__header__button {
-        margin: 0px 0px 20px 0px;
-    }
     .infoblock {
         flex-direction: column;
         align-items: baseline;
@@ -508,7 +501,7 @@ button {
         padding: 15px 0px 20px 0px;
     }
     .infoblock__rating {
-        margin-bottom: 15px;
+        margin-bottom: 25px;
     }
     .information__title {
         margin-bottom: 25px;
@@ -585,14 +578,6 @@ button {
     .point__title {
         font-size: 20px;
         padding: 12px 0px;
-    }
-    .infoblock__header__button {
-        margin: 0px 0px 20px 10px;
-        padding: 10px 15px;
-        height: 38px;
-    }
-    .infoblock__header__button img {
-        margin-right: 8px;
     }
     .infoblock {
         font-size: 14px;
