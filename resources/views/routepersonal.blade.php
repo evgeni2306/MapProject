@@ -146,12 +146,35 @@
     <!--------------FOOTER-------------------->
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
-</div>  
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script src="Script/menu.js"></script>   
+</div>
+<script src="Script/menu.js" async></script>   
 <script>
 /*-------------MAP------------------------------*/
-    var map = L.map('map').setView([56.826, 60.65], 13);
+    var zpoints = L.layerGroup(); //зарядки
+    var dpoints = L.layerGroup(); //достопримечательности
+    var routes = L.layerGroup(); //маршруты
+
+    var Markers = L.Icon.extend({
+        options: {
+            iconSize:     [39, 45],
+            iconAnchor:   [16,37]
+        }
+	});
+
+	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
+		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'}),
+        routeMarker = new Markers({iconUrl: '/PageMap/img/route/routeinactive.svg'});
+
+    var maplayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        })
+
+    var map = L.map('map',{layers: [maplayer,zpoints, dpoints, routes]}).setView([56.82, 60.6], 13);
 
 	var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -162,28 +185,37 @@
 		zoomOffset: -1
 	}).addTo(map);
 
-    var Markers = L.Icon.extend({
-		options: {
-			iconSize: [39, 45],
-			iconAnchor: [16,37]
-		}
-	});
-
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
-/*---------------SWIPER-------------------------*/
-    new Swiper('.image-slider', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true,
-        },
-    });
+    L.marker([56.82, 60.6], {icon: socket}).bindPopup('<div class="marker__container">' +
+            '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Розетка</a></div>' +
+            '<div class="short-description">Розетка во дворе</div>' +
+            '<div class="star-rating star-rating_set">' +
+                '<div class="star-rating__body">' + 
+                    '<img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">'+
+                    '<span class="star-rating__feedback">(35)</span>'+
+                '</div>'+
+            '</div>'+
+            '<div class="marker__address">Адрес</div>' +
+            '<div class="marker-status status-unknown">Статус неизвестен</div>' +
+            '<div class="marker__photo__container">'+
+                '<img class="marker__photo" src="/PageMap/img/marker/02.png" alt="object">'+
+            '</div>'+
+        '</div>').addTo(zpoints);
+        L.marker([56.826, 60.65], {icon: house}).bindPopup('<div class="marker__container">' +
+            '<div class="marker__title"><a href="{{route('pointpersonal')}}" class="marker__link">Музей изобразительных искусств</a></div>' +
+            '<div class="short-description">Музей</div>' +
+            '<div class="star-rating star-rating_set">' +
+                '<div class="star-rating__body">' +
+                    '<img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">'+
+                    '<span class="star-rating__feedback">(35)</span>'+
+                '</div>'+
+            '</div>'+
+            '<div class="marker__address">Адрес</div>' +
+            '<div class="marker-status status-working">Работает</div>' +
+            '<div class="marker__photo__container">'+
+                '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
+            '</div>'+
+        '</div>').addTo(dpoints);
+        
 /*---------------LIKES-------------------------*/
     const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
     const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));

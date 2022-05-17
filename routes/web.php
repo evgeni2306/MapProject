@@ -60,3 +60,7 @@ Route::get('/loadroute', function () {
 Route::get('/editroutes', function () {
     return view('editroutes');
 })->name('editroutes');
+
+Route::get('/addroute', function () {
+    return view('addroute');
+})->name('addroute');

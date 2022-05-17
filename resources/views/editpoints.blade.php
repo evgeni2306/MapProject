@@ -74,7 +74,7 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script>
+<script src="Script/menu.js" async></script>
 <script>
     // сохранение старого пути к фотке
 const oldway = document.getElementById('photo').src
