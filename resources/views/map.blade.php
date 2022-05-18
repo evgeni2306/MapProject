@@ -41,7 +41,7 @@
         //-----------------------------------------------------------------
 
         //---------------Вывод точек на карту--------------------
-        <?foreach ($_SESSION['Points'] as $point ) {?>
+        <?foreach ($points as $point ) {?>
         L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup(
             '<div class="marker__container">' +
             '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
@@ -85,7 +85,7 @@
         // ----------------------------------
 
         //-------------------Вывод маршрутов------------------
-        <?    foreach ($_SESSION['Routes'] as $route){?>
+        <?    foreach ($routes as $route){?>
         L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
             '<div class="marker__container">' +
             '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +

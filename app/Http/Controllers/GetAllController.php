@@ -42,7 +42,7 @@ class GetAllController extends Controller
                     break;
             }
         }
-        $_SESSION['Points'] = $getpoints;
+//        $_SESSION['Points'] = $getpoints;
 
         $getroutes = DB::table('routes')
             ->select('id','name','icon','type','shortdescription','difficult','distance','time','rating','status')->get();
@@ -93,16 +93,15 @@ class GetAllController extends Controller
                     break;
             }
         }
-        $_SESSION['Routes'] = $Routes;
 
 
         if (Auth::check()) {
             if (!isset($_SESSION['User'])) {
                 $this->GetUser();
             }
-            return view('map');
+            return view('map',['points'=>$getpoints,'routes'=>$Routes]);
         } else
-            return view('unmap');
+            return view('unmap',['points'=>$getpoints,'routes'=>$Routes]);
 
 
     }

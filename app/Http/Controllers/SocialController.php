@@ -26,6 +26,11 @@ class SocialController extends Controller
         if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
+            $_SESSION['User'] = DB::table('users')
+                ->where('social_id', $socialuserid->id)
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
+                ->first();
             return redirect('map');
         } else {
             $nameAndSurname = explode(' ', $socialuserid->name);
@@ -70,6 +75,11 @@ class SocialController extends Controller
         if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
+            $_SESSION['User'] = DB::table('users')
+                ->where('social_id', $socialuserid->id)
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
+                ->first();
             return redirect('map');
         } else {
             $nameAndSurname = explode(' ', $socialuserid->name);
