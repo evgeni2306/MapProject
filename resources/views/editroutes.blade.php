@@ -39,7 +39,7 @@
                     <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
                     @csrf
                     <div class="edit-buttons">
-                        <input type="reset" class="edit-point__cancel" value ="Отмена">
+                        <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
