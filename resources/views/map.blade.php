@@ -17,7 +17,7 @@
 @include('Components.headerMap')
 <!--------------/HEADER-------------------->
     <div class="map" id="mapid"></div>
-    <script src="Script/menu.js"></script>
+    <script src="Script/menu.js" async></script>
     <script>
 
         //--------Настройка иконок и слоев для вывода на карту----------
@@ -49,7 +49,7 @@
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
             '<img class="star-rating__star" src="{{$point->rating}}">'+
-            '<span class="star-rating__feedback">()</span>'+
+            '<span class="star-rating__feedback">(35)</span>'+
             '</div>'+
             '</div>'+
             '<div class="marker__address">{{$point->address}}</div>' +
@@ -102,6 +102,8 @@
             '</div>'+
             '</div>').addTo({{$route->type}});
         <?}?>
+
+
         //-------------------------------------------------------
 
         //---------кнопки и смена режимов----------------------

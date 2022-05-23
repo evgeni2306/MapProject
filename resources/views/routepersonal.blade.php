@@ -195,19 +195,7 @@
         {{--    '</div>').addTo(zpoints);--}}
         //-------------------------------------------------------
 
-        /*---------------SWIPER-------------------------*/
-        new Swiper('.image-slider', {
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-            },
 
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
-        });
         /*---------------LIKES-------------------------*/
         // const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
         // const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));

@@ -71,7 +71,7 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script>
+<script src="Script/menu.js" async></script>
 <script>
 
     // //-------Подстановка по умолчанию  значения полей с выбором------

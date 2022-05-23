@@ -189,6 +189,12 @@ button {
 .status-unknown {
     color: #8c8c95;
 }
+.status-working {
+    color: #27ae60;
+}
+.status-broken {
+    color: #eb5757;
+}
 .star-rating {
     margin-bottom: 8px;
     display: flex;
