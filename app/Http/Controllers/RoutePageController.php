@@ -37,7 +37,7 @@ class RoutePageController extends Controller
 
             $rpointsarr = array();
             $pointarr = array();
-            for ($i = 0; $i < count($getrpoints) - 2; $i += 3) {
+            for ($i = 0; $i < count($getrpoints) - 1; $i += 1) {
                 array_push($rpointsarr, $getrpoints[$i]);
             }
             $getpoints = DB::table('points')

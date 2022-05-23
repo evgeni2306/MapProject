@@ -49,7 +49,7 @@
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
             '<img class="star-rating__star" src="{{$point->rating}}">'+
-            '<span class="star-rating__feedback">(35)</span>'+
+            '<span class="star-rating__feedback">()</span>'+
             '</div>'+
             '</div>'+
             '<div class="marker__address">{{$point->address}}</div>' +
