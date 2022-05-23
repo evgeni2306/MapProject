@@ -50,11 +50,11 @@
                     @csrf
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
                     <div class="edit-buttons">
-                        <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
+                        <a href="{{route('getpointpage',$_SESSION['CurrentEditPoint']->id)}}" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                     <div class="edit-buttons__mobile">
-                        <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
+                        <a href="{{route('getpointpage',$_SESSION['CurrentEditPoint']->id)}}" class="edit-point__cancel">Назад</a>
                         <input type="submit"  class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
