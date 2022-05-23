@@ -26,10 +26,12 @@ class RoutePageController extends Controller
 // var_dump(abs($z));
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
+                ->select('routes.id', 'users.name as uname', 'users.nickname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
-
+            if ($getroute->nickname == null) {
+                $getroute->nickname = $getroute->name . ' ' . $getroute->surname;
+            }
             $getrpoints = DB::table('rpoints')
                 ->where('rpoints.routeid', '=', $getroute->id)
                 ->select('lat', 'lng')->get();
@@ -69,6 +71,7 @@ class RoutePageController extends Controller
                 $getroute->avatar,
                 $getroute->uname,
                 $getroute->usurname,
+                $getroute->nickname,
                 $getroute->icon,
                 $pointarr
             );
@@ -84,11 +87,16 @@ class RoutePageController extends Controller
 //Получение комментов из бд
             $_SESSION['Rcomments'] = DB::table('rcomments')
                 ->join('users', 'rcomments.creatorId', '=', 'users.id')
-                ->select('users.name', 'users.surname', 'rcomments.rating', 'text', 'rcomments.created_at', 'avatar', 'login')
+                ->select('users.name', 'users.surname', 'users.nickname', 'rcomments.rating', 'text', 'rcomments.created_at', 'avatar', 'login')
                 ->where('routeid', $id)
                 ->latest()
                 ->get();
 
+            foreach ($_SESSION['Rcomments'] as $rcomment) {
+                if ($rcomment->nickname == null) {
+                    $rcomment->nickname = $rcomment->name . ' ' . $rcomment->surname;
+                }
+            }
             //ОПределение иконок рейтинга у комментариев
             $_SESSION['Rcomments'] = $this->GetCommentRatingIcon($_SESSION['Rcomments']);
 

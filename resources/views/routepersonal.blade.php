@@ -47,7 +47,7 @@
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="{{$_SESSION['CurrentRoute']->avatar}}" class="infoblock__user__photo" alt="">
-                    <span class="infoblock__user__name">{{$_SESSION['CurrentRoute']->uname.' '.$_SESSION['CurrentRoute']->usurname}}</span>
+                    <span class="infoblock__user__name">{{$_SESSION['CurrentRoute']->nickname}}</span>
                 </div>
                 <div class="infoblock__button-edit"><a href=""><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
             </div>
@@ -115,7 +115,7 @@
                         <div class="comment__user">
                             <img class="comment__user-avatar" src="{{$rcomment->avatar}}" alt="user">
                             <div class="comment__user__content">
-                                <div class="comment__user__name">{{$rcomment->name.' '.$rcomment->surname}}</div>
+                                <div class="comment__user__name">{{$rcomment->nickname}}</div>
                                 <div class="comment__user__date" id="time">{{$rcomment->created_at}}</div>
                             </div>
                         </div>

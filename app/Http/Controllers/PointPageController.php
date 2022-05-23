@@ -24,8 +24,12 @@ class PointPageController extends Controller
             //Получение точки из бд
             $_SESSION['CurrentPoint'] = DB::table('points')
                 ->join('users', 'users.id', '=', 'points.creatorId')
-                ->select('points.id', 'users.name as uname', 'users.avatar','points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description','photo')
+                ->select('points.id', 'users.name as uname', 'users.nickname as nickname', 'users.avatar', 'points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
                 ->where('points.id', $id)->first();
+            if ($_SESSION['CurrentPoint']->nickname == null) {
+                $_SESSION['CurrentPoint']->nickname = $_SESSION['CurrentPoint']->uname . ' ' . $_SESSION['CurrentPoint']->usurname;
+            }
+
 //Определение типа и иконки по группe type
             if ($_SESSION['CurrentPoint']->type == 'zpoints') {
                 $_SESSION['CurrentPoint']->type = array(0 => "socket.svg", 1 => 'Розетка');
@@ -41,14 +45,18 @@ class PointPageController extends Controller
 //Получение комментов из бд
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
-                ->select('users.name', 'users.surname', 'pcomments.rating', 'text', 'pcomments.created_at', 'avatar', 'login')
+                ->select('users.name', 'users.surname','users.nickname', 'pcomments.rating', 'text', 'pcomments.created_at', 'avatar', 'login')
                 ->where('pointid', $id)
                 ->latest()
                 ->get();
 
+            foreach ($_SESSION['Pcomments'] as $pcomment){
+                if($pcomment->nickname == null){
+                    $pcomment->nickname = $pcomment->name.' '.$pcomment->surname;
+                }
+            }
 //ОПределение иконок рейтинга у комментариев
-           $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
-//            var_dump($_SESSION['Pcomments'][0]->created_at);
+            $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
             $_SESSION['CurrentPoint']->rating[1] = Count($_SESSION['Pcomments']);
 
             return view('pointpersonal');

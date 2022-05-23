@@ -48,7 +48,7 @@
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="{{$_SESSION['CurrentPoint']->avatar}}" class="infoblock__user__photo" alt="">
-                    <span class="infoblock__user__name">{{$_SESSION['CurrentPoint']->uname.' '.$_SESSION['CurrentPoint']->usurname}}</span>
+                    <span class="infoblock__user__name">{{$_SESSION['CurrentPoint']->nickname}}</span>
                 </div>
                 @if(isset($_SESSION['User']))
                 <div class="infoblock__button-edit"><a href="/editpoint={{$_SESSION['CurrentPoint']->id}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>

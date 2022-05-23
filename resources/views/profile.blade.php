@@ -20,7 +20,7 @@
         <div class="content__container">
             <div class="user">
                 <img class="user__avatar" src="{{$_SESSION['User']->avatar}}" alt="avatar">
-                <div class="user__name">{{$_SESSION['User']->name.' '.$_SESSION['User']->surname}}</div>
+                <div class="user__name">{{$_SESSION['User']->nickname}}</div>
                 <div class="user__grade"><img src="/PageProfile/img/cool-watermelon.svg" alt="">{{$_SESSION['User']->rname}}</div>
             </div>
             <div class="user__info">

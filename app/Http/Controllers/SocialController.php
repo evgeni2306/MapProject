@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\DB;
+use App\Http\helpfunc;
 
 
 class SocialController extends Controller
 {
+    use helpfunc;
+
     public function googleredirect()
     {
 
@@ -26,11 +29,7 @@ class SocialController extends Controller
         if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
-            $_SESSION['User'] = DB::table('users')
-                ->where('social_id', $socialuserid->id)
-                ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
-                ->first();
+            $_SESSION['User'] = $this->GetUserBySocialId($socialuserid);
             return redirect('map');
         } else {
             $nameAndSurname = explode(' ', $socialuserid->name);
@@ -46,11 +45,7 @@ class SocialController extends Controller
                 'rank' => 1,
                 'mapstyle' => 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
             ]);
-            $_SESSION['User'] = DB::table('users')
-                ->where('social_id', $socialuserid->id)
-                ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
-                ->first();
+            $_SESSION['User'] = $this->GetUserBySocialId($socialuserid);
 
             Auth::login($createUser);
             return redirect(route('map'));
@@ -75,11 +70,7 @@ class SocialController extends Controller
         if ($isUser) {
             $_SESSION['User'] = $isUser;
             Auth::login($isUser);
-            $_SESSION['User'] = DB::table('users')
-                ->where('social_id', $socialuserid->id)
-                ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
-                ->first();
+            $_SESSION['User'] = $this->GetUserBySocialId($socialuserid);
             return redirect('map');
         } else {
             $nameAndSurname = explode(' ', $socialuserid->name);
@@ -95,11 +86,7 @@ class SocialController extends Controller
                 'rank' => 1,
                 'mapstyle' => 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
             ]);
-            $_SESSION['User'] = DB::table('users')
-                ->where('social_id', $socialuserid->id)
-                ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
-                ->first();
+            $_SESSION['User'] = $this->GetUserBySocialId($socialuserid);
 
             Auth::login($createUser);
             return redirect(route('map'));

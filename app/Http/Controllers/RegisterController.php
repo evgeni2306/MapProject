@@ -32,16 +32,20 @@ class RegisterController extends Controller
         $validateFields['rank'] = 1;
         $validateFields['rating'] = 0;
         $user = User::create($validateFields);
+
         if ($user) {
             Auth::login($user);
             $_SESSION['User'] = DB::table('users')
                 ->where('users.id', $user->id)
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport','mapstyle','rating','ranks.name as rname','maxrating')
+                ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
                 ->first();
+
+            if($_SESSION['User']->nickname == null){
+                $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+            }
             return redirect(route('map'));
         }
-
         return redirect(route('login'));
     }
 

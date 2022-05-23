@@ -44,9 +44,11 @@ class UpdateUserController extends Controller
             $_SESSION['User'] = DB::table('users')
                 ->where('users.id', Auth::id())
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'avatar', 'transport','mapstyle','rating','ranks.name as rname','maxrating')
+                ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport','mapstyle','nickname','rating','ranks.name as rname','maxrating')
                 ->first();
-
+            if($_SESSION['User']->nickname == null){
+                $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+            }
         }
         return redirect(route('login'));
     }

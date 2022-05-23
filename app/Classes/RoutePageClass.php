@@ -17,6 +17,7 @@ class RoutePageClass
     public $avatar;
     public $uname;
     public $usurname;
+    public $nickname;
     public $pointsnear = array();
 
     public function __construct(
@@ -33,6 +34,7 @@ class RoutePageClass
         string $avatar,
         string $uname,
         string $usurname,
+        string $nickname,
         $icon,
         $pointsnear
 
@@ -51,6 +53,7 @@ class RoutePageClass
         $this->avatar = $avatar;
         $this->uname = $uname;
         $this->usurname = $usurname;
+        $this->nickname = $nickname;
         $this->icon = $icon;
         $this->pointsnear = $pointsnear;
 

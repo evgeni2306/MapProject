@@ -13,8 +13,23 @@ trait helpfunc
         $_SESSION['User'] = DB::table('users')
             ->where('users.id', Auth::id())
             ->join('ranks', 'ranks.id', '=', 'users.rank')
-            ->select('users.id', 'users.name', 'surname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
+            ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
             ->first();
+        if($_SESSION['User']->nickname == null){
+            $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+        }
+    }
+    public function GetUserBySocialId($socialid){
+        $user = DB::table('users')
+            ->where('social_id', $socialid->id)
+            ->join('ranks', 'ranks.id', '=', 'users.rank')
+            ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
+            ->first();
+        if($_SESSION['User']->nickname == null){
+            $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+        }
+        return $user;
+
     }
 
 //-----Обновление рейтинга у юзера при активностях-----
