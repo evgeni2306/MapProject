@@ -17,35 +17,14 @@ class GetAllController extends Controller
     {
         //получение всех точек из бд
         $getpoints = DB::table('points')
-            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo','shortdescription',
-            'status')->get();
+            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+                'status')->get();
         //определение иконок для рейтинга точки
         foreach ($getpoints as $point) {
-            switch ($point->rating) {
-                case 0:
-                    $point->rating = "/PageMap/img/icons/stars-0-5.svg";
-                    break;
-                case 1:
-                    $point->rating = "/PageMap/img/icons/stars-1-5.svg";
-                    break;
-                case 2:
-                    $point->rating = "/PageMap/img/icons/stars-2-5.svg";
-                    break;
-                case 3:
-                    $point->rating = "/PageMap/img/icons/stars-3-5.svg";
-                    break;
-                case 4:
-                    $point->rating = "/PageMap/img/icons/stars-4-5.svg";
-                    break;
-                case 5:
-                    $point->rating = "/PageMap/img/icons/stars-5-5.svg";
-                    break;
-            }
+            $point = $this->GetObjectRatingIcon($point);
         }
-//        $_SESSION['Points'] = $getpoints;
-
         $getroutes = DB::table('routes')
-            ->select('id','name','icon','type','shortdescription','difficult','distance','time','rating','status')->get();
+            ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')->get();
         $Routes = array();
         foreach ($getroutes as $getroute) {
             $route = new RouteMapClass(
@@ -59,8 +38,6 @@ class GetAllController extends Controller
                 $getroute->distance,
                 $getroute->time,
                 $getroute->rating
-
-
             );
             array_push($Routes, $route);
         }
@@ -72,26 +49,7 @@ class GetAllController extends Controller
             $rpoint->lng = $getrpoints->lng;
         }
         foreach ($Routes as $Route) {
-            switch ($Route->rating) {
-                case 0:
-                    $Route->rating = "/PageMap/img/icons/stars-0-5.svg";
-                    break;
-                case 1:
-                    $Route->rating = "/PageMap/img/icons/stars-1-5.svg";
-                    break;
-                case 2:
-                    $Route->rating = "/PageMap/img/icons/stars-2-5.svg";
-                    break;
-                case 3:
-                    $Route->rating = "/PageMap/img/icons/stars-3-5.svg";
-                    break;
-                case 4:
-                    $Route->rating = "/PageMap/img/icons/stars-4-5.svg";
-                    break;
-                case 5:
-                    $Route->rating = "/PageMap/img/icons/stars-5-5.svg";
-                    break;
-            }
+            $Route = $this->GetObjectRatingIcon($Route);
         }
 
 
@@ -99,9 +57,9 @@ class GetAllController extends Controller
             if (!isset($_SESSION['User'])) {
                 $this->GetUser();
             }
-            return view('map',['points'=>$getpoints,'routes'=>$Routes]);
+            return view('map', ['points' => $getpoints, 'routes' => $Routes]);
         } else
-            return view('unmap',['points'=>$getpoints,'routes'=>$Routes]);
+            return view('unmap', ['points' => $getpoints, 'routes' => $Routes]);
 
 
     }

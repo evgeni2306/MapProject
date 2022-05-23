@@ -17,17 +17,15 @@ trait helpfunc
             ->first();
     }
 
+//-----Обновление рейтинга у юзера при активностях-----
     public function UpdateUserRating(int $score)
     {
         $_SESSION['User']->rating += $score;
-
-//
         DB::table('users')
             ->where('id', Auth::user()->id)
             ->update([
                 'rating' => $_SESSION['User']->rating,
             ]);
-//        dd($_SESSION['User']->rating);
         if ($_SESSION['User']->rating >= $_SESSION['User']->maxrating) {
             switch ($_SESSION['User']->rname) {
                 case 'Новичок':
@@ -44,9 +42,7 @@ trait helpfunc
 ////                    break;
             }
         }
-
     }
-
     public function UpdateUserRank(int $rank)
     {
         $updaterank = DB::table('ranks')
@@ -62,6 +58,60 @@ trait helpfunc
                 'rating' => $_SESSION['User']->rating,
                 'rank' => $updaterank[0]->id
             ]);
+    }
+//-------------------------------------------------
+
+
+    public function GetObjectRatingIcon($object)
+    {
+        switch ($object->rating) {
+            case 0:
+                $object->rating = "/PageMap/img/icons/stars-0-5.svg";
+                break;
+            case 1:
+                $object->rating = "/PageMap/img/icons/stars-1-5.svg";
+                break;
+            case 2:
+                $object->rating = "/PageMap/img/icons/stars-2-5.svg";
+                break;
+            case 3:
+                $object->rating = "/PageMap/img/icons/stars-3-5.svg";
+                break;
+            case 4:
+                $object->rating = "/PageMap/img/icons/stars-4-5.svg";
+                break;
+            case 5:
+                $object->rating = "/PageMap/img/icons/stars-5-5.svg";
+                break;
+        }
+        return $object;
+    }
+
+    public function GetCommentRatingIcon($commentArr)
+    {
+        foreach ($commentArr as $comment) {
+            switch ($comment->rating) {
+                case 0:
+                    $comment->rating = "/PageMap/img/icons/stars-0-5.svg";
+                    break;
+                case 1:
+                    $comment->rating = "/PageMap/img/icons/stars-1-5.svg";
+                    break;
+                case 2:
+                    $comment->rating = "/PageMap/img/icons/stars-2-5.svg";
+                    break;
+                case 3:
+                    $comment->rating = "/PageMap/img/icons/stars-3-5.svg";
+                    break;
+                case 4:
+                    $comment->rating = "/PageMap/img/icons/stars-4-5.svg";
+                    break;
+                case 5:
+                    $comment->rating = "/PageMap/img/icons/stars-5-5.svg";
+                    break;
+            }
+        }
+        return $commentArr;
     }
 }
 

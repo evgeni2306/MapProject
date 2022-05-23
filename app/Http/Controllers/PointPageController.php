@@ -33,26 +33,8 @@ class PointPageController extends Controller
                 $_SESSION['CurrentPoint']->type = array(0 => "building.svg", 1 => 'Достопримечательность');
             }
             //Определение нужной иконки звездочек в зависимости от значения rating
-            switch ($_SESSION['CurrentPoint']->rating) {
-                case 0:
-                    $_SESSION['CurrentPoint']->rating = "/PageMap/img/icons/stars-0-5.svg";
-                    break;
-                case 1:
-                    $_SESSION['CurrentPoint']->rating = "/PageMap/img/icons/stars-1-5.svg";
-                    break;
-                case 2:
-                    $_SESSION['CurrentPoint']->rating = "/PageMap/img/icons/stars-2-5.svg";
-                    break;
-                case 3:
-                    $_SESSION['CurrentPoint']->rating = "/PageMap/img/icons/stars-3-5.svg";
-                    break;
-                case 4:
-                    $_SESSION['CurrentPoint']->rating = "/PageMap/img/icons/stars-4-5.svg";
-                    break;
-                case 5:
-                    $_SESSION['CurrentPoint']->rating = "/PageMap/img/icons/stars-5-5.svg";
-                    break;
-            }
+            $_SESSION['CurrentPoint'] = $this->GetObjectRatingIcon($_SESSION['CurrentPoint']);
+
 //Рейтинг, 0 - иконка, 1 -  кол-во комментов, пока что просто объявление, нужно будет потом в этом же контроллере
             $_SESSION['CurrentPoint']->rating = array(0 => $_SESSION['CurrentPoint']->rating, 1 => 0);
 
@@ -65,28 +47,7 @@ class PointPageController extends Controller
                 ->get();
 
 //ОПределение иконок рейтинга у комментариев
-            foreach ($_SESSION['Pcomments'] as $pcomment) {
-                switch ($pcomment->rating) {
-                    case 0:
-                        $pcomment->rating = "/PageMap/img/icons/stars-0-5.svg";
-                        break;
-                    case 1:
-                        $pcomment->rating = "/PageMap/img/icons/stars-1-5.svg";
-                        break;
-                    case 2:
-                        $pcomment->rating = "/PageMap/img/icons/stars-2-5.svg";
-                        break;
-                    case 3:
-                        $pcomment->rating = "/PageMap/img/icons/stars-3-5.svg";
-                        break;
-                    case 4:
-                        $pcomment->rating = "/PageMap/img/icons/stars-4-5.svg";
-                        break;
-                    case 5:
-                        $pcomment->rating = "/PageMap/img/icons/stars-5-5.svg";
-                        break;
-                }
-            }
+           $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
 //            var_dump($_SESSION['Pcomments'][0]->created_at);
             $_SESSION['CurrentPoint']->rating[1] = Count($_SESSION['Pcomments']);
 

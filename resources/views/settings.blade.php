@@ -38,8 +38,8 @@
                     <input type="text" placeholder="Введите имя" name="name" value="{{$_SESSION['User']->name}}">
                     <h4 class="sub-title">Фамилия</h4>
                     <input type="text" placeholder="Введите фамилию" name="surname" value ="{{$_SESSION['User']->surname}}">
-{{--                    <h4 class="sub-title">E-mail</h4>--}}
-{{--                    <input type="text" placeholder="Введите e-mail" name="email">--}}
+                    <h4 class="sub-title">Никнейм</h4>
+                    <input type="text" placeholder="Введите никнейм" name="nickname">
                     <h4 class="sub-title">Модель транспорта</h4>
                     <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$_SESSION['User']->transport}}">
                     <h4 class="sub-title">Вид карты</h4>

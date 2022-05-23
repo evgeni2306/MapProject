@@ -26,7 +26,7 @@ class RoutePageController extends Controller
 // var_dump(abs($z));
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time','icon', 'routes.rating')
+                ->select('routes.id', 'users.name as uname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
 
@@ -44,7 +44,7 @@ class RoutePageController extends Controller
                 ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
                     'status')
                 ->get();
-            for ($i = 0; $i < count($rpointsarr); $i+=1) {
+            for ($i = 0; $i < count($rpointsarr); $i += 1) {
                 foreach ($getpoints as $point) {
                     if (abs($rpointsarr[$i]->lat - $point->lat) < 0.00875 and abs($rpointsarr[$i]->lng - $point->lng) < 0.00875) {
                         if (!in_array($point, $pointarr)) {
@@ -75,28 +75,9 @@ class RoutePageController extends Controller
 
             $_SESSION['CurrentRoute'] = $route;
 
-//                dd($_SESSION['CurrentRoute']);
             //Определение нужной иконки звездочек в зависимости от значения rating
-            switch ($_SESSION['CurrentRoute']->rating) {
-                case 0:
-                    $_SESSION['CurrentRoute']->rating = "/PageMap/img/icons/stars-0-5.svg";
-                    break;
-                case 1:
-                    $_SESSION['CurrentRoute']->rating = "/PageMap/img/icons/stars-1-5.svg";
-                    break;
-                case 2:
-                    $_SESSION['CurrentRoute']->rating = "/PageMap/img/icons/stars-2-5.svg";
-                    break;
-                case 3:
-                    $_SESSION['CurrentRoute']->rating = "/PageMap/img/icons/stars-3-5.svg";
-                    break;
-                case 4:
-                    $_SESSION['CurrentRoute']->rating = "/PageMap/img/icons/stars-4-5.svg";
-                    break;
-                case 5:
-                    $_SESSION['CurrentRoute']->rating = "/PageMap/img/icons/stars-5-5.svg";
-                    break;
-            }
+            $_SESSION['CurrentRoute'] = $this->GetObjectRatingIcon($_SESSION['CurrentRoute']);
+
 //Рейтинг, 0 - иконка, 1 -  кол-во комментов, пока что просто объявление, нужно будет потом в этом же контроллере
             $_SESSION['CurrentRoute']->rating = array(0 => $_SESSION['CurrentRoute']->rating, 1 => 0);
 
@@ -108,35 +89,14 @@ class RoutePageController extends Controller
                 ->latest()
                 ->get();
 
-//ОПределение иконок рейтинга у комментариев
-            foreach ($_SESSION['Rcomments'] as $rcomment) {
-                switch ($rcomment->rating) {
-                    case 0:
-                        $rcomment->rating = "/PageMap/img/icons/stars-0-5.svg";
-                        break;
-                    case 1:
-                        $rcomment->rating = "/PageMap/img/icons/stars-1-5.svg";
-                        break;
-                    case 2:
-                        $rcomment->rating = "/PageMap/img/icons/stars-2-5.svg";
-                        break;
-                    case 3:
-                        $rcomment->rating = "/PageMap/img/icons/stars-3-5.svg";
-                        break;
-                    case 4:
-                        $rcomment->rating = "/PageMap/img/icons/stars-4-5.svg";
-                        break;
-                    case 5:
-                        $rcomment->rating = "/PageMap/img/icons/stars-5-5.svg";
-                        break;
-                }
-            }
+            //ОПределение иконок рейтинга у комментариев
+            $_SESSION['Rcomments'] = $this->GetCommentRatingIcon($_SESSION['Rcomments']);
+
+
             $_SESSION['CurrentRoute']->rating[1] = Count($_SESSION['Rcomments']);
 
             return view('routepersonal');
         } else {
-
-
             return redirect(route('map'));
         }
     }
