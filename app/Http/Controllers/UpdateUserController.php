@@ -15,7 +15,8 @@ class UpdateUserController extends Controller
             $validateFields = $request->validate([
                 'name' => ['required','max:255','string'],
                 'surname' => ['required','max:255','string'],
-                'transport' => ['required','max:255','string'],
+                'nickname'=>['nullable','string','max:255',],
+                'transport' => ['nullable','max:255','string'],
                 'mapstyle'=>['string','ends_with:ISLbB6B5aw,{x}/{y}.png'],
             ]);
             if ($validateFields['transport'] == null) {
@@ -26,6 +27,7 @@ class UpdateUserController extends Controller
                 ->update([
                     'name' => $validateFields['name'],
                     'surname' => $validateFields['surname'],
+                    'nickname'=>$validateFields['nickname'],
                     'transport' => $validateFields['transport'],
                     'mapstyle'=>$validateFields['mapstyle']
                 ]);
