@@ -26,7 +26,10 @@
       <h1 class="settings__title">Настройки</h1>
       <div class="content__container">
         <div class="avatar__container">
-          <img id="photo" class="avatar-big" src="/PageSettings/img/02.png" alt="user">
+          <div class="avatar__photo">
+            <img id="photo" class="avatar-big" src="/PageSettings/img/02.png" alt="user">
+            <button id="crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
+          </div>
           <div class="change-photo">
             <input type="file" id="files" name="photo" accept="image/*,image/jpeg" onchange="previewFile()">
             <label for="files"><img src="/PageSettings/img/02.svg">Изменить фото</label>
@@ -55,7 +58,6 @@
             <input type="reset" class="settings__cancel" value ="Отмена">
             <input type="submit" class="settings__save" value ="Сохранить">
           </div>
-          
         </div>
       </div>            
     </form>
@@ -83,11 +85,11 @@ const oldway = document.getElementById('photo').src
         }
     }
 //отмена загруженной фотки, загруженная удаляется, возвращается старая
-    /*document.getElementById("crossbutton").onclick = function(){
+    document.getElementById("crossbutton").onclick = function(){
         const preview = document.getElementById('photo');
         document.getElementById('files').value = null;//сброс файла в форме
         preview.src = oldway;//сброс картинки
-    }*/
+    }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     /*-------------------------------*/
 </script>

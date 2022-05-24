@@ -53,6 +53,10 @@
                         <output id="list"></output>
                     </div>
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
+                    <!--<div class="edit-point__photos__mobile">
+                        <img  class="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
+                        <button class = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
+                    </div>-->
                     <div class="edit-buttons">
                         <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
@@ -62,10 +66,6 @@
             <div class="edit-point__photos">
                 <img  id="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
                 <button id = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
-            </div>
-            <div class="edit-buttons__mobile">
-                <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
-                <input type="submit" form="edit-form" class="edit-point__add" value ="Сохранить">
             </div>
         </div>
 
@@ -77,7 +77,7 @@
 <script src="Script/menu.js" async></script>
 <script>
     // сохранение старого пути к фотке
-const oldway = document.getElementById('photo').src
+    const oldway = document.getElementById('photo').src;
 
     //Превью - замена имеющейся фотки на загруженную
     function previewFile() {

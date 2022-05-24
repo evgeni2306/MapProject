@@ -123,6 +123,12 @@ button {
 .status-unknown {
     color: #8c8c95;
 }
+.status-working {
+    color: #27ae60;
+}
+.status-broken {
+    color: #eb5757;
+}
 .star-rating {
     margin-bottom: 8px;
     display: flex;
@@ -184,6 +190,18 @@ button {
     width: 240px;
     height: 100px;
     border-radius: 3px;
+}
+.marker__characteristics {
+    display: flex;
+    justify-content: space-between;
+}
+.complexity__name,
+.length__distance,
+.time__duration {
+    display: inline-block;
+    font-family: "GolosTextRegular", sans-serif;
+    font-size: 14px;
+    margin: 0px 0px 0px 8px !important;
 }
 .leaflet-control-layers-overlays {
     /*width: 287px;*/

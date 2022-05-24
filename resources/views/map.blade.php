@@ -92,10 +92,17 @@
                     '<span class="star-rating__feedback">(35)</span>'+
                 '</div>'+
             '</div>'+
-            '<div class="marker__address">Адрес</div>' +
             '<div class="marker-status status-broken">Не работает</div>' +
-            '<div class="marker__photo__container">'+
-                '<img class="marker__photo" src="/PageMap/img/marker/01.png" alt="object">'+
+            '<div class="marker__characteristics">'+
+                '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">'+
+                '<div class="length">'+
+                    '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">'+
+                    '<p class="length__distance">24.6 км</p>'+
+                '</div>'+
+                '<div class="time">'+
+                    '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">'+
+                    '<p class="time__duration">1 час</p>'+
+                '</div>'+
             '</div>'+
         '</div>').addTo(routes);
         /*--------------------------------------*/
