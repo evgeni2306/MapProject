@@ -31,13 +31,20 @@ class GetProfileController extends Controller
         $Pointscount = Count(DB::table('points')
             ->select('id')
             ->where('creatorid', $id)->get());
-        $Commentscount = Count(DB::table('pcomments')
+        $Routescount = Count(DB::table('routes')
             ->select('id')
-            ->where('creatorid', $id)->get());//Тут нужно будет еще посчитать количество комментов у маршрутов и суммировать
+            ->where('creatorid', $id)->get());
+        $Commentscount =
+            Count(DB::table('pcomments')
+            ->select('id')
+            ->where('creatorid', $id)->get())
+            +Count(DB::table('rcomments')
+                ->select('id')
+                ->where('creatorid', $id)->get()); //Тут нужно будет еще посчитать количество комментов у маршрутов и суммировать
         $arr = array(
             "points" => $Pointscount,
             "comments" => $Commentscount,
-            "routes" => 0
+            "routes" => $Routescount
         );
         return $arr;
     }

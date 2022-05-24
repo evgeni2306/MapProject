@@ -49,7 +49,9 @@
                     <img src="{{$_SESSION['CurrentRoute']->avatar}}" class="infoblock__user__photo" alt="">
                     <span class="infoblock__user__name">{{$_SESSION['CurrentRoute']->nickname}}</span>
                 </div>
-                <div class="infoblock__button-edit"><a href=""><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+                @if(isset($_SESSION['User']))
+                    <div class="infoblock__button-edit"><a href=""><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+                @endif
             </div>
             <div id="map" class="information__map"></div>
         </div>
