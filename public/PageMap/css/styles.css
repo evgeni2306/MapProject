@@ -257,6 +257,18 @@ button {
     height: 100px;
     border-radius: 3px;
 }
+.marker__characteristics {
+    display: flex;
+    justify-content: space-between;
+}
+.complexity__name,
+.length__distance,
+.time__duration {
+    display: inline-block;
+    font-family: "GolosTextRegular", sans-serif;
+    font-size: 14px;
+    margin: 0px 0px 0px 8px !important;
+}
 .button__end-route {
     font-family: "GolosTextRegular";
     font-weight: 400;

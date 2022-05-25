@@ -169,6 +169,10 @@ body._lock {
     display: flex;
     margin-top: 40px;
 }
+.edit-point__photos__mobile {
+    display: none;
+    position: relative;
+}
 .edit-point__photos {
     display: inline-block;
     position: relative;
@@ -283,13 +287,6 @@ button {
     .edit-point__photos {
         width: 100%;
         margin-top: 15px;
-    }
-    .edit-buttons {
-        display: none;
-    }
-    .edit-buttons__mobile {
-        display: flex;
-        margin-top: 32px;
     }
 }
 @media (max-width: 767px) {

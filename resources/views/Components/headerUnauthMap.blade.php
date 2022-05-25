@@ -28,16 +28,19 @@
                     <button type="button" disabled class="menu__link" id="menu__link__load-route__mobile"><img
                             src="/PageMap/img/header/loadroutegray.svg" alt="route">
                     </button>
+                    <div class="authorization-popup">
+                        <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы проложить маршрут.</p>
+                    </div>
                 </li>
             </ul>
-            <li class="menu__load-route">
+            <div class="menu__load-route">
                 <button type="button" disabled class="menu__link" id="menu__link__load-route"><img
                         src="/PageMap/img/header/loadroutegray.svg" alt="route">
                 </button>
                 <div class="authorization-popup">
-                    <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы загрузить маршрут.</p>
+                    <p class="authorization-popup-text">Зарегистрируйтесь или войдите в аккаунт, чтобы проложить маршрут.</p>
                 </div>
-            </li>
+            </div>
         </nav>
         <div class="menu__icon">
             <span></span>

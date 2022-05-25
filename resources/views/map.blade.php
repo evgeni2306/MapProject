@@ -87,20 +87,28 @@
         //-------------------Вывод маршрутов------------------
         <?    foreach ($routes as $route){?>
         L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
-            '<div class="marker__container">' +
-            '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +
-            '<div class="short-description">{{$route->shortdescription}}</div>' +
-            '<div class="star-rating star-rating_set">' +
-            '<div class="star-rating__body">' +
-            '<img class="star-rating__star" src="{{$route->rating}}">'+
-            '<span class="star-rating__feedback">()</span>'+
-            '</div>'+
-            '</div>'+
-            '<div class="marker__address">{{$route->distance}}</div>' +
-            '<div class="marker-status status-unknown">Статус : {{$route->status}}</div>' +
-            '<div class="marker__photo__container">'+
-            '</div>'+
-            '</div>').addTo({{$route->type}});
+        '<div class="marker__container">' +
+        '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +
+        '<div class="short-description">{{$route->shortdescription}}</div>' +
+        '<div class="star-rating star-rating_set">' +
+        '<div class="star-rating__body">' +
+        '<img class="star-rating__star" src="{{$route->rating}}">'+
+        '<span class="star-rating__feedback">()</span>'+
+        '</div>'+
+        '</div>'+
+        '<div class="marker-status status-broken">{{$route->status}}</div>' +
+        '<div class="marker__characteristics">'+
+        '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon}}.svg" alt="middle">'+
+        '<div class="length">'+
+        '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">'+
+        '<p class="length__distance">{{$route->distance}}</p>'+
+        '</div>'+
+        '<div class="time">'+
+        '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">'+
+        '<p class="time__duration">{{$route->time}}</p>'+
+        '</div>'+
+        '</div>'+
+        '</div>').addTo({{$route->type}});
         <?}?>
 
 
