@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Point;
 use Illuminate\Support\Facades\DB;
 use App\Http\helpfunc;
+use Illuminate\Support\Facades\Auth;
 
 class AddPcommentController extends Controller
 {
@@ -18,6 +19,12 @@ class AddPcommentController extends Controller
             'rating' => ['required',],
             'text' => ['required', 'string'],
         ]);
+        $checkComment  = DB::table('pcomments')
+            ->where('creatorid', Auth::id())
+            ->get();
+        if (Count($checkComment) ==1){
+            return redirect(route('getpointpage',$_SESSION['CurrentPoint']->id));
+        }
         $validateFields['creatorid'] = $_SESSION['User']->id;
         $validateFields['pointid'] = $_SESSION['CurrentPoint']->id;
         $pcomment = Pcomment::create($validateFields);

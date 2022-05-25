@@ -21,16 +21,14 @@ class RoutePageController extends Controller
         }
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Rout::where('id', $id)->exists()) {
-            //Получение точки из бд
 
-// var_dump(abs($z));
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
                 ->select('routes.id', 'users.name as uname', 'users.nickname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
             if ($getroute->nickname == null) {
-                $getroute->nickname = $getroute->name . ' ' . $getroute->surname;
+                $getroute->nickname = $getroute->name . ' ' . $getroute->usurname;
             }
             $getrpoints = DB::table('rpoints')
                 ->where('rpoints.routeid', '=', $getroute->id)
@@ -57,6 +55,16 @@ class RoutePageController extends Controller
                 }
             }
 
+            $checkComment = DB::table('rcomments')
+                ->where('creatorid', Auth::id())
+                ->get();
+
+            if (Count($checkComment) == 1 or !Auth::check()) {
+                $canAddComment = false;
+            } else {
+                $canAddComment = true;
+            }
+
             $route = new RoutePageClass(
                 $getroute->id,
                 $getroute->creatorid,
@@ -73,7 +81,8 @@ class RoutePageController extends Controller
                 $getroute->usurname,
                 $getroute->nickname,
                 $getroute->icon,
-                $pointarr
+                $pointarr,
+                $canAddComment
             );
 
             $_SESSION['CurrentRoute'] = $route;

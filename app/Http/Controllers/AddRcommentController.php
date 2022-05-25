@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\helpfunc;
 use App\Models\Route;
+use Illuminate\Support\Facades\Auth;
 
 class AddRcommentController extends Controller
 {
@@ -19,6 +20,13 @@ class AddRcommentController extends Controller
             'rating' => ['required',],
             'text' => ['required', 'string'],
         ]);
+        $checkComment  = DB::table('rcomments')
+            ->where('creatorid', Auth::id())
+            ->get();
+        if (Count($checkComment) ==1){
+            return redirect(route('getroutepage',$_SESSION['CurrentRoute']->id));
+        }
+
         $validateFields['creatorid'] = $_SESSION['User']->id;
         $validateFields['routeid'] = $_SESSION['CurrentRoute']->id;
         $rcomment = Rcomment::create($validateFields);

@@ -77,7 +77,7 @@
             <div class="description">{{$_SESSION['CurrentRoute']->description}}</div>
         </div>
 
-        @if(isset($_SESSION['User']))
+        @if($_SESSION['CurrentRoute']->canAddComment == true)
 
         <div class="feedback block">
             <div class="feedback__title title">Написать отзыв</div>

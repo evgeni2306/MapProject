@@ -92,7 +92,7 @@
             <div class="location__title title">Местоположение</div>
             <div id="map" class="location__map" style="width: 50%; height: 360px;"></div>
         </div>
-        @if(isset($_SESSION['User']))
+        @if($_SESSION['CurrentRoute']->canAddComment == true)
         <div class="feedback block">
             <div class="feedback__title title">Написать отзыв</div>
             <form class="feedback__form" method="Post" action ="{{route('AddPcomment')}}">

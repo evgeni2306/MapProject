@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\PointPageClass;
 use App\Http\helpfunc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,25 +23,56 @@ class PointPageController extends Controller
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Point::where('id', $id)->exists()) {
             //Получение точки из бд
-            $_SESSION['CurrentPoint'] = DB::table('points')
+            $getpoint = DB::table('points')
                 ->join('users', 'users.id', '=', 'points.creatorId')
                 ->select('points.id', 'users.name as uname', 'users.nickname as nickname', 'users.avatar', 'points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
                 ->where('points.id', $id)->first();
-            if ($_SESSION['CurrentPoint']->nickname == null) {
-                $_SESSION['CurrentPoint']->nickname = $_SESSION['CurrentPoint']->uname . ' ' . $_SESSION['CurrentPoint']->usurname;
+            if ($getpoint->nickname == null) {
+                $getpoint->nickname = $getpoint->uname. ' ' . $getpoint->usurname;
             }
 
 //Определение типа и иконки по группe type
-            if ($_SESSION['CurrentPoint']->type == 'zpoints') {
-                $_SESSION['CurrentPoint']->type = array(0 => "socket.svg", 1 => 'Розетка');
-            } else if ($_SESSION['CurrentPoint']->type == 'dpoints') {
-                $_SESSION['CurrentPoint']->type = array(0 => "building.svg", 1 => 'Достопримечательность');
+            if ($getpoint->type == 'zpoints') {
+                $getpoint->type = array(0 => "socket.svg", 1 => 'Розетка');
+            } else if ($getpoint->type == 'dpoints') {
+                $getpoint->type = array(0 => "building.svg", 1 => 'Достопримечательность');
             }
             //Определение нужной иконки звездочек в зависимости от значения rating
-            $_SESSION['CurrentPoint'] = $this->GetObjectRatingIcon($_SESSION['CurrentPoint']);
+            $getpoint = $this->GetObjectRatingIcon($getpoint);
 
 //Рейтинг, 0 - иконка, 1 -  кол-во комментов, пока что просто объявление, нужно будет потом в этом же контроллере
-            $_SESSION['CurrentPoint']->rating = array(0 => $_SESSION['CurrentPoint']->rating, 1 => 0);
+            $getpoint->rating = array(0 => $getpoint->rating, 1 => 0);
+
+            $checkComment =  DB::table('pcomments')
+                ->where('creatorid', Auth::id())
+                ->get();
+
+            if (Count($checkComment) ==1 or !Auth::check() )
+            {
+                $canAddComment = false;
+            }else{
+                $canAddComment = true;
+            }
+            $_SESSION['CurrentPoint'] = new PointPageClass(
+                $getpoint->id,
+                $getpoint->name,
+                $getpoint->status,
+                $getpoint->description,
+                $getpoint->rating,
+                $getpoint->type,
+                $getpoint->address,
+                $getpoint->lat,
+                $getpoint->lng,
+                $getpoint->icon,
+                $getpoint->photo,
+                $getpoint->avatar,
+                $getpoint->uname,
+                $getpoint->usurname,
+                $getpoint->nickname,
+                $canAddComment
+
+            );
+//dd($_SESSION['CurrentPoint']);
 
 //Получение комментов из бд
             $_SESSION['Pcomments'] = DB::table('pcomments')
@@ -58,7 +90,6 @@ class PointPageController extends Controller
 //ОПределение иконок рейтинга у комментариев
             $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
             $_SESSION['CurrentPoint']->rating[1] = Count($_SESSION['Pcomments']);
-
             return view('pointpersonal');
         } else {
 
