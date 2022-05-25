@@ -17,7 +17,7 @@
 @include('Components.headerPages')
 <!--------------/HEADER-------------------->
     <div class="container">
-        <form method="Post" action ="{{'edit'}}">
+        <form method="Post" action ="{{'edit'}}" enctype="multipart/form-data">
             <h1 class="settings__title">Настройки</h1>
             <div class="content__container">
                 <div class="avatar__container">
