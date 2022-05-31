@@ -42,7 +42,7 @@
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
-                    <span class="infoblock__user__name">Алексей Петров</span>
+                    <span class="infoblock__user__name"><a href="{{route('profile')}}" class="user-profile__link">Алексей Петров</a></span>
                 </div>
                 <div class="infoblock__button-edit"><a href="{{route('editpoints')}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
             </div>
@@ -103,7 +103,7 @@
                     <div class="comment__user">
                         <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                         <div class="comment__user__content">
-                            <div class="comment__user__name">Александр Иванов</div>
+                            <div class="comment__user__name"><a href="{{route('profile')}}" class="user-profile__link">Александр Иванов</a><span class="user__rang">Профи <span class="user__rang-points">1200</span></span></div>
                             <div class="comment__user__date" id="time">22 августа 2021</div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                     <div class="comment__user">
                         <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                         <div class="comment__user__content">
-                            <div class="comment__user__name">Александр Иванов</div>
+                            <div class="comment__user__name"><a href="{{route('profile')}}" class="user-profile__link">Александр Иванов</a><span class="user__rang">Профи <span class="user__rang-points">1200</span></span></div>
                             <div class="comment__user__date" id="time">22 августа 2021</div>
                         </div>
                     </div>

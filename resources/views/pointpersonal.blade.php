@@ -39,7 +39,7 @@
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="/PagePointPersonal/img/06.svg" class="infoblock__user__photo" alt="">
-                    <span class="infoblock__user__name">Алексей Петров</span>
+                    <span class="infoblock__user__name"><a href="{{route('profile')}}" class="user-profile__link">Алексей Петров</a></span>
                 </div>
                 <div class="infoblock__button-edit"><a href="{{route('editpoints')}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
             </div>
@@ -115,7 +115,7 @@
                     <div class="comment__user">
                         <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                         <div class="comment__user__content">
-                            <div class="comment__user__name">Александр Иванов</div>
+                            <div class="comment__user__name"><a href="{{route('profile')}}" class="user-profile__link">Александр Иванов</a><span class="user__rang">Профи <span class="user__rang-points">1200</span></span></div>
                             <div class="comment__user__date" id="time">22 августа 2021</div>
                         </div>
                     </div>
@@ -123,7 +123,8 @@
                         <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
                     </div>
                 </div>
-                <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <div class="comment__text" contenteditable="false">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <button class="comment-edit">Редактировать</button>
                 <div class="comment__bottom">
                     <span class="comment__bottom__useful">Было полезно?</span>
                     <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
@@ -135,7 +136,7 @@
                     <div class="comment__user">
                         <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                         <div class="comment__user__content">
-                            <div class="comment__user__name">Александр Иванов</div>
+                            <div class="comment__user__name"><a href="{{route('profile')}}" class="user-profile__link">Александр Иванов</a><span class="user__rang">Профи <span class="user__rang-points">1200</span></span></div>
                             <div class="comment__user__date" id="time">22 августа 2021</div>
                         </div>
                     </div>
@@ -143,7 +144,8 @@
                         <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
                     </div>
                 </div>
-                <div class="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <div class="comment__text" contenteditable="false">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <button class="comment-edit">Редактировать</button>
                 <div class="comment__bottom">
                     <span class="comment__bottom__useful">Было полезно?</span>
                     <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
@@ -159,7 +161,8 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <script src="Script/menu.js"></script>
 <script>
 /*-------------MAP------------------------------*/
@@ -184,7 +187,7 @@
 	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
 		house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
 /*---------------SWIPER-------------------------*/
-    new Swiper('.image-slider', {
+    /*new Swiper('.image-slider', {
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
@@ -195,7 +198,7 @@
             clickable: true,
             dynamicBullets: true,
         },
-    });
+    });*/
 /*---------------LIKES-------------------------*/
     const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
     const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
@@ -208,7 +211,23 @@
             const inc = button.classList.contains("like-active") ? 1 : -1;
             likeCounts[index].innerHTML = current + inc;
         });
-    });        
+    });
+
+    $(".comment-edit").click(function(e) {
+        if ($(".comment__text").attr("contenteditable") == 'false') {
+            $(".comment__text").attr("contenteditable", "true");
+            $(".comment__text").css({ border: "1px solid black" });
+        } else {
+            $(".comment__text").attr("contenteditable", "false");
+            $(".comment__text").css({ border: "none" });
+        }
+    });
+    /*let childs = document.querySelector(".comments").childNodes;
+    childs.forEach(elem => {
+       
+        console.log(elem.children);
+        console.log(elem); 
+    });*/
 </script>
 </body>
 </html>

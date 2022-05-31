@@ -169,10 +169,6 @@ body._lock {
     top: 16px;
     border-radius: 50%;
 }
-.swiper {
-}
-.image-slider {
-}
 .image-slider .swiper-button-prev::after,
 .image-slider .swiper-button-next::after {
     color: #fff;
@@ -182,20 +178,8 @@ body._lock {
 .swiper-button-next {
     color: #fff !important;
 }
-.swiper-button-next {
-}
-.swiper-container {
-}
 .swiper-pagination-bullet {
     background-color: #fff !important;
-}
-.image-slider__wrapper {
-}
-.swiper-wrapper {
-}
-.image-slider__slide {
-}
-.swiper-slide {
 }
 .image-slider__image {
     text-align: center;
@@ -248,6 +232,9 @@ body._lock {
         url(/PagePointPersonal/img/greystar.svg)
         url(/PagePointPersonal/img/greystar.svg);
     display: block;
+}
+.user-profile__link:hover {
+    text-decoration: underline;
 }
 .rating__items {
     position: absolute;
@@ -417,6 +404,13 @@ input:hover {
     line-height: 118%;
     margin-bottom: 8px;
 }
+.user__rang {
+    font-family: "GolosTextRegular";
+    font-weight: 400;
+    color: #8c8c95;
+    line-height: 118%;
+    margin-left: 10px;
+}
 .comment__user__date {
     font-size: 16px;
     line-height: 120%;
@@ -585,5 +579,13 @@ button {
     }
     .comments__title {
         margin-left: 10px;
+    }
+    .comment__user__name {
+        display: flex;
+        flex-direction: column;
+    }
+    .user__rang {
+        line-height: 118%;
+        margin: 10px 0px 0px 0px;
     }
 }

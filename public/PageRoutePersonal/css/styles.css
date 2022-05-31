@@ -314,6 +314,9 @@ body._lock {
         url(/PagePointPersonal/img/greystar.svg);
     display: block;
 }
+.user-profile__link:hover {
+    text-decoration: underline;
+}
 .rating__items {
     position: absolute;
     width: 100%;
@@ -469,6 +472,13 @@ input:hover {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+}
+.user__rang {
+    font-family: "GolosTextRegular";
+    font-weight: 400;
+    color: #8c8c95;
+    line-height: 118%;
+    margin-left: 10px;
 }
 .comment__user__content {
     display: flex;
@@ -671,5 +681,13 @@ button {
     }
     .comments__title {
         margin-left: 10px;
+    }
+    .comment__user__name {
+        display: flex;
+        flex-direction: column;
+    }
+    .user__rang {
+        line-height: 118%;
+        margin: 10px 0px 0px 0px;
     }
 }

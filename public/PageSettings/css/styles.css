@@ -177,6 +177,12 @@ body._lock {
     line-height: 120%;
     padding-bottom: 12px;
 }
+.nickname-warning {
+    font-size: 14px;
+    line-height: 121%;
+    color: #8c8c95;
+    margin-bottom: 20px;
+}
 .buttons {
     display: flex;
     width: 50%;
@@ -221,7 +227,7 @@ select {
     font-size: 15px;
 }
 input::placeholder {
-    color: #000;
+    color: #8c8c95;
 }
 input:focus {
     outline: none;
