@@ -42,7 +42,8 @@
                     <span class="infoblock__rating__feedback">({{$_SESSION['CurrentPoint']->rating[1]}})</span>
                 </div>
                 <div class="infoblock__address__title">Адрес</div>
-                <div class="infoblock__address"><img src="/PagePointPersonal/img/04.svg">{{$_SESSION['CurrentPoint']->address}}</div>
+                <div class="infoblock__address"><img
+                        src="/PagePointPersonal/img/04.svg">{{$_SESSION['CurrentPoint']->address}}</div>
                 <div class="infoblock__status__title">Статус работы</div>
                 <div class="infoblock__status">{{$_SESSION['CurrentPoint']->status}}</div>
                 <div class="infoblock__user">
@@ -51,7 +52,8 @@
                     <span class="infoblock__user__name">{{$_SESSION['CurrentPoint']->nickname}}</span>
                 </div>
                 @if(isset($_SESSION['User']))
-                <div class="infoblock__button-edit"><a href="/editpoint={{$_SESSION['CurrentPoint']->id}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+                    <div class="infoblock__button-edit"><a href="/editpoint={{$_SESSION['CurrentPoint']->id}}"><img
+                                src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
                 @endif
             </div>
             <div class="infoblock__slider">
@@ -92,100 +94,130 @@
             <div class="location__title title">Местоположение</div>
             <div id="map" class="location__map" style="width: 50%; height: 360px;"></div>
         </div>
-        @if($_SESSION['CurrentRoute']->canAddComment == true)
-        <div class="feedback block">
-            <div class="feedback__title title">Написать отзыв</div>
-            <form class="feedback__form" method="Post" action ="{{route('AddPcomment')}}">
-            <p class="feedback__mark block__subtitle">Ваша оценка</p>
-            <div class="feedback__rating">
-                <div class="rating__items">
-                    <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
-                    <label for="rating__item__5" class="rating__label"></label>
-                    <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
-                    <label for="rating__item__4" class="rating__label"></label>
-                    <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
-                    <label for="rating__item__3" class="rating__label"></label>
-                    <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
-                    <label for="rating__item__2" class="rating__label"></label>
-                    <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
-                    <label for="rating__item__1" class="rating__label"></label>
-                </div>
-            </div>
-        <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
-                @csrf
-        <div class="feedback__button__container">
-            <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="text"></textarea>
-            <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
-            <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
-        </div>
-
-        </form>
-        </div>@endif
-        <div class="comments-block block">
-            <div class="comments__title title">Отзывы<span class="count__comments">{{$_SESSION['CurrentPoint']->rating[1]}}</span></div>
-            <?foreach($_SESSION['Pcomments'] as $pcomment) {?>
-            {{--  коммент--}}
-          <div class="comments">
-                <div class="comments__comment">
-                <div class="comment__top">
-                    <div class="comment__user">
-                        <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
-                        <div class="comment__user__content">
-                            <div class="comment__user__name">{{$pcomment->name.' '.$pcomment->surname}}</div>
-                            <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
+        @if($_SESSION['CurrentPoint']->canAddComment == true)
+            <div class="feedback block">
+                <div class="feedback__title title">Написать отзыв</div>
+                <form class="feedback__form" method="Post" action="{{route('AddPcomment')}}">
+                    <p class="feedback__mark block__subtitle">Ваша оценка</p>
+                    <div class="feedback__rating">
+                        <div class="rating__items">
+                            <input id="rating__item__5" type="radio" class="rating__item" value="5" name="rating">
+                            <label for="rating__item__5" class="rating__label"></label>
+                            <input id="rating__item__4" type="radio" class="rating__item" value="4" name="rating">
+                            <label for="rating__item__4" class="rating__label"></label>
+                            <input id="rating__item__3" type="radio" class="rating__item" value="3" name="rating">
+                            <label for="rating__item__3" class="rating__label"></label>
+                            <input id="rating__item__2" type="radio" class="rating__item" value="2" name="rating">
+                            <label for="rating__item__2" class="rating__label"></label>
+                            <input id="rating__item__1" type="radio" class="rating__item" value="1" name="rating">
+                            <label for="rating__item__1" class="rating__label"></label>
                         </div>
                     </div>
-                    <div class="comment__rating">
-                        <img class="star-rating__star" src="{{$pcomment->rating}}">
+                    <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+                    @csrf
+                    <div class="feedback__button__container">
+                        <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом"
+                                  name="text"></textarea>
+                        <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
+                        <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg"
+                                                           class="feedback__button__image">Добавить отзыв</label>
                     </div>
+
+                </form>
+            </div>@endif
+        <div class="comments-block block">
+            <div class="comments__title title">Отзывы<span
+                    class="count__comments">{{$_SESSION['CurrentPoint']->rating[1]}}</span></div>
+{{--            <?foreach($_SESSION['Pcomments'] as $pcomment) {?>--}}
+{{--            --}}{{--  коммент--}}
+{{--            <div class="comments">--}}
+{{--                <div class="comments__comment">--}}
+{{--                    <div class="comment__top">--}}
+{{--                        <div class="comment__user">--}}
+{{--                            <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">--}}
+{{--                            <div class="comment__user__content">--}}
+{{--                                <div class="comment__user__name">{{$pcomment->name.' '.$pcomment->surname}}</div>--}}
+{{--                                <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="comment__rating">--}}
+{{--                            <img class="star-rating__star" src="{{$pcomment->rating}}">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="comment__text">{{$pcomment->text}}</div>--}}
+{{--                </div>--}}
+{{--                --}}{{--  коммент--}}
+{{--                <? } ?>--}}
+{{--            </div>--}}
+            <div class="comments">
+                <?foreach($_SESSION['Pcomments'] as $pcomment) {?>
+                <div class="comments__comment">
+                    <div class="comment__top">
+                        <div class="comment__user">
+                            <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
+                            <div class="comment__user__content">
+                                <div class="comment__user__name"><a href=""
+                                                                    class="user-profile__link">Александр Иванов</a><span
+                                        class="user__rang">Профи <span class="user__rang-points">1200</span></span>
+                                </div>
+                                <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
+                            </div>
+                        </div>
+                        <div class="comment__rating">
+                            <img class="star-rating__star" src="{{$pcomment->rating}}">
+                        </div>
+                    </div>
+                    <div class="comment__text" contenteditable="false">{{$pcomment->text}}
+                    </div>
+{{--                    <button class="comment-edit">Редактировать</button>--}}
                 </div>
-                <div class="comment__text">{{$pcomment->text}}</div>
+                                    <? } ?>
             </div>
-              {{--  коммент--}}
-              <? } ?>
+
+
         </div>
-        </div>
     </div>
-    </div>
-    </div>
-    <!--------------FOOTER-------------------->
-    @include('Components.footer')
-    <!--------------/FOOTER-------------------->
+</div>
+</div>
+<!--------------FOOTER-------------------->
+@include('Components.footer')
+<!--------------/FOOTER-------------------->
 </div>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script src="Script/menu.js"></script>
 <script>
-/*-------------MAP------------------------------*/
-var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
+    /*-------------MAP------------------------------*/
+    var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);
 
-//---------------стиль карты для авторизованного/неавторизованного
-        @if(isset($_SESSION['User']))
+    //---------------стиль карты для авторизованного/неавторизованного
+    @if(isset($_SESSION['User']))
     var tiles = L.tileLayer('{{$_SESSION['User']->mapstyle}}', {
         @endif
-        @if(!isset($_SESSION['User']))
-    var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        @endif
-        //-----------------
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1
-}).addTo(map);
+            @if(!isset($_SESSION['User']))
+        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            @endif
+            //-----------------
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(map);
 
-    var Markers = L.Icon.extend({
-		options: {
-			iconSize: [39, 45],
-			iconAnchor: [16,37]
-		}
-	});
+        var Markers = L.Icon.extend({
+            options: {
+                iconSize: [39, 45],
+                iconAnchor: [16, 37]
+            }
+        });
 
-	var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
-	var	house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
+        var    house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
 
-L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}],{icon: {{$_SESSION['CurrentPoint']->icon}}} ).addTo(map);
-/*---------------SWIPER-------------------------*/
+        L
+        .marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], {icon: {{$_SESSION['CurrentPoint']->icon}}}).addTo(map);
+    /*---------------SWIPER-------------------------*/
     // new Swiper('.image-slider', {
     //     navigation: {
     //         nextEl: '.swiper-button-next',
@@ -198,7 +230,7 @@ L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}
     //         dynamicBullets: true,
     //     },
     // });
-/*---------------LIKES-------------------------*/
+    /*---------------LIKES-------------------------*/
     // const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
     // const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
     //
@@ -211,7 +243,7 @@ L.marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}
     //         likeCounts[index].innerHTML = current + inc;
     //     });
     // });
-/*-------------------------------*/
+    /*-------------------------------*/
 </script>
 </body>
 </html>
