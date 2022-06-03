@@ -28,7 +28,7 @@ class PointPageClass
 
     public function __construct(
         int $id,
-//        int $creatorid,
+        int $creatorid,
         string $name,
         string $status,
         $description,
@@ -48,7 +48,7 @@ class PointPageClass
     )
     {
         $this->id = $id;
-//        $this->creatorid = $creatorid;
+        $this->creatorid = $creatorid;
         $this->name = $name;
         $this->status = $status;
         $this->description = $description;

@@ -49,7 +49,7 @@
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="{{$_SESSION['CurrentPoint']->avatar}}" class="infoblock__user__photo" alt="">
-                    <span class="infoblock__user__name"><a href="{{route('myprofile')}}" class="user-profile__link">{{$_SESSION['CurrentPoint']->nickname}}</a></span>
+                    <span class="infoblock__user__name"><a href="{{route('profile',$_SESSION['CurrentPoint']->creatorid)}}" class="user-profile__link">{{$_SESSION['CurrentPoint']->nickname}}</a></span>
                 </div>
                 @if(isset($_SESSION['User']))
                     <div class="infoblock__button-edit"><a href="/editpoint={{$_SESSION['CurrentPoint']->id}}"><img
@@ -154,7 +154,7 @@
                         <div class="comment__user">
                             <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
                             <div class="comment__user__content">
-                                <div class="comment__user__name"><a href="{{route('myprofile')}}" class="user-profile__link">{{$pcomment->nickname}}</a><span class="user__rang">{{$pcomment->rname}} <span class="user__rang-points">{{$pcomment->urate}}</span></span></div>
+                                <div class="comment__user__name"><a href="{{route('profile',$pcomment->creatorid)}}" class="user-profile__link">{{$pcomment->nickname}}</a><span class="user__rang">{{$pcomment->rname}} <span class="user__rang-points">{{$pcomment->urate}}</span></span></div>
                                 <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
                             </div>
                         </div>

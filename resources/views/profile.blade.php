@@ -16,22 +16,27 @@
 @include('Components.headerPages')
 <!--------------/HEADER-------------------->
     <div class="content__wrapper">
+        @if($user->id == $_SESSION['User']->id)
         <h1 class="profile__title">Мой профиль</h1>
+        @endif
+        @if($user->id != $_SESSION['User']->id)
+                <h1 class="profile__title">Профиль {{$user->nickname}}</h1>
+            @endif
         <div class="content__container">
             <div class="user">
-                <img class="user__avatar" src="{{$_SESSION['User']->avatar}}" alt="avatar">
-                <div class="user__name">{{$_SESSION['User']->nickname}}</div>
-                <div class="user__grade"><img src="/PageProfile/img/cool-watermelon.svg" alt="">{{$_SESSION['User']->rname}}</div>
+                <img class="user__avatar" src="{{$user->avatar}}" alt="avatar">
+                <div class="user__name">{{$user->nickname}}</div>
+                <div class="user__grade"><img src="/PageProfile/img/cool-watermelon.svg" alt="">{{$user->rname}}</div>
             </div>
             <div class="user__info">
                 <div class="user__rating">
                     <div class="rating__title title">Рейтинг</div>
-                    <div class="rating__points">Набрано очков: <span class="points">{{$_SESSION['User']->rating}}</span></div>
-                    <div class="rating__level">Уровень: <span>{{$_SESSION['User']->rname}}</span></div>
+                    <div class="rating__points">Набрано очков: <span class="points">{{$user->rating}}</span></div>
+                    <div class="rating__level">Уровень: <span>{{$user->rname}}</span></div>
                     <div class="rating__nextlevel">
-                        <div class="nextlevel">Следующий уровень</div>
+                        <div class="nextlevel">Следующий уровень {{$nextrank}}</div>
                         <div class="points-received">
-                            <span class="points">{{$_SESSION['User']->rating}}</span>/<span class="target">{{$_SESSION['User']->maxrating}}</span>
+                            <span class="points">{{$user->rating}}</span>/<span class="target">{{$user->maxrating}}</span>
                         </div>
                     </div>
                     <div class="rating__nextlevel__progress">
@@ -49,21 +54,21 @@
                         <div class="point__count card">
                             <div class="card__count">
                                 <img src="/PageProfile/img/point.svg" alt="point">
-                                <div class="point__title title">{{$_SESSION['UserInfo']['points']}}</div>
+                                <div class="point__title title">{{$userinfo['points']}}</div>
                             </div>
                             <div class="point__subtitle">меток</div>
                         </div>
                         <div class="route__count card">
                             <div class="card__count">
                                 <img src="/PageProfile/img/route.svg" alt="route">
-                                <div class="route__title title">{{$_SESSION['UserInfo']['routes']}}</div>
+                                <div class="route__title title">{{$userinfo['routes']}}</div>
                             </div>
                             <div class="route__subtitle">маршрутов</div>
                         </div>
                         <div class="feedback__count card">
                             <div class="card__count">
                                 <img src="/PageProfile/img/star.svg" alt="star">
-                                <div class="feedback__title title">{{$_SESSION['UserInfo']['comments']}}</div>
+                                <div class="feedback__title title">{{$userinfo['comments']}}</div>
                             </div>
                             <div class="feedback__subtitle">отзывов</div>
                         </div>
@@ -71,7 +76,7 @@
                 </div>
                 <div class="transport-model">
                     <div class="transport-model__title title">Модель транспорта</div>
-                    <div class="transport-model__type">{{$_SESSION['User']->transport}}</div>
+                    <div class="transport-model__type">{{$user->transport}}</div>
                 </div>
             </div>
         </div>

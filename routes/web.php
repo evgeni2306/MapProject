@@ -39,7 +39,7 @@ Artisan::call('storage:link');
 Route::middleware('auth')->group(function () {
 
     //---связанные с юзером---//
-    Route::get('/profile', [GetProfileController::class, 'GetMyProfile'])->name('myprofile');
+
     Route::get('/edit', function () {
         return view('settings');
     })->name('edit');
@@ -106,6 +106,7 @@ Route::get('auth/vkontakte/callback', [SocialController::class, 'loginwithvkonta
 
 
 //Роуты для всех юзеров
+Route::get('/profile={idd}', [GetProfileController::class, 'GetProfile'])->name('profile');
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint'])->name('getpointpage');
 Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute'])->name('getroutepage');
 

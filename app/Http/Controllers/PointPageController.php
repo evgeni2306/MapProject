@@ -25,7 +25,7 @@ class PointPageController extends Controller
             //Получение точки из бд
             $getpoint = DB::table('points')
                 ->join('users', 'users.id', '=', 'points.creatorId')
-                ->select('points.id', 'users.name as uname', 'users.nickname as nickname', 'users.avatar', 'points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
+                ->select('points.id', 'creatorid', 'users.name as uname', 'users.nickname as nickname', 'users.avatar', 'points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
                 ->where('points.id', $id)->first();
             if ($getpoint->nickname == null) {
                 $getpoint->nickname = $getpoint->uname. ' ' . $getpoint->usurname;
@@ -56,6 +56,7 @@ class PointPageController extends Controller
             }
             $_SESSION['CurrentPoint'] = new PointPageClass(
                 $getpoint->id,
+                $getpoint->creatorid,
                 $getpoint->name,
                 $getpoint->status,
                 $getpoint->description,
@@ -73,12 +74,13 @@ class PointPageController extends Controller
                 $canAddComment
 
             );
+//            dd($_SESSION['CurrentPoint']);
 
 //Получение комментов из бд
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.name', 'users.surname','users.nickname', 'pcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'pcomments.created_at', 'avatar')
+                ->select('users.name', 'users.surname','creatorid','users.nickname', 'pcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'pcomments.created_at', 'avatar')
                 ->where('pointid', $id)
                 ->latest()
                 ->get();
@@ -94,7 +96,6 @@ class PointPageController extends Controller
 //ОПределение иконок рейтинга у комментариев
             $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
 
-//            dd($_SESSION['Pcomments'][0]);
             $_SESSION['CurrentPoint']->rating[1] = Count($_SESSION['Pcomments']);
             return view('pointpersonal');
         } else {
