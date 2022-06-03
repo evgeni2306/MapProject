@@ -21,7 +21,8 @@ class AddRcommentController extends Controller
             'text' => ['required', 'string'],
         ]);
         $checkComment  = DB::table('rcomments')
-            ->where('creatorid', Auth::id())
+            ->where('creatorid',"=", Auth::id())
+            ->where('routeid',"=",$_SESSION['CurrentRoute']->id)
             ->get();
         if (Count($checkComment) ==1){
             return redirect(route('getroutepage',$_SESSION['CurrentRoute']->id));

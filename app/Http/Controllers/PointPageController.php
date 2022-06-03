@@ -44,7 +44,8 @@ class PointPageController extends Controller
             $getpoint->rating = array(0 => $getpoint->rating, 1 => 0);
 
             $checkComment =  DB::table('pcomments')
-                ->where('creatorid', Auth::id())
+                ->where('creatorid',"=", Auth::id() )
+                ->where('pointid',"=",$id)
                 ->get();
 
             if (Count($checkComment) ==1 or !Auth::check() )
@@ -72,23 +73,28 @@ class PointPageController extends Controller
                 $canAddComment
 
             );
-//dd($_SESSION['CurrentPoint']);
 
 //Получение комментов из бд
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
-                ->select('users.name', 'users.surname','users.nickname', 'pcomments.rating', 'text', 'pcomments.created_at', 'avatar', 'login')
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.name', 'users.surname','users.nickname', 'pcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'pcomments.created_at', 'avatar')
                 ->where('pointid', $id)
                 ->latest()
                 ->get();
-
             foreach ($_SESSION['Pcomments'] as $pcomment){
                 if($pcomment->nickname == null){
                     $pcomment->nickname = $pcomment->name.' '.$pcomment->surname;
                 }
             }
+
+
+
+
 //ОПределение иконок рейтинга у комментариев
             $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
+
+//            dd($_SESSION['Pcomments'][0]);
             $_SESSION['CurrentPoint']->rating[1] = Count($_SESSION['Pcomments']);
             return view('pointpersonal');
         } else {

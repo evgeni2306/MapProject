@@ -20,7 +20,8 @@ class AddPcommentController extends Controller
             'text' => ['required', 'string'],
         ]);
         $checkComment  = DB::table('pcomments')
-            ->where('creatorid', Auth::id())
+            ->where('creatorid',"=", Auth::id())
+            ->where('pointid',"=",$_SESSION['CurrentPoint']->id)
             ->get();
         if (Count($checkComment) ==1){
             return redirect(route('getpointpage',$_SESSION['CurrentPoint']->id));

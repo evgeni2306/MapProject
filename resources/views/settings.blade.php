@@ -42,7 +42,8 @@
                     <h4 class="sub-title">Фамилия</h4>
                     <input type="text" placeholder="Введите фамилию" name="surname" value ="{{$_SESSION['User']->surname}}">
                     <h4 class="sub-title">Никнейм</h4>
-                    <input type="text" placeholder="Введите никнейм" name="nickname" value ="{{$_SESSION['User']->nickname}}" >
+                    <input type="text" placeholder="Введите никнейм" name="nickname" value ="{{$_SESSION['User']->nickname}}">
+                    <p class="nickname-warning"> Впишите никнейм, если хотите использовать его вместо имени и фамилии. Эта информация будет отображена в профиле.</p>
                     <h4 class="sub-title">Модель транспорта</h4>
                     <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$_SESSION['User']->transport}}">
                     <h4 class="sub-title">Вид карты</h4>

@@ -25,35 +25,45 @@ class AddRouteController extends Controller
             'time' => ['nullable', 'string'],
             'cord' => ['required'],
         ]);
-        $difficulttype = explode(',', $validateFields['difficult']);
-        $rroute = array(
-            'creatorid' => Auth::id(),
-            'status' => 'Под вопросом',
-            'name' => $validateFields['name'],
-            'type' => $difficulttype[1],
-            'icon' => $difficulttype[2],
-            'shortdescription' => $validateFields['shortdescription'],
-            'description' => $validateFields['description'],
-            'difficult' => $difficulttype[0],
-            'distance' => $validateFields['distance'],
-            'time' => $validateFields['time'],
-            'rating' => 0);
-        $Route = Route::create($rroute);
-        $arr = explode(',', $validateFields['cord']);
-
-        for ($i = 0; $i <= count($arr) - 1; $i += 2) {
-            $point = array("routeid" => $Route->id, "lat" => $arr[$i], "lng" => $arr[$i + 1]);
-            Rpoint::create($point);
-        }
-        $this->UpdateUserRating(25);
-
-        return redirect(route('map'));
+        if (strlen($validateFields['cord']) > 19) {
 
 
+            $difficulttype = explode(',', $validateFields['difficult']);
+            $rroute = array(
+                'creatorid' => Auth::id(),
+                'status' => 'Под вопросом',
+                'name' => $validateFields['name'],
+                'type' => $difficulttype[1],
+                'icon' => $difficulttype[2],
+                'shortdescription' => $validateFields['shortdescription'],
+                'description' => $validateFields['description'],
+                'difficult' => $difficulttype[0],
+                'distance' => $validateFields['distance'],
+                'time' => $validateFields['time'],
+                'rating' => 0);
+            $Route = Route::create($rroute);
+            $arr = explode(',', $validateFields['cord']);
+
+            for ($i = 0; $i <= count($arr) - 1; $i += 2) {
+                $point = array("routeid" => $Route->id, "lat" => $arr[$i], "lng" => $arr[$i + 1]);
+                Rpoint::create($point);
+            }
+            $this->UpdateUserRating(25);
+
+            return redirect(route('map'));
+
+        } else
+            return redirect(\route('map'));
     }
 
     public function Redirect()
     {
-        return view('addroutes');
+        //Проверка на нахождение в маршруте более, чем 1 точки
+        //$_Post['cord'] - строка с координатами через запятую, 19 это 2 цифры и запятая(одна точка)
+        if (strlen($_POST['cord']) > 19) {
+            return view('addroutes');
+        } else
+            return redirect(\route('map'));
+
     }
 }

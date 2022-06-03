@@ -49,7 +49,7 @@
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="{{$_SESSION['CurrentPoint']->avatar}}" class="infoblock__user__photo" alt="">
-                    <span class="infoblock__user__name">{{$_SESSION['CurrentPoint']->nickname}}</span>
+                    <span class="infoblock__user__name"><a href="{{route('myprofile')}}" class="user-profile__link">{{$_SESSION['CurrentPoint']->nickname}}</a></span>
                 </div>
                 @if(isset($_SESSION['User']))
                     <div class="infoblock__button-edit"><a href="/editpoint={{$_SESSION['CurrentPoint']->id}}"><img
@@ -116,11 +116,9 @@
                     <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
                     @csrf
                     <div class="feedback__button__container">
-                        <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом"
-                                  name="text"></textarea>
+                        <textarea class="feedback__comment" maxlength="400" placeholder="Поделитесь своим опытом" name="text"></textarea>
                         <input type="submit" id="feedback__button" class="feedback__button__add" name="feedback__btn">
-                        <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg"
-                                                           class="feedback__button__image">Добавить отзыв</label>
+                        <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
                     </div>
 
                 </form>
@@ -156,10 +154,7 @@
                         <div class="comment__user">
                             <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
                             <div class="comment__user__content">
-                                <div class="comment__user__name"><a href=""
-                                                                    class="user-profile__link">Александр Иванов</a><span
-                                        class="user__rang">Профи <span class="user__rang-points">1200</span></span>
-                                </div>
+                                <div class="comment__user__name"><a href="{{route('myprofile')}}" class="user-profile__link">{{$pcomment->nickname}}</a><span class="user__rang">{{$pcomment->rname}} <span class="user__rang-points">{{$pcomment->urate}}</span></span></div>
                                 <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
                             </div>
                         </div>

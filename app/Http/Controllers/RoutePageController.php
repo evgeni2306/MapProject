@@ -56,7 +56,8 @@ class RoutePageController extends Controller
             }
 
             $checkComment = DB::table('rcomments')
-                ->where('creatorid', Auth::id())
+                ->where('creatorid',"=", Auth::id())
+                ->where('routeid',"=",$id)
                 ->get();
 
             if (Count($checkComment) == 1 or !Auth::check()) {
@@ -96,7 +97,8 @@ class RoutePageController extends Controller
 //Получение комментов из бд
             $_SESSION['Rcomments'] = DB::table('rcomments')
                 ->join('users', 'rcomments.creatorId', '=', 'users.id')
-                ->select('users.name', 'users.surname', 'users.nickname', 'rcomments.rating', 'text', 'rcomments.created_at', 'avatar', 'login')
+                ->join('ranks', 'ranks.id', '=', 'users.rank')
+                ->select('users.name', 'users.surname', 'users.nickname', 'rcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'rcomments.created_at', 'avatar')
                 ->where('routeid', $id)
                 ->latest()
                 ->get();
@@ -108,7 +110,6 @@ class RoutePageController extends Controller
             }
             //ОПределение иконок рейтинга у комментариев
             $_SESSION['Rcomments'] = $this->GetCommentRatingIcon($_SESSION['Rcomments']);
-
 
             $_SESSION['CurrentRoute']->rating[1] = Count($_SESSION['Rcomments']);
 
