@@ -5,6 +5,7 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/PageUnauthorizedMap/css/headerUnauthPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageProfile/css/styles.css">
@@ -12,16 +13,31 @@
 </head>
 <body>
 <div class="wrapper">
+@if(isset($_SESSION['User']))
     <!--------------HEADER-------------------->
-@include('Components.headerPages')
-<!--------------/HEADER-------------------->
-    <div class="content__wrapper">
-        @if($user->id == $_SESSION['User']->id)
-        <h1 class="profile__title">Мой профиль</h1>
-        @endif
-        @if($user->id != $_SESSION['User']->id)
+    @include('Components.headerPages')
+    <!--------------/HEADER-------------------->
+        <div class="content__wrapper">
+            @if($user->id == $_SESSION['User']->id)
+                <h1 class="profile__title">Мой профиль</h1>
+            @endif
+            @if($user->id != $_SESSION['User']->id)
                 <h1 class="profile__title">Профиль {{$user->nickname}}</h1>
             @endif
+@endif
+
+@if(!isset($_SESSION['User']))
+    <!--------------HEADER-------------------->
+    @include('Components.headerUnauthPages')
+    <!--------------/HEADER-------------------->
+        <div class="content__wrapper">
+            <h1 class="profile__title">Профиль {{$user->nickname}}</h1>
+    @endif
+
+
+
+
+
         <div class="content__container">
             <div class="user">
                 <img class="user__avatar" src="{{$user->avatar}}" alt="avatar">

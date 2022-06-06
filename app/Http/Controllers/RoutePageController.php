@@ -28,7 +28,7 @@ class RoutePageController extends Controller
                 ->where('routes.id', $id)
                 ->first();
             if ($getroute->nickname == null) {
-                $getroute->nickname = $getroute->name . ' ' . $getroute->usurname;
+                $getroute->nickname = $getroute->uname . ' ' . $getroute->usurname;
             }
             $getrpoints = DB::table('rpoints')
                 ->where('rpoints.routeid', '=', $getroute->id)
