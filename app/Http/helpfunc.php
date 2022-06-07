@@ -25,8 +25,8 @@ trait helpfunc
             ->join('ranks', 'ranks.id', '=', 'users.rank')
             ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
             ->first();
-        if($_SESSION['User']->nickname == null){
-            $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+        if($user->nickname == null){
+            $user->nickname = $user->name.' '.$user->surname;
         }
         return $user;
 
