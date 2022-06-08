@@ -14,6 +14,7 @@ class Route extends Model
         'name',
         'type',
         'icon',
+        'city',
         'shortdescription',
         'description',
         'difficult',

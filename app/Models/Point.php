@@ -17,6 +17,7 @@ class Point extends Model
         'status',
         'type',
         'icon',
+        'city',
         'shortdescription',
         'description',
         'rating',
