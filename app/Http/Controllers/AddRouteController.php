@@ -28,6 +28,8 @@ class AddRouteController extends Controller
         if (strlen($validateFields['cord']) > 19) {
 
 
+            $arr = explode(',', $validateFields['cord']);
+
             $difficulttype = explode(',', $validateFields['difficult']);
             $rroute = array(
                 'creatorid' => Auth::id(),
@@ -35,15 +37,15 @@ class AddRouteController extends Controller
                 'name' => $validateFields['name'],
                 'type' => $difficulttype[1],
                 'icon' => $difficulttype[2],
+                'city'=>$this->GetCityByCords($arr[0],$arr[1]),
                 'shortdescription' => $validateFields['shortdescription'],
                 'description' => $validateFields['description'],
                 'difficult' => $difficulttype[0],
                 'distance' => $validateFields['distance'],
                 'time' => $validateFields['time'],
                 'rating' => 0);
-            $Route = Route::create($rroute);
-            $arr = explode(',', $validateFields['cord']);
 
+            $Route = Route::create($rroute);
             for ($i = 0; $i <= count($arr) - 1; $i += 2) {
                 $point = array("routeid" => $Route->id, "lat" => $arr[$i], "lng" => $arr[$i + 1]);
                 Rpoint::create($point);

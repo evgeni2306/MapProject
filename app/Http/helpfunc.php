@@ -128,6 +128,27 @@ trait helpfunc
         }
         return $commentArr;
     }
+
+    public function GetCityByCords($lat,$lng){
+        $context = stream_context_create(
+            array(
+                "http" => array(
+                    "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+                )
+            )
+        );
+        $url = "https://nominatim.openstreetmap.org/reverse.php?lat=" . $lat . "&lon=" . $lng . "&format=jsonv2";
+        $xml = file_get_contents($url, false, $context);
+
+        $xmlArray = json_decode($xml, true);
+
+        if (array_key_exists("city",$xmlArray["address"])){
+            $city = $xmlArray["address"]["city"];
+        }else{
+            $city = "Не определен";
+        }
+        return $city;
+    }
 }
 
 
