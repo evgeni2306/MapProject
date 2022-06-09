@@ -19,27 +19,27 @@
         <h1 class="edit-point__title">Редактирование маршрута</h1>
         <div class="content__container">
             <div class="edit-point__forms">
-                <form method="" action ="" id="edit-form" enctype="multipart/form-data">
+                <form method="post" action ="{{route('UpdateRoute',$_SESSION['CurrentEditRoute']->id)}}" id="edit-form" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
-                    <input type="text" placeholder="Введите название" name="name" required>
-                    <h4 class="sub-title">Краткое описание<span class="required-form">*</span></h4>
-                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription" required>
+                    <input type="text" placeholder="Введите название" name="name" required value = "{{$_SESSION['CurrentEditRoute']->name}}">
+                    <h4 class="sub-title">Краткое описание<span class="required-form"></span></h4>
+                    <input type="text" class="short-description" placeholder="Информация будет отображена на карте" name="shortdescription"  value = {{$_SESSION['CurrentEditRoute']->shortdescription}}>
                     <h4 class="sub-title">Сложность<span class="required-form">*</span></h4>
-                    <select required name="complexity">
-                        <option value="" disabled selected style="display:none;">Выберите сложность</option>
+                    <select required name="difficult" id = "difficult">
+                        <option value="{{$_SESSION['CurrentEditRoute']->difficult}}" disabled selected style="display:none;">Выберите сложность</option>
                         <option value="Легко,groutes,greenroute">Для новичков</option>
                         <option value="Средне,yroutes,yellowroute">Средняя</option>
                         <option value="Сложно,rroutes,redroute">Для продвинутых</option>
                     </select>
                     <h4 class="sub-title">Протяженность</h4>
-                    <input type="text" placeholder="Введите протяженность" name="length">
+                    <input type="text" placeholder="Введите протяженность" name="distance" value ="{{$_SESSION['CurrentEditRoute']->distance}}" >
                     <h4 class="sub-title">Примерное время</h4>
-                    <input type="text" placeholder="Введите время" name="time">
+                    <input type="text" placeholder="Введите время" name="time" value = "{{$_SESSION['CurrentEditRoute']->time}}">
                     <h4 class="sub-title">Описание</h4>
-                    <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
+                    <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description" value ="{{$_SESSION['CurrentEditRoute']->description}}"></textarea>
                     @csrf
                     <div class="edit-buttons">
-                        <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
+                        <a href="" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
@@ -53,7 +53,10 @@
 </div>
 <script src="Script/menu.js"></script>
 <script>
-
+    const select1 = document.getElementById('difficult').getElementsByTagName('option');//Категория
+    for (let i = 1; i < select1.length; i++) {
+        if ( select1[i].value === select1[0].value  ) select1[i].setAttribute('selected','selected')
+    }
 </script>
 </body>
 </html>

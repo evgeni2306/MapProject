@@ -50,7 +50,7 @@
                     <span class="infoblock__user__name"><a href="{{route('profile',$_SESSION['CurrentRoute']->creatorid)}}" class="user-profile__link">{{$_SESSION['CurrentRoute']->nickname}}</a></span>
                 </div>
                 @if(isset($_SESSION['User']))
-                    <div class="infoblock__button-edit"><a href=""><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+                    <div class="infoblock__button-edit"><a href="{{route('UpdateRoute',$_SESSION['CurrentRoute']->id)}}"><img src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
                 @endif
             </div>
             <div id="map" class="information__map"></div>

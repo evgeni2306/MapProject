@@ -16,45 +16,36 @@ class UpdateRouteController extends Controller
         Artisan::call('storage:link');
         if (Auth::check()) {
             $validateFields = $request->validate([
-                'name' => ['string', 'required'],
-                'address' => ['string', 'nullable'],
-                'type' => ['string', 'required', 'ends_with:zpoints,dpoints'],
-                'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
-                'description' => ['nullable', 'max:500', 'string'],
-                'shortdescription' => ['max:255', 'string', 'nullable'],
-                'photo' => ['mimes:jpeg,jpg,png']
+                'name' => ['required', 'string'],
+                'shortdescription' => ['nullable', 'string'],
+                'description' => ['nullable', 'string'],
+                'difficult' => ['string','required',  'ends_with:greenroute,yellowroute,redroute'],
+////                'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
+                'distance' => ['nullable', 'string'],
+                'time' => ['nullable', 'string'],
             ]);
 
-            if (isset($validateFields['photo'])) {
-                $path = Storage::putFile('public/pointphoto', $request->file('photo'));
-                $path = 'storage/pointphoto/' . explode('/', $path)[2];
-                $oldpath = 'public/pointphoto/' . explode('/', $_SESSION['CurrentEditPoint']->photo)[2];
-                $delete = Storage::delete($oldpath);
-            } else {
-                $path = $_SESSION['CurrentEditPoint']->photo;
-
-            }
-
-
-            $typeAndIcon = explode(',', $validateFields['type']);
-            $validateFields['type'] = $typeAndIcon[1];
-            $validateFields['icon'] = $typeAndIcon[0];
+            $difAndTypeAndIcon = explode(',', $validateFields['difficult']);
+            $validateFields['type'] = $difAndTypeAndIcon[1];
+            $validateFields['icon'] = $difAndTypeAndIcon[2];
+            $validateFields['difficult'] = $difAndTypeAndIcon[0];
 
             //----Обновление точки----
-            DB::table('points')
-                ->where('id', $_SESSION['CurrentEditPoint']->id)
+            DB::table('routes')
+                ->where('id', $_SESSION['CurrentEditRoute']->id)
                 ->update([
                     'name' => $validateFields['name'],
                     'type' => $validateFields['type'],
                     'icon' => $validateFields['icon'],
-                    'address' => $validateFields['address'],
-                    'status' => $validateFields['status'],
+                    'difficult' => $validateFields['difficult'],
+//                    'status' => $validateFields['status'],
                     'description' => $validateFields['description'],
                     'shortdescription' => $validateFields['shortdescription'],
-                    'photo' => $path,
+                    'time'=>$validateFields['time'],
+                    'distance'=>$validateFields['distance']
                 ]);
             //-----------------------//
-            return redirect(route('getpointpage', $_SESSION['CurrentEditPoint']->id));
+            return redirect(route('getroutepage', $_SESSION['CurrentEditRoute']->id));
         }
         return redirect(route('map'));
     }
@@ -63,22 +54,24 @@ class UpdateRouteController extends Controller
     {
         if (Auth::check()) {
             $id = (int)$id;
-            if ((is_numeric($id)) and ($id > 0)) {
-                $_SESSION['CurrentEditPoint'] = DB::table('points')
+            if ((is_numeric($id)) and ($id > 0) and Route::where('id', $id)->exists()) {
+                $_SESSION['CurrentEditRoute'] = DB::table('routes')
                     ->select(
                         'id',
                         'name',
-                        'type',
-                        'icon',
-                        'address',
-                        'status',
                         'description',
                         'shortdescription',
-                        'photo'
+                        'difficult',
+                        'distance',
+                        'status',
+                        'distance',
+                        'type',
+                        'icon',
+                        'time',
                     )
                     ->where('id', $id)->first();
-                $_SESSION['CurrentEditPoint']->type = $_SESSION['CurrentEditPoint']->icon . ',' . $_SESSION['CurrentEditPoint']->type;
-                return view('editpoints');
+                $_SESSION['CurrentEditRoute']->difficult = $_SESSION['CurrentEditRoute']->difficult . "," . $_SESSION['CurrentEditRoute']->type . "," . $_SESSION['CurrentEditRoute']->icon;
+                return view('editroutes');
             }
         }
         return redirect(route('login'));

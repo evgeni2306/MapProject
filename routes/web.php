@@ -33,6 +33,10 @@ session_start();
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/test', function () {
+    return view('editroutes');
+});
 Artisan::call('storage:link');
 
 //Роуты для авторизованных

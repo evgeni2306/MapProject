@@ -63,7 +63,7 @@ class UpdatePointController extends Controller
     {
         if (Auth::check()) {
             $id = (int)$id;
-            if ((is_numeric($id)) and ($id > 0)) {
+            if ((is_numeric($id)) and ($id > 0) and Point::where('id', $id)->exists()) {
                 $_SESSION['CurrentEditPoint'] = DB::table('points')
                     ->select(
                         'id',
