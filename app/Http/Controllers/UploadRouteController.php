@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\helpfunc;
 use SimpleXMLElement;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 class UploadRouteController extends Controller
@@ -29,6 +30,13 @@ class UploadRouteController extends Controller
             'type' => ['required', 'string', 'ends_with:CSV,GPX']
 
         ]);
+
+//        if ($validateFields['time'] == null) {
+//                $validateFields['time'] = "Не указано";
+//            }
+//            if ($validateFields['distance'] == null) {
+//                $validateFields['distance'] = "Не указано";
+//            }
         $difficulttype = explode(',', $validateFields['difficult']);
         $rroute = array(
             'creatorid' => Auth::id(),
@@ -68,6 +76,7 @@ class UploadRouteController extends Controller
             set_time_limit(20);
             Rpoint::create($point);
         }
+        $this->SetCity($xml->trk->trkseg->trkpt[0]['lat'],$xml->trk->trkseg->trkpt[0]['lon'],$Route);
         $this->DeleteFile($path);
     }
 
@@ -90,7 +99,18 @@ class UploadRouteController extends Controller
             set_time_limit(20);
             Rpoint::create($point);
         }
+        $row = explode(',', $file[1]);
+        $this->SetCity($row[$indexlat],$row[$indexlng],$Route);
         $this->DeleteFile($path);
+    }
+    public function SetCity($lat,$lng,$route){
+        $city = $this->GetCityByCords($lat,$lng);
+
+        DB::table('routes')
+            ->where('id', $route->id)
+            ->update([
+                'city'=>$city
+            ]);
     }
 
     public function DeleteFile($path)

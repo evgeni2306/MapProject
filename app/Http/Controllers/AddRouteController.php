@@ -25,8 +25,15 @@ class AddRouteController extends Controller
             'time' => ['nullable', 'string'],
             'cord' => ['required'],
         ]);
+
         if (strlen($validateFields['cord']) > 19) {
 
+//            if ($validateFields['time'] == null) {
+//                $validateFields['time'] = "Не указано";
+//            }
+//            if ($validateFields['distance'] == null) {
+//                $validateFields['distance'] = "Не указано";
+//            }
 
             $arr = explode(',', $validateFields['cord']);
 
@@ -37,7 +44,7 @@ class AddRouteController extends Controller
                 'name' => $validateFields['name'],
                 'type' => $difficulttype[1],
                 'icon' => $difficulttype[2],
-                'city'=>$this->GetCityByCords($arr[0],$arr[1]),
+                'city' => $this->GetCityByCords($arr[0], $arr[1]),
                 'shortdescription' => $validateFields['shortdescription'],
                 'description' => $validateFields['description'],
                 'difficult' => $difficulttype[0],

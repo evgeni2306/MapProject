@@ -16,10 +16,10 @@ use App\Http\Controllers\UpdatePointController;
 use App\Http\Controllers\GetProfileController;
 use App\Http\Controllers\UploadRouteController;
 use App\Http\Controllers\AddRcommentController;
+use App\Http\Controllers\UpdateRouteController;
 use App\Classes\RoutePageClass;
 
 use Illuminate\Support\Facades\Artisan;
-
 
 
 session_start();
@@ -52,7 +52,6 @@ Route::middleware('auth')->group(function () {
     //-------------------------//
 
 
-
     //---связанные с маршрутами---//
     Route::get('/loadroute', function () {
         return view('loadroute');
@@ -63,8 +62,8 @@ Route::middleware('auth')->group(function () {
         return view('editroutes');
     })->name('editroute');
 
-//    Route::get('/editroute={idd}', [)->name();
-//    Route::post('/editroute={idd}', [])->name();
+    Route::get('/editroute={idd}', [UpdateRouteController::class, 'GetUpdateRoute'])->name('GetUpdateRoute');
+    Route::post('/editroute={idd}', [UpdateRouteController::class, 'UpdateRoute'])->name('UpdateRoute');
 
     Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
     Route::post('/Addroute', [AddRouteController::class, 'AddRoute'])->name('Addroute');//добавление
