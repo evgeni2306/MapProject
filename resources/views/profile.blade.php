@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageProfile/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
 </head>
 <body>
 <div class="wrapper">
@@ -33,9 +27,9 @@
             <div class="user__rating">
               <div class="rating__title title">Рейтинг</div>
               <div class="rating__points">Набрано очков: <span class="points">67</span></div>
-              <div class="rating__level">Уровень: <span>Мастер колеса</span></div>
+              <div class="rating__level">Уровень: <span>Новичок</span></div>
               <div class="rating__nextlevel">
-                <div class="nextlevel">Следующий уровень</div>
+                <div class="nextlevel">Следующий уровень: <span class="nextlevel__name">Любитель</span></div>
                 <div class="points-received">
                   <span class="points">67</span>/<span class="target">140</span>
                 </div>

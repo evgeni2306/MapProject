@@ -12,7 +12,7 @@
     align-items: center;
 }
 .footer__logo {
-    z-index: 5;
+    z-index: 4;
     font-family: TTFirsNeue;
     font-weight: 700;
     font-size: 22px;
