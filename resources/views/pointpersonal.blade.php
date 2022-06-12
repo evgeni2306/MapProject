@@ -180,7 +180,18 @@
 <!--------------/FOOTER-------------------->
 </div>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script src="Script/menu.js"></script>
+@if(isset($_SESSION['User']))
+    <!--------------MENU-------------------->
+    <script src="Script/menu.js"></script>
+    <!--------------MENU-------------------->
+@endif
+@if(!isset($_SESSION['User']))
+    <!--------------MENU-------------------->
+    <script src="Script/menuUnauth.js"></script>
+    <!--------------MENU-------------------->
+@endif
+
+
 <script>
     /*-------------MAP------------------------------*/
     var map = L.map('map').setView([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], 15);

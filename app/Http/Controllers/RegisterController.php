@@ -38,7 +38,7 @@ class RegisterController extends Controller
             $_SESSION['User'] = DB::table('users')
                 ->where('users.id', $user->id)
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
+                ->select('users.id', 'users.name', 'surname','nickname', 'avatar','ranks.id as rankid', 'transport', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
                 ->first();
 
             if($_SESSION['User']->nickname == null){

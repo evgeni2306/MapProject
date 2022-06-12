@@ -138,7 +138,16 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js" async></script>
+@if(isset($_SESSION['User']))
+    <!--------------MENU-------------------->
+    <script src="Script/menu.js"></script>
+    <!--------------MENU-------------------->
+@endif
+@if(!isset($_SESSION['User']))
+    <!--------------MENU-------------------->
+    <script src="Script/menuUnauth.js"></script>
+    <!--------------MENU-------------------->
+@endif
 <script>
     var map = L.map('map').setView([{{$_SESSION['CurrentRoute']->rpoints[0]->lat}}, {{$_SESSION['CurrentRoute']->rpoints[0]->lng}}], 13);
 

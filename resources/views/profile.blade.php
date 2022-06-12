@@ -101,7 +101,16 @@
 @include('Components.footer')
 <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script>
+    @if(isset($_SESSION['User']))
+        <!--------------MENU-------------------->
+            <script src="Script/menu.js"></script>
+            <!--------------MENU-------------------->
+    @endif
+    @if(!isset($_SESSION['User']))
+        <!--------------MENU-------------------->
+            <script src="Script/menuUnauth.js"></script>
+            <!--------------MENU-------------------->
+        @endif
 <script>
     /*-------------------------------*/
 

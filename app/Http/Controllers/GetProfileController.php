@@ -54,20 +54,11 @@ class GetProfileController extends Controller
 
 
 
-
         }else
             redirect(route('map'));
 
     }
-//        if (Auth::check()) {
-//            if (!isset($_SESSION['User'])) {
-//                $this->GetUser();
-//            }
-//            $_SESSION['UserInfo'] = $this->GetInformation($_SESSION['User']->id);
-//            return view('profile');
-//        } else {
-//            redirect(route('map'));
-//        }
+
 
 
 //метод для получения данных юзера(кол-во маршуртов комментов и точек)
