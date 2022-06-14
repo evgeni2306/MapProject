@@ -179,6 +179,25 @@ body._lock {
     color: #8c8c95;
     margin-bottom: 8px;
 }
+.marker__characteristics {
+    display: flex;
+    justify-content: space-between;
+}
+.marker__characteristic {
+    margin: 0px 8px;
+}
+.length,
+.time {
+    display: flex;
+}
+.complexity__name,
+.length__distance,
+.time__duration {
+    display: inline-block;
+    font-family: "GolosTextRegular", sans-serif;
+    font-size: 14px;
+    margin: 0px 0px 0px 0px !important;
+}
 .marker-status {
     font-family: "GolosTextRegular";
     font-size: 14px;

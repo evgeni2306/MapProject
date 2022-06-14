@@ -97,11 +97,11 @@
                 '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">'+
                 '<div class="length">'+
                     '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">'+
-                    '<p class="length__distance">24.6 км</p>'+
+                    '<p class="length__distance">Не указано</p>'+
                 '</div>'+
                 '<div class="time">'+
                     '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">'+
-                    '<p class="time__duration">1 час</p>'+
+                    '<p class="time__duration">Не указано</p>'+
                 '</div>'+
             '</div>'+
         '</div>').addTo(routes);
