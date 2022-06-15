@@ -191,21 +191,21 @@
         <?foreach ($_SESSION['CurrentRoute']->pointsnear as $point ) {?>
 
     L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup(
-        '<div class="marker__container">' +
-        '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
-        '<div class="short-description">{{$point->shortdescription}}</div>' +
-        '<div class="star-rating star-rating_set">' +
-        '<div class="star-rating__body">' +
-        '<img class="star-rating__star" src="{{$point->rating}}">'+
-        '<span class="star-rating__feedback">(35)</span>'+
-        '</div>'+
-        '</div>'+
-        '<div class="marker__address">{{$point->address}}</div>' +
-        '<div class="marker-status status-unknown">Статус : {{$point->status}}</div>' +
-        '<div class="marker__photo__container">'+
-        '<img class="marker__photo" src="{{$point->photo}}" alt="object">'+
-        '</div>'+
-        '</div>').addTo(map)
+            '<div class="marker__container">' +
+            '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
+            '<div class="short-description">{{$point->shortdescription}}</div>' +
+            '<div class="star-rating star-rating_set">' +
+            '<div class="star-rating__body">' +
+            '<img class="star-rating__star" src="{{$point->rating}}">'+
+            '<span class="star-rating__feedback">()</span>'+
+            '</div>'+
+            '</div>'+
+            '<div class="marker__address">{{$point->address}}</div>' +
+            '<div class="marker-status status-unknown">Статус : {{$point->status}}</div>' +
+            '<div class="marker__photo__container">'+
+            '<img class="marker__photo" src="{{$point->photo}}" alt="object">'+
+            '</div>'+
+            '</div>').addTo(map);
 
     <? }?>
     //-------------------------------------------------------

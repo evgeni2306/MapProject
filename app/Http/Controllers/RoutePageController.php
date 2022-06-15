@@ -54,6 +54,9 @@ class RoutePageController extends Controller
                     }
                 }
             }
+            foreach ($pointarr as $point){
+                $point= $this->GetObjectRatingIcon($point);
+            }
 
             $checkComment = DB::table('rcomments')
                 ->where('creatorid',"=", Auth::id())
