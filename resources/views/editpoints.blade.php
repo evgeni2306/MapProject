@@ -30,7 +30,7 @@
                     </select>
                     <h4 class="sub-title">Адрес<span class="required-form">*</span></h4>
                     <input {{$fieldAccess->address}} type="text" placeholder="Введите адрес"   name="address" value ="{{$_SESSION['CurrentEditPoint']->address}}">
-                    <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
+                    <h4  {{$fieldAccess->status}} class="sub-title">Статус работы<span class="required-form">*</span></h4>
                     <select {{$fieldAccess->status}}  id="status"  required name="status" >
                         <option value="{{$_SESSION['CurrentEditPoint']->status}}" disabled style="display:none;"></option>
                         <option value="Под вопросом">Под вопросом</option>
@@ -55,7 +55,7 @@
                     </div>-->
                     <div class="edit-buttons">
                         <a href="{{route('getpointpage',$_SESSION['CurrentEditPoint']->id)}}" class="edit-point__cancel">Назад</a>
-                        <input type="submit" class="edit-point__add" value ="Сохранить">
+                        <input {{$fieldAccess->submit }} type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
             </div>
