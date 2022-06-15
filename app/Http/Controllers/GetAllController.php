@@ -15,16 +15,35 @@ class GetAllController extends Controller
 
     public function GetAll(Request $request)
     {
-        //получение всех точек из бд
-        $getpoints = DB::table('points')
-            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
-                'status')->get();
+
+            //Получение точек и маршрутов, основываясь на разграничениях юзера по ролям
+        if (!isset($_SESSION['User']) or $_SESSION['User']->rankid < 2) {
+            //получение всех точек из бд, кроме тех, где статус "не работает"
+            $getpoints = DB::table('points')
+                ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+                    'status')
+                ->where('status', '!=', 'Не работает')
+                ->get();
+            //получение всех маршрутов из бд, кроме тех, где статус "не работает"
+            $getroutes = DB::table('routes')
+                ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')
+                ->where('status', '!=', 'Не работает')
+                ->get();
+        } else {
+            //получение всех точек из бд
+            $getpoints = DB::table('points')
+                ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+                    'status')->get();
+            //получение всех маршрутов из бд
+            $getroutes = DB::table('routes')
+                ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')->get();
+        }
+
         //определение иконок для рейтинга точки
         foreach ($getpoints as $point) {
             $point = $this->GetObjectRatingIcon($point);
         }
-        $getroutes = DB::table('routes')
-            ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')->get();
+        //Превращение загруженных маршрутов в объект RouteMapClass для последующей выгрузки на карту
         $Routes = array();
         foreach ($getroutes as $getroute) {
             $route = new RouteMapClass(
@@ -48,6 +67,8 @@ class GetAllController extends Controller
             $rpoint->lat = $getrpoints->lat;
             $rpoint->lng = $getrpoints->lng;
         }
+
+        //определение иконок для рейтинга маршрута
         foreach ($Routes as $Route) {
             $Route = $this->GetObjectRatingIcon($Route);
         }
