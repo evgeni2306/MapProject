@@ -35,10 +35,10 @@
 
     var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
         house = new Markers({iconUrl: '/PageMap/img/icons/house.png'})
-        greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
-        yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
-        redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
-
+    greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
+    yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
+    redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
+    geolocation = new Markers({iconUrl: '/PageMap/img/icons/locationIcon.svg'});
 
     //---------------Вывод точек на карту--------------------
     <?foreach ($points as $point ) {?>
@@ -76,7 +76,7 @@
     // ------- Определение местоположения на карте---------
     mymap.locate({setView: true, maxZoom: 16});
     function onLocationFound(e) {
-        L.marker(e.latlng).addTo(mymap)
+        L.marker(e.latlng,{icon: geolocation}).addTo(mymap)
             .bindPopup("You are within " + radius + " meters from this point").openPopup();
     }
     mymap.on('locationfound', onLocationFound);
