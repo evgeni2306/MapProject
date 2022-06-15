@@ -52,9 +52,11 @@
                     <span class="infoblock__user__name"><a href="{{route('profile',$_SESSION['CurrentPoint']->creatorid)}}" class="user-profile__link">{{$_SESSION['CurrentPoint']->nickname}}</a></span>
                 </div>
                 @if(isset($_SESSION['User']))
+                    @if($_SESSION['User']->id == $_SESSION['CurrentPoint']->creatorid or $_SESSION['User']->rankid >=3)
                     <div class="infoblock__button-edit"><a href="{{route('UpdatePoint',$_SESSION['CurrentPoint']->id)}}"><img
 
                                 src="/PagePointPersonal/img/pencil.svg" alt="">Редактировать</a></div>
+                    @endif
                 @endif
             </div>
             <div class="infoblock__slider">
