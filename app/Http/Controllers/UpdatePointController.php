@@ -39,9 +39,9 @@ class UpdatePointController extends Controller
             $validateFields['type'] = $typeAndIcon[1];
             $validateFields['icon'] = $typeAndIcon[0];
             //----Обновление точки----
-            $this->UpdatePointDb($validateFields['name'],$validateFields['type'],
-                $validateFields['icon'],$validateFields['address'],$validateFields['status'],
-                $validateFields['description'],$validateFields['shortdescription'],$path);
+            $this->UpdatePointDb($validateFields['name'], $validateFields['type'],
+                $validateFields['icon'], $validateFields['address'], $validateFields['status'],
+                $validateFields['description'], $validateFields['shortdescription'], $path);
 
             //-----------------------//
             return redirect(route('getpointpage', $_SESSION['CurrentEditPoint']->id));
@@ -70,7 +70,7 @@ class UpdatePointController extends Controller
                     ->where('id', $id)->first();
                 $_SESSION['CurrentEditPoint']->type = $_SESSION['CurrentEditPoint']->icon . ',' . $_SESSION['CurrentEditPoint']->type;
                 $fieldAccess = $this->EditableFields();
-                return view('editpoints',['fieldAccess' => $fieldAccess]);
+                return view('editpoints', ['fieldAccess' => $fieldAccess]);
             }
         }
         return redirect(route('login'));
@@ -85,21 +85,21 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 1) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", "disabled", " ", " ", " "," ");
+                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", "disabled", " ", " ", " ", " ");
             } //Чужой объект
             else {
-                $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled","disabled");
+                $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled", "disabled");
             }
 
         }
         //Если текущий юзер  - с рангом "Любитель"
-        if ($_SESSION['User']->rankid == 2 ) {
+        if ($_SESSION['User']->rankid == 2) {
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
                 //Текущий юзер - владелец объекта
                 $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
             } //Чужой объект
             else {
-                $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled","disabled");
+                $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled", "disabled");
             }
 
         }
@@ -107,23 +107,22 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 3) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", " ", " ", " ", " "," ");
+                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
             } //Чужой объект
             else {
-                $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", " ", "readonly", "readonly", "disabled"," ");
+                $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", " ", "readonly", "readonly", "disabled", " ");
             }
         }
         //Если текущий юзер с рангом "мастер"
         if ($_SESSION['User']->rankid == 4) {
-            $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", " ", " ", " ", " "," ");
+            $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
         }
         return $fieldsAcces;
     }
 
 
-
-    public function  UpdatePointDb($name,$type,$icon,$address,$status,$description,$shortdescription,$photo){
-
+    public function UpdatePointDb($name, $type, $icon, $address, $status, $description, $shortdescription, $photo)
+    {
 
 
         if ($_SESSION['User']->rankid == 1) {
@@ -147,7 +146,7 @@ class UpdatePointController extends Controller
 
         }
         //Если текущий юзер  - с рангом "Любитель"
-        if ($_SESSION['User']->rankid == 2 ) {
+        if ($_SESSION['User']->rankid == 2) {
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
                 //Текущий юзер - владелец объекта
                 DB::table('points')
@@ -162,6 +161,7 @@ class UpdatePointController extends Controller
                         'shortdescription' => $shortdescription,
                         'photo' => $photo,
                     ]);
+                $this->ChangePointByStatus($_SESSION['CurrentEditPoint']->id);
 
             } //Чужой объект
             else {
@@ -185,16 +185,16 @@ class UpdatePointController extends Controller
                         'shortdescription' => $shortdescription,
                         'photo' => $photo,
                     ]);
+                $this->ChangePointByStatus($_SESSION['CurrentEditPoint']->id);
             } //Чужой объект
             else {
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
                     ->update([
-
                         'status' => $status,
-
                     ]);
-              }
+                $this->ChangePointByStatus($_SESSION['CurrentEditPoint']->id);
+            }
         }
         //Если текущий юзер с рангом "мастер"
         if ($_SESSION['User']->rankid == 4) {
@@ -211,6 +211,43 @@ class UpdatePointController extends Controller
                     'shortdescription' => $shortdescription,
                     'photo' => $photo,
                 ]);
+            $this->ChangePointByStatus($_SESSION['CurrentEditPoint']->id);
         }
+    }
+
+    //Метод по смене иконки и типа точки, при установке/смене статуса "Не работает"
+    public function ChangePointByStatus($id)
+    {
+
+        $getpoint = DB::table('points')
+            ->select('id', 'status', 'name', 'type', 'rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
+            ->where('id', $id)->first();
+
+        if ($getpoint->status == "Не работает") {
+            if ($getpoint->type == "dpoints") {
+                $getpoint->icon = "inhouse";
+                $getpoint->type = "inobject";
+            }
+            if ($getpoint->type == "zpoints") {
+                $getpoint->icon = "insocket";
+                $getpoint->type = "inobject";
+            }
+        } else {
+            if ($getpoint->icon == "inhouse")
+            {
+                $getpoint->icon = "house";
+                $getpoint->type = "dpoints";
+            }
+            if ($getpoint->icon == "insocket") {
+                $getpoint->icon = "socket";
+                $getpoint->type = "zpoints";
+            }
+        }
+        DB::table('points')
+            ->where('id', $id)
+            ->update([
+                'type' => $getpoint->type,
+                'icon' => $getpoint->icon,
+            ]);
     }
 }

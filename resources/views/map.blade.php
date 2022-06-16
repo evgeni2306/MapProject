@@ -26,6 +26,7 @@
         var groutes = L.layerGroup(); //легкие маршруты
         var yroutes = L.layerGroup(); //средние маршруты
         var rroutes = L.layerGroup(); //сложные маршруты
+        var inobject = L.layerGroup();//Не работающие объекты
 
         var Markers = L.Icon.extend({
             options: {
@@ -33,12 +34,14 @@
                 iconAnchor: [16, 37]
             }
         });
-        var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'}),
-            house = new Markers({iconUrl: '/PageMap/img/icons/house.png'})
-        greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
-        yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
-        redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
-        geolocation = new Markers({iconUrl: '/PageMap/img/icons/locationIcon.svg'});
+        var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
+            house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
+            insocket = new Markers({iconUrl: '/PageMap/img/icons/socketinactive.svg'});
+            inhouse = new Markers({iconUrl: '/PageMap/img/icons/houseinactive.svg'});
+            greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
+            yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
+            redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});
+            geolocation = new Markers({iconUrl: '/PageMap/img/icons/locationIcon.svg'});
         //-----------------------------------------------------------------
 
         //---------------Вывод точек на карту--------------------
@@ -71,7 +74,7 @@
             tileSize: 512,
             zoomOffset: -1
         })
-        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, groutes, yroutes, rroutes ]}).setView([56.82, 60.6], 13);
+        var mymap = L.map('mapid',{layers: [maplayer,zpoints, dpoints, groutes, yroutes, rroutes,inobject ]}).setView([56.82, 60.6], 13);
         // var mymap = L.map('mapid', {layers: [maplayer, zpoints, dpoints, groutes, yroutes, rroutes ]}).fitWorld();
         //-----------------------------------------
 
@@ -229,6 +232,7 @@
             "<img src='/PageMap/img/route/filtergreenroute.svg'>Легкие маршруты": groutes,
             "<img src='/PageMap/img/route/filteryellowroute.svg'>Средние маршруты": yroutes,
             "<img src='/PageMap/img/route/filterredroute.svg'>Сложные маршруты": rroutes,
+            "<img src='/PageMap/img/icons/socketinactive.svg'>Не работающие объекты":inobject
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
         //------------------------------------------------------------------
