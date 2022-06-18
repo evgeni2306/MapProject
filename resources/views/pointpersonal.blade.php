@@ -179,10 +179,12 @@
 {{--                    <span class="comment__bottom__useful">Было полезно?</span>--}}
 {{--                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>--}}
 {{--                    <div class="comment__like-count">0</div>--}}
+                    @if($_SESSION['User']->id == $pcomment->creatorid)
                     <div class="comment__bottom__buttons">
                         <button  class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
-                        <a href="#" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
+                        <a href="{{route('DeletePcomment',$pcomment->id)}}" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
                     </div>
+                        @endif
                 </div>
             </div>
                     <? } ?>

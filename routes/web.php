@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/Addpoint', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
     Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
+    Route::get('/deletePcomment={idd}',[AddPcommentController::class, 'DeletePcomment'])->name('DeletePcomment');
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
     //------------------------//
 });

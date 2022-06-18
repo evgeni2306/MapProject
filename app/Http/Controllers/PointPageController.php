@@ -85,7 +85,7 @@ class PointPageController extends Controller
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.name', 'users.surname', 'creatorid', 'users.nickname', 'pcomments.rating', 'text', 'users.rating as urate', 'ranks.name as rname', 'pcomments.created_at', 'avatar')
+                ->select('pcomments.id','users.name', 'users.surname', 'creatorid', 'users.nickname', 'pcomments.rating', 'text', 'users.rating as urate', 'ranks.name as rname', 'pcomments.created_at', 'avatar')
                 ->where('pointid', $id)
                 ->latest()
                 ->get();
