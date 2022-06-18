@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\RouteEditableFieldsClass;
 use App\Models\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,31 +20,17 @@ class UpdateRouteController extends Controller
                 'name' => ['required', 'string'],
                 'shortdescription' => ['nullable', 'string'],
                 'description' => ['nullable', 'string'],
-                'difficult' => ['string','required',  'ends_with:greenroute,yellowroute,redroute'],
-////                'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
+                'difficult' => ['string', 'required', 'ends_with:Легко,Средне,Сложно'],
+                'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
                 'distance' => ['nullable', 'string'],
                 'time' => ['nullable', 'string'],
             ]);
 
-            $difAndTypeAndIcon = explode(',', $validateFields['difficult']);
-            $validateFields['type'] = $difAndTypeAndIcon[1];
-            $validateFields['icon'] = $difAndTypeAndIcon[2];
-            $validateFields['difficult'] = $difAndTypeAndIcon[0];
+            //----Обновление маршрута----
+            $this->UpdateRouteDb($validateFields['name'], $validateFields['description'],
+                $validateFields['shortdescription'], $validateFields['difficult'], $validateFields['status'],
+                $validateFields['distance'], $validateFields['time']);
 
-            //----Обновление точки----
-            DB::table('routes')
-                ->where('id', $_SESSION['CurrentEditRoute']->id)
-                ->update([
-                    'name' => $validateFields['name'],
-                    'type' => $validateFields['type'],
-                    'icon' => $validateFields['icon'],
-                    'difficult' => $validateFields['difficult'],
-//                    'status' => $validateFields['status'],
-                    'description' => $validateFields['description'],
-                    'shortdescription' => $validateFields['shortdescription'],
-                    'time'=>$validateFields['time'],
-                    'distance'=>$validateFields['distance']
-                ]);
             //-----------------------//
             return redirect(route('getroutepage', $_SESSION['CurrentEditRoute']->id));
         }
@@ -60,6 +47,7 @@ class UpdateRouteController extends Controller
                         'id',
                         'name',
                         'description',
+                        'creatorid',
                         'shortdescription',
                         'difficult',
                         'distance',
@@ -70,11 +58,179 @@ class UpdateRouteController extends Controller
                         'time',
                     )
                     ->where('id', $id)->first();
-                $_SESSION['CurrentEditRoute']->difficult = $_SESSION['CurrentEditRoute']->difficult . "," . $_SESSION['CurrentEditRoute']->type . "," . $_SESSION['CurrentEditRoute']->icon;
-                return view('editroutes');
+
+                $fieldAccess = $this->EditableFields();
+                return view('editroutes', ['fieldAccess' => $fieldAccess]);
             }
         }
         return redirect(route('login'));
 
+    }
+
+    //Определение доступных для редактирования полей
+    public function EditableFields()
+    {
+        $fieldsAcces = "";
+        //Если текущий юзер - с рангом "Новичок"
+        if ($_SESSION['User']->rankid == 1) {
+            //Текущий юзер - владелец объекта
+            if ($_SESSION['CurrentEditRoute']->creatorid == $_SESSION['User']->id) {
+                $fieldsAcces = new RouteEditableFieldsClass(" ", " ", "hidden", "", " ", " ", " ", " ");
+            } //Чужой объект
+            else {
+                $fieldsAcces = new RouteEditableFieldsClass("readonly", "hidden", "hidden", "readonly", "readonly", "readonly", "readonly", "disabled");
+            }
+
+        }
+        //Если текущий юзер  - с рангом "Любитель"
+        if ($_SESSION['User']->rankid == 2) {
+            if ($_SESSION['CurrentEditRoute']->creatorid == $_SESSION['User']->id) {
+                //Текущий юзер - владелец объекта
+                $fieldsAcces = new RouteEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
+            } //Чужой объект
+            else {
+                $fieldsAcces = new RouteEditableFieldsClass("readonly", "hidden", "hidden", "readonly", "readonly", "readonly", "readonly", "disabled");
+            }
+
+        }
+        //Если текущий юзер с рангом "профи"
+        if ($_SESSION['User']->rankid == 3) {
+            //Текущий юзер - владелец объекта
+            if ($_SESSION['CurrentEditRoute']->creatorid == $_SESSION['User']->id) {
+                $fieldsAcces = new RouteEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
+            } //Чужой объект
+            else {
+                $fieldsAcces = new RouteEditableFieldsClass("readonly", "hidden", " ", "readonly", "readonly", "readonly", "readonly", " ");
+            }
+        }
+        //Если текущий юзер с рангом "мастер"
+        if ($_SESSION['User']->rankid == 4) {
+            $fieldsAcces = new RouteEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
+        }
+        return $fieldsAcces;
+    }
+
+    public function UpdateRouteDb($name, $description, $shortdescription, $difficult, $status, $distance, $time)
+    {
+
+
+        if ($_SESSION['User']->rankid == 1) {
+            //Текущий юзер - владелец объекта
+            if ($_SESSION['CurrentEditRoute']->creatorid == $_SESSION['User']->id) {
+                DB::table('routes')
+                    ->where('id', $_SESSION['CurrentEditRoute']->id)
+                    ->update([
+                        'name' => $name,
+                        'description' => $description,
+                        'shortdescription' => $shortdescription,
+                        'difficult' => $difficult,
+                        'distance' => $distance,
+                        'time' => $time
+                    ]);
+            } //Чужой объект
+            else {
+                return null;
+            }
+
+        }
+        //Если текущий юзер  - с рангом "Любитель"
+        if ($_SESSION['User']->rankid == 2) {
+            if ($_SESSION['CurrentEditRoute']->creatorid == $_SESSION['User']->id) {
+                //Текущий юзер - владелец объекта
+                DB::table('routes')
+                    ->where('id', $_SESSION['CurrentEditRoute']->id)
+                    ->update([
+                        'name' => $name,
+                        'status' => $status,
+                        'description' => $description,
+                        'shortdescription' => $shortdescription,
+                        'difficult' => $difficult,
+                        'distance' => $distance,
+                        'time' => $time
+                    ]);
+                $this->ChangeRouteByStatus($_SESSION['CurrentEditRoute']->id);
+
+            } //Чужой объект
+            else {
+                return null;
+            }
+
+        }
+        //Если текущий юзер с рангом "профи"
+        if ($_SESSION['User']->rankid == 3) {
+            //Текущий юзер - владелец объекта
+            if ($_SESSION['CurrentEditRoute']->creatorid == $_SESSION['User']->id) {
+                DB::table('routes')
+                    ->where('id', $_SESSION['CurrentEditRoute']->id)
+                    ->update([
+                        'name' => $name,
+                        'status' => $status,
+                        'description' => $description,
+                        'shortdescription' => $shortdescription,
+                        'difficult' => $difficult,
+                        'distance' => $distance,
+                        'time' => $time
+                    ]);
+                $this->ChangeRouteByStatus($_SESSION['CurrentEditRoute']->id);
+            } //Чужой объект
+            else {
+                DB::table('routes')
+                    ->where('id', $_SESSION['CurrentEditRoute']->id)
+                    ->update([
+                        'status' => $status,
+                    ]);
+                $this->ChangeRouteByStatus($_SESSION['CurrentEditRoute']->id);
+            }
+        }
+        //Если текущий юзер с рангом "мастер"
+        if ($_SESSION['User']->rankid == 4) {
+
+            DB::table('routes')
+                ->where('id', $_SESSION['CurrentEditRoute']->id)
+                ->update([
+                    'name' => $name,
+                    'status' => $status,
+                    'description' => $description,
+                    'shortdescription' => $shortdescription,
+                    'difficult' => $difficult,
+                    'distance' => $distance,
+                    'time' => $time
+                ]);
+            $this->ChangeRouteByStatus($_SESSION['CurrentEditRoute']->id);
+        }
+    }
+
+    //Метод по смене иконки и типа маршрута, при установке/смене статуса "Не работает"
+    public function ChangeRouteByStatus($id)
+    {
+
+        $getroute = DB::table('routes')
+            ->select('id', 'status', 'icon', 'type', 'difficult')
+            ->where('id', $id)->first();
+
+        if ($getroute->status == "Не работает") {
+
+            $getroute->icon = "grayroute";
+            $getroute->type = "inobject";
+        } else {
+            if ($getroute->difficult == "Легко") {
+                $getroute->icon = "greenroute";
+                $getroute->type = "groutes";
+            }
+            if ($getroute->difficult == "Средне") {
+                $getroute->icon = "yellowroute";
+                $getroute->type = "yroutes";
+            }
+            if ($getroute->difficult == "Сложно") {
+                $getroute->icon = "redroute";
+                $getroute->type = "rroutes";
+            }
+        }
+        DB::table('routes')
+            ->where('id', $id)
+            ->update([
+                'type' => $getroute->type,
+                'icon' => $getroute->icon,
+            ]);
     }
 }

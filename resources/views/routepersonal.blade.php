@@ -179,7 +179,8 @@
 
         var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
         var house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
-
+        var insocket = new Markers({iconUrl: '/PageMap/img/icons/socketinactive.svg'});
+        var inhouse = new Markers({iconUrl: '/PageMap/img/icons/houseinactive.svg'});
         //-------------Вывод маршрутa на карту-----------------
         <?    foreach ($_SESSION['CurrentRoute']->rpoints as $rpoint){?>
 

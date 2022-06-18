@@ -85,7 +85,7 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 1) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", "disabled", " ", " ", " ", " ");
+                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", "readonly", " ", " ", " ", " ");
             } //Чужой объект
             else {
                 $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled", "disabled");
@@ -220,7 +220,7 @@ class UpdatePointController extends Controller
     {
 
         $getpoint = DB::table('points')
-            ->select('id', 'status', 'name', 'type', 'rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
+            ->select('id', 'status', 'type', 'icon')
             ->where('id', $id)->first();
 
         if ($getpoint->status == "Не работает") {

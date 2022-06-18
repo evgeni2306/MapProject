@@ -38,6 +38,7 @@
             house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
             insocket = new Markers({iconUrl: '/PageMap/img/icons/socketinactive.svg'});
             inhouse = new Markers({iconUrl: '/PageMap/img/icons/houseinactive.svg'});
+            grayroute = new Markers({iconUrl: '/PageMap/img/route/grayroute.svg'});
             greenroute = new Markers({iconUrl: '/PageMap/img/route/greenroute.svg'});
             yellowroute = new Markers({iconUrl: '/PageMap/img/route/yellowroute.svg'});
             redroute = new Markers({iconUrl: '/PageMap/img/route/redroute.svg'});

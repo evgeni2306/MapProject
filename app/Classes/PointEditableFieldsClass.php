@@ -14,7 +14,9 @@ class PointEditableFieldsClass
     public $description = "";
     public $photo = "";
     public $submit = "";
-    public function __construct($name,$category,$address,$status,$shortDescription,$description,$photo,$submit){
+
+    public function __construct($name, $category, $address, $status, $shortDescription, $description, $photo, $submit)
+    {
         $this->name = $name;
         $this->category = $category;
         $this->address = $address;

@@ -34,6 +34,16 @@ class RoutePageController extends Controller
                 ->where('rpoints.routeid', '=', $getroute->id)
                 ->select('lat', 'lng')->get();
 
+            if($getroute->difficult =="Легко"){
+                $getroute->icon = "greenroute";
+            }
+            if($getroute->difficult =="Средне"){
+                $getroute->icon = "yellowroute";
+            }
+            if($getroute->difficult =="Сложно"){
+                $getroute->icon = "redroute";
+            }
+
 
             $rpointsarr = array();
             $pointarr = array();

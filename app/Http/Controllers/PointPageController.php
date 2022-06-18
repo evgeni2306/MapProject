@@ -31,7 +31,7 @@ class PointPageController extends Controller
                 $getpoint->nickname = $getpoint->uname . ' ' . $getpoint->usurname;
             }
 
-            //Определение типа и иконки по группe type
+            //Определение типа и иконки
             if ($getpoint->type == 'zpoints') {
                 $getpoint->type = array(0 => "socket.svg", 1 => 'Розетка');
             } else if ($getpoint->type == 'dpoints') {
