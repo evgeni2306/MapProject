@@ -33,16 +33,11 @@
         <div class="content__wrapper">
             <h1 class="profile__title">Профиль {{$user->nickname}}</h1>
     @endif
-
-
-
-
-
         <div class="content__container">
             <div class="user">
                 <img class="user__avatar" src="{{$user->avatar}}" alt="avatar">
                 <div class="user__name">{{$user->nickname}}</div>
-                <div class="user__grade"><img src="/PageProfile/img/cool-watermelon.svg" alt="">{{$user->rname}}</div>
+                <div class="user__grade"><img src="{{$roleicon}}" alt="">{{$user->rname}}</div>
             </div>
             <div class="user__info">
                 <div class="user__rating">

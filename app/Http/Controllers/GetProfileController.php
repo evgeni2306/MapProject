@@ -32,7 +32,6 @@ class GetProfileController extends Controller
                 $user->nickname = $user->name.' '.$user->surname;
             }
             $userinfo = $this->GetInformation($id);
-
             if($user->rank !=4){
                 $getnextrank = DB::table('ranks')
                     ->where('id',"=",$user->rank+1)
@@ -43,17 +42,25 @@ class GetProfileController extends Controller
             {
                 $nextrank = "";
             }
-
-
+            $roleicon="";
+            if ($user->rank ==1){
+                $roleicon = "/PageProfile/img/role_1.svg";
+            }
+            if ($user->rank ==2){
+                $roleicon = "/PageProfile/img/role_2.svg";
+            }
+            if ($user->rank ==3){
+                $roleicon = "/PageProfile/img/role_3.svg";
+            }
+            if ($user->rank ==4){
+                $roleicon = "/PageProfile/img/role_4.svg";
+            }
             return view('profile',[
                 'user' => $user,
                 'userinfo' =>$userinfo,
-                'nextrank'=>$nextrank
+                'nextrank'=>$nextrank,
+                'roleicon'=>$roleicon
             ]);
-
-
-
-
         }else
             redirect(route('map'));
 
