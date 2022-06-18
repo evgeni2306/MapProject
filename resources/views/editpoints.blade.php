@@ -16,6 +16,7 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
+{{--        {{dd($_SESSION['CurrentEditPoint'])}}--}}
         <h1 class="edit-point__title">Редактирование метки</h1>
         <div class="content__container">
             <div class="edit-point__forms">

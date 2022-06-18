@@ -68,7 +68,20 @@ class UpdatePointController extends Controller
                         'photo'
                     )
                     ->where('id', $id)->first();
-                $_SESSION['CurrentEditPoint']->type = $_SESSION['CurrentEditPoint']->icon . ',' . $_SESSION['CurrentEditPoint']->type;
+
+                if ($_SESSION['CurrentEditPoint']->icon == "house"){
+                    $_SESSION['CurrentEditPoint']->type = "house,dpoints";
+                }
+                if ($_SESSION['CurrentEditPoint']->icon == "socket"){
+                    $_SESSION['CurrentEditPoint']->type = "socket,zpoints";
+                }
+
+                if ($_SESSION['CurrentEditPoint']->icon == "inhouse"){
+                    $_SESSION['CurrentEditPoint']->type = "house,dpoints";
+                }
+                if ($_SESSION['CurrentEditPoint']->icon == "insocket"){
+                    $_SESSION['CurrentEditPoint']->type = "socket,zpoints";
+                }
                 $fieldAccess = $this->EditableFields();
                 return view('editpoints', ['fieldAccess' => $fieldAccess]);
             }
@@ -233,8 +246,7 @@ class UpdatePointController extends Controller
                 $getpoint->type = "inobject";
             }
         } else {
-            if ($getpoint->icon == "inhouse")
-            {
+            if ($getpoint->icon == "inhouse") {
                 $getpoint->icon = "house";
                 $getpoint->type = "dpoints";
             }

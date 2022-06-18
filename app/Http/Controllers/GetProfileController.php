@@ -37,7 +37,7 @@ class GetProfileController extends Controller
                     ->where('id',"=",$user->rank+1)
                     ->select('ranks.name')
                     ->first();
-                $nextrank = ": ". $getnextrank->name;
+                $nextrank =  $getnextrank->name;
             }else
             {
                 $nextrank = "";

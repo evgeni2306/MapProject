@@ -44,6 +44,10 @@
                     <h4 class="sub-title">Никнейм</h4>
                     <input type="text" placeholder="Введите никнейм" name="nickname" value ="{{$_SESSION['User']->nickname}}">
                     <p class="nickname-warning"> Впишите никнейм, если хотите использовать его вместо имени и фамилии. Эта информация будет отображена в профиле.</p>
+                    <div class="error-block hide">
+                        <img src="PageRegistration/img/information.svg" alt="">
+                        <p class="error-block__text">Этот никнейм уже занят</p>
+                    </div>
                     <h4 class="sub-title">Модель транспорта</h4>
                     <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$_SESSION['User']->transport}}">
                     <h4 class="sub-title">Вид карты</h4>
