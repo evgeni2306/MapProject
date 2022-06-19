@@ -45,27 +45,38 @@ class UpdateUserController extends Controller
                     'nickname' => $validateFields['nickname'],
                     'transport' => $validateFields['transport'],
                     'mapstyle' => $validateFields['mapstyle'],
-                    'avatar'=>$path
+                    'avatar' => $path
                 ]);
-            $this->GetUserFields();
-            return redirect(route('edit'));
+            $user = $this->GetUserFields();
+            $_SESSION['User'] = $user;
+            if ($_SESSION['User']->nickname == null) {
+                $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
+            }
+            return redirect(route('edit', ['user' => $user]));
         }
         return redirect(route('login'));
 
+    }
+
+    public function GetSettingsPage()
+    {
+        $user = $this->GetUserFields();
+      return view('settings', ['user' => $user]);
     }
 
     public function GetUserFields()
     {
         if (Auth::check()) {
-            $_SESSION['User'] = DB::table('users')
+            $user = DB::table('users')
                 ->where('users.id', Auth::id())
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'nickname', 'avatar', 'transport', 'mapstyle', 'nickname', 'rating', 'ranks.name as rname', 'maxrating')
+                ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'ranks.id as rankid','transport','mapstyle','rating','ranks.name as rname',
+                    'maxrating')
                 ->first();
-            if ($_SESSION['User']->nickname == null) {
-                $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
-            }
+            return $user;
         }
         return redirect(route('login'));
     }
+
+
 }

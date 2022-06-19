@@ -67,6 +67,7 @@ trait helpfunc
 
         $_SESSION['User']->rname = $updaterank[0]->name;
         $_SESSION['User']->maxrating = $updaterank[0]->maxrating;
+        $_SESSION['User']->rankid = $rank;
         DB::table('users')
             ->where('id', Auth::user()->id)
             ->update([

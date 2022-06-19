@@ -15,9 +15,7 @@ class GetAllController extends Controller
 
     public function GetAll(Request $request)
     {
-
-            //Получение точек и маршрутов, основываясь на разграничениях юзера по ролям
-        if (!isset($_SESSION['User']) or $_SESSION['User']->rankid < 2) {
+        if (!isset($_SESSION['User'])) {
             //получение всех точек из бд, кроме тех, где статус "не работает"
             $getpoints = DB::table('points')
                 ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
@@ -29,15 +27,31 @@ class GetAllController extends Controller
                 ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')
                 ->where('status', '!=', 'Не работает')
                 ->get();
-        } else {
-            //получение всех точек из бд
-            $getpoints = DB::table('points')
-                ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
-                    'status')->get();
-            //получение всех маршрутов из бд
-            $getroutes = DB::table('routes')
-                ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')->get();
+        }else{
+            //Получение точек и маршрутов, основываясь на разграничениях юзера по ролям
+            if ($_SESSION['User']->rankid < 2) {
+//получение всех точек из бд, кроме тех, где статус "не работает"
+                $getpoints = DB::table('points')
+                    ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+                        'status')
+                    ->where('status', '!=', 'Не работает')
+                    ->get();
+                //получение всех маршрутов из бд, кроме тех, где статус "не работает"
+                $getroutes = DB::table('routes')
+                    ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')
+                    ->where('status', '!=', 'Не работает')
+                    ->get();
+            } else {
+                //получение всех точек из бд
+                $getpoints = DB::table('points')
+                    ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+                        'status')->get();
+                //получение всех маршрутов из бд
+                $getroutes = DB::table('routes')
+                    ->select('id', 'name', 'icon', 'type', 'shortdescription', 'difficult', 'distance', 'time', 'rating', 'status')->get();
+            }
         }
+
 
         //определение иконок для рейтинга точки
         foreach ($getpoints as $point) {

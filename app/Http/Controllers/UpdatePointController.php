@@ -98,7 +98,7 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 1) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", "readonly", " ", " ", " ", " ");
+                $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", "hidden", " ", " ", " ", " ");
             } //Чужой объект
             else {
                 $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled", "disabled");

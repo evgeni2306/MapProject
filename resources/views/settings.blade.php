@@ -22,7 +22,7 @@
             <div class="content__container">
                 <div class="avatar__container">
                     <div class="avatar__photo">
-                        <img id="photo" class="avatar-big" src="{{$_SESSION['User']->avatar}}" alt="user">
+                        <img id="photo" class="avatar-big" src="{{$user->avatar}}" alt="user">
                         <button id="crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
                     </div>
                     <div class="change-photo">
@@ -38,21 +38,21 @@
                 </div>
                 <div class="forms__container">
                     <h4 class="sub-title">Имя</h4>
-                    <input type="text" placeholder="Введите имя" name="name" value="{{$_SESSION['User']->name}}">
+                    <input type="text" placeholder="Введите имя" name="name" value="{{$user->name}}">
                     <h4 class="sub-title">Фамилия</h4>
-                    <input type="text" placeholder="Введите фамилию" name="surname" value ="{{$_SESSION['User']->surname}}">
+                    <input type="text" placeholder="Введите фамилию" name="surname" value ="{{$user->surname}}">
                     <h4 class="sub-title">Никнейм</h4>
-                    <input type="text" placeholder="Введите никнейм" name="nickname" value ="{{$_SESSION['User']->nickname}}">
+                    <input type="text" placeholder="Введите никнейм" name="nickname" value ="{{$user->nickname}}">
                     <p class="nickname-warning"> Впишите никнейм, если хотите использовать его вместо имени и фамилии. Эта информация будет отображена в профиле.</p>
                     <div class="error-block hide">
                         <img src="PageRegistration/img/information.svg" alt="">
                         <p class="error-block__text">Этот никнейм уже занят</p>
                     </div>
                     <h4 class="sub-title">Модель транспорта</h4>
-                    <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$_SESSION['User']->transport}}">
+                    <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$user->transport}}">
                     <h4 class="sub-title">Вид карты</h4>
                     <select required id="mapstyle" name="mapstyle">
-                        <option value="{{$_SESSION['User']->mapstyle}}" disabled selected style="display:none;">Выберите вид карты</option>
+                        <option value="{{$user->mapstyle}}" disabled selected style="display:none;">Выберите вид карты</option>
                         <option value="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw">Стандартный</option>
                         <option value="https://tile-{s}.opentopomap.ru/{z}/{x}/{y}.png">Топографический</option>
                     </select>

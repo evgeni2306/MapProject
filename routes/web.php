@@ -44,9 +44,7 @@ Route::middleware('auth')->group(function () {
 
     //---связанные с юзером---//
 
-    Route::get('/edit', function () {
-        return view('settings');
-    })->name('edit');
+    Route::get('/edit', [UpdateUserController::class, 'GetSettingsPage'])->name('edit');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::get('/logout', function () {
         session_destroy();
@@ -62,9 +60,9 @@ Route::middleware('auth')->group(function () {
     })->name('loadroute');
     Route::post('/loadroute', [UploadRouteController::class, 'UploadRoute'])->name('loadroute');
 
-    Route::get('/editroute', function () {
-        return view('editroutes');
-    })->name('editroute');
+//    Route::get('/editroute', function () {
+//        return view('editroutes');
+//    })->name('editroute');
 
     Route::get('/editroute={idd}', [UpdateRouteController::class, 'GetUpdateRoute'])->name('GetUpdateRoute');
     Route::post('/editroute={idd}', [UpdateRouteController::class, 'UpdateRoute'])->name('UpdateRoute');
@@ -79,7 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/Addpoint', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
     Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
-    Route::get('/deletePcomment={idd}',[AddPcommentController::class, 'DeletePcomment'])->name('DeletePcomment');
+    Route::get('/deletePcomment={idd}', [AddPcommentController::class, 'DeletePcomment'])->name('DeletePcomment');
     Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
     //------------------------//
 });

@@ -46,7 +46,10 @@ class AddPcommentController extends Controller
         foreach ($getrating as $rating) {
             $currentrating += $rating->rating;
         }
-        $currentrating = $currentrating / Count($getrating);
+        if($currentrating >0 and Count($getrating)>0){
+            $currentrating = $currentrating / Count($getrating);
+        }
+
         $rating = Point::where('id', $id)->update(['rating' => $currentrating]);
 
 
