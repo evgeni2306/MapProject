@@ -16,13 +16,22 @@ class UpdateUserController extends Controller
             $validateFields = $request->validate([
                 'name' => ['required', 'max:255', 'string'],
                 'surname' => ['required', 'max:255', 'string'],
-                'nickname' => ['nullable', 'string', 'max:255',],
+                'nickname' => ['nullable', 'string', 'max:255'],
                 'transport' => ['nullable', 'max:255', 'string'],
                 'mapstyle' => ['string', 'ends_with:ISLbB6B5aw,{x}/{y}.png'],
                 'photo' => ['mimes:jpeg,jpg,png']
             ]);
             if ($validateFields['transport'] == null) {
                 $validateFields['transport'] = "Не указан";
+            }
+            if ($validateFields['nickname'] != $_SESSION['User']->nickname) {
+            $check = $this->CheckNickname($validateFields['nickname']);
+            if ($check == false){
+                $user =   $this->GetUserFields();
+                $error = "Этот никнейм занят";
+                $user->nickname = $validateFields['nickname'];
+                return view('settings', ['user' => $user,'errorvisible'=>' ','error' =>$error]);
+            }
             }
 
             if (isset($validateFields['photo'])) {
@@ -52,7 +61,7 @@ class UpdateUserController extends Controller
             if ($_SESSION['User']->nickname == null) {
                 $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
             }
-            return redirect(route('edit', ['user' => $user]));
+            return redirect(route('edit', ['user' => $user,'errorvisible'=>'hide']));
         }
         return redirect(route('login'));
 
@@ -61,7 +70,7 @@ class UpdateUserController extends Controller
     public function GetSettingsPage()
     {
         $user = $this->GetUserFields();
-      return view('settings', ['user' => $user]);
+        return view('settings', ['user' => $user,'errorvisible'=>'hide']);
     }
 
     public function GetUserFields()
@@ -70,12 +79,23 @@ class UpdateUserController extends Controller
             $user = DB::table('users')
                 ->where('users.id', Auth::id())
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'ranks.id as rankid','transport','mapstyle','rating','ranks.name as rname',
+                ->select('users.id', 'users.name', 'surname', 'nickname', 'avatar', 'ranks.id as rankid', 'transport', 'mapstyle', 'rating', 'ranks.name as rname',
                     'maxrating')
                 ->first();
             return $user;
         }
         return redirect(route('login'));
+    }
+    public function CheckNickname($nickname){
+        $nicknames = DB::table('users')
+            ->where('nickname','=', $nickname)
+            ->select('id')->get();
+        if (Count($nicknames)>0){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
 

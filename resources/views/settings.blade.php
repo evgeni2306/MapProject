@@ -42,12 +42,16 @@
                     <h4 class="sub-title">Фамилия</h4>
                     <input type="text" placeholder="Введите фамилию" name="surname" value ="{{$user->surname}}">
                     <h4 class="sub-title">Никнейм</h4>
+
                     <input type="text" placeholder="Введите никнейм" name="nickname" value ="{{$user->nickname}}">
+
                     <p class="nickname-warning"> Впишите никнейм, если хотите использовать его вместо имени и фамилии. Эта информация будет отображена в профиле.</p>
-                    <div class="error-block hide">
+                    @if(isset($error))
+                    <div class="error-block {{$errorvisible}}">
                         <img src="PageRegistration/img/information.svg" alt="">
-                        <p class="error-block__text">Этот никнейм уже занят</p>
+                        <p class="error-block__text">{{$error}}</p>
                     </div>
+                    @endif
                     <h4 class="sub-title">Модель транспорта</h4>
                     <input type="text" placeholder="Введите модель своего транспорта" name="transport" value = "{{$user->transport}}">
                     <h4 class="sub-title">Вид карты</h4>
@@ -78,6 +82,7 @@
         if ( select1[i].value === select1[0].value  ) select1[i].setAttribute('selected','selected')
     }
     //-------------------------------------------------------------------
+
     // сохранение старого пути к фотке
     const oldway = document.getElementById('photo').src
 
@@ -102,6 +107,8 @@
     }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     /*-------------------------------*/
+
+
 </script>
 </body>
 </html>
