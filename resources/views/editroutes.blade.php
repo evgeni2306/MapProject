@@ -31,6 +31,13 @@
                         <option value="">Средняя</option>
                         <option value="">Для продвинутых</option>
                     </select>
+                    <h4 class="sub-title">Статус работы<span class="required-form">*</span></h4>
+                    <select required name="status">
+                        <option value="" disabled selected style="display:none;">Выберите статус</option>
+                        <option value="">Работает</option>
+                        <option value="">Не работает</option>
+                        <option value="">Статус неизвестен</option>
+                    </select>
                     <h4 class="sub-title">Протяженность</h4>
                     <input type="text" placeholder="Введите протяженность" name="length">
                     <h4 class="sub-title">Примерное время</h4>

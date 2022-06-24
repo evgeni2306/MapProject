@@ -34,6 +34,8 @@
                 </div>
                 <div class="infoblock__address__title">Адрес</div>
                 <div class="infoblock__address"><img src="/PagePointPersonal/img/04.svg">ул. Авиационная, 123</div>
+                <div class="infoblock__city__title">Город</div>
+                <div class="infoblock__status">Екатеринбург</div>
                 <div class="infoblock__status__title">Статус работы</div>
                 <div class="infoblock__status">Работает</div>
                 <div class="infoblock__user">
@@ -81,6 +83,34 @@
             <div class="location__title title">Местоположение</div>
             <div id="map" class="location__map" style="width: 50%; height: 360px;"></div>
         </div>
+        <div class="modal">
+            <div class="edit-popup">
+                <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
+                <div class="edit-popup__title title">Редактирование отзыва</div>
+                <form method="" action="">
+                    <p class="feedback__mark block__subtitle">Ваша оценка</p>
+                    <div class="feedback__rating">
+                        <div class="rating__items">
+                            <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
+                            <label for="rating__items__5" class="rating__label"></label>
+                            <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
+                            <label for="rating__items__4" class="rating__label"></label>
+                            <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
+                            <label for="rating__items__3" class="rating__label"></label>
+                            <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
+                            <label for="rating__items__2" class="rating__label"></label>
+                            <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
+                            <label for="rating__items__1" class="rating__label"></label>
+                        </div>
+                    </div>
+                    <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+                    <textarea class="comment__text-edit" contenteditable="true"></textarea>
+                    <div class="edit-buttons">
+                        <input type="submit" class="edit__save" value ="Сохранить">
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="feedback block">
             <div class="feedback__title title">Написать отзыв</div>
             <form class="feedback__form" method="" action ="">
@@ -106,35 +136,6 @@
             <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
         </div>
         </form>
-            <div class="modal">
-                <div class="edit-popup">
-                    <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
-                    <div class="edit-popup__title title">Редактирование отзыва</div>
-                    <form method=""             action="">
-                        <p class="feedback__mark block__subtitle">Ваша оценка</p>
-                        <div class="feedback__rating">
-                            <div class="rating__items">
-                                <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
-                                <label for="rating__items__5" class="rating__label"></label>
-                                <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
-                                <label for="rating__items__4" class="rating__label"></label>
-                                <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
-                                <label for="rating__items__3" class="rating__label"></label>
-                                <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
-                                <label for="rating__items__2" class="rating__label"></label>
-                                <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
-                                <label for="rating__items__1" class="rating__label"></label>
-                            </div>
-                        </div>
-                        <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
-                        <div class="comment__text-edit" contenteditable="true">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
-                        <div class="edit-buttons">
-                            <input type="reset" class="edit__cancel" value ="Отмена">
-                            <input type="submit" class="edit__save" value ="Сохранить">
-                        </div>
-                    </form>            
-                </div>
-            </div>
         </div>
         <div class="comments-block block">
             <div class="comments__title title">Отзывы<span class="count__comments">2</span></div>
@@ -145,21 +146,21 @@
                         <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                         <div class="comment__user__content">
                             <div class="comment__user__name"><a href="{{route('profile')}}" class="user-profile__link">Александр Иванов</a><span class="user__rang">Профи <span class="user__rang-points">1200</span></span></div>
-                            <div class="comment__user__date" id="time">22 августа 2021</div>
                         </div>
                     </div>
                     <div class="comment__rating">
                         <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                        <div class="comment__rating__date" id="time">22 августа 2021</div>
                     </div>
                 </div>
-                <div class="comment__text" contenteditable="false">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
+                <div class="comment__text" contenteditable="false" name="comment__text">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
                 <div class="comment__bottom">
                     <span class="comment__bottom__useful">Было полезно?</span>
                     <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>
                     <div class="comment__like-count">0</div>
                     <div class="comment__bottom__buttons">
                         <button class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
-                    <a href="#" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
+                        <a href="#" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
                     </div>
                     
                 </div>
@@ -170,11 +171,11 @@
                         <img class="comment__user-avatar" src="/PagePointPersonal/img/06.svg" alt="user">
                         <div class="comment__user__content">
                             <div class="comment__user__name"><a href="{{route('profile')}}" class="user-profile__link">Александр Иванов</a><span class="user__rang">Профи <span class="user__rang-points">1200</span></span></div>
-                            <div class="comment__user__date" id="time">22 августа 2021</div>
                         </div>
                     </div>
                     <div class="comment__rating">
                         <img class="star-rating__star" src="/PageMap/img/stars/stars03.svg">
+                        <div class="comment__rating__date" id="time">22 августа 2021</div>
                     </div>
                 </div>
                 <div class="comment__text" contenteditable="false">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
@@ -246,31 +247,28 @@
             likeCounts[index].innerHTML = current + inc;
         });
     });
-
-    /*$(".comment-edit").click(function(e) {
-        if ($(".comment__text").attr("contenteditable") == 'false') {
-            $(".comment__text").attr("contenteditable", "true");
-            $(".comment__text").css({ border: "1px solid black" });
-        } else {
-            $(".comment__text").attr("contenteditable", "false");
-            $(".comment__text").css({ border: "none" });
-        }
-    });*/
 /*------------------EDIT-COMMENT---------------------*/
     let modal = document.querySelector('.modal');
     let editPopup = document.querySelector('.edit-popup');
     let popupCloseButton = document.querySelector('.edit-popup__close');
     let editButton = document.querySelector('.comment-edit');
+    let commentText = document.querySelector('.comment__text');
+    let commentTextEdit = document.querySelector('.comment__text-edit');
 
 
     editButton.addEventListener('click', function () {
         modal.classList.toggle('is-open');
         editPopup.classList.toggle('is-open');
+
+        //передача текста коммента в инпут
+        commentTextEdit.value = commentText.textContent;
     });
     popupCloseButton.addEventListener('click', function () {
         modal.classList.toggle('is-open');
         editPopup.classList.toggle('is-open');
     });
+
+    
 
 </script>
 </body>

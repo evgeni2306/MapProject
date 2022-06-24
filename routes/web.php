@@ -64,3 +64,7 @@ Route::get('/editroutes', function () {
 Route::get('/addroute', function () {
     return view('addroute');
 })->name('addroute');
+
+Route::get('/select', function () {
+    return view('select');
+})->name('select');

@@ -122,19 +122,16 @@ body._lock {
 }
 .infoblock__rating {
     text-align: left;
-    margin-bottom: 25px;
 }
 .infoblock__rating__feedback {
     color: #8c8c95;
     margin-left: 12px;
 }
 .infoblock__address__title,
-.infoblock__status__title {
+.infoblock__status__title,
+.infoblock__city__title {
     color: #8c8c95;
-    margin-bottom: 15px;
-}
-.infoblock__address {
-    margin-bottom: 24px;
+    margin: 25px 0px 15px 0px;
 }
 .infoblock__address img {
     margin-right: 12px;
@@ -399,12 +396,15 @@ input:hover {
     margin-left: 16px;
 }
 .comment__user__name {
+    display: flex;
+    flex-direction: column;
     font-family: "GolosTextMedium";
     font-weight: 500;
     line-height: 118%;
     margin-bottom: 8px;
 }
 .user__rang {
+    width: fit-content;
     font-family: "GolosTextRegular";
     font-weight: 400;
     color: #fff;
@@ -412,12 +412,13 @@ input:hover {
     border-radius: 20px;
     line-height: 118%;
     padding: 4px 8px;
-    margin-left: 10px;
+    margin-top: 10px;
 }
-.comment__user__date {
+.comment__rating__date {
     font-size: 16px;
     line-height: 120%;
     color: #8c8c95;
+    margin-top: 10px;
 }
 .comment__rating {
 }
@@ -513,6 +514,7 @@ button {
     border: 1px solid #d3d5da;
     border-radius: 7px;
     padding: 15px;
+    height: 200px;
 }
 .edit-buttons {
     display: flex;
@@ -681,12 +683,19 @@ input {
     .comments__title {
         margin-left: 10px;
     }
-    .comment__user__name {
-        display: flex;
-        flex-direction: column;
-    }
     .user__rang {
         line-height: 118%;
         margin: 10px 0px 0px 0px;
+    }
+    .comment__top {
+        flex-direction: column;
+    }
+    .comment__rating {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    .comment__rating__date {
+        margin: 0;
     }
 }
