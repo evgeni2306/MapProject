@@ -515,6 +515,7 @@ button {
     border-radius: 7px;
     padding: 15px;
     height: 200px;
+    color: #000;
 }
 .edit-buttons {
     display: flex;
@@ -697,5 +698,17 @@ input {
     }
     .comment__rating__date {
         margin: 0;
+    }
+    .edit-popup {
+        width: 300px;
+        padding: 24px 14px;
+    }
+    .edit-buttons {
+        width: 100%;
+        margin: 0;
+    }
+    .edit__save {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
     }
 }

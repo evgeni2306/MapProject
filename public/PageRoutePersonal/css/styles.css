@@ -110,6 +110,7 @@ body._lock {
 .infoblock__info {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 40px;
 }
 .route__title {
     font-weight: 600;
@@ -124,14 +125,17 @@ body._lock {
 }
 .infoblock__rating {
     text-align: left;
-    margin-bottom: 25px;
 }
 .infoblock__rating__feedback {
     color: #8c8c95;
     margin-left: 12px;
 }
+.infoblock__address__title,
 .infoblock__status__title,
-.infoblock__city__title,
+.infoblock__city__title {
+    color: #8c8c95;
+    margin-bottom: 15px;
+}
 .complexity__title,
 .length__title,
 .time__title {
@@ -613,6 +617,7 @@ button {
     border-radius: 7px;
     padding: 15px;
     height: 200px;
+    color: #000;
 }
 .edit-buttons {
     display: flex;
@@ -701,9 +706,6 @@ input {
     }
     .route__title {
         padding: 15px 0px 20px 0px;
-    }
-    .infoblock__rating {
-        margin-bottom: 25px;
     }
     .infoblock__user {
         margin: 26px 0px;
@@ -816,5 +818,17 @@ input {
     }
     .comment__rating__date {
         margin: 0;
+    }
+    .edit-popup {
+        width: 300px;
+        padding: 24px 14px;
+    }
+    .edit-buttons {
+        width: 100%;
+        margin: 0;
+    }
+    .edit__save {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
     }
 }
