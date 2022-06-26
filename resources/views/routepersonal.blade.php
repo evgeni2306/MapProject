@@ -44,6 +44,10 @@
                     <div class="infoblock__status__title">Статус работы</div>
                     <div class="infoblock__status">{{$_SESSION['CurrentRoute']->status}}</div>
                 </div>
+                <div class="infoblock__city-block">
+                    <div class="infoblock__city__title">Город</div>
+                    <div class="infoblock__city">Екатеринбург</div>
+                </div>
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
                     <img src="{{$_SESSION['CurrentRoute']->avatar}}" class="infoblock__user__photo" alt="">
@@ -79,7 +83,36 @@
             <div class="description__title title">Описание</div>
             <div class="description">{{$_SESSION['CurrentRoute']->description}}</div>
         </div>
-
+{{--        Редактирование коммента--}}
+        <div class="modal">
+            <div class="edit-popup">
+                <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
+                <div class="edit-popup__title title">Редактирование отзыва</div>
+                <form method="" action="">
+                    <p class="feedback__mark block__subtitle">Ваша оценка</p>
+                    <div class="feedback__rating">
+                        <div class="rating__items">
+                            <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
+                            <label for="rating__items__5" class="rating__label"></label>
+                            <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
+                            <label for="rating__items__4" class="rating__label"></label>
+                            <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
+                            <label for="rating__items__3" class="rating__label"></label>
+                            <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
+                            <label for="rating__items__2" class="rating__label"></label>
+                            <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
+                            <label for="rating__items__1" class="rating__label"></label>
+                        </div>
+                    </div>
+                    <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+                    <textarea class="comment__text-edit" contenteditable="true"></textarea>
+                    <div class="edit-buttons">
+                        <input type="submit" class="edit__save" value ="Сохранить">
+                    </div>
+                </form>
+            </div>
+        </div>
+{{--        --}}
         @if($_SESSION['CurrentRoute']->canAddComment == true)
 
         <div class="feedback block">
@@ -121,16 +154,23 @@
                             <img class="comment__user-avatar" src="{{$rcomment->avatar}}" alt="user">
                             <div class="comment__user__content">
                                 <div class="comment__user__name"><a href="{{route('profile',$rcomment->creatorid)}}" class="user-profile__link">{{$rcomment->nickname}}</a><span class="user__rang">{{$rcomment->rname}} <span class="user__rang-points">{{$rcomment->urate}}</span></span></div>
-                                <div class="comment__user__date" id="time">{{$rcomment->created_at}}</div>
+
                             </div>
                         </div>
                         <div class="comment__rating">
                             <img class="star-rating__star" src="{{$rcomment->rating}}">
+                            <div class="comment__user__date" id="time">{{$rcomment->created_at}}</div>
                         </div>
                     </div>
-                    <div class="comment__text">{{$rcomment->text}}
+                    <div class="comment__text" contenteditable="false">{{$rcomment->text}}</div>
+                    <div class="comment__bottom">
+                        @if($_SESSION['User']->id == $rcomment->creatorid)
+                        <div class="comment__bottom__buttons">
+                            <button class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
+                            <a href="#" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
+                        </div>
+                        @endif
                     </div>
-                </div>
                 <? }?>
         </div>
         </div>
@@ -210,36 +250,23 @@
 
     <? }?>
     //-------------------------------------------------------
-
-
-
-
-        /*---------------LIKES-------------------------*/
-        // const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
-        // const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
-        //
-        // likeButtons.forEach((button, index) => {
-        //     button.addEventListener("click", () => {
-        //         button.classList.toggle("like-active");
-        //         likeCounts[index].classList.toggle("like-active__count");
-        //         const current = Number(likeCounts[index].innerHTML);
-        //         const inc = button.classList.contains("like-active") ? 1 : -1;
-        //         likeCounts[index].innerHTML = current + inc;
-        //     });
-        // });
-
-    /*const dislikeButtons = Array.from(document.querySelectorAll(".comment__dislike-icon"));
-    const dislikeCounts = Array.from(document.querySelectorAll(".comment__dislike-count"));
-
-    dislikeButtons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-            button.classList.toggle("dislike-active");
-            dislikeCounts[index].classList.toggle("like-active__count");
-            const current = Number(dislikeCounts[index].innerHTML);
-            const inc = button.classList.contains("dislike-active") ? 1 : -1;
-            dislikeCounts[index].innerHTML = current + inc;
+        /*------------------EDIT-COMMENT---------------------*/
+        let modal = document.querySelector('.modal');
+        let editPopup = document.querySelector('.edit-popup');
+        let popupCloseButton = document.querySelector('.edit-popup__close');
+        let editButton = document.querySelector('.comment-edit');
+        let commentText = document.querySelector('.comment__text');
+        let commentTextEdit = document.querySelector('.comment__text-edit');
+        editButton.addEventListener('click', function () {
+            modal.classList.toggle('is-open');
+            editPopup.classList.toggle('is-open');
+            //передача текста коммента в инпут
+            commentTextEdit.value = commentText.textContent;
         });
-    });*/
+        popupCloseButton.addEventListener('click', function () {
+            modal.classList.toggle('is-open');
+            editPopup.classList.toggle('is-open');
+        });
 </script>
 </body>
 </html>

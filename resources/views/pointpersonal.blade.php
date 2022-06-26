@@ -43,6 +43,8 @@
                 </div>
                 <div class="infoblock__address__title">Адрес</div>
                 <div class="infoblock__address"><img src="/PagePointPersonal/img/04.svg">{{$_SESSION['CurrentPoint']->address}}</div>
+                <div class="infoblock__city__title">Город</div>
+                <div class="infoblock__status">Екатеринбург</div>
                 <div class="infoblock__status__title">Статус работы</div>
                 <div class="infoblock__status">{{$_SESSION['CurrentPoint']->status}}</div>
                 <div class="infoblock__user">
@@ -96,6 +98,36 @@
             <div class="location__title title">Местоположение</div>
             <div id="map" class="location__map" style="width: 50%; height: 360px;"></div>
         </div>
+{{--        Редактирование коммента--}}
+        <div class="modal">
+            <div class="edit-popup">
+                <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
+                <div class="edit-popup__title title">Редактирование отзыва</div>
+                <form method="" action="">
+                    <p class="feedback__mark block__subtitle">Ваша оценка</p>
+                    <div class="feedback__rating">
+                        <div class="rating__items">
+                            <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
+                            <label for="rating__items__5" class="rating__label"></label>
+                            <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
+                            <label for="rating__items__4" class="rating__label"></label>
+                            <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
+                            <label for="rating__items__3" class="rating__label"></label>
+                            <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
+                            <label for="rating__items__2" class="rating__label"></label>
+                            <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
+                            <label for="rating__items__1" class="rating__label"></label>
+                        </div>
+                    </div>
+                    <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+                    <textarea class="comment__text-edit" contenteditable="true"></textarea>
+                    <div class="edit-buttons">
+                        <input type="submit" class="edit__save" value ="Сохранить">
+                    </div>
+                </form>
+            </div>
+        </div>
+{{--        --}}
         @if($_SESSION['CurrentPoint']->canAddComment == true)
         <div class="feedback block">
 
@@ -124,37 +156,6 @@
             <label for="feedback__button"><img src="/PagePointPersonal/img/05.svg" class="feedback__button__image">Добавить отзыв</label>
         </div>
         </form>
-
-
-            <div class="modal">
-                <div class="edit-popup">
-                    <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
-                    <div class="edit-popup__title title">Редактирование отзыва</div>
-                    <form method=""             action="">
-                        <p class="feedback__mark block__subtitle">Ваша оценка</p>
-                        <div class="feedback__rating">
-                            <div class="rating__items">
-                                <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
-                                <label for="rating__items__5" class="rating__label"></label>
-                                <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
-                                <label for="rating__items__4" class="rating__label"></label>
-                                <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
-                                <label for="rating__items__3" class="rating__label"></label>
-                                <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
-                                <label for="rating__items__2" class="rating__label"></label>
-                                <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
-                                <label for="rating__items__1" class="rating__label"></label>
-                            </div>
-                        </div>
-                        <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
-                        <div class="comment__text-edit" contenteditable="true">Крупнейший художественный музей Урала, имеет два здания — главное расположено на берегу реки Исети в Екатеринбурге, в Историческом сквере города, второе на Вайнера, 11, где в 2021 году открылся культурно-выставочный центр «Эрмитаж-Урал» на берегу реки Исети</div>
-                        <div class="edit-buttons">
-                            <input type="reset" class="edit__cancel" value ="Отмена">
-                            <input type="submit" class="edit__save" value ="Сохранить">
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
         @endif
         <div class="comments-block block">
@@ -167,24 +168,22 @@
                         <img class="comment__user-avatar" src="{{$pcomment->avatar}}" alt="user">
                         <div class="comment__user__content">
                             <div class="comment__user__name"><a href="{{route('profile',$pcomment->creatorid)}}" class="user-profile__link">{{$pcomment->nickname}}</a><span class="user__rang">{{$pcomment->rname}} <span class="user__rang-points">{{$pcomment->urate}}</span></span></div>
-                            <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
+
                         </div>
                     </div>
                     <div class="comment__rating">
                         <img class="star-rating__star" src="{{$pcomment->rating}}">
+                        <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
                     </div>
                 </div>
-                <div class="comment__text" contenteditable="false">{{$pcomment->text}}</div>
+                <div class="comment__text" contenteditable="false"  name="comment__text" >{{$pcomment->text}}</div>
                 <div class="comment__bottom">
-{{--                    <span class="comment__bottom__useful">Было полезно?</span>--}}
-{{--                    <button class="comment__like-icon" type="button"><img src="/PagePointPersonal/img/like.svg" alt="like"></button>--}}
-{{--                    <div class="comment__like-count">0</div>--}}
                     @if($_SESSION['User']->id == $pcomment->creatorid)
                     <div class="comment__bottom__buttons">
                         <button  class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
                         <a href="{{route('DeletePcomment',$pcomment->id)}}" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
                     </div>
-                        @endif
+                    @endif
                 </div>
             </div>
                     <? } ?>
@@ -281,11 +280,15 @@
     let editPopup = document.querySelector('.edit-popup');
     let popupCloseButton = document.querySelector('.edit-popup__close');
     let editButton = document.querySelector('.comment-edit');
+        let commentText = document.querySelector('.comment__text');
+        let commentTextEdit = document.querySelector('.comment__text-edit');
 
 
     editButton.addEventListener('click', function () {
         modal.classList.toggle('is-open');
         editPopup.classList.toggle('is-open');
+            //передача текста коммента в инпут
+            commentTextEdit.value = commentText.textContent;
     });
     popupCloseButton.addEventListener('click', function () {
         modal.classList.toggle('is-open');

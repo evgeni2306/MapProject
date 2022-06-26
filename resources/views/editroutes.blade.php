@@ -32,13 +32,15 @@
                         <option value="Средне">Средняя</option>
                         <option value="Сложно">Для продвинутых</option>
                     </select>
-                    <h4  {{$fieldAccess->status}} class="sub-title" >Статус</h4>
-                    <select {{$fieldAccess->status}}  id="status"  required name="status" >
+
+                    <h4 {{$fieldAccess->status}} class="sub-title">Статус работы<span class="required-form">*</span></h4>
+                    <select {{$fieldAccess->status}} id="status"  required name="status">
                         <option value="{{$_SESSION['CurrentEditRoute']->status}}" disabled style="display:none;"></option>
                         <option value="Под вопросом">Под вопросом</option>
                         <option value="Работает">Работает</option>
                         <option value="Не работает">Не работает</option>
                     </select>
+
                     <h4 class="sub-title">Протяженность</h4>
                     <input  {{$fieldAccess->distance}} type="text"  placeholder="Введите протяженность" name="distance" value ="{{$_SESSION['CurrentEditRoute']->distance}}" >
 
