@@ -6,7 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddPointController;
 use App\Http\Controllers\AddRouteController;
-use App\Http\Controllers\AddPcommentController;
+use App\Http\Controllers\PcommentActionController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\RoutePageController;
 use App\Http\Controllers\GetAllController;
@@ -15,7 +15,7 @@ use App\Http\Controllers\UpdateUserController;
 use App\Http\Controllers\UpdatePointController;
 use App\Http\Controllers\GetProfileController;
 use App\Http\Controllers\UploadRouteController;
-use App\Http\Controllers\AddRcommentController;
+use App\Http\Controllers\RcommentActionController;
 use App\Http\Controllers\UpdateRouteController;
 use App\Classes\RoutePageClass;
 
@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
     Route::post('/Addroute', [AddRouteController::class, 'AddRoute'])->name('Addroute');//добавление
-    Route::post('/addRcomment', [AddRcommentController::class, 'AddRcomment'])->name('AddRcomment');
+    Route::post('/addRcomment', [RcommentActionController::class, 'AddRcomment'])->name('AddRcomment');
     //----------------------------//
 
 
@@ -77,8 +77,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/Addpoint', [AddPointController::class, 'AddPoint'])->name('AddPoint');
     Route::get('/editpoint={idd}', [UpdatePointController::class, 'GetUpdatePoint'])->name('GetUpdatePoint');
     Route::post('/editpoint={idd}', [UpdatePointController::class, 'UpdatePoint'])->name('UpdatePoint');
-    Route::get('/deletePcomment={idd}', [AddPcommentController::class, 'DeletePcomment'])->name('DeletePcomment');
-    Route::post('/addPcomment', [AddPcommentController::class, 'AddPcomment'])->name('AddPcomment');
+    Route::get('/deletePcomment={idd}', [PcommentActionController::class, 'DeletePcomment'])->name('DeletePcomment');
+    Route::post('/addPcomment', [PcommentActionController::class, 'AddPcomment'])->name('AddPcomment');
     //------------------------//
 });
 

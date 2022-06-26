@@ -10,7 +10,7 @@ use App\Http\helpfunc;
 use App\Models\Route;
 use Illuminate\Support\Facades\Auth;
 
-class AddRcommentController extends Controller
+class RcommentActionController extends Controller
 {
     use helpfunc;
 

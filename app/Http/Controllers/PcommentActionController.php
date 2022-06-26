@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\helpfunc;
 use Illuminate\Support\Facades\Auth;
 
-class AddPcommentController extends Controller
+class PcommentActionController extends Controller
 {
     use helpfunc;
 
