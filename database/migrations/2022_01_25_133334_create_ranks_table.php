@@ -48,7 +48,7 @@ class CreateRanksTable extends Migration
             array(
                 'name' => 'Мастер',
                 'icon' => 'red',
-                'maxrating'=>800
+                'maxrating'=>600
             )
         );
     }

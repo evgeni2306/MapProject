@@ -45,10 +45,10 @@
                     <h4 class="sub-title">Примерное время</h4>
                     <input  {{$fieldAccess->time}}  type="text" placeholder="Введите время" name="time" value = "{{$_SESSION['CurrentEditRoute']->time}}">
                     <h4 class="sub-title">Описание</h4>
-                    <textarea  {{$fieldAccess->description}} class="edit-point__description"  placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description" value ="{{$_SESSION['CurrentEditRoute']->description}}"></textarea>
+                    <textarea  {{$fieldAccess->description}} class="edit-point__description"  placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description">{{$_SESSION['CurrentEditRoute']->description}}</textarea>
                     @csrf
                     <div class="edit-buttons">
-                        <a href="" class="edit-point__cancel">Назад</a>
+                        <a href="{{route('getroutepage',$_SESSION['CurrentEditRoute']->id)}}" class="edit-point__cancel">Назад</a>
                         <input  {{$fieldAccess->submit}}type="submit"  class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
