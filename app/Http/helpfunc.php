@@ -108,22 +108,22 @@ trait helpfunc
         foreach ($commentArr as $comment) {
             switch ($comment->rating) {
                 case 0:
-                    $comment->rating = "/PageMap/img/icons/stars-0-5.svg";
+                    $comment->rating = [0,"/PageMap/img/icons/stars-0-5.svg"];
                     break;
                 case 1:
-                    $comment->rating = "/PageMap/img/icons/stars-1-5.svg";
+                    $comment->rating = [1,"/PageMap/img/icons/stars-1-5.svg"];
                     break;
                 case 2:
-                    $comment->rating = "/PageMap/img/icons/stars-2-5.svg";
+                    $comment->rating = [2,"/PageMap/img/icons/stars-2-5.svg"];
                     break;
                 case 3:
-                    $comment->rating = "/PageMap/img/icons/stars-3-5.svg";
+                    $comment->rating = [3,"/PageMap/img/icons/stars-3-5.svg"];
                     break;
                 case 4:
-                    $comment->rating = "/PageMap/img/icons/stars-4-5.svg";
+                    $comment->rating = [4,"/PageMap/img/icons/stars-4-5.svg"];
                     break;
                 case 5:
-                    $comment->rating = "/PageMap/img/icons/stars-5-5.svg";
+                    $comment->rating = [5,"/PageMap/img/icons/stars-5-5.svg"];
                     break;
             }
         }

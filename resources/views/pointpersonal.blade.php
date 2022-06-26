@@ -44,7 +44,7 @@
                 <div class="infoblock__address__title">Адрес</div>
                 <div class="infoblock__address"><img src="/PagePointPersonal/img/04.svg">{{$_SESSION['CurrentPoint']->address}}</div>
                 <div class="infoblock__city__title">Город</div>
-                <div class="infoblock__status">Екатеринбург</div>
+                <div class="infoblock__status">{{$_SESSION['CurrentPoint']->city}}</div>
                 <div class="infoblock__status__title">Статус работы</div>
                 <div class="infoblock__status">{{$_SESSION['CurrentPoint']->status}}</div>
                 <div class="infoblock__user">
@@ -62,31 +62,11 @@
             </div>
             <div class="infoblock__slider">
                 <div class="swiper">
-                <!--<div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="image-slider swiper-container">
-                    <div class="image-slider__wrapper swiper-wrapper">-->
                         <div class="image-slider__slide swiper-slide">
                             <div class="image-slider__image">
                                 <img src="{{$_SESSION['CurrentPoint']->photo}}" alt="">
                             </div>
                         </div>
-                        <!--<div class="image-slider__slide swiper-slide">
-                            <div class="image-slider__image">
-                                <img src="/PagePointPersonal/img/slider.png" alt="">
-                            </div>
-                        </div>
-                        <div class="image-slider__slide swiper-slide">
-                            <div class="image-slider__image">
-                                <img src="/PagePointPersonal/img/slider.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-pagination"></div>
-
-                <div class="swiper-scrollbar"></div>-->
                 </div>
             </div>
         </div>
@@ -103,24 +83,26 @@
             <div class="edit-popup">
                 <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
                 <div class="edit-popup__title title">Редактирование отзыва</div>
-                <form method="" action="">
+                <form method="post" action="{{route('UpdatePcomment')}}">
                     <p class="feedback__mark block__subtitle">Ваша оценка</p>
                     <div class="feedback__rating">
                         <div class="rating__items">
-                            <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
-                            <label for="rating__items__5" class="rating__label"></label>
-                            <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
-                            <label for="rating__items__4" class="rating__label"></label>
-                            <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
-                            <label for="rating__items__3" class="rating__label"></label>
-                            <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
-                            <label for="rating__items__2" class="rating__label"></label>
-                            <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
-                            <label for="rating__items__1" class="rating__label"></label>
+                            <input id="rating__items__5_edit" type="radio" class="rating__item" value="5" name="rating">
+                            <label for="rating__items__5_edit" class="rating__label"></label>
+                            <input id="rating__items__4_edit" type="radio" class="rating__item" value="4" name="rating">
+                            <label for="rating__items__4_edit" class="rating__label"></label>
+                            <input id="rating__items__3_edit" type="radio" class="rating__item" value="3" name="rating">
+                            <label for="rating__items__3_edit" class="rating__label"></label>
+                            <input id="rating__items__2_edit" type="radio" class="rating__item" value="2" name="rating">
+                            <label for="rating__items__2_edit" class="rating__label"></label>
+                            <input id="rating__items__1_edit" type="radio" class="rating__item" value="1" name="rating">
+                            <label for="rating__items__1_edit" class="rating__label"></label>
                         </div>
                     </div>
                     <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
-                    <textarea class="comment__text-edit" contenteditable="true"></textarea>
+                    <input type="text" hidden  class = "comment__id__edit" name='id' value = "">
+                    <textarea  required class="comment__text-edit" contenteditable="true" name = "text"></textarea>
+                    @csrf
                     <div class="edit-buttons">
                         <input type="submit" class="edit__save" value ="Сохранить">
                     </div>
@@ -130,7 +112,6 @@
 {{--        --}}
         @if($_SESSION['CurrentPoint']->canAddComment == true)
         <div class="feedback block">
-
             <div class="feedback__title title">Написать отзыв</div>
             <form class="feedback__form" method="Post" action ="{{route('AddPcomment')}}">
             <p class="feedback__mark block__subtitle">Ваша оценка</p>
@@ -172,17 +153,21 @@
                         </div>
                     </div>
                     <div class="comment__rating">
-                        <img class="star-rating__star" src="{{$pcomment->rating}}">
+                        <img class="star-rating__star" src="{{$pcomment->rating[1]}}">
+                        <input type="text" hidden  class = "comment__id"  value = "{{$pcomment->id}}">
+                        <input type="text" hidden  class = "comment__rating1" value = "{{$pcomment->rating[0]}}">
                         <div class="comment__user__date" id="time">{{$pcomment->created_at}}</div>
                     </div>
                 </div>
                 <div class="comment__text" contenteditable="false"  name="comment__text" >{{$pcomment->text}}</div>
                 <div class="comment__bottom">
+                    @if(isset($_SESSION['User']))
                     @if($_SESSION['User']->id == $pcomment->creatorid)
                     <div class="comment__bottom__buttons">
                         <button  class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
                         <a href="{{route('DeletePcomment',$pcomment->id)}}" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
                     </div>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -239,56 +224,51 @@
 
         L
         .marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], {icon: {{$_SESSION['CurrentPoint']->icon}}}).addTo(map);
-        /*---------------SWIPER-------------------------*/
-    /*new Swiper('.image-slider', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
 
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true,
-        },
-    });*/
-/*---------------LIKES-------------------------*/
-    const likeButtons = Array.from(document.querySelectorAll(".comment__like-icon"));
-    const likeCounts = Array.from(document.querySelectorAll(".comment__like-count"));
-
-    likeButtons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-            button.classList.toggle("like-active");
-            likeCounts[index].classList.toggle("like-active__count");
-            const current = Number(likeCounts[index].innerHTML);
-            const inc = button.classList.contains("like-active") ? 1 : -1;
-            likeCounts[index].innerHTML = current + inc;
-        });
-    });
-
-    /*$(".comment-edit").click(function(e) {
-        if ($(".comment__text").attr("contenteditable") == 'false') {
-            $(".comment__text").attr("contenteditable", "true");
-            $(".comment__text").css({ border: "1px solid black" });
-        } else {
-            $(".comment__text").attr("contenteditable", "false");
-            $(".comment__text").css({ border: "none" });
-        }
-    });*/
 /*------------------EDIT-COMMENT---------------------*/
     let modal = document.querySelector('.modal');
     let editPopup = document.querySelector('.edit-popup');
     let popupCloseButton = document.querySelector('.edit-popup__close');
     let editButton = document.querySelector('.comment-edit');
-        let commentText = document.querySelector('.comment__text');
+    let commentText = document.querySelector('.comment__text');
         let commentTextEdit = document.querySelector('.comment__text-edit');
+        let commentId = document.querySelector('.comment__id');
+    let commentIdEdit  = document.querySelector('.comment__id__edit');
+    let commentRating = document.querySelector('.comment__rating1');
+
+    let rate5 = document.getElementById('rating__items__5_edit');
+    let rate4 = document.getElementById('rating__items__4_edit');
+    let rate3 = document.getElementById('rating__items__3_edit');
+    let rate2 = document.getElementById('rating__items__2_edit');
+    let rate1 = document.getElementById('rating__items__1_edit');
 
 
+        //передача данных коммента в инпут
     editButton.addEventListener('click', function () {
-        modal.classList.toggle('is-open');
-        editPopup.classList.toggle('is-open');
-            //передача текста коммента в инпут
+            modal.classList.toggle('is-open');
+            editPopup.classList.toggle('is-open');
             commentTextEdit.value = commentText.textContent;
+            commentIdEdit.value = commentId.value;
+
+            switch(commentRating.value.toString()) {
+                case '5':
+                    rate5.checked = true;
+                    break
+                case '4':
+                    rate4.checked = true;
+                    break
+                case '3':
+                    rate3.checked = true;
+                    break
+                case '2':
+                    rate2.checked = true;
+                    break
+                case '1':
+                    rate1.checked = true;
+                    break
+                default:
+                    break
+            }
     });
     popupCloseButton.addEventListener('click', function () {
         modal.classList.toggle('is-open');

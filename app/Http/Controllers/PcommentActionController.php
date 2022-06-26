@@ -19,19 +19,19 @@ class PcommentActionController extends Controller
             'rating' => ['required',],
             'text' => ['required', 'string'],
         ]);
-        $checkComment  = DB::table('pcomments')
-            ->where('creatorid',"=", Auth::id())
-            ->where('pointid',"=",$_SESSION['CurrentPoint']->id)
+        $checkComment = DB::table('pcomments')
+            ->where('creatorid', "=", Auth::id())
+            ->where('pointid', "=", $_SESSION['CurrentPoint']->id)
             ->get();
-        if (Count($checkComment) ==1){
-            return redirect(route('getpointpage',$_SESSION['CurrentPoint']->id));
+        if (Count($checkComment) == 1) {
+            return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
         }
         $validateFields['creatorid'] = $_SESSION['User']->id;
         $validateFields['pointid'] = $_SESSION['CurrentPoint']->id;
         $pcomment = Pcomment::create($validateFields);
         $rate = $this->RatingCalculate($_SESSION['CurrentPoint']->id);
         $this->UpdateUserRating(3);
-        return redirect(route('getpointpage',$_SESSION['CurrentPoint']->id));
+        return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
 
 
     }
@@ -46,20 +46,37 @@ class PcommentActionController extends Controller
         foreach ($getrating as $rating) {
             $currentrating += $rating->rating;
         }
-        if($currentrating >0 and Count($getrating)>0){
+        if ($currentrating > 0 and Count($getrating) > 0) {
             $currentrating = $currentrating / Count($getrating);
         }
 
         $rating = Point::where('id', $id)->update(['rating' => $currentrating]);
-
-
     }
-    public function DeletePcomment($id){
+
+    public function DeletePcomment($id)
+    {
         $getrating = DB::table('pcomments')
             ->where('id', $id)
             ->delete();
         $this->RatingCalculate($_SESSION['CurrentPoint']->id);
-        return redirect(route('getpointpage',$_SESSION['CurrentPoint']->id));
+        return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
+    }
+
+    public function UpdatePcomment(Request $request )
+    {
+        $validateFields = $request->validate([
+            'rating' => ['required',],
+            'text' => ['required', 'string'],
+            'id'=>['required']
+        ]);
+
+        if (Auth::check() and $_SESSION['User']->id and Pcomment::where('id', $validateFields['id'])->exists()) {
+            $pcomment = Pcomment::where('id',$validateFields['id'])->update(['rating'=>$validateFields['rating'],'text'=>$validateFields['text']]);
+            $this->RatingCalculate($_SESSION['CurrentPoint']->id);
+            return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
+        }
+
+
 
     }
 }

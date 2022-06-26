@@ -25,7 +25,7 @@ class PointPageController extends Controller
             //Получение точки из бд
             $getpoint = DB::table('points')
                 ->join('users', 'users.id', '=', 'points.creatorId')
-                ->select('points.id', 'creatorid', 'users.name as uname', 'users.nickname as nickname', 'users.avatar', 'points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address', 'lat', 'lng', 'icon', 'description', 'photo')
+                ->select('points.id', 'creatorid', 'users.name as uname', 'users.nickname as nickname', 'users.avatar', 'points.status', 'users.surname as usurname', 'points.name', 'points.type', 'points.rating', 'address','city', 'lat', 'lng', 'icon', 'description', 'photo')
                 ->where('points.id', $id)->first();
             if ($getpoint->nickname == null) {
                 $getpoint->nickname = $getpoint->uname . ' ' . $getpoint->usurname;
@@ -37,10 +37,10 @@ class PointPageController extends Controller
             } else if ($getpoint->type == 'dpoints') {
                 $getpoint->type = array(0 => "building.svg", 1 => 'Достопримечательность');
             }
-            if($getpoint->icon =="insocket"){
+            if ($getpoint->icon == "insocket") {
                 $getpoint->type = array(0 => "socket.svg", 1 => 'Розетка');
             }
-            if ($getpoint->icon =="inhouse"){
+            if ($getpoint->icon == "inhouse") {
                 $getpoint->type = array(0 => "building.svg", 1 => 'Достопримечательность');
             }
             //Определение нужной иконки звездочек в зависимости от значения rating
@@ -67,6 +67,7 @@ class PointPageController extends Controller
                 $getpoint->description,
                 $getpoint->rating,
                 $getpoint->type,
+                $getpoint->city,
                 $getpoint->address,
                 $getpoint->lat,
                 $getpoint->lng,
@@ -85,7 +86,7 @@ class PointPageController extends Controller
             $_SESSION['Pcomments'] = DB::table('pcomments')
                 ->join('users', 'pcomments.creatorId', '=', 'users.id')
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('pcomments.id','users.name', 'users.surname', 'creatorid', 'users.nickname', 'pcomments.rating', 'text', 'users.rating as urate', 'ranks.name as rname', 'pcomments.created_at', 'avatar')
+                ->select('pcomments.id', 'users.name', 'users.surname', 'creatorid', 'users.nickname', 'pcomments.rating', 'text', 'users.rating as urate', 'ranks.name as rname', 'pcomments.created_at', 'avatar')
                 ->where('pointid', $id)
                 ->latest()
                 ->get();
@@ -98,12 +99,9 @@ class PointPageController extends Controller
 
 //ОПределение иконок рейтинга у комментариев
             $_SESSION['Pcomments'] = $this->GetCommentRatingIcon($_SESSION['Pcomments']);
-
             $_SESSION['CurrentPoint']->rating[1] = Count($_SESSION['Pcomments']);
             return view('pointpersonal');
         } else {
-
-
             return redirect(route('map'));
         }
 

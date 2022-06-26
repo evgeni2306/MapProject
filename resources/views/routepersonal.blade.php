@@ -46,7 +46,7 @@
                 </div>
                 <div class="infoblock__city-block">
                     <div class="infoblock__city__title">Город</div>
-                    <div class="infoblock__city">Екатеринбург</div>
+                    <div class="infoblock__city">{{$_SESSION['CurrentRoute']->city}}</div>
                 </div>
                 <div class="infoblock__user">
                     <span class="infoblock__user__add">Автор</span>
@@ -105,6 +105,7 @@
                         </div>
                     </div>
                     <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+                    @csrf
                     <textarea class="comment__text-edit" contenteditable="true"></textarea>
                     <div class="edit-buttons">
                         <input type="submit" class="edit__save" value ="Сохранить">
@@ -158,17 +159,19 @@
                             </div>
                         </div>
                         <div class="comment__rating">
-                            <img class="star-rating__star" src="{{$rcomment->rating}}">
+                            <img class="star-rating__star"  src="{{$rcomment->rating[1]}}">
                             <div class="comment__user__date" id="time">{{$rcomment->created_at}}</div>
                         </div>
                     </div>
                     <div class="comment__text" contenteditable="false">{{$rcomment->text}}</div>
                     <div class="comment__bottom">
+                        @if(isset($_SESSION['User']))
                         @if($_SESSION['User']->id == $rcomment->creatorid)
                         <div class="comment__bottom__buttons">
                             <button class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
                             <a href="#" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
                         </div>
+                            @endif
                         @endif
                     </div>
                 <? }?>

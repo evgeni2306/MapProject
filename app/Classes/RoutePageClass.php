@@ -12,6 +12,7 @@ class RoutePageClass
     public $distance;
     public $time;
     public $rating;
+    public $city;
     public $rpoints = array();
     //Данные владельца
     public $avatar;
@@ -37,6 +38,7 @@ class RoutePageClass
         string $usurname,
         string $nickname,
         $icon,
+        $city,
         $pointsnear,
         bool $canAddComment
 
@@ -57,6 +59,7 @@ class RoutePageClass
         $this->usurname = $usurname;
         $this->nickname = $nickname;
         $this->icon = $icon;
+        $this->city = $city;
         $this->pointsnear = $pointsnear;
         $this->canAddComment = $canAddComment;
 

@@ -14,6 +14,7 @@ class PointPageClass
     public $description;
     public $rating;
     public $type;
+    public $city;
     public $address;
     public $lat;
     public $lng;
@@ -34,6 +35,7 @@ class PointPageClass
         $description,
          $rating,
         $type,
+        $city,
         $address,
         $lat,
         $lng,
@@ -54,6 +56,7 @@ class PointPageClass
         $this->description = $description;
         $this->rating = $rating;
         $this->type = $type;
+        $this->city = $city;
         $this->address = $address;
         $this->lat = $lat;
         $this->lng = $lng;

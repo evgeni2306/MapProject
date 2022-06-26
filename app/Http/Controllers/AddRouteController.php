@@ -28,12 +28,12 @@ class AddRouteController extends Controller
 
         if (strlen($validateFields['cord']) > 19) {
 
-//            if ($validateFields['time'] == null) {
-//                $validateFields['time'] = "Не указано";
-//            }
-//            if ($validateFields['distance'] == null) {
-//                $validateFields['distance'] = "Не указано";
-//            }
+            if ($validateFields['time'] == null) {
+                $validateFields['time'] = "Не указано";
+            }
+            if ($validateFields['distance'] == null) {
+                $validateFields['distance'] = "Не указано";
+            }
 
             $arr = explode(',', $validateFields['cord']);
 

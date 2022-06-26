@@ -24,7 +24,7 @@ class RoutePageController extends Controller
 
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id', 'users.name as uname', 'users.nickname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
+                ->select('routes.id', 'users.name as uname', 'users.nickname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description','city', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
             if ($getroute->nickname == null) {
@@ -95,6 +95,7 @@ class RoutePageController extends Controller
                 $getroute->usurname,
                 $getroute->nickname,
                 $getroute->icon,
+                $getroute->city,
                 $pointarr,
                 $canAddComment
             );
