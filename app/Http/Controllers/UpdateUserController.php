@@ -90,7 +90,8 @@ class UpdateUserController extends Controller
         $nicknames = DB::table('users')
             ->where('nickname','=', $nickname)
             ->select('id')->get();
-        if (Count($nicknames)>0){
+
+        if (Count($nicknames)>0 and $nickname!= null){
             return false;
         }else{
             return true;
