@@ -66,10 +66,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/editroute={idd}', [UpdateRouteController::class, 'GetUpdateRoute'])->name('GetUpdateRoute');
     Route::post('/editroute={idd}', [UpdateRouteController::class, 'UpdateRoute'])->name('UpdateRoute');
-
     Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
     Route::post('/Addroute', [AddRouteController::class, 'AddRoute'])->name('Addroute');//добавление
     Route::post('/addRcomment', [RcommentActionController::class, 'AddRcomment'])->name('AddRcomment');
+    Route::get('/deleteRcomment={idd}', [RcommentActionController::class, 'DeleteRcomment'])->name('DeleteRcomment');
+    Route::post('/updateRcomment', [RcommentActionController::class, 'UpdateRcomment'])->name('UpdateRcomment');
     //----------------------------//
 
 

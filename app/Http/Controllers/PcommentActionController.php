@@ -55,7 +55,7 @@ class PcommentActionController extends Controller
 
     public function DeletePcomment($id)
     {
-        $getrating = DB::table('pcomments')
+        $geletepoint = DB::table('pcomments')
             ->where('id', $id)
             ->delete();
         $this->RatingCalculate($_SESSION['CurrentPoint']->id);
@@ -69,14 +69,15 @@ class PcommentActionController extends Controller
             'text' => ['required', 'string'],
             'id'=>['required']
         ]);
+$creatorid =  $geletepoint = DB::table('pcomments')
+    ->where('id', $validateFields['id'])
+    ->select('creatorid')
+    ->first();
 
-        if (Auth::check() and $_SESSION['User']->id and Pcomment::where('id', $validateFields['id'])->exists()) {
+        if (Auth::check() and $_SESSION['User']->id == $creatorid->creatorid and Pcomment::where('id', $validateFields['id'])->exists()) {
             $pcomment = Pcomment::where('id',$validateFields['id'])->update(['rating'=>$validateFields['rating'],'text'=>$validateFields['text']]);
             $this->RatingCalculate($_SESSION['CurrentPoint']->id);
             return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
         }
-
-
-
     }
 }

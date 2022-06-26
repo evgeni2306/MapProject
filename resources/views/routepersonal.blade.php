@@ -88,25 +88,26 @@
             <div class="edit-popup">
                 <div class="edit-popup__close"><img src="/PagePointPersonal/img/close.svg" alt="close"></div>
                 <div class="edit-popup__title title">Редактирование отзыва</div>
-                <form method="" action="">
+                <form method="post" action="{{route('UpdateRcomment')}}">
                     <p class="feedback__mark block__subtitle">Ваша оценка</p>
                     <div class="feedback__rating">
                         <div class="rating__items">
-                            <input id="rating__items__5" type="radio" class="rating__item" value="5" name="rating">
-                            <label for="rating__items__5" class="rating__label"></label>
-                            <input id="rating__items__4" type="radio" class="rating__item" value="4" name="rating">
-                            <label for="rating__items__4" class="rating__label"></label>
-                            <input id="rating__items__3" type="radio" class="rating__item" value="3" name="rating">
-                            <label for="rating__items__3" class="rating__label"></label>
-                            <input id="rating__items__2" type="radio" class="rating__item" value="2" name="rating">
-                            <label for="rating__items__2" class="rating__label"></label>
-                            <input id="rating__items__1" type="radio" class="rating__item" value="1" name="rating">
-                            <label for="rating__items__1" class="rating__label"></label>
+                            <input id="rating__items__5_edit" type="radio" class="rating__item" value="5" name="rating">
+                            <label for="rating__items__5_edit" class="rating__label"></label>
+                            <input id="rating__items__4_edit" type="radio" class="rating__item" value="4" name="rating">
+                            <label for="rating__items__4_edit" class="rating__label"></label>
+                            <input id="rating__items__3_edit" type="radio" class="rating__item" value="3" name="rating">
+                            <label for="rating__items__3_edit" class="rating__label"></label>
+                            <input id="rating__items__2_edit" type="radio" class="rating__item" value="2" name="rating">
+                            <label for="rating__items__2_edit" class="rating__label"></label>
+                            <input id="rating__items__1_edit" type="radio" class="rating__item" value="1" name="rating">
+                            <label for="rating__items__1_edit" class="rating__label"></label>
                         </div>
                     </div>
                     <div class="feedback__comment__subtitle block__subtitle">Комментарий</div>
+                    <input type="text" hidden  class = "comment__id__edit" name='id' value = "">
+                    <textarea  required class="comment__text-edit" contenteditable="true" name = "text"></textarea>
                     @csrf
-                    <textarea class="comment__text-edit" contenteditable="true"></textarea>
                     <div class="edit-buttons">
                         <input type="submit" class="edit__save" value ="Сохранить">
                     </div>
@@ -159,7 +160,9 @@
                             </div>
                         </div>
                         <div class="comment__rating">
-                            <img class="star-rating__star"  src="{{$rcomment->rating[1]}}">
+                            <img class="star-rating__star" src="{{$rcomment->rating[1]}}">
+                            <input type="text" hidden  class = "comment__id"  value = "{{$rcomment->id}}">
+                            <input type="text" hidden  class = "comment__rating1" value = "{{$rcomment->rating[0]}}">
                             <div class="comment__user__date" id="time">{{$rcomment->created_at}}</div>
                         </div>
                     </div>
@@ -169,7 +172,7 @@
                         @if($_SESSION['User']->id == $rcomment->creatorid)
                         <div class="comment__bottom__buttons">
                             <button class="comment-edit"><img src="/PagePointPersonal/img/edit.svg" alt="edit"></button>
-                            <a href="#" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
+                            <a href="{{route('DeleteRcomment',$rcomment->id)}}" class="comment-delete"><img src="/PagePointPersonal/img/trash.svg" alt="trash"></a>
                         </div>
                             @endif
                         @endif
@@ -260,11 +263,43 @@
         let editButton = document.querySelector('.comment-edit');
         let commentText = document.querySelector('.comment__text');
         let commentTextEdit = document.querySelector('.comment__text-edit');
+        let commentId = document.querySelector('.comment__id');
+        let commentIdEdit  = document.querySelector('.comment__id__edit');
+        let commentRating = document.querySelector('.comment__rating1');
+
+        let rate5 = document.getElementById('rating__items__5_edit');
+        let rate4 = document.getElementById('rating__items__4_edit');
+        let rate3 = document.getElementById('rating__items__3_edit');
+        let rate2 = document.getElementById('rating__items__2_edit');
+        let rate1 = document.getElementById('rating__items__1_edit');
+
+
+        //передача данных коммента в инпут
         editButton.addEventListener('click', function () {
             modal.classList.toggle('is-open');
             editPopup.classList.toggle('is-open');
-            //передача текста коммента в инпут
             commentTextEdit.value = commentText.textContent;
+            commentIdEdit.value = commentId.value;
+
+            switch(commentRating.value.toString()) {
+                case '5':
+                    rate5.checked = true;
+                    break
+                case '4':
+                    rate4.checked = true;
+                    break
+                case '3':
+                    rate3.checked = true;
+                    break
+                case '2':
+                    rate2.checked = true;
+                    break
+                case '1':
+                    rate1.checked = true;
+                    break
+                default:
+                    break
+            }
         });
         popupCloseButton.addEventListener('click', function () {
             modal.classList.toggle('is-open');

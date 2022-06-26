@@ -112,7 +112,7 @@ class RoutePageController extends Controller
             $_SESSION['Rcomments'] = DB::table('rcomments')
                 ->join('users', 'rcomments.creatorId', '=', 'users.id')
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.name', 'users.surname','creatorid', 'users.nickname', 'rcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'rcomments.created_at', 'avatar')
+                ->select('users.name', 'users.surname','creatorid','rcomments.id', 'users.nickname', 'rcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'rcomments.created_at', 'avatar')
                 ->where('routeid', $id)
                 ->latest()
                 ->get();

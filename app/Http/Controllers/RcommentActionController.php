@@ -48,9 +48,40 @@ class RcommentActionController extends Controller
         foreach ($getrating as $rating) {
             $currentrating += $rating->rating;
         }
-        $currentrating = $currentrating / Count($getrating);
+        if ($currentrating > 0 and Count($getrating) > 0) {
+            $currentrating = $currentrating / Count($getrating);
+        }
         $rating = Route::where('id', $_SESSION['CurrentRoute']->id)->update(['rating' => $currentrating]);
 
 
+    }
+
+
+    public function DeleteRcomment($id)
+    {
+        $deleteroute = DB::table('rcomments')
+            ->where('id', $id)
+            ->delete();
+        $this->RatingCalculate($_SESSION['CurrentRoute']->id);
+        return redirect(route('getroutepage', $_SESSION['CurrentRoute']->id));
+    }
+
+    public function UpdateRcomment(Request $request )
+    {
+        $validateFields = $request->validate([
+            'rating' => ['required',],
+            'text' => ['required', 'string'],
+            'id'=>['required']
+        ]);
+        $creatorid =  $geletepoint = DB::table('rcomments')
+            ->where('id', $validateFields['id'])
+            ->select('creatorid')
+            ->first();
+
+        if (Auth::check() and $_SESSION['User']->id == $creatorid->creatorid and Rcomment::where('id', $validateFields['id'])->exists()) {
+            $rcomment = Rcomment::where('id',$validateFields['id'])->update(['rating'=>$validateFields['rating'],'text'=>$validateFields['text']]);
+            $this->RatingCalculate($_SESSION['CurrentRoute']->id);
+            return redirect(route('getroutepage', $_SESSION['CurrentRoute']->id));
+        }
     }
 }
