@@ -27,18 +27,27 @@ class AddRouteController extends Controller
         ]);
 
         if (strlen($validateFields['cord']) > 19) {
+            $arr = explode(',', $validateFields['cord']);
 
             if ($validateFields['time'] == null) {
                 $validateFields['time'] = "Не указано";
             }
             if ($validateFields['distance'] == null) {
-                $validateFields['distance'] = "Не указано";
+//                $validateFields['distance'] = "Не указано";
+
+                for ($i = 0; $i <= count($arr)-3; $i += 2) {
+//
+                    $validateFields['distance']+= $this->GetRouteDistanceBetweenPoints($arr[$i],$arr[$i+1],$arr[$i+2],$arr[$i+3]);
+                }
+                $distance = explode('.',$validateFields['distance']);
+                $validateFields['distance'] = $distance[0].'.'.substr($distance[1],0,2).'Км';
             }
 
-            $arr = explode(',', $validateFields['cord']);
+
+
 
             $difficulttype = explode(',', $validateFields['difficult']);
-            $rroute = array(
+            $rroute = array($arr[$i],
                 'creatorid' => Auth::id(),
                 'status' => 'Под вопросом',
                 'name' => $validateFields['name'],

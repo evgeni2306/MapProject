@@ -131,6 +131,8 @@ trait helpfunc
     }
 
     public function GetCityByCords($lat,$lng){
+        $lat = trim($lat);
+        $lng = trim($lng);
         $context = stream_context_create(
             array(
                 "http" => array(
@@ -149,6 +151,18 @@ trait helpfunc
             $city = "Не определен";
         }
         return $city;
+    }
+
+    public function GetRouteDistanceBetweenPoints($lat1, $lon1, $lat2, $lon2){
+        $radius = 6378.137;
+        $dlat = $lat2 * pi()/ 180 - $lat1 * pi()/180;
+        $dlon = $lon2 * pi()/ 180 - $lon1 * pi()/180;
+
+        $a = sin($dlat/2) * sin($dlat/2) + cos($lat1 * pi()/180) * cos($lat2 *pi()/180)
+            * sin($dlon/2) * sin($dlon/2);
+        $c = 2 * atan2(sqrt($a),sqrt(1-$a));
+        $answer = $radius * $c ;
+        return $answer;
     }
 }
 

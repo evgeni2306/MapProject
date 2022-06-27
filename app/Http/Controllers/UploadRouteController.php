@@ -31,12 +31,13 @@ class UploadRouteController extends Controller
 
         ]);
 
-//        if ($validateFields['time'] == null) {
-//                $validateFields['time'] = "Не указано";
-//            }
-//            if ($validateFields['distance'] == null) {
-//                $validateFields['distance'] = "Не указано";
-//            }
+        if ($validateFields['time'] == null) {
+                $validateFields['time'] = "Не указано";
+            }
+        if($validateFields['distance'] == null){
+            $validateFields['distance'] = "Не указано";
+        }
+
         $difficulttype = explode(',', $validateFields['difficult']);
         $rroute = array(
             'creatorid' => Auth::id(),
@@ -76,6 +77,17 @@ class UploadRouteController extends Controller
             set_time_limit(20);
             Rpoint::create($point);
         }
+
+        if ($rroute['distance'] == null or $rroute['distance'] == "Не указано") {
+        $distance =0;
+        for ($i = 0; $i <= $count-3; $i += 2) {
+            $distance+= $this->GetRouteDistanceBetweenPoints($xml->trk->trkseg->trkpt[$i]['lat'],$xml->trk->trkseg->trkpt[$i+1]['lon'],$xml->trk->trkseg->trkpt[$i+2]['lat'],$xml->trk->trkseg->trkpt[$i+3]['lon']);
+            set_time_limit(20);
+        }
+        $distance = explode('.',$distance);
+        $dist = $distance[0].'.'.substr($distance[1],0,2).'Км';
+        Route::where('id',$Route->id)->update(['distance'=>$dist]);
+    }
         $this->SetCity($xml->trk->trkseg->trkpt[0]['lat'],$xml->trk->trkseg->trkpt[0]['lon'],$Route);
         $this->DeleteFile($path);
     }
@@ -99,6 +111,22 @@ class UploadRouteController extends Controller
             set_time_limit(20);
             Rpoint::create($point);
         }
+
+        if ($rroute['distance'] == null or $rroute['distance'] == "Не указано") {
+            $distance =0;
+            for ($i = 1; $i <= $count-3; $i += 2) {
+                $row = explode(',', $file[$i]);
+                $row1 = explode(',', $file[$i+1]);
+                $distance+= $this->GetRouteDistanceBetweenPoints($row[$indexlat],$row[$indexlng],$row1[$indexlat],$row1[$indexlng]);
+                set_time_limit(20);
+            }
+            $distance = explode('.',$distance);
+            $dist = $distance[0].'.'.substr($distance[1],0,2).'Км';
+            Route::where('id',$Route->id)->update(['distance'=>$dist]);
+        }
+
+
+
         $row = explode(',', $file[1]);
         $this->SetCity($row[$indexlat],$row[$indexlng],$Route);
         $this->DeleteFile($path);
