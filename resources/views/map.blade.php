@@ -233,7 +233,7 @@
             "<img src='/PageMap/img/route/filtergreenroute.svg'>Легкие маршруты": groutes,
             "<img src='/PageMap/img/route/filteryellowroute.svg'>Средние маршруты": yroutes,
             "<img src='/PageMap/img/route/filterredroute.svg'>Сложные маршруты": rroutes,
-            "<img src='/PageMap/img/icons/socketinactive.svg'>Не работающие объекты":inobject
+            "<img src='/PageMap/img/icons/inobject.svg'>Не работающие объекты":inobject
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
         //------------------------------------------------------------------

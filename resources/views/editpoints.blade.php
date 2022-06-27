@@ -49,7 +49,7 @@
                         <output id="list"></output>
                     </div>
                     @csrf
-                    <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
+                    <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG и размером не более 4МБ</div>
                     <!--<div class="edit-point__photos__mobile">
                         <img  class="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
                         <button class = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>

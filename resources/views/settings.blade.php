@@ -30,11 +30,7 @@
                         <label  for="files"><img src="/PageSettings/img/02.svg">Изменить фото</label>
                         <output id="list"></output>
                     </div>
-                    <!--<div class="change-photo__mobile">
-                      <input type="file" id="files__mobile" name="files[]">
-                      <label for="files__mobile"><img src="/PageSettings/img/02.svg"></label>
-                      <output id="list"></output>
-                    </div>-->
+                    <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG и размером не более 4МБ</div>
                 </div>
                 <div class="forms__container">
                     <h4 class="sub-title">Имя</h4>

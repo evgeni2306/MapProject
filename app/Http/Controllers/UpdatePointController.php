@@ -24,7 +24,7 @@ class UpdatePointController extends Controller
                 'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
                 'description' => ['nullable', 'max:500', 'string'],
                 'shortdescription' => ['max:255', 'string', 'nullable'],
-                'photo' => ['mimes:jpeg,jpg,png', 'nullable']
+                'photo' => ['mimes:jpeg,jpg,png', 'nullable','max:4608']
             ]);
             if (isset($validateFields['photo'])) {
                 $path = Storage::putFile('public/pointphoto', $request->file('photo'));

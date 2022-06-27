@@ -19,7 +19,7 @@ class UpdateUserController extends Controller
                 'nickname' => ['nullable', 'string', 'max:255'],
                 'transport' => ['nullable', 'max:255', 'string'],
                 'mapstyle' => ['string', 'ends_with:ISLbB6B5aw,{x}/{y}.png'],
-                'photo' => ['mimes:jpeg,jpg,png']
+                'photo' => ['mimes:jpeg,jpg,png', 'max:4608']
             ]);
             if ($validateFields['transport'] == null) {
                 $validateFields['transport'] = "Не указан";

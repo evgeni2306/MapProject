@@ -113,6 +113,11 @@ body._lock {
     height: inherit;
     align-items: center;
 }
+.edit-point__warning {
+    line-height: 140%;
+    margin: 16px 0px 0px 0px;
+    color: #8c8c95;
+}
 .avatar__container label {
     height: 48px;
     background: #27ae60;
