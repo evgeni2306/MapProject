@@ -31,6 +31,10 @@
                         <output id="list"></output>
                     </div>
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG и размером не более 4МБ</div>
+                    <div class="error-block ">
+                        <img src="PageRegistration/img/information.svg" alt="">
+                        <p class="error-block__text">Выбранный вами файл слишком большой для загрузки</p>
+                    </div>
                 </div>
                 <div class="forms__container">
                     <h4 class="sub-title">Имя</h4>

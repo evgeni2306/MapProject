@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\helpfunc;
+//use http\Env\Request;
+use App\Models\Route as Route;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Classes\RouteMapClass;
-
+use Illuminate\Http\Request;
 class GetAllController extends Controller
 {
     use helpfunc;
@@ -98,6 +100,27 @@ class GetAllController extends Controller
                 ->get();
             return $getroutes;
         }
+    }
+    public function GetRouteToDraw($id){
+        if ((is_numeric($id)) and ($id > 0) and Route::where('id', $id)->exists()) {
+            $getrpoints = DB::table('rpoints')
+                ->where('rpoints.routeid', '=', $id)
+                ->select('lat', 'lng')->get();
+            return $getrpoints;
+        }
+
+
+
+//        $getpoints = DB::table('points')
+//            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
+//                'status')
+//            ->where('id','<','10')
+//            ->get();
+//       return
+//         return dd($_POST);
+//        redirect(route('logout'));
+////        dd($request);
+//        return 'Darova'.$id;
     }
 }
 

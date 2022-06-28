@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 //    Route::get('/editroute', function () {
 //        return view('editroutes');
 //    })->name('editroute');
-
+    Route::get('/DrawRoute={idd}', [GetAllController::class,'GetRouteToDraw'])->name('DrawRoute');
     Route::get('/editroute={idd}', [UpdateRouteController::class, 'GetUpdateRoute'])->name('GetUpdateRoute');
     Route::post('/editroute={idd}', [UpdateRouteController::class, 'UpdateRoute'])->name('UpdateRoute');
     Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/addPcomment', [PcommentActionController::class, 'AddPcomment'])->name('AddPcomment');
     Route::post('/updatePcomment', [PcommentActionController::class, 'UpdatePcomment'])->name('UpdatePcomment');
     //------------------------//
+
 });
 
 
@@ -102,6 +103,7 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+
 
 Route::get('auth/google', [SocialController::class, 'googleredirect'])->name('google');
 Route::get('auth/google/callback', [SocialController::class, 'loginwithgoogle']);
