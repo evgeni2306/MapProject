@@ -118,11 +118,6 @@ body._lock {
     line-height: 118%;
     padding: 10px 0px 24px 0px;
 }
-.infoblock__rating__title {
-    color: #8c8c95;
-    line-height: 118%;
-    margin-bottom: 15px;
-}
 .infoblock__rating {
     text-align: left;
 }
@@ -131,10 +126,12 @@ body._lock {
     margin-left: 12px;
 }
 .infoblock__address__title,
+.infoblock__rating__title,
 .infoblock__status__title,
 .infoblock__city__title {
     color: #8c8c95;
-    margin-bottom: 15px;
+    line-height: 118%;
+    margin: 25px 0px 15px 0px;
 }
 .complexity__title,
 .length__title,

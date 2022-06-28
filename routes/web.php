@@ -68,3 +68,7 @@ Route::get('/addroute', function () {
 Route::get('/select', function () {
     return view('select');
 })->name('select');
+
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
