@@ -241,11 +241,6 @@
 
         function DrawRoute(){
             var link = document.querySelector(".marker__link").href.substring(24);
-            // for(jbg in mymap.getContainer()){
-            //     alert(jbg)
-            // }
-            alert(mymap.containerPointToLatLng())
-            // alert(mymap.getContainer())
             var request = new XMLHttpRequest();
             request.open("GET","http://mapproject/DrawRoute="+link,true);
             request.onreadystatechange  = function (){
@@ -254,22 +249,21 @@
                 if (this.status == 200){
                     if(this.responseText !=null){
                         $arr = JSON.parse(this.responseText)
-                         // alert(JSON.parse(this.responseText)[0]['lng']);
                         var route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
 
                         for (let i = 0; i < $arr.length; i++){
                             route.addLatLng([$arr[i]['lat'],$arr[i]['lng']]);
                         }
+                        setTimeout(function() {
+                          route.remove()
+                        }, 15000);
 
-                       // $a =  setTimeout(() => { route.remove; }, 20);
-                        // route.remove();
                     }
                     else alert("Данные не получены");
                 }
                 else alert ("Ошибка"+ this.statusText)
             }}
               request.send(null)
-                // alert(req.responseText);
         }
         ///---------получение адреса при добавлении точки---------
         function getaddress(e) {
