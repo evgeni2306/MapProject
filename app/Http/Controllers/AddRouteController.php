@@ -33,10 +33,8 @@ class AddRouteController extends Controller
                 $validateFields['time'] = "Не указано";
             }
             if ($validateFields['distance'] == null) {
-//                $validateFields['distance'] = "Не указано";
 
                 for ($i = 0; $i <= count($arr)-3; $i += 2) {
-//
                     $validateFields['distance']+= $this->GetRouteDistanceBetweenPoints($arr[$i],$arr[$i+1],$arr[$i+2],$arr[$i+3]);
                 }
                 $distance = explode('.',$validateFields['distance']);

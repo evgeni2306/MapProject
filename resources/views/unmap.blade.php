@@ -85,7 +85,7 @@
     //-------------------Вывод маршрутов------------------
     //-------------------Вывод маршрутов------------------
     <?    foreach ($routes as $route){?>
-    L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
+    L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon[0]}}}).bindPopup(
         '<div class="marker__container">' +
         '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +
         '<div class="short-description">{{$route->shortdescription}}</div>' +
@@ -97,7 +97,7 @@
         '</div>'+
         '<div class="marker-status status-broken">{{$route->status}}</div>' +
         '<div class="marker__characteristics">'+
-        '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon}}.svg" alt="middle">'+
+        '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon[1]}}.svg" alt="middle">'+
         '<div class="length">'+
         '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">'+
         '<p class="length__distance">{{$route->distance}}</p>'+

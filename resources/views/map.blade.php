@@ -91,7 +91,7 @@
 
         //-------------------Вывод маршрутов------------------
         <?    foreach ($routes as $route){?>
-        L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon}}}).bindPopup(
+        L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon[0]}}}).bindPopup(
             '<div class="marker__container">' +
             '<div class="marker__title"><a href="/route={{$route->id}}" class="marker__link">{{$route->name}}</a></div>' +
             '<div class="short-description">{{$route->shortdescription}}</div>' +
@@ -104,7 +104,7 @@
             '<button style="background-color:red" onclick="DrawRoute()" >Отобразить</button>'+
             '<div class="marker-status status-broken">{{$route->status}}</div>' +
             '<div class="marker__characteristics">'+
-            '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon}}.svg" alt="middle">'+
+            '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon[1]}}.svg" alt="middle">'+
             '<div class="length">'+
             '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">'+
             '<p class="length__distance">{{$route->distance}}</p>'+
@@ -234,11 +234,15 @@
             "<img src='/PageMap/img/route/filtergreenroute.svg'>Легкие маршруты": groutes,
             "<img src='/PageMap/img/route/filteryellowroute.svg'>Средние маршруты": yroutes,
             "<img src='/PageMap/img/route/filterredroute.svg'>Сложные маршруты": rroutes,
+            @if($_SESSION['User']->rankid>=2)
             "<img src='/PageMap/img/icons/inobject.svg'>Не работающие объекты":inobject
+            @endif
         };
         L.control.layers(baseLayers, overlays).addTo(mymap);
         //------------------------------------------------------------------
 
+
+        //Рисование маршрута на 15 сек при нажатии соответствующей кнопки на попапе
         function DrawRoute(){
             var link = document.querySelector(".marker__link").href.substring(24);
             var request = new XMLHttpRequest();
@@ -265,6 +269,8 @@
             }}
               request.send(null)
         }
+
+
         ///---------получение адреса при добавлении точки---------
         function getaddress(e) {
             url = 'https://nominatim.openstreetmap.org/reverse.php?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '&format=jsonv2';

@@ -44,6 +44,7 @@
                     <div class="rating__title title">Рейтинг</div>
                     <div class="rating__points">Набрано очков: <span class="points">{{$user->rating}}</span></div>
                     <div class="rating__level">Уровень: <span>{{$user->rname}}</span></div>
+                    @if($_SESSION['User']->rankid !=4)
                     <div class="rating__nextlevel">
                         <div class="nextlevel">Следующий уровень: <span class="nextlevel__name">{{$nextrank}}</span></div>
                         <div class="points-received">
@@ -58,6 +59,7 @@
                     <div class="rating__nextlevel__hint">Делитесь интересными местами, маршрутами, оценивайте и
                         комментируйте существующие, чтобы зарабатывать очки опыта!
                     </div>
+                    @endif
                 </div>
                 <div class="achievements">
                     <div class="achievements__title title">Активность</div>

@@ -37,7 +37,7 @@ class RouteMapClass
         $this->type = $type;
         $this->icon = $icon;
         $this->shortdescription = $shortdescription;
-        $this->distance = $difficult;
+        $this->difficult = $difficult;
         $this->distance = $distance;
         $this->time = $time;
         $this->rating = $rating;

@@ -70,11 +70,26 @@ class GetAllController extends Controller
             $Route = $this->GetObjectRatingIcon($Route);
         }
 
+        // Определение иконки сложности у маршрутов
+        foreach($Routes as $route){
+            $route->icon = [$route->icon,2];
+            if($route->difficult == "Сложно"){
+                $route->icon[1] ="redroute";
+            }
+            if($route->difficult == "Средне"){
+                $route->icon[1] ="yellowroute";
+            }
+            if($route->difficult == "Легко"){
+                $route->icon[1] ="greenroute";
+            }
+        }
+
 
         if (Auth::check()) {
             if (!isset($_SESSION['User'])) {
                 $this->GetUser();
             }
+//            dd($Routes);
             return view('map', ['points' => $getpoints, 'routes' => $Routes]);
         } else
             return view('unmap', ['points' => $getpoints, 'routes' => $Routes]);
@@ -109,18 +124,6 @@ class GetAllController extends Controller
             return $getrpoints;
         }
 
-
-
-//        $getpoints = DB::table('points')
-//            ->select('points.id', 'lat', 'lng', 'type', 'icon', 'address', 'name', 'rating', 'photo', 'shortdescription',
-//                'status')
-//            ->where('id','<','10')
-//            ->get();
-//       return
-//         return dd($_POST);
-//        redirect(route('logout'));
-////        dd($request);
-//        return 'Darova'.$id;
     }
 }
 
