@@ -9,8 +9,8 @@ use App\Http\Controllers\AddRouteController;
 use App\Http\Controllers\PcommentActionController;
 use App\Http\Controllers\PointPageController;
 use App\Http\Controllers\RoutePageController;
-use App\Http\Controllers\GetAllController;
-use App\Http\Controllers\SocialController;
+use App\Http\Controllers\GetMapController;
+use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UpdateUserController;
 use App\Http\Controllers\UpdatePointController;
 use App\Http\Controllers\GetProfileController;
@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 //    Route::get('/editroute', function () {
 //        return view('editroutes');
 //    })->name('editroute');
-    Route::get('/DrawRoute={idd}', [GetAllController::class,'GetRouteToDraw'])->name('DrawRoute');
+
     Route::get('/editroute={idd}', [UpdateRouteController::class, 'GetUpdateRoute'])->name('GetUpdateRoute');
     Route::post('/editroute={idd}', [UpdateRouteController::class, 'UpdateRoute'])->name('UpdateRoute');
     Route::post('/Addrouteredir', [AddRouteController::class, 'Redirect'])->name('Addrouteredir');//редирект на страницу добавления
@@ -105,18 +105,18 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login']);
 
 
-Route::get('auth/google', [SocialController::class, 'googleredirect'])->name('google');
-Route::get('auth/google/callback', [SocialController::class, 'loginwithgoogle']);
-Route::get('auth/vkontakte', [SocialController::class, 'vkontakteredirect'])->name('vkontakte');
-Route::get('auth/vkontakte/callback', [SocialController::class, 'loginwithvkontakte']);
+Route::get('auth/google', [SocialAuthController::class, 'googleredirect'])->name('google');
+Route::get('auth/google/callback', [SocialAuthController::class, 'loginwithgoogle']);
+Route::get('auth/vkontakte', [SocialAuthController::class, 'vkontakteredirect'])->name('vkontakte');
+Route::get('auth/vkontakte/callback', [SocialAuthController::class, 'loginwithvkontakte']);
 
 
 //Роуты для всех юзеров
 Route::get('/profile={idd}', [GetProfileController::class, 'GetProfile'])->name('profile');
 Route::get('/point={idd}', [PointPageController::class, 'GetCurrentPoint'])->name('getpointpage');
 Route::get('/route={idd}', [RoutePageController::class, 'GetCurrentRoute'])->name('getroutepage');
-
-Route::get('/map', [GetAllController::class, 'GetAll'])->name('map');
+Route::get('/DrawRoute={idd}', [GetMapController::class,'GetRouteToDraw'])->name('DrawRoute');
+Route::get('/map', [GetMapController::class, 'GetAll'])->name('map');
 
 
 Route::fallback(function () {

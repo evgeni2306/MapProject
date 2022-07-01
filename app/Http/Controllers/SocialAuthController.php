@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\helpfunc;
 
 
-class SocialController extends Controller
+class SocialAuthController extends Controller
 {
     use helpfunc;
 

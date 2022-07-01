@@ -243,8 +243,8 @@
             '<div class="short-description">{{$point->shortdescription}}</div>' +
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-            '<img class="star-rating__star" src="{{$point->rating}}">'+
-            '<span class="star-rating__feedback">()</span>'+
+            '<img class="star-rating__star" src="{{$point->rating[0]}}">'+
+            '<span class="star-rating__feedback">({{$point->rating[1]}})</span>'+
             '</div>'+
             '</div>'+
             '<div class="marker__address">{{$point->address}}</div>' +

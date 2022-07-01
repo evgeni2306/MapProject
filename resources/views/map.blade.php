@@ -47,14 +47,15 @@
 
         //---------------Вывод точек на карту--------------------
         <?foreach ($points as $point ) {?>
+{{--        {{dd($point)}}--}}
         L.marker([{{$point->lat}}, {{$point->lng}}], {icon: {{$point->icon}}}).bindPopup(
             '<div class="marker__container">' +
             '<div class="marker__title"><a href="/point={{$point->id}}" class="marker__link">{{$point->name}}</a></div>' +
             '<div class="short-description">{{$point->shortdescription}}</div>' +
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-            '<img class="star-rating__star" src="{{$point->rating}}">'+
-            '<span class="star-rating__feedback">()</span>'+
+            '<img class="star-rating__star" src="{{$point->rating[0]}}">'+
+            '<span class="star-rating__feedback">({{$point->rating[1]}})</span>'+
             '</div>'+
             '</div>'+
             '<div class="marker__address">{{$point->address}}</div>' +
@@ -97,8 +98,8 @@
             '<div class="short-description">{{$route->shortdescription}}</div>' +
             '<div class="star-rating star-rating_set">' +
             '<div class="star-rating__body">' +
-            '<img class="star-rating__star" src="{{$route->rating}}">'+
-            '<span class="star-rating__feedback">()</span>'+
+            '<img class="star-rating__star" src="{{$route->rating[0]}}">'+
+            '<span class="star-rating__feedback">({{$route->rating[1]}})</span>'+
             '</div>'+
             '</div>'+
             '<button style="background-color:red" onclick="DrawRoute()" >Отобразить</button>'+

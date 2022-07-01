@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Constraint\Count;
 
 
 trait helpfunc
@@ -13,26 +14,31 @@ trait helpfunc
         $_SESSION['User'] = DB::table('users')
             ->where('users.id', Auth::id())
             ->join('ranks', 'ranks.id', '=', 'users.rank')
-            ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport', 'mapstyle', 'rating','ranks.id as rankid', 'ranks.name as rname', 'maxrating')
+            ->select('users.id', 'users.name', 'surname', 'nickname', 'avatar', 'transport', 'mapstyle', 'rating', 'ranks.id as rankid', 'ranks.name as rname', 'maxrating')
             ->first();
-        if($_SESSION['User']->nickname == null){
-            $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+        if ($_SESSION['User']->nickname == null) {
+            $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
         }
     }
-    public function GetUserBySocialId($socialid){
+
+    //---Получение данных юхера при авторизации через соц.сети---
+    public function GetUserBySocialId($socialid)
+    {
         $user = DB::table('users')
             ->where('social_id', $socialid->id)
             ->join('ranks', 'ranks.id', '=', 'users.rank')
-            ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'transport','ranks.id as rankid', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
+            ->select('users.id', 'users.name', 'surname', 'nickname', 'avatar', 'transport', 'ranks.id as rankid', 'mapstyle', 'rating', 'ranks.name as rname', 'maxrating')
             ->first();
-        if($user->nickname == null){
-            $user->nickname = $user->name.' '.$user->surname;
+        if ($user->nickname == null) {
+            $user->nickname = $user->name . ' ' . $user->surname;
         }
         return $user;
 
     }
+    //--------------------------------------------------------
 
-//-----Обновление рейтинга у юзера при активностях-----
+
+    //-----Обновление рейтинга у юзера при активностях-----
     public function UpdateUserRating(int $score)
     {
         $_SESSION['User']->rating += $score;
@@ -58,6 +64,7 @@ trait helpfunc
             }
         }
     }
+
     public function UpdateUserRank(int $rank)
     {
         $updaterank = DB::table('ranks')
@@ -75,9 +82,10 @@ trait helpfunc
                 'rank' => $updaterank[0]->id
             ]);
     }
-//-------------------------------------------------
 
+    //-------------------------------------------------
 
+    //---Определение иконок рейтинга для объекта и для комментария---
     public function GetObjectRatingIcon($object)
     {
         switch ($object->rating) {
@@ -108,29 +116,32 @@ trait helpfunc
         foreach ($commentArr as $comment) {
             switch ($comment->rating) {
                 case 0:
-                    $comment->rating = [0,"/PageMap/img/icons/stars-0-5.svg"];
+                    $comment->rating = [0, "/PageMap/img/icons/stars-0-5.svg"];
                     break;
                 case 1:
-                    $comment->rating = [1,"/PageMap/img/icons/stars-1-5.svg"];
+                    $comment->rating = [1, "/PageMap/img/icons/stars-1-5.svg"];
                     break;
                 case 2:
-                    $comment->rating = [2,"/PageMap/img/icons/stars-2-5.svg"];
+                    $comment->rating = [2, "/PageMap/img/icons/stars-2-5.svg"];
                     break;
                 case 3:
-                    $comment->rating = [3,"/PageMap/img/icons/stars-3-5.svg"];
+                    $comment->rating = [3, "/PageMap/img/icons/stars-3-5.svg"];
                     break;
                 case 4:
-                    $comment->rating = [4,"/PageMap/img/icons/stars-4-5.svg"];
+                    $comment->rating = [4, "/PageMap/img/icons/stars-4-5.svg"];
                     break;
                 case 5:
-                    $comment->rating = [5,"/PageMap/img/icons/stars-5-5.svg"];
+                    $comment->rating = [5, "/PageMap/img/icons/stars-5-5.svg"];
                     break;
             }
         }
         return $commentArr;
     }
+    //------------------------------------------------
 
-    public function GetCityByCords($lat,$lng){
+    //---Автоматическое определение города объекта---
+    public function GetCityByCords($lat, $lng)
+    {
         $lat = trim($lat);
         $lng = trim($lng);
         $context = stream_context_create(
@@ -142,27 +153,47 @@ trait helpfunc
         );
         $url = "https://nominatim.openstreetmap.org/reverse.php?lat=" . $lat . "&lon=" . $lng . "&format=jsonv2";
         $xml = file_get_contents($url, false, $context);
-
         $xmlArray = json_decode($xml, true);
-
-        if (array_key_exists("city",$xmlArray["address"])){
+        if (array_key_exists("city", $xmlArray["address"])) {
             $city = $xmlArray["address"]["city"];
-        }else{
+        } else {
             $city = "Не определен";
         }
         return $city;
     }
+    //------------------------------------------------
 
-    public function GetRouteDistanceBetweenPoints($lat1, $lon1, $lat2, $lon2){
+    //---Определение расстояние между 2мя точками - нужно для автоматического определения длины маршрута----
+    public function GetRouteDistanceBetweenPoints($lat1, $lon1, $lat2, $lon2)
+    {
         $radius = 6378.137;
-        $dlat = $lat2 * pi()/ 180 - $lat1 * pi()/180;
-        $dlon = $lon2 * pi()/ 180 - $lon1 * pi()/180;
-
-        $a = sin($dlat/2) * sin($dlat/2) + cos($lat1 * pi()/180) * cos($lat2 *pi()/180)
-            * sin($dlon/2) * sin($dlon/2);
-        $c = 2 * atan2(sqrt($a),sqrt(1-$a));
-        $answer = $radius * $c ;
+        $dlat = $lat2 * pi() / 180 - $lat1 * pi() / 180;
+        $dlon = $lon2 * pi() / 180 - $lon1 * pi() / 180;
+        $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1 * pi() / 180) * cos($lat2 * pi() / 180)
+            * sin($dlon / 2) * sin($dlon / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        $answer = $radius * $c;
         return $answer;
+    }
+
+    //--------------------------------------------------------------------------------------------------------
+
+    public function GetObjectCommentsCount($type, $id)
+    {
+        if ($type == "point") {
+            $getpcomments = DB::table('pcomments')
+                ->select('id')
+                ->where('pointid', $id)
+                ->get();
+            return Count($getpcomments);
+        }
+        if ($type == "route") {
+            $getrcomments = DB::table('rcomments')
+                ->select('id')
+                ->where('routeid', $id)
+                ->get();
+            return Count($getrcomments);
+        }
     }
 }
 

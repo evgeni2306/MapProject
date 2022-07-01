@@ -48,8 +48,8 @@
         '<div class="short-description">{{$point->shortdescription}}</div>' +
         '<div class="star-rating star-rating_set">' +
         '<div class="star-rating__body">' +
-        '<img class="star-rating__star" src="{{$point->rating}}">'+
-        '<span class="star-rating__feedback">()</span>'+
+        '<img class="star-rating__star" src="{{$point->rating[0]}}">'+
+        '<span class="star-rating__feedback">({{$point->rating[1]}})</span>'+
         '</div>'+
         '</div>'+
         '<div class="marker__address">{{$point->address}}</div>' +
@@ -83,7 +83,6 @@
     // ----------------------------------
 
     //-------------------Вывод маршрутов------------------
-    //-------------------Вывод маршрутов------------------
     <?    foreach ($routes as $route){?>
     L.marker([{{$route->lat}}, {{$route->lng}}], {icon: {{$route->icon[0]}}}).bindPopup(
         '<div class="marker__container">' +
@@ -91,10 +90,11 @@
         '<div class="short-description">{{$route->shortdescription}}</div>' +
         '<div class="star-rating star-rating_set">' +
         '<div class="star-rating__body">' +
-        '<img class="star-rating__star" src="{{$route->rating}}">'+
-        '<span class="star-rating__feedback">()</span>'+
+        '<img class="star-rating__star" src="{{$route->rating[0]}}">'+
+        '<span class="star-rating__feedback">({{$route->rating[1]}})</span>'+
         '</div>'+
         '</div>'+
+        '<button style="background-color:red" onclick="DrawRoute()" >Отобразить</button>'+
         '<div class="marker-status status-broken">{{$route->status}}</div>' +
         '<div class="marker__characteristics">'+
         '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon[1]}}.svg" alt="middle">'+
@@ -110,6 +110,34 @@
         '</div>').addTo({{$route->type}});
     <?}?>
     //-------------------------------------------------------
+
+    //Рисование маршрута на 15 сек при нажатии соответствующей кнопки на попапе
+    function DrawRoute(){
+        var link = document.querySelector(".marker__link").href.substring(24);
+        var request = new XMLHttpRequest();
+        request.open("GET","http://mapproject/DrawRoute="+link,true);
+        request.onreadystatechange  = function (){
+            if(this.readyState ==4)
+            {
+                if (this.status == 200){
+                    if(this.responseText !=null){
+                        $arr = JSON.parse(this.responseText)
+                        var route = L.polyline({weight: 55, color: 'red'}).addTo(mymap);
+
+                        for (let i = 0; i < $arr.length; i++){
+                            route.addLatLng([$arr[i]['lat'],$arr[i]['lng']]);
+                        }
+                        setTimeout(function() {
+                            route.remove()
+                        }, 15000);
+
+                    }
+                    else alert("Данные не получены");
+                }
+                else alert ("Ошибка"+ this.statusText)
+            }}
+        request.send(null)
+    }
 
     var baseLayers = {
 

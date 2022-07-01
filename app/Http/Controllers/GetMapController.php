@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Classes\RouteMapClass;
 use Illuminate\Http\Request;
-class GetAllController extends Controller
+class GetMapController extends Controller
 {
     use helpfunc;
 
@@ -35,10 +35,11 @@ class GetAllController extends Controller
             }
         }
 
-
         //определение иконок для рейтинга точки
         foreach ($getpoints as $point) {
             $point = $this->GetObjectRatingIcon($point);
+            $count = $this->GetObjectCommentsCount("point",$point->id);
+            $point->rating = [$point->rating,$count];
         }
         //Превращение загруженных маршрутов в объект RouteMapClass для последующей выгрузки на карту
         $Routes = array();
@@ -68,6 +69,8 @@ class GetAllController extends Controller
         //определение иконок для рейтинга маршрута
         foreach ($Routes as $Route) {
             $Route = $this->GetObjectRatingIcon($Route);
+            $count = $this->GetObjectCommentsCount("route",$point->id);
+            $Route->rating = [$Route->rating,$count];
         }
 
         // Определение иконки сложности у маршрутов

@@ -66,6 +66,8 @@ class RoutePageController extends Controller
             }
             foreach ($pointarr as $point){
                 $point= $this->GetObjectRatingIcon($point);
+                $count = $this->GetObjectCommentsCount("point",$point->id);
+                $point->rating = [$point->rating,$count];
             }
 
             $checkComment = DB::table('rcomments')
