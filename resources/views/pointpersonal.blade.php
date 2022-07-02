@@ -303,9 +303,7 @@
         modal.classList.toggle('is-open');
         editPopup.classList.toggle('is-open');
     });
-
     
-
 </script>
 </body>
 </html>

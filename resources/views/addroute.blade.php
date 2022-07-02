@@ -39,9 +39,9 @@
                         <option value="">Не работает</option>
                         <option value="">Статус неизвестен</option>
                     </select>
-                    <h4 class="sub-title">Протяженность</h4>
+                    <h4 class="sub-title">Протяженность, км</h4>
                     <input type="text" placeholder="Введите протяженность" name="length">
-                    <h4 class="sub-title">Примерное время</h4>
+                    <h4 class="sub-title">Примерное время, ч</h4>
                     <input type="text" placeholder="Введите время" name="time">
                     <h4 class="sub-title">Описание</h4>
                     <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
