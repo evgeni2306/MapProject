@@ -19,19 +19,38 @@ class UpdateUserController extends Controller
                 'nickname' => ['nullable', 'string', 'max:255'],
                 'transport' => ['nullable', 'max:255', 'string'],
                 'mapstyle' => ['string', 'ends_with:ISLbB6B5aw,{x}/{y}.png'],
-                'photo' => ['mimes:jpeg,jpg,png', 'max:4608']
+                'photo' => ['mimes:jpeg,jpg,png']
             ]);
-            if ($validateFields['transport'] == null) {
-                $validateFields['transport'] = "Не указан";
+
+            //---Проверка на размер загружаемого файла и уникальность никнейма соответственно---
+            if (isset($validateFields['photo'])) {
+                if (filesize($validateFields['photo']) > 4928307) {
+                    $user = $this->GetUserFields();
+                    $user->name = $validateFields['name'];
+                    $user->surname = $validateFields['surname'];
+                    $user->nickname = $validateFields['nickname'];
+                    $user->transport = $validateFields['transport'];
+                    $user->mapstyle = $validateFields['mapstyle'];
+                    $fileSizeError = "Выбранный вами файл слишком большой для загрузки";
+                    $nicknameError = "";
+                    return view('settings', ['user' => $user,
+                        'fileSizeError' => $fileSizeError]);
+                }
             }
             if ($validateFields['nickname'] != $_SESSION['User']->nickname) {
             $check = $this->CheckNickname($validateFields['nickname']);
             if ($check == false){
                 $user =   $this->GetUserFields();
-                $error = "Этот никнейм занят";
+                $nicknameError = "Этот никнейм занят";
                 $user->nickname = $validateFields['nickname'];
-                return view('settings', ['user' => $user,'errorvisible'=>' ','error' =>$error]);
+                $fileSizeError = "";
+                return view('settings', ['user' => $user,'nicknameError' =>$nicknameError]);
             }
+            //----------------------------------------------------------------------------------
+
+                if ($validateFields['transport'] == null) {
+                    $validateFields['transport'] = "Не указан";
+                }
             }
 
             if (isset($validateFields['photo'])) {
@@ -61,7 +80,7 @@ class UpdateUserController extends Controller
             if ($_SESSION['User']->nickname == null) {
                 $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
             }
-            return redirect(route('edit', ['user' => $user,'errorvisible'=>'hide']));
+            return redirect(route('edit', ['user' => $user,'nicknameErrorVisible'=>'hide','fileSizeErrorVisible'=>'hide']));
         }
         return redirect(route('login'));
 
@@ -70,7 +89,7 @@ class UpdateUserController extends Controller
     public function GetSettingsPage()
     {
         $user = $this->GetUserFields();
-        return view('settings', ['user' => $user,'errorvisible'=>'hide']);
+        return view('settings', ['user' => $user,'nicknameErrorVisible'=>'hide','fileSizeErrorVisible'=>'hide']);
     }
 
     public function GetUserFields()
