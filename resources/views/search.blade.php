@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="/PageEditPoints/css/footerPages.css">
     <link rel="stylesheet" href="/PageSearch/css/styles.css">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
 </head>
 <body>
 <div class="wrapper">
@@ -75,8 +81,8 @@
 
         <h2 class="search-results__title">Результаты поиска</h2>
         <div class="search-results">
-          <div class="marker__container">
-            <div class="marker__title"><a href="{{route('routepersonal')}}" class="marker__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+          <div class="route__container">
+            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -84,22 +90,22 @@
                 <span class="star-rating__feedback">(35)</span>
               </div>
             </div>
-            <div class="marker-status status-broken">Не работает</div>
-            <div class="marker__characteristics">
-              <img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+            <div class="route-status status-broken">Не работает</div>
+            <div class="route__characteristics">
+              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
               <div class="length">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
                 <p class="length__distance">Не указано</p>
               </div>
               <div class="time">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
                 <p class="time__duration">Не указано</p>
               </div>
             </div>
         </div>
 
-        <div class="marker__container">
-            <div class="marker__title"><a href="{{route('routepersonal')}}" class="marker__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+        <div class="route__container">
+            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -107,22 +113,22 @@
                 <span class="star-rating__feedback">(35)</span>
               </div>
             </div>
-            <div class="marker-status status-broken">Не работает</div>
-            <div class="marker__characteristics">
-              <img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+            <div class="route-status status-broken">Не работает</div>
+            <div class="route__characteristics">
+              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
               <div class="length">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
                 <p class="length__distance">Не указано</p>
               </div>
               <div class="time">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
                 <p class="time__duration">Не указано</p>
               </div>
             </div>
         </div>
 
-        <div class="marker__container">
-            <div class="marker__title"><a href="{{route('routepersonal')}}" class="marker__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+        <div class="route__container">
+            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -130,22 +136,22 @@
                 <span class="star-rating__feedback">(35)</span>
               </div>
             </div>
-            <div class="marker-status status-broken">Не работает</div>
-            <div class="marker__characteristics">
-              <img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+            <div class="route-status status-broken">Не работает</div>
+            <div class="route__characteristics">
+              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
               <div class="length">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
                 <p class="length__distance">Не указано</p>
               </div>
               <div class="time">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
                 <p class="time__duration">Не указано</p>
               </div>
             </div>
         </div>
 
-        <div class="marker__container">
-            <div class="marker__title"><a href="{{route('routepersonal')}}" class="marker__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+        <div class="route__container">
+            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -153,22 +159,22 @@
                 <span class="star-rating__feedback">(35)</span>
               </div>
             </div>
-            <div class="marker-status status-broken">Не работает</div>
-            <div class="marker__characteristics">
-              <img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+            <div class="route-status status-broken">Не работает</div>
+            <div class="route__characteristics">
+              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
               <div class="length">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
                 <p class="length__distance">Не указано</p>
               </div>
               <div class="time">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
                 <p class="time__duration">Не указано</p>
               </div>
             </div>
         </div>
 
-        <div class="marker__container">
-            <div class="marker__title"><a href="{{route('routepersonal')}}" class="marker__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+        <div class="route__container">
+            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -176,15 +182,15 @@
                 <span class="star-rating__feedback">(35)</span>
               </div>
             </div>
-            <div class="marker-status status-broken">Не работает</div>
-            <div class="marker__characteristics">
-              <img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+            <div class="route-status status-broken">Не работает</div>
+            <div class="route__characteristics">
+              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
               <div class="length">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
                 <p class="length__distance">Не указано</p>
               </div>
               <div class="time">
-                <img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
+                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
                 <p class="time__duration">Не указано</p>
               </div>
             </div>
@@ -197,6 +203,6 @@
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script>     
+<script src="Script/menu.js"></script> 
 </body>
 </html>

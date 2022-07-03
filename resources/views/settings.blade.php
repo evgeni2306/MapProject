@@ -29,11 +29,11 @@
             <label for="files"><img src="/PageSettings/img/02.svg">Изменить фото</label>
             <output id="list"></output>
           </div>
-          <!--<div class="change-photo__mobile">
-            <input type="file" id="files__mobile" name="files[]">
-            <label for="files__mobile"><img src="/PageSettings/img/02.svg"></label>
-            <output id="list"></output>
-          </div>-->
+          <div class="change-photo__warning">Вы можете добавить фотографию весом не более 4Мб в формате JPG, JPEG, PNG.</div>
+          <div class="error-block hide">
+            <img src="PageRegistration/img/information.svg" alt="error">
+            <p class="error-block__text">Выбранный вами файл слишком большой для загрузки</p>
+          </div>
         </div>
         <div class="forms__container">
           <h4 class="sub-title">Имя</h4>
