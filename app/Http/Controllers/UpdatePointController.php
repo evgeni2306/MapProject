@@ -24,24 +24,29 @@ class UpdatePointController extends Controller
                 'status' => ['string', 'required', 'ends_with:Под вопросом,Работает,Не работает'],
                 'description' => ['nullable', 'max:500', 'string'],
                 'shortdescription' => ['max:255', 'string', 'nullable'],
-                'photo' => ['mimes:jpeg,jpg,png', 'nullable','max:4608']
+                'photo' => ['mimes:jpeg,jpg,png', 'nullable']
             ]);
-            if (isset($validateFields['photo'])) {
-                $path = Storage::putFile('public/pointphoto', $request->file('photo'));
-                $path = 'storage/pointphoto/' . explode('/', $path)[2];
-                $oldpath = 'public/pointphoto/' . explode('/', $_SESSION['CurrentEditPoint']->photo)[2];
-                $delete = Storage::delete($oldpath);
-            } else {
-                $path = $_SESSION['CurrentEditPoint']->photo;
 
-            }
+            //---Проверка на размер загружаемой фотки---
+
+//            if (isset($validateFields['photo'])) {
+//                if (filesize($validateFields['photo']) > 4928307) {
+//                    $fileSizeError = "Выбранный вами файл слишком большой для загрузки";
+//                    $fieldAccess = $this->EditableFields();
+//                    return view('editpoints', [ 'fileSizeError' => $fileSizeError,'fieldAccess' => $fieldAccess]);
+//                }
+//            }
+
+            //-------------------------------------------
+            
             $typeAndIcon = explode(',', $validateFields['type']);
             $validateFields['type'] = $typeAndIcon[1];
             $validateFields['icon'] = $typeAndIcon[0];
+
             //----Обновление точки----
             $this->UpdatePointDb($validateFields['name'], $validateFields['type'],
                 $validateFields['icon'], $validateFields['address'], $validateFields['status'],
-                $validateFields['description'], $validateFields['shortdescription'], $path);
+                $validateFields['description'], $validateFields['shortdescription'], $validateFields['photo'],$request->file('photo'));
 
             //-----------------------//
             return redirect(route('getpointpage', $_SESSION['CurrentEditPoint']->id));
@@ -69,17 +74,17 @@ class UpdatePointController extends Controller
                     )
                     ->where('id', $id)->first();
 
-                if ($_SESSION['CurrentEditPoint']->icon == "house"){
+                if ($_SESSION['CurrentEditPoint']->icon == "house") {
                     $_SESSION['CurrentEditPoint']->type = "house,dpoints";
                 }
-                if ($_SESSION['CurrentEditPoint']->icon == "socket"){
+                if ($_SESSION['CurrentEditPoint']->icon == "socket") {
                     $_SESSION['CurrentEditPoint']->type = "socket,zpoints";
                 }
 
-                if ($_SESSION['CurrentEditPoint']->icon == "inhouse"){
+                if ($_SESSION['CurrentEditPoint']->icon == "inhouse") {
                     $_SESSION['CurrentEditPoint']->type = "house,dpoints";
                 }
-                if ($_SESSION['CurrentEditPoint']->icon == "insocket"){
+                if ($_SESSION['CurrentEditPoint']->icon == "insocket") {
                     $_SESSION['CurrentEditPoint']->type = "socket,zpoints";
                 }
                 $fieldAccess = $this->EditableFields();
@@ -134,13 +139,14 @@ class UpdatePointController extends Controller
     }
 
 
-    public function UpdatePointDb($name, $type, $icon, $address, $status, $description, $shortdescription, $photo)
+    public function UpdatePointDb($name, $type, $icon, $address, $status, $description, $shortdescription, $photo,$file)
     {
 
 
         if ($_SESSION['User']->rankid == 1) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
+                $photo = $this->ChangePhoto($photo,$file);
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
                     ->update([
@@ -161,6 +167,7 @@ class UpdatePointController extends Controller
         //Если текущий юзер  - с рангом "Любитель"
         if ($_SESSION['User']->rankid == 2) {
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
+                $photo = $this->ChangePhoto($photo,$file);
                 //Текущий юзер - владелец объекта
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
@@ -186,6 +193,7 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 3) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
+                $photo = $this->ChangePhoto($photo,$file);
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
                     ->update([
@@ -211,7 +219,7 @@ class UpdatePointController extends Controller
         }
         //Если текущий юзер с рангом "мастер"
         if ($_SESSION['User']->rankid == 4) {
-
+            $photo = $this->ChangePhoto($photo,$file);
             DB::table('points')
                 ->where('id', $_SESSION['CurrentEditPoint']->id)
                 ->update([
@@ -261,5 +269,19 @@ class UpdatePointController extends Controller
                 'type' => $getpoint->type,
                 'icon' => $getpoint->icon,
             ]);
+    }
+
+    public function ChangePhoto($photo, $file)
+    {
+        if (isset($photo)) {
+            $path = Storage::putFile('public/pointphoto', $file);
+            $path = 'storage/pointphoto/' . explode('/', $path)[2];
+            $oldpath = 'public/pointphoto/' . explode('/', $_SESSION['CurrentEditPoint']->photo)[2];
+            $delete = Storage::delete($oldpath);
+        } else {
+            $path = $_SESSION['CurrentEditPoint']->photo;
+
+        }
+        return $path;
     }
 }

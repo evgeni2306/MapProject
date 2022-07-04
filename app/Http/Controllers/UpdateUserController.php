@@ -33,20 +33,23 @@ class UpdateUserController extends Controller
                     $user->mapstyle = $validateFields['mapstyle'];
                     $fileSizeError = "Выбранный вами файл слишком большой для загрузки";
                     $nicknameError = "";
-                    return view('settings', ['user' => $user,
-                        'fileSizeError' => $fileSizeError]);
+                    return view('settings', ['user' => $user, 'fileSizeError' => $fileSizeError]);
                 }
             }
             if ($validateFields['nickname'] != $_SESSION['User']->nickname) {
-            $check = $this->CheckNickname($validateFields['nickname']);
-            if ($check == false){
-                $user =   $this->GetUserFields();
-                $nicknameError = "Этот никнейм занят";
-                $user->nickname = $validateFields['nickname'];
-                $fileSizeError = "";
-                return view('settings', ['user' => $user,'nicknameError' =>$nicknameError]);
-            }
-            //----------------------------------------------------------------------------------
+                $check = $this->CheckNickname($validateFields['nickname']);
+                if ($check == false) {
+                    $user = $this->GetUserFields();
+                    $nicknameError = "Этот никнейм занят";
+                    $user->name = $validateFields['name'];
+                    $user->surname = $validateFields['surname'];
+                    $user->nickname = $validateFields['nickname'];
+                    $user->transport = $validateFields['transport'];
+                    $user->mapstyle = $validateFields['mapstyle'];
+                    $fileSizeError = "";
+                    return view('settings', ['user' => $user, 'nicknameError' => $nicknameError]);
+                }
+                //----------------------------------------------------------------------------------
 
                 if ($validateFields['transport'] == null) {
                     $validateFields['transport'] = "Не указан";
@@ -80,7 +83,7 @@ class UpdateUserController extends Controller
             if ($_SESSION['User']->nickname == null) {
                 $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
             }
-            return redirect(route('edit', ['user' => $user,'nicknameErrorVisible'=>'hide','fileSizeErrorVisible'=>'hide']));
+            return redirect(route('edit', ['user' => $user, 'nicknameErrorVisible' => 'hide', 'fileSizeErrorVisible' => 'hide']));
         }
         return redirect(route('login'));
 
@@ -89,7 +92,7 @@ class UpdateUserController extends Controller
     public function GetSettingsPage()
     {
         $user = $this->GetUserFields();
-        return view('settings', ['user' => $user,'nicknameErrorVisible'=>'hide','fileSizeErrorVisible'=>'hide']);
+        return view('settings', ['user' => $user, 'nicknameErrorVisible' => 'hide', 'fileSizeErrorVisible' => 'hide']);
     }
 
     public function GetUserFields()
@@ -105,14 +108,16 @@ class UpdateUserController extends Controller
         }
         return redirect(route('login'));
     }
-    public function CheckNickname($nickname){
+
+    public function CheckNickname($nickname)
+    {
         $nicknames = DB::table('users')
-            ->where('nickname','=', $nickname)
+            ->where('nickname', '=', $nickname)
             ->select('id')->get();
 
-        if (Count($nicknames)>0 and $nickname!= null){
+        if (Count($nicknames) > 0 and $nickname != null) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
