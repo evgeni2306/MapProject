@@ -112,11 +112,7 @@ body._lock {
     border-right: 1px solid #d3d5da;
     height: inherit;
     align-items: center;
-}
-.edit-point__warning {
-    line-height: 140%;
-    margin: 16px 0px 0px 0px;
-    color: #8c8c95;
+    padding: 0px 20px;
 }
 .avatar__container label {
     height: 48px;
@@ -169,6 +165,11 @@ body._lock {
     border-radius: 50%;
     margin: 60px;
     margin-bottom: 40px;
+}
+.change-photo__warning {
+    line-height: 140%;
+    margin: 20px 0px 20px 0px;
+    color: #8c8c95;
 }
 .forms__container {
     display: flex;
@@ -380,6 +381,7 @@ button {
     }
     .avatar__container {
         border-radius: 0px;
+        padding: 0px 10px;
     }
     .avatar-big {
         width: 160px;

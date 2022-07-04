@@ -16,7 +16,6 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
-{{--        {{dd($_SESSION['User'])}}--}}
         <h1 class="edit-point__title">Редактирование метки</h1>
         <div class="content__container">
             <div class="edit-point__forms">
@@ -41,7 +40,7 @@
                     <h4 class="sub-title">Краткое описание</h4>
                     <input {{$fieldAccess->shortdescription}} type="text"   class="short-description"  maxlength="255" placeholder="Информация будет отображена на карте" value="{{$_SESSION['CurrentEditPoint']->shortdescription}}" name="shortdescription">
                     <h4 class="sub-title">Полное описание</h4>
-                    <textarea  {{$fieldAccess->description}}  class="edit-point__description"  maxlength="500"placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description">{{$_SESSION['CurrentEditPoint']->description}}</textarea>
+                    <textarea  {{$fieldAccess->description}}  class="edit-point__description"  maxlength="500" placeholder="Дополнительная информация об объекте, например, часы работы, сайт и др. Эта информация будет показываться на личной странице объекта." name="description">{{$_SESSION['CurrentEditPoint']->description}}</textarea>
                     <h4 class="sub-title">Фотографии</h4>
                     <div class="add-photo">
                         <input  {{$fieldAccess->photo}} type="file" id="files" name="photo" accept="image/*,image/jpeg" onchange="previewFile()">
@@ -120,7 +119,6 @@
         const preview = document.getElementById('photo');
         document.getElementById('files').value = null;//сброс файла в форме
         preview.src = oldway;//сброс картинки
-        document.getElementById("crossbutton").style.display = "none";
     }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     //-------------------------------------------------------------------------------------
