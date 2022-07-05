@@ -55,15 +55,17 @@ class UploadRouteController extends Controller
         );
 
         $path = Storage::putFile('routes', $request->file('file'));
-        switch ($validateFields['type']) {
-            case "CSV":
-                $this->CSVparse($path, $rroute);
-                break;
-            case "GPX":
+        $type = explode('.', $path);
+        if ($validateFields['type'] == "CSV" and $type[1] = "txt") {
+            $this->CSVparse($path, $rroute);
+        } else
+            if ($validateFields['type'] == "GPX" and $type[1] == "xml") {
                 $this->XMLparse($path, $rroute);
-                break;
+            } else {
+                $fileTypeError = "Выбранный вами тип файла не совпадает с типом загруженного";
+                return view('loadroute', ['fileTypeError'=>$fileTypeError]);
+            }
 
-        }
         $this->UpdateUserRating(25);
         return redirect(route('map'));
     }
@@ -71,6 +73,7 @@ class UploadRouteController extends Controller
     public function XMLparse($path, $rroute)
     {
         $xml = new SimpleXMLElement(file_get_contents(storage_path('app\\' . $path)));
+        dd($xml);
         $count = Count($xml->trk->trkseg->trkpt);
         $Route = Route::create($rroute);
         $arr = [];

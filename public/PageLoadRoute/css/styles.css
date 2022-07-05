@@ -1,3 +1,19 @@
 .edit-buttons {
     display: flex;
 }
+.error-block {
+    color: #ff5732;
+    padding: 11px;
+    background: #ffeae6;
+    border: 1px solid #ffe7e1;
+    border-radius: 7px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 121%;
+}
+.error-block img {
+    margin-right: 12px;
+    vertical-align: middle;
+}

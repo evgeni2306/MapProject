@@ -45,11 +45,19 @@
                             <option value="GPX">GPX</option>
                             <option value="CSV">CSV</option>
                         </select>
+                        @if(isset($fileTypeError))
+                        <div class="error-block  ">
+                            <img src="PageRegistration/img/information.svg" alt="">
+                            <p class="error-block__text">{{$fileTypeError}}</p>
+                        </div>
+                        @endif
                         <input type="file" id="files" name="file">
                         <label for="files"><img src="/PageLoadRoute/img/download.svg">Загрузить файл</label>
                         <output id="list"></output>
                         @csrf
+
                     </div>
+
                     <div class="edit-buttons">
                         <input type="reset" class="edit-point__cancel" value ="Отмена">
                         <input type="submit" class="edit-point__add" value ="Сохранить">

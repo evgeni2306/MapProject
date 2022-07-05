@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\helpfunc;
-//use http\Env\Request;
 use App\Models\Route as Route;
+use App\Models\Rpoint;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -118,6 +118,7 @@ class GetMapController extends Controller
             return $getroutes;
         }
     }
+
     public function GetRouteToDraw($id){
         if ((is_numeric($id)) and ($id > 0) and Route::where('id', $id)->exists()) {
             $getrpoints = DB::table('rpoints')
