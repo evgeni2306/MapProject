@@ -52,6 +52,9 @@
 }
 .menu__item {
     cursor: pointer;
+
+    border: 1px solid #d3d5da;
+
 }
 .menu__item img {
     margin-right: 13px;
