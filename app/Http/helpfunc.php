@@ -88,52 +88,14 @@ trait helpfunc
     //---Определение иконок рейтинга для объекта и для комментария---
     public function GetObjectRatingIcon($object)
     {
-        switch ($object->rating) {
-            case 0:
-                $object->rating = "/PageMap/img/icons/stars-0-5.svg";
-                break;
-            case 1:
-                $object->rating = "/PageMap/img/icons/stars-1-5.svg";
-                break;
-            case 2:
-                $object->rating = "/PageMap/img/icons/stars-2-5.svg";
-                break;
-            case 3:
-                $object->rating = "/PageMap/img/icons/stars-3-5.svg";
-                break;
-            case 4:
-                $object->rating = "/PageMap/img/icons/stars-4-5.svg";
-                break;
-            case 5:
-                $object->rating = "/PageMap/img/icons/stars-5-5.svg";
-                break;
-        }
+        $object->rating = "/PageMap/img/icons/stars-" . $object->rating . "-5.svg";
         return $object;
     }
 
     public function GetCommentRatingIcon($commentArr)
     {
         foreach ($commentArr as $comment) {
-            switch ($comment->rating) {
-                case 0:
-                    $comment->rating = [0, "/PageMap/img/icons/stars-0-5.svg"];
-                    break;
-                case 1:
-                    $comment->rating = [1, "/PageMap/img/icons/stars-1-5.svg"];
-                    break;
-                case 2:
-                    $comment->rating = [2, "/PageMap/img/icons/stars-2-5.svg"];
-                    break;
-                case 3:
-                    $comment->rating = [3, "/PageMap/img/icons/stars-3-5.svg"];
-                    break;
-                case 4:
-                    $comment->rating = [4, "/PageMap/img/icons/stars-4-5.svg"];
-                    break;
-                case 5:
-                    $comment->rating = [5, "/PageMap/img/icons/stars-5-5.svg"];
-                    break;
-            }
+            $comment->rating = [0, "/PageMap/img/icons/stars-" . $comment->rating . "-5.svg"];
         }
         return $commentArr;
     }

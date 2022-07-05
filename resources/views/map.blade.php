@@ -243,7 +243,7 @@
         //------------------------------------------------------------------
 
 
-        //Рисование маршрута на 15 сек при нажатии соответствующей кнопки на попапе
+        //Рисование маршрута на 10 сек при нажатии соответствующей кнопки на попапе
         function DrawRoute(){
             var link = document.querySelector(".marker__link").href.substring(24);
             var request = new XMLHttpRequest();
@@ -261,7 +261,7 @@
                         }
                         setTimeout(function() {
                           route.remove()
-                        }, 15000);
+                        }, 10000);
 
                     }
                     else alert("Данные не получены");

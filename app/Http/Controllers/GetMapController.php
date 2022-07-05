@@ -69,7 +69,7 @@ class GetMapController extends Controller
         //определение иконок для рейтинга маршрута
         foreach ($Routes as $Route) {
             $Route = $this->GetObjectRatingIcon($Route);
-            $count = $this->GetObjectCommentsCount("route",$point->id);
+            $count = $this->GetObjectCommentsCount("route",$Route->id);
             $Route->rating = [$Route->rating,$count];
         }
 
@@ -92,7 +92,6 @@ class GetMapController extends Controller
             if (!isset($_SESSION['User'])) {
                 $this->GetUser();
             }
-//            dd($Routes);
             return view('map', ['points' => $getpoints, 'routes' => $Routes]);
         } else
             return view('unmap', ['points' => $getpoints, 'routes' => $Routes]);

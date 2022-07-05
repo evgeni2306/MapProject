@@ -12,6 +12,7 @@ use SimpleXMLElement;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+
 class UploadRouteController extends Controller
 {
     use helpfunc;
@@ -32,9 +33,9 @@ class UploadRouteController extends Controller
         ]);
 
         if ($validateFields['time'] == null) {
-                $validateFields['time'] = "Не указано";
-            }
-        if($validateFields['distance'] == null){
+            $validateFields['time'] = "Не указано";
+        }
+        if ($validateFields['distance'] == null) {
             $validateFields['distance'] = "Не указано";
         }
 
@@ -72,25 +73,30 @@ class UploadRouteController extends Controller
         $xml = new SimpleXMLElement(file_get_contents(storage_path('app\\' . $path)));
         $count = Count($xml->trk->trkseg->trkpt);
         $Route = Route::create($rroute);
+        $arr = [];
+        $row = $xml->trk->trkseg->trkpt;
         for ($i = 0; $i <= $count - 10; $i += 10) {
-            $point = array("routeid" => $Route->id, "lat" => $xml->trk->trkseg->trkpt[$i]['lat'], "lng" => $xml->trk->trkseg->trkpt[$i]['lon']);
+            $point = array("routeid" => $Route->id, "lat" => $row[$i]['lat'], "lng" => $row[$i]['lon']);
+            array_push($arr, $point);
             set_time_limit(20);
-            Rpoint::create($point);
         }
+        Rpoint::insert($arr);
+
 
         if ($rroute['distance'] == null or $rroute['distance'] == "Не указано") {
-        $distance =0;
-        for ($i = 0; $i <= $count-3; $i += 2) {
-            $distance+= $this->GetRouteDistanceBetweenPoints($xml->trk->trkseg->trkpt[$i]['lat'],$xml->trk->trkseg->trkpt[$i+1]['lon'],$xml->trk->trkseg->trkpt[$i+2]['lat'],$xml->trk->trkseg->trkpt[$i+3]['lon']);
-            set_time_limit(20);
+            $distance = 0;
+            for ($i = 0; $i <= $count - 3; $i += 2) {
+                $distance += $this->GetRouteDistanceBetweenPoints($xml->trk->trkseg->trkpt[$i]['lat'], $xml->trk->trkseg->trkpt[$i + 1]['lon'], $xml->trk->trkseg->trkpt[$i + 2]['lat'], $xml->trk->trkseg->trkpt[$i + 3]['lon']);
+                set_time_limit(20);
+            }
+            $distance = explode('.', $distance);
+            $dist = $distance[0] . '.' . substr($distance[1], 0, 2) . 'Км';
+            Route::where('id', $Route->id)->update(['distance' => $dist]);
         }
-        $distance = explode('.',$distance);
-        $dist = $distance[0].'.'.substr($distance[1],0,2).'Км';
-        Route::where('id',$Route->id)->update(['distance'=>$dist]);
-    }
-        $this->SetCity($xml->trk->trkseg->trkpt[0]['lat'],$xml->trk->trkseg->trkpt[0]['lon'],$Route);
+        $this->SetCity($xml->trk->trkseg->trkpt[0]['lat'], $xml->trk->trkseg->trkpt[0]['lon'], $Route);
         $this->DeleteFile($path);
     }
+
 
     public function CSVparse($path, $rroute)
     {
@@ -105,39 +111,42 @@ class UploadRouteController extends Controller
         $indexlat = array_search('latitude', $abc);
         $indexlng = array_search('longitude', $abc);
 //        //$i=1 т.к там первая строчка - шапка таблицы
+        $arr = [];
         for ($i = 1; $i <= $count - 10; $i += 10) {
             $row = explode(',', $file[$i]);
             $point = array("routeid" => $Route->id, "lat" => $row[$indexlat], "lng" => $row[$indexlng]);
+            array_push($arr, $point);
             set_time_limit(20);
-            Rpoint::create($point);
         }
+        Rpoint::insert($arr);
 
         if ($rroute['distance'] == null or $rroute['distance'] == "Не указано") {
-            $distance =0;
-            for ($i = 1; $i <= $count-3; $i += 2) {
+            $distance = 0;
+            for ($i = 1; $i <= $count - 3; $i += 2) {
                 $row = explode(',', $file[$i]);
-                $row1 = explode(',', $file[$i+1]);
-                $distance+= $this->GetRouteDistanceBetweenPoints($row[$indexlat],$row[$indexlng],$row1[$indexlat],$row1[$indexlng]);
+                $row1 = explode(',', $file[$i + 1]);
+                $distance += $this->GetRouteDistanceBetweenPoints($row[$indexlat], $row[$indexlng], $row1[$indexlat], $row1[$indexlng]);
                 set_time_limit(20);
             }
-            $distance = explode('.',$distance);
-            $dist = $distance[0].'.'.substr($distance[1],0,2).'Км';
-            Route::where('id',$Route->id)->update(['distance'=>$dist]);
+            $distance = explode('.', $distance);
+            $dist = $distance[0] . '.' . substr($distance[1], 0, 2) . 'Км';
+            Route::where('id', $Route->id)->update(['distance' => $dist]);
         }
-
 
 
         $row = explode(',', $file[1]);
-        $this->SetCity($row[$indexlat],$row[$indexlng],$Route);
+        $this->SetCity($row[$indexlat], $row[$indexlng], $Route);
         $this->DeleteFile($path);
     }
-    public function SetCity($lat,$lng,$route){
-        $city = $this->GetCityByCords($lat,$lng);
+
+    public function SetCity($lat, $lng, $route)
+    {
+        $city = $this->GetCityByCords($lat, $lng);
 
         DB::table('routes')
             ->where('id', $route->id)
             ->update([
-                'city'=>$city
+                'city' => $city
             ]);
     }
 
