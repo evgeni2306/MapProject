@@ -31,6 +31,7 @@ class UploadRouteController extends Controller
             'type' => ['required', 'string', 'ends_with:CSV,GPX']
 
         ]);
+//        dd(Request::old());
 
         if ($validateFields['time'] == null) {
             $validateFields['time'] = "Не указано";
@@ -63,7 +64,8 @@ class UploadRouteController extends Controller
                 $this->XMLparse($path, $rroute);
             } else {
                 $fileTypeError = "Выбранный вами тип файла не совпадает с типом загруженного";
-                return view('loadroute', ['fileTypeError'=>$fileTypeError]);
+//                return view('loadroute', ['fileTypeError'=>$fileTypeError]);
+                return redirect()->back()->withErrors(['error'=>$fileTypeError])->withInput();
             }
 
         $this->UpdateUserRating(25);

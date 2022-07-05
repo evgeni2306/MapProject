@@ -45,10 +45,10 @@
                             <option value="GPX">GPX</option>
                             <option value="CSV">CSV</option>
                         </select>
-                        @if(isset($fileTypeError))
+                        @if ($errors->any())
                         <div class="error-block  ">
                             <img src="PageRegistration/img/information.svg" alt="">
-                            <p class="error-block__text">{{$fileTypeError}}</p>
+                            <p class="error-block__text">{{$errors->first()}}</p>
                         </div>
                         @endif
                         <input type="file" id="files" name="file">
