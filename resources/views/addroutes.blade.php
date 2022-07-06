@@ -32,9 +32,9 @@
                         <option value="Сложно,rroutes,redroute">Для продвинутых</option>
                     </select>
                     <h4 class="sub-title">Протяженность, км</h4>
-                    <input type="number" placeholder="Введите протяженность" name="distance">
+                    <input type="number" step = "any" min="0"  placeholder="Введите протяженность" name="distance">
                     <h4 class="sub-title">Примерное время, ч</h4>
-                    <input type="number" placeholder="Введите время" name="time">
+                    <input type="number" step = "any" min="0"   placeholder="Введите время" name="time">
                     <h4 class="sub-title">Описание</h4>
                     <textarea class="edit-point__description" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
                     <input type="hidden"   name="cord"  value="{{$_POST['cord']}}">

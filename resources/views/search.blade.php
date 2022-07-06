@@ -22,31 +22,38 @@
     @include('Components.headerPages')
     <!--------------/HEADER-------------------->
     <div class="container">
-    <form method="" action ="">
+    <form method="POST" action ="{{route('search')}}">
       <h1 class="search__title">Поиск по маршрутам</h1>
       <div class="content__container">
         <h2 class="search-parameters">Параметры поиска</h2>
         <div class="forms__container">
           <div class="forms__city">
             <h4 class="sub-title">Город</h4>
-          <input type="text" placeholder="Введите город" name="city">
+              <select name="city">
+                  <option value="" disabled selected style="display:none;">Выберите город</option>
+                  <?foreach ($city as $cit){?>
+                  <option value="{{$cit->city}}">{{$cit->city}}</option>
+{{--                  <option value="">Первоуральск</option>--}}
+{{--                  <option value="">Москва</option>--}}
+                  <? }?>
+              </select>
           </div>
           <div class="forms__complexity">
             <h4 class="sub-title">Сложность</h4>
-          <select name="complexity">
-            <option value="" disabled selected style="display:none;">Выберите сложность</option>
-            <option value="">Для новичков</option>
-            <option value="">Средняя</option>
-            <option value="">Для продвинутых</option>
+          <select name="difficult">
+              <option value="" disabled selected style="display:none;">Выберите сложность</option>
+              <option value="Легко">Для новичков</option>
+              <option value="Средне">Средняя</option>
+              <option value="Сложно">Для продвинутых</option>
           </select>
           </div>
           <div class="forms__status">
             <h4 class="sub-title">Статус работы</h4>
               <select name="status">
                 <option value="" disabled selected style="display:none;">Выберите статус</option>
-                <option value="">Работает</option>
-                <option value="">Не работает</option>
-                <option value="">Статус неизвестен</option>
+                  <option value="Под вопросом">Под вопросом</option>
+                  <option value="Работает">Работает</option>
+                  <option value="Не работает">Не работает</option>
               </select>
           </div>
           <div class="forms__length">
@@ -54,11 +61,11 @@
             <div class="forms__length-wrapper">
               <div class="length__from">
                 <span class="length__from-text">От</span>
-                <input type="number" name="length__from">
+                <input type="number"  step = "any" min="0"  name="distancefrom">
               </div>
               <div class="length__to">
                 <span class="length__to-text">До</span>
-                <input type="number" name="length__to">
+                <input type="number"  step = "any" min="0"  name="distanceto">
               </div>
             </div>
           </div>
@@ -67,11 +74,11 @@
             <div class="forms__time-wrapper">
               <div class="time__from">
                 <span class="time__from-text">От</span>
-                <input type="number" name="time__from">
+                <input type="number" step = "any" min="0"  name="timefrom">
               </div>
               <div class="time__to">
                 <span class="time__to-text">До</span>
-                <input type="number" name="time__to">
+                <input type="number" step = "any"  min="0"  name="timeto">
               </div>
             </div>
           </div>
@@ -79,81 +86,40 @@
         </div>
         <input type="submit" class="search-button" value ="Найти">
 
+          @if(isset($results))
         <h2 class="search-results__title">Результаты поиска</h2>
         <div class="search-results">
 
-          <div class="route__container">
-            <div class="route__title"><a href="" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
-            <div class="short-description">Маршрут</div>
-            <div class="star-rating star-rating_set">
-              <div class="star-rating__body">
-                <img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">
-                <span class="star-rating__feedback">(35)</span>
-              </div>
-            </div>
-            <div class="route-status status-broken">Не работает</div>
-            <div class="route__characteristics">
-              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
-              <div class="length">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">Не указано</p>
-              </div>
-              <div class="time">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
-                <p class="time__duration">Не указано</p>
-              </div>
-            </div>
-        </div>
-
+        <?foreach($results as $res) { ?>
         <div class="route__container">
-            <div class="route__title"><a href="" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
-            <div class="short-description">Маршрут</div>
+            <div class="route__title"><a href="/route={{$res->id}}" class="route__link">{{$res->name}}</a></div>
+            <div class="short-description">{{$res->shortdescription}}</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
-                <img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">
-                <span class="star-rating__feedback">(35)</span>
+                <img class="star-rating__star" src="{{$res->rating[0]}}">
+                <span class="star-rating__feedback">({{$res->rating[1]}})</span>
               </div>
             </div>
-            <div class="route-status status-broken">Не работает</div>
+            <div class="route-status status-broken">{{$res->status}}</div>
             <div class="route__characteristics">
-              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
+              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$res->icon}}.svg" alt="middle">
               <div class="length">
                 <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">Не указано</p>
+                <p class="length__distance">{{$res->distance}}Км</p>
               </div>
               <div class="time">
                 <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
-                <p class="time__duration">Не указано</p>
+                <p class="time__duration">{{$res->time}}</p>
               </div>
             </div>
         </div>
+            <? }?>
 
-        <div class="route__container">
-            <div class="route__title"><a href="" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
-            <div class="short-description">Маршрут</div>
-            <div class="star-rating star-rating_set">
-              <div class="star-rating__body">
-                <img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">
-                <span class="star-rating__feedback">(35)</span>
-              </div>
-            </div>
-            <div class="route-status status-broken">Не работает</div>
-            <div class="route__characteristics">
-              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
-              <div class="length">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">Не указано</p>
-              </div>
-              <div class="time">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
-                <p class="time__duration">Не указано</p>
-              </div>
-            </div>
+            @endif
         </div>
 
-
-        </div>
       </div>
+        @csrf
     </form>
     </div>
     <!--------------FOOTER-------------------->

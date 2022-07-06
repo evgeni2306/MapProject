@@ -17,6 +17,7 @@ use App\Http\Controllers\GetProfileController;
 use App\Http\Controllers\UploadRouteController;
 use App\Http\Controllers\RcommentActionController;
 use App\Http\Controllers\UpdateRouteController;
+use App\Http\Controllers\SearchController;
 use App\Classes\RoutePageClass;
 
 use Illuminate\Support\Facades\Artisan;
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/search', function () {
         return view('search');
     });
+    Route::get('/search', [SearchController::class, 'GetSearchPage'])->name('getsearch');
+    Route::post('/search', [SearchController::class, 'Search'])->name('search');
     Route::get('/edit', [UpdateUserController::class, 'GetSettingsPage'])->name('edit');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::get('/logout', function () {
