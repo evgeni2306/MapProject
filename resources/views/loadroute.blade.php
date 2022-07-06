@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="edit-buttons">
-                        <a href="{{route('map')}}" class="edit-point__cancel">Отмена</a>
+                        <a href="{{URL::previous()}}" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>

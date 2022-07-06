@@ -40,7 +40,7 @@
                     <input type="hidden"   name="cord"  value="{{$_POST['cord']}}">
                     @csrf
                     <div class="edit-buttons">
-                        <input type="reset" class="edit-point__cancel" value ="Отмена">
+                        <a href="{{URL::previous()}}" class="edit-point__cancel">Отмена</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>

@@ -62,7 +62,7 @@
                         <button class = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
                     </div>-->
                     <div class="edit-buttons">
-                        <a href="{{route('getpointpage',$_SESSION['CurrentEditPoint']->id)}}" class="edit-point__cancel">Назад</a>
+                        <a href="{{URL::previous()}}" class="edit-point__cancel">Назад</a>
                         <input {{$fieldAccess->submit }} type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>
