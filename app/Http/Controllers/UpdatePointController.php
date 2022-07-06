@@ -38,10 +38,15 @@ class UpdatePointController extends Controller
 //            }
 
             //-------------------------------------------
-            
+
             $typeAndIcon = explode(',', $validateFields['type']);
             $validateFields['type'] = $typeAndIcon[1];
             $validateFields['icon'] = $typeAndIcon[0];
+
+            if (!isset($validateFields['photo'])){
+               $validateFields['photo'] = $_SESSION['CurrentEditPoint']->photo;
+
+            }
 
             //----Обновление точки----
             $this->UpdatePointDb($validateFields['name'], $validateFields['type'],
@@ -49,6 +54,7 @@ class UpdatePointController extends Controller
                 $validateFields['description'], $validateFields['shortdescription'], $validateFields['photo'],$request->file('photo'));
 
             //-----------------------//
+
             return redirect(route('getpointpage', $_SESSION['CurrentEditPoint']->id));
         }
         return redirect(route('map'));
@@ -141,12 +147,12 @@ class UpdatePointController extends Controller
 
     public function UpdatePointDb($name, $type, $icon, $address, $status, $description, $shortdescription, $photo,$file)
     {
-
-
         if ($_SESSION['User']->rankid == 1) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $photo = $this->ChangePhoto($photo,$file);
+                if ($photo != null and $file !=null){
+                    $photo = $this->ChangePhoto($photo,$file);
+                }
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
                     ->update([
@@ -167,7 +173,9 @@ class UpdatePointController extends Controller
         //Если текущий юзер  - с рангом "Любитель"
         if ($_SESSION['User']->rankid == 2) {
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $photo = $this->ChangePhoto($photo,$file);
+                if ($photo != null and $file !=null){
+                    $photo = $this->ChangePhoto($photo,$file);
+                }
                 //Текущий юзер - владелец объекта
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
@@ -193,7 +201,9 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 3) {
             //Текущий юзер - владелец объекта
             if ($_SESSION['CurrentEditPoint']->creatorid == $_SESSION['User']->id) {
-                $photo = $this->ChangePhoto($photo,$file);
+                if ($photo != null and $file !=null){
+                    $photo = $this->ChangePhoto($photo,$file);
+                }
                 DB::table('points')
                     ->where('id', $_SESSION['CurrentEditPoint']->id)
                     ->update([
@@ -219,7 +229,9 @@ class UpdatePointController extends Controller
         }
         //Если текущий юзер с рангом "мастер"
         if ($_SESSION['User']->rankid == 4) {
-            $photo = $this->ChangePhoto($photo,$file);
+            if ($photo != null and $file !=null){
+                $photo = $this->ChangePhoto($photo,$file);
+            }
             DB::table('points')
                 ->where('id', $_SESSION['CurrentEditPoint']->id)
                 ->update([

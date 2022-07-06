@@ -16,9 +16,9 @@ class RoutePageController extends Controller
     public function GetCurrentRoute($id)
     {
 
-        if (!isset($_SESSION['User']) and Auth::check()) {
-            $this->GetUser();
-        }
+//        if (!isset($_SESSION['User']) and Auth::check()) {
+//            $this->GetUser();
+//        }
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Rout::where('id', $id)->exists()) {
 

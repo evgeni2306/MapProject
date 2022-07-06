@@ -34,18 +34,16 @@ class AddRouteController extends Controller
             }
             if ($validateFields['distance'] == null) {
 
-                for ($i = 0; $i <= count($arr)-3; $i += 2) {
-                    $validateFields['distance']+= $this->GetRouteDistanceBetweenPoints($arr[$i],$arr[$i+1],$arr[$i+2],$arr[$i+3]);
+                for ($i = 0; $i <= count($arr) - 3; $i += 2) {
+                    $validateFields['distance'] += $this->GetRouteDistanceBetweenPoints($arr[$i], $arr[$i + 1], $arr[$i + 2], $arr[$i + 3]);
                 }
-                $distance = explode('.',$validateFields['distance']);
-                $validateFields['distance'] = $distance[0].'.'.substr($distance[1],0,2).'Км';
+                $distance = explode('.', $validateFields['distance']);
+                $validateFields['distance'] = $distance[0] . '.' . substr($distance[1], 0, 2) . 'Км';
             }
 
 
-
-
             $difficulttype = explode(',', $validateFields['difficult']);
-            $rroute = array($arr[$i],
+            $rroute = array(
                 'creatorid' => Auth::id(),
                 'status' => 'Под вопросом',
                 'name' => $validateFields['name'],

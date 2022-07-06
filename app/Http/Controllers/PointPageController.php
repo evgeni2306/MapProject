@@ -17,9 +17,9 @@ class PointPageController extends Controller
     public function GetCurrentPoint($id)
     {
 
-        if (!isset($_SESSION['User']) and Auth::check()) {
-            $this->GetUser();
-        }
+//        if (!isset($_SESSION['User']) and Auth::check()) {
+//            $this->GetUser();
+//        }
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Point::where('id', $id)->exists()) {
             //Получение точки из бд
