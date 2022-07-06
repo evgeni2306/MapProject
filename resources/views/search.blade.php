@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Поиск</title>
-    
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/PageEditPoints/css/headerPages.css">
@@ -60,7 +60,7 @@
                 <span class="length__to-text">До</span>
                 <input type="number" name="length__to">
               </div>
-            </div> 
+            </div>
           </div>
           <div class="forms__time">
             <h4 class="sub-title">Время прохождения, ч</h4>
@@ -75,14 +75,15 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <input type="submit" class="search-button" value ="Найти">
 
         <h2 class="search-results__title">Результаты поиска</h2>
         <div class="search-results">
+
           <div class="route__container">
-            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+            <div class="route__title"><a href="" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -105,7 +106,7 @@
         </div>
 
         <div class="route__container">
-            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+            <div class="route__title"><a href="" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -128,7 +129,7 @@
         </div>
 
         <div class="route__container">
-            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
+            <div class="route__title"><a href="" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
             <div class="short-description">Маршрут</div>
             <div class="star-rating star-rating_set">
               <div class="star-rating__body">
@@ -150,59 +151,15 @@
             </div>
         </div>
 
-        <div class="route__container">
-            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
-            <div class="short-description">Маршрут</div>
-            <div class="star-rating star-rating_set">
-              <div class="star-rating__body">
-                <img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">
-                <span class="star-rating__feedback">(35)</span>
-              </div>
-            </div>
-            <div class="route-status status-broken">Не работает</div>
-            <div class="route__characteristics">
-              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
-              <div class="length">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">Не указано</p>
-              </div>
-              <div class="time">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
-                <p class="time__duration">Не указано</p>
-              </div>
-            </div>
-        </div>
 
-        <div class="route__container">
-            <div class="route__title"><a href="{{route('routepersonal')}}" class="route__link">Маршрут от метро Орехово до метро Семеновская</a></div>
-            <div class="short-description">Маршрут</div>
-            <div class="star-rating star-rating_set">
-              <div class="star-rating__body">
-                <img class="star-rating__star" src="/PageMap/img/stars/stars04.svg">
-                <span class="star-rating__feedback">(35)</span>
-              </div>
-            </div>
-            <div class="route-status status-broken">Не работает</div>
-            <div class="route__characteristics">
-              <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/middle.svg" alt="middle">
-              <div class="length">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">Не указано</p>
-              </div>
-              <div class="time">
-                <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
-                <p class="time__duration">Не указано</p>
-              </div>
-            </div>
         </div>
-        </div>
-      </div>            
+      </div>
     </form>
     </div>
     <!--------------FOOTER-------------------->
     @include('Components.footer')
     <!--------------/FOOTER-------------------->
 </div>
-<script src="Script/menu.js"></script> 
+<script src="Script/menu.js"></script>
 </body>
 </html>

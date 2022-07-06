@@ -107,6 +107,7 @@ class UpdateRouteController extends Controller
         if ($_SESSION['User']->rankid == 4) {
             $fieldsAcces = new RouteEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
         }
+        //Если текущий юзер с  несуществующим рангом
         if($_SESSION['User']->rankid != 1 and $_SESSION['User']->rankid!= 2 and $_SESSION['User']->rankid !=3 and $_SESSION['User']->rankid !=4){
             $fieldsAcces = new RouteEditableFieldsClass("readonly", "hidden", "hidden", "readonly", "readonly", "readonly", "readonly", "disabled");
         }

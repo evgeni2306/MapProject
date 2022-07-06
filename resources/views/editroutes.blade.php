@@ -42,10 +42,10 @@
                     </select>
 
                     <h4 class="sub-title">Протяженность, км</h4>
-                    <input  {{$fieldAccess->distance}} type="text"  placeholder="Введите протяженность" name="distance" value ="{{$_SESSION['CurrentEditRoute']->distance}}" >
+                    <input  {{$fieldAccess->distance}} type="number"  placeholder="Введите протяженность" name="distance" value ="{{$_SESSION['CurrentEditRoute']->distance}}" >
 
                     <h4 class="sub-title">Примерное время, ч</h4>
-                    <input  {{$fieldAccess->time}}  type="text" placeholder="Введите время" name="time" value = "{{$_SESSION['CurrentEditRoute']->time}}">
+                    <input  {{$fieldAccess->time}}  type="number" placeholder="Введите время" name="time" value = "{{$_SESSION['CurrentEditRoute']->time}}">
                     <h4 class="sub-title">Описание</h4>
                     <textarea  {{$fieldAccess->description}} class="edit-point__description"  placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description">{{$_SESSION['CurrentEditRoute']->description}}</textarea>
                     @csrf

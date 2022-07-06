@@ -143,6 +143,10 @@ class UpdatePointController extends Controller
         if ($_SESSION['User']->rankid == 4) {
             $fieldsAcces = new PointEditableFieldsClass(" ", " ", " ", " ", " ", " ", " ", " ");
         }
+        //Если текущий юзер с  несуществующим рангом
+        if($_SESSION['User']->rankid != 1 and $_SESSION['User']->rankid!= 2 and $_SESSION['User']->rankid !=3 and $_SESSION['User']->rankid !=4){
+            $fieldsAcces = new PointEditableFieldsClass("readonly", "hidden", "readonly", "hidden", "readonly", "readonly", "disabled", "disabled");
+        }
         return $fieldsAcces;
     }
 

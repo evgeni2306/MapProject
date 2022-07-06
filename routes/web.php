@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function () {
 
     //---связанные с юзером---//
 
+    Route::get('/search', function () {
+        return view('search');
+    });
     Route::get('/edit', [UpdateUserController::class, 'GetSettingsPage'])->name('edit');
     Route::post('/edit', [UpdateUserController::class, 'UpdateUser'])->name('PageEditor');
     Route::get('/logout', function () {
