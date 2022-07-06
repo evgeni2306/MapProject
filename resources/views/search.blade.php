@@ -85,6 +85,7 @@
 
         </div>
         <input type="submit" class="search-button" value ="Найти">
+          <input type="reset" class="search-button" value ="Сброс">
 
           @if(isset($results))
         <h2 class="search-results__title">Результаты поиска</h2>
