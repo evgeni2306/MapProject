@@ -32,9 +32,9 @@
                         <option value="Средне,yroutes,yellowroute">Средняя</option>
                         <option value="Сложно,rroutes,redroute">Для продвинутых</option>
                     </select>
-                    <h4 class="sub-title">Протяженность</h4>
+                    <h4 class="sub-title">Протяженность, км</h4>
                     <input type="text" value="{{old('distance')}}"placeholder="Введите протяженность" name="distance">
-                    <h4 class="sub-title">Примерное время</h4>
+                    <h4 class="sub-title">Примерное время, ч</h4>
                     <input type="text" placeholder="Введите время" name="time" value="{{old('time')}}">
                     <h4 class="sub-title">Описание</h4>
                     <textarea class="edit-point__description"value="{{old('description')}}" placeholder="Поделитесь информацией о маршруте. Например, укажите ключевые точки, наличие розеток или достопримечательностей на пути." name="description"></textarea>
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="edit-buttons">
-                        <input type="reset" class="edit-point__cancel" value ="Отмена">
+                        <a href="{{route('map')}}" class="edit-point__cancel">Отмена</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">
                     </div>
                 </form>

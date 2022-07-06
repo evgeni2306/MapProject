@@ -180,6 +180,7 @@ body._lock {
 }
 input,
 select {
+    font-family: "GolosTextRegular", sans-serif;
     min-height: 48px;
     width: 100%;
     background: #fff;
