@@ -31,7 +31,6 @@ class UpdateUserController extends Controller
                     $user->transport = $validateFields['transport'];
                     $user->mapstyle = $validateFields['mapstyle'];
                     $fileSizeError = "Выбранный вами файл слишком большой для загрузки";
-                    $nicknameError = "";
                     return view('settings', ['user' => $user, 'fileSizeError' => $fileSizeError]);
                 }
             }
@@ -45,7 +44,6 @@ class UpdateUserController extends Controller
                     $user->nickname = $validateFields['nickname'];
                     $user->transport = $validateFields['transport'];
                     $user->mapstyle = $validateFields['mapstyle'];
-                    $fileSizeError = "";
                     return view('settings', ['user' => $user, 'nicknameError' => $nicknameError]);
                 }
                 //----------------------------------------------------------------------------------
