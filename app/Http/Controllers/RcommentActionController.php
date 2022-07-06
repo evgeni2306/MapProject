@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Rcomment;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use App\Http\helpfunc;
 use App\Models\Route;
@@ -14,18 +13,19 @@ class RcommentActionController extends Controller
 {
     use helpfunc;
 
+    //Метод добавления комментария маршрута
     public function AddRcomment(Request $request)
     {
         $validateFields = $request->validate([
             'rating' => ['required',],
             'text' => ['required', 'string'],
         ]);
-        $checkComment  = DB::table('rcomments')
-            ->where('creatorid',"=", Auth::id())
-            ->where('routeid',"=",$_SESSION['CurrentRoute']->id)
+        $checkComment = DB::table('rcomments')
+            ->where('creatorid', "=", Auth::id())
+            ->where('routeid', "=", $_SESSION['CurrentRoute']->id)
             ->get();
-        if (Count($checkComment) ==1){
-            return redirect(route('getroutepage',$_SESSION['CurrentRoute']->id));
+        if (Count($checkComment) == 1) {
+            return redirect(route('getroutepage', $_SESSION['CurrentRoute']->id));
         }
 
         $validateFields['creatorid'] = $_SESSION['User']->id;
@@ -33,11 +33,12 @@ class RcommentActionController extends Controller
         $rcomment = Rcomment::create($validateFields);
         $rate = $this->RatingCalculate();
         $this->UpdateUserRating(3);
-        return redirect(route('getroutepage',$_SESSION['CurrentRoute']->id));
+        return redirect(route('getroutepage', $_SESSION['CurrentRoute']->id));
 
 
     }
 
+    //Метод перерасчета текущего рейтинга маршрута
     public function RatingCalculate()
     {
         $getrating = DB::table('rcomments')
@@ -56,7 +57,7 @@ class RcommentActionController extends Controller
 
     }
 
-
+    //Метод удаления коммента маршрута
     public function DeleteRcomment($id)
     {
         $deleteroute = DB::table('rcomments')
@@ -66,20 +67,21 @@ class RcommentActionController extends Controller
         return redirect(route('getroutepage', $_SESSION['CurrentRoute']->id));
     }
 
-    public function UpdateRcomment(Request $request )
+    //Метод обновления коммента маршрута
+    public function UpdateRcomment(Request $request)
     {
         $validateFields = $request->validate([
             'rating' => ['required',],
             'text' => ['required', 'string'],
-            'id'=>['required']
+            'id' => ['required']
         ]);
-        $creatorid =  $geletepoint = DB::table('rcomments')
+        $creatorid = $geletepoint = DB::table('rcomments')
             ->where('id', $validateFields['id'])
             ->select('creatorid')
             ->first();
 
         if (Auth::check() and $_SESSION['User']->id == $creatorid->creatorid and Rcomment::where('id', $validateFields['id'])->exists()) {
-            $rcomment = Rcomment::where('id',$validateFields['id'])->update(['rating'=>$validateFields['rating'],'text'=>$validateFields['text']]);
+            $rcomment = Rcomment::where('id', $validateFields['id'])->update(['rating' => $validateFields['rating'], 'text' => $validateFields['text']]);
             $this->RatingCalculate($_SESSION['CurrentRoute']->id);
             return redirect(route('getroutepage', $_SESSION['CurrentRoute']->id));
         }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class UpdatePointController extends Controller
 {
+    //Валидация входящих данных и последующе обновление точки
     public function UpdatePoint(Request $request)
     {
 
@@ -60,6 +61,7 @@ class UpdatePointController extends Controller
         return redirect(route('map'));
     }
 
+    //Метод получения данных для страницы редактирования точки
     public function GetUpdatePoint($id)
     {
         if (Auth::check()) {
@@ -144,7 +146,7 @@ class UpdatePointController extends Controller
         return $fieldsAcces;
     }
 
-
+    //Метод обновления данных точки, с учетом прав юзера
     public function UpdatePointDb($name, $type, $icon, $address, $status, $description, $shortdescription, $photo,$file)
     {
         if ($_SESSION['User']->rankid == 1) {
@@ -282,7 +284,7 @@ class UpdatePointController extends Controller
                 'icon' => $getpoint->icon,
             ]);
     }
-
+    //Метод смены фотки точки
     public function ChangePhoto($photo, $file)
     {
         if (isset($photo)) {

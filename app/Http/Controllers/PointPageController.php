@@ -4,22 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Classes\PointPageClass;
 use App\Http\helpfunc;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PHPUnit\Framework\Constraint\Count;
 use App\Models\Point;
 
 class PointPageController extends Controller
 {
     use helpfunc;
 
+    //Метод получения данных для личной страницы точки
     public function GetCurrentPoint($id)
     {
 
-//        if (!isset($_SESSION['User']) and Auth::check()) {
-//            $this->GetUser();
-//        }
+        if (!isset($_SESSION['User']) and Auth::check()) {
+            $this->GetUser();
+        }
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Point::where('id', $id)->exists()) {
             //Получение точки из бд
@@ -80,7 +79,6 @@ class PointPageController extends Controller
                 $canAddComment
 
             );
-//            dd($_SESSION['CurrentPoint']);
 
 //Получение комментов из бд
             $_SESSION['Pcomments'] = DB::table('pcomments')

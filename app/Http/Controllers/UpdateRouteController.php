@@ -7,11 +7,11 @@ use App\Models\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
 
 class UpdateRouteController extends Controller
 {
+    //Валидация входящих данных и последующе обновление маршрута
     public function UpdateRoute(Request $request)
     {
         Artisan::call('storage:link');

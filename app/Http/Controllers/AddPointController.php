@@ -30,7 +30,7 @@ class AddPointController extends Controller
             "name" => $validateFields['name'],
             "type" => $typeAndIcon[1],
             "icon" => $typeAndIcon[0],
-            "city"=> $this->GetCityByCords($validateFields['lat'],$validateFields['lng']),
+            "city" => $this->GetCityByCords($validateFields['lat'], $validateFields['lng']),
             "creatorid" => Auth::id(),
             "rating" => 0,
             "status" => "Под вопросом",
@@ -39,9 +39,12 @@ class AddPointController extends Controller
         );
         if ($validateFields['type'] == 'zpoints') {
             $validateFields['photo'] = "/PageMap/img/icons/socket-picture.svg";
-        } else {
-            $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
-        }
+        } else
+            if ($validateFields['type'] == 'dpoints') {
+                $validateFields['photo'] = "/PageMap/img/icons/landmark-picture.svg";
+            }else{
+                redirect(route('map'));
+            }
         $point = Point::create($validateFields);
         $this->UpdateUserRating(10);
         return redirect(route('GetUpdatePoint', $point->id));

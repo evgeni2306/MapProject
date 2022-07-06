@@ -31,7 +31,6 @@ class UploadRouteController extends Controller
             'type' => ['required', 'string', 'ends_with:CSV,GPX']
 
         ]);
-//        dd(Request::old());
 
         if ($validateFields['time'] == null) {
             $validateFields['time'] = "Не указано";
@@ -64,14 +63,14 @@ class UploadRouteController extends Controller
                 $this->XMLparse($path, $rroute);
             } else {
                 $fileTypeError = "Выбранный вами тип файла не совпадает с типом загруженного";
-//                return view('loadroute', ['fileTypeError'=>$fileTypeError]);
-                return redirect()->back()->withErrors(['error'=>$fileTypeError])->withInput();
+                return redirect()->back()->withErrors(['error' => $fileTypeError])->withInput();
             }
 
         $this->UpdateUserRating(25);
         return redirect(route('map'));
     }
 
+    //Разбор GPX файла
     public function XMLparse($path, $rroute)
     {
         $xml = new SimpleXMLElement(file_get_contents(storage_path('app\\' . $path)));
@@ -102,7 +101,7 @@ class UploadRouteController extends Controller
         $this->DeleteFile($path);
     }
 
-
+    //Разбор CSV файла
     public function CSVparse($path, $rroute)
     {
         $file = explode("\n", (string)file_get_contents(storage_path('app\\' . $path)));
@@ -144,6 +143,7 @@ class UploadRouteController extends Controller
         $this->DeleteFile($path);
     }
 
+    //Автоопределение города маршрута, по первой его точке
     public function SetCity($lat, $lng, $route)
     {
         $city = $this->GetCityByCords($lat, $lng);
@@ -155,6 +155,7 @@ class UploadRouteController extends Controller
             ]);
     }
 
+    //Удаление разобранного файла с маршрутом
     public function DeleteFile($path)
     {
         $delete = Storage::delete($path);

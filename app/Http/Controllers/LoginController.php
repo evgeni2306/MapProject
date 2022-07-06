@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -23,11 +22,11 @@ class LoginController extends Controller
             $_SESSION['User'] = DB::table('users')
                 ->where('login', $formFields['login'])
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname','nickname', 'avatar', 'ranks.id as rankid','transport','mapstyle','rating','ranks.name as rname',
-                'maxrating')
+                ->select('users.id', 'users.name', 'surname', 'nickname', 'avatar', 'ranks.id as rankid', 'transport', 'mapstyle', 'rating', 'ranks.name as rname',
+                    'maxrating')
                 ->first();
-            if($_SESSION['User']->nickname == null){
-                $_SESSION['User']->nickname = $_SESSION['User']->name.' '.$_SESSION['User']->surname;
+            if ($_SESSION['User']->nickname == null) {
+                $_SESSION['User']->nickname = $_SESSION['User']->name . ' ' . $_SESSION['User']->surname;
             }
             return redirect('map');
         }

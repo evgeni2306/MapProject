@@ -13,6 +13,7 @@ class PcommentActionController extends Controller
 {
     use helpfunc;
 
+    //Метод добавления комментария точки
     public function AddPcomment(Request $request)
     {
         $validateFields = $request->validate([
@@ -36,6 +37,7 @@ class PcommentActionController extends Controller
 
     }
 
+    //Метод перерасчета текущего рейтинга точки
     public function RatingCalculate($id)
     {
         $getrating = DB::table('pcomments')
@@ -49,10 +51,10 @@ class PcommentActionController extends Controller
         if ($currentrating > 0 and Count($getrating) > 0) {
             $currentrating = $currentrating / Count($getrating);
         }
-
         $rating = Point::where('id', $id)->update(['rating' => $currentrating]);
     }
 
+    //Метод удаления комментария точки
     public function DeletePcomment($id)
     {
         $geletepoint = DB::table('pcomments')
@@ -62,20 +64,21 @@ class PcommentActionController extends Controller
         return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
     }
 
-    public function UpdatePcomment(Request $request )
+    //Метод обновления комментария точки
+    public function UpdatePcomment(Request $request)
     {
         $validateFields = $request->validate([
             'rating' => ['required',],
             'text' => ['required', 'string'],
-            'id'=>['required']
+            'id' => ['required']
         ]);
-$creatorid =  $geletepoint = DB::table('pcomments')
-    ->where('id', $validateFields['id'])
-    ->select('creatorid')
-    ->first();
+        $creatorid = $geletepoint = DB::table('pcomments')
+            ->where('id', $validateFields['id'])
+            ->select('creatorid')
+            ->first();
 
         if (Auth::check() and $_SESSION['User']->id == $creatorid->creatorid and Pcomment::where('id', $validateFields['id'])->exists()) {
-            $pcomment = Pcomment::where('id',$validateFields['id'])->update(['rating'=>$validateFields['rating'],'text'=>$validateFields['text']]);
+            $pcomment = Pcomment::where('id', $validateFields['id'])->update(['rating' => $validateFields['rating'], 'text' => $validateFields['text']]);
             $this->RatingCalculate($_SESSION['CurrentPoint']->id);
             return redirect(route('getpointpage', $_SESSION['CurrentPoint']->id));
         }

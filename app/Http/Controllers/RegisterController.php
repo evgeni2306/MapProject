@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Nette\Utils\Random;
 
 
 class RegisterController extends Controller
@@ -49,19 +47,12 @@ class RegisterController extends Controller
         return redirect(route('login'));
     }
 
+
+    //Рандомно возвращает одну из 8 дефолтных аватарок
     public function randomAvatar()
     {
-        $arr = array(
-            0 => 'avatar1.png',
-            1 => 'avatar2.png',
-            2 => 'avatar3.png',
-            3 => 'avatar4.png',
-            4 => 'avatar5.png',
-            5 => 'avatar6.png',
-            6 => 'avatar7.png',
-            7 => 'avatar8.png');
-        $r = $arr[rand(0, 7)];
-        return $r;
+        $random = rand(1,8);
+        return 'avatar'.$random.'.png';
     }
 
 }

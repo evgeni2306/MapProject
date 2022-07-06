@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Classes\RoutePageClass;
 use App\Http\helpfunc;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Route as Rout;
@@ -13,18 +12,19 @@ class RoutePageController extends Controller
 {
     use helpfunc;
 
+    //Метод получения данных личной страницы маршрута
     public function GetCurrentRoute($id)
     {
 
-//        if (!isset($_SESSION['User']) and Auth::check()) {
-//            $this->GetUser();
-//        }
+        if (!isset($_SESSION['User']) and Auth::check()) {
+            $this->GetUser();
+        }
         $id = (int)$id;
         if ((is_numeric($id)) and ($id > 0) and Rout::where('id', $id)->exists()) {
 
             $getroute = DB::table('routes')
                 ->join('users', 'users.id', '=', 'routes.creatorId')
-                ->select('routes.id', 'users.name as uname', 'users.nickname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description','city', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
+                ->select('routes.id', 'users.name as uname', 'users.nickname', 'users.avatar', 'users.surname as usurname', 'creatorid', 'routes.name', 'description', 'city', 'status', 'difficult', 'distance', 'time', 'icon', 'routes.rating')
                 ->where('routes.id', $id)
                 ->first();
             if ($getroute->nickname == null) {
@@ -34,13 +34,13 @@ class RoutePageController extends Controller
                 ->where('rpoints.routeid', '=', $getroute->id)
                 ->select('lat', 'lng')->get();
 
-            if($getroute->difficult =="Легко"){
+            if ($getroute->difficult == "Легко") {
                 $getroute->icon = "greenroute";
             }
-            if($getroute->difficult =="Средне"){
+            if ($getroute->difficult == "Средне") {
                 $getroute->icon = "yellowroute";
             }
-            if($getroute->difficult =="Сложно"){
+            if ($getroute->difficult == "Сложно") {
                 $getroute->icon = "redroute";
             }
 
@@ -64,15 +64,15 @@ class RoutePageController extends Controller
                     }
                 }
             }
-            foreach ($pointarr as $point){
-                $point= $this->GetObjectRatingIcon($point);
-                $count = $this->GetObjectCommentsCount("point",$point->id);
-                $point->rating = [$point->rating,$count];
+            foreach ($pointarr as $point) {
+                $point = $this->GetObjectRatingIcon($point);
+                $count = $this->GetObjectCommentsCount("point", $point->id);
+                $point->rating = [$point->rating, $count];
             }
 
             $checkComment = DB::table('rcomments')
-                ->where('creatorid',"=", Auth::id())
-                ->where('routeid',"=",$id)
+                ->where('creatorid', "=", Auth::id())
+                ->where('routeid', "=", $id)
                 ->get();
 
             if (Count($checkComment) == 1 or !Auth::check()) {
@@ -114,7 +114,7 @@ class RoutePageController extends Controller
             $_SESSION['Rcomments'] = DB::table('rcomments')
                 ->join('users', 'rcomments.creatorId', '=', 'users.id')
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.name', 'users.surname','creatorid','rcomments.id', 'users.nickname', 'rcomments.rating', 'text','users.rating as urate','ranks.name as rname', 'rcomments.created_at', 'avatar')
+                ->select('users.name', 'users.surname', 'creatorid', 'rcomments.id', 'users.nickname', 'rcomments.rating', 'text', 'users.rating as urate', 'ranks.name as rname', 'rcomments.created_at', 'avatar')
                 ->where('routeid', $id)
                 ->latest()
                 ->get();

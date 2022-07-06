@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +88,7 @@ class UpdateUserController extends Controller
 
     }
 
+    //Метод получения данных для страницыы настроек
     public function GetSettingsPage()
     {
         $user = $this->GetUserFields();
@@ -109,6 +109,7 @@ class UpdateUserController extends Controller
         return redirect(route('login'));
     }
 
+    //Метод для проверки никнейма на уникальность
     public function CheckNickname($nickname)
     {
         $nicknames = DB::table('users')

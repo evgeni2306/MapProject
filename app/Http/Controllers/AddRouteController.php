@@ -70,6 +70,8 @@ class AddRouteController extends Controller
             return redirect(\route('map'));
     }
 
+
+    //Метод используется в роутах
     public function Redirect()
     {
         //Проверка на нахождение в маршруте более, чем 1 точки
