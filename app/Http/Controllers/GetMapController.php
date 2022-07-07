@@ -72,7 +72,7 @@ class GetMapController extends Controller
             $Route->rating = [$Route->rating, $count];
         }
 
-        // Определение иконки сложности у маршрутов
+        // Определение иконки сложности у маршрутов и подстановка часов для вывода на карту
         foreach ($Routes as $route) {
             $route->icon = [$route->icon, 2];
             if ($route->difficult == "Сложно") {
@@ -84,7 +84,11 @@ class GetMapController extends Controller
             if ($route->difficult == "Легко") {
                 $route->icon[1] = "greenroute";
             }
+            if (is_numeric((float)$route->time) and (float)$route->time != 0) {
+                $route->time = $route->time . "Ч";
+            }
         }
+
 
         if (Auth::check()) {
             if (!isset($_SESSION['User'])) {
@@ -96,7 +100,7 @@ class GetMapController extends Controller
     }
 
 
-    //Получение объектов, где статус != "Не работает"
+    //Получение объектов, где статус "работает" и "под вопросом"
     public function GetWorkingObjects($type)
     {
         if ($type == "points") {

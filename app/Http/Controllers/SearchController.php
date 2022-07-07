@@ -147,6 +147,7 @@ class SearchController extends Controller
         }
 
         $getcities = $this->GetCityArr();
+        session()->flashInput($request->input());
         return view('search', ['city' => $getcities,'results'=>$results]);
     }
 
@@ -154,7 +155,10 @@ class SearchController extends Controller
     public function GetCityArr()
     {
         $cities = DB::table('routes')
-            ->select('city')->distinct()->get();
+            ->select('city')
+            ->where('city','!=','Не определен')
+            ->distinct()
+            ->get();
         return $cities;
     }
 }
