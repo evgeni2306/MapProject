@@ -181,7 +181,7 @@ body._lock {
 input,
 select {
     font-family: "GolosTextRegular", sans-serif;
-    min-height: 48px;
+    height: 48px;
     width: 100%;
     background: #fff;
     border: 1px solid #f4f7fc;
@@ -224,7 +224,7 @@ button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin: 4px auto 0px auto;
+    margin: 4px auto 12px auto;
 }
 .add-photo label:hover {
     cursor: pointer;
@@ -242,7 +242,7 @@ button {
 }
 .edit-point__warning {
     line-height: 140%;
-    margin: 16px 0px 0px 0px;
+    margin: 0px 0px 12px 0px;
     color: #8c8c95;
 }
 .edit-buttons__mobile {
@@ -258,6 +258,25 @@ button {
     top: 2%;
     right: 2%;
     cursor: pointer;
+}
+.error-block {
+    color: #ff5732;
+    padding: 11px;
+    background: #ffeae6;
+    border: 1px solid #ffe7e1;
+    border-radius: 7px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 121%;
+}
+.error-block img {
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.hide {
+    display: none;
 }
 @media (min-width: 1950px) {
     .container {

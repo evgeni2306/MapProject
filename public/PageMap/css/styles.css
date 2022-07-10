@@ -142,7 +142,8 @@ button {
     font-family: inherit;
     font-size: inherit;
 }
-.form-photos__add {
+.form-photos__add,
+.show-route {
     background: #27ae60;
     border: 1px solid #27ae60;
     border-radius: 7px;

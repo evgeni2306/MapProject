@@ -20,6 +20,7 @@
                         <a href="#" class="user-menu__link" tabindex="1">Александр Иванов</a><span class="menu__arrow"></span>
                         <ul class="sub-menu__list">
                             <li><a href="{{route('profile')}}" class="sub-menu__link"><img src="/PageMap/img/user/01.svg" alt="">Мой профиль</a></li>
+                            <li><a href="{{route('search')}}" class="sub-menu__link"><img src="/PageMap/img/icons/search-icon.svg" alt="">Поиск</a></li>
                             <li><a href="{{route('settings')}}" class="sub-menu__link"><img src="/PageMap/img/user/02.svg" alt="">Настройки</a></li>
                             <li><a href="{{route('unauthorizedmap')}}" class="sub-menu__link"><img src="/PageMap/img/user/03.svg" alt="">Выйти</a></li>
                         </ul> 

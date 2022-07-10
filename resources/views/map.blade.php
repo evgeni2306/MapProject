@@ -104,6 +104,7 @@
                     '<p class="time__duration">Не указано</p>'+
                 '</div>'+
             '</div>'+
+            '<button type="button" class="show-route">Показать маршрут</button>' +
         '</div>').addTo(routes);
         /*--------------------------------------*/
         var popup = L.popup();

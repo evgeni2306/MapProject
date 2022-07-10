@@ -29,7 +29,10 @@
         <div class="forms__container">
           <div class="forms__city">
             <h4 class="sub-title">Город</h4>
-          <input type="text" placeholder="Введите город" name="city">
+            <select name="city">
+              <option value="" disabled selected style="display:none;">Выберите город</option>
+              <option value=""></option>
+            </select>
           </div>
           <div class="forms__complexity">
             <h4 class="sub-title">Сложность</h4>
@@ -54,11 +57,11 @@
             <div class="forms__length-wrapper">
               <div class="length__from">
                 <span class="length__from-text">От</span>
-                <input type="number" name="length__from">
+                <input type="number" name="length__from" step="any" min="0">
               </div>
               <div class="length__to">
                 <span class="length__to-text">До</span>
-                <input type="number" name="length__to">
+                <input type="number" name="length__to" step="any" min="0">
               </div>
             </div> 
           </div>
@@ -67,17 +70,18 @@
             <div class="forms__time-wrapper">
               <div class="time__from">
                 <span class="time__from-text">От</span>
-                <input type="number" name="time__from">
+                <input type="number" name="time__from" step="any" min="0">
               </div>
               <div class="time__to">
                 <span class="time__to-text">До</span>
-                <input type="number" name="time__to">
+                <input type="number" name="time__to" step="any" min="0">
               </div>
             </div>
           </div>
           
         </div>
-        <input type="submit" class="search-button" value ="Найти">
+        <input type="submit" class="search-button" value ="Найти">            
+      </form>
 
         <h2 class="search-results__title">Результаты поиска</h2>
         <div class="search-results">
@@ -196,8 +200,7 @@
             </div>
         </div>
         </div>
-      </div>            
-    </form>
+      </div>
     </div>
     <!--------------FOOTER-------------------->
     @include('Components.footer')

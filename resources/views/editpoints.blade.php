@@ -47,10 +47,10 @@
                         <output id="list"></output>
                     </div>
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG</div>
-                    <!--<div class="edit-point__photos__mobile">
-                        <img  class="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
-                        <button class = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
-                    </div>-->
+                    <div class="error-block hide">
+                        <img src="PageRegistration/img/information.svg" alt="error">
+                        <p class="error-block__text">Выбранный вами файл слишком большой для загрузки</p>
+                    </div>
                     <div class="edit-buttons">
                         <a href="{{route('pointpersonal')}}" class="edit-point__cancel">Назад</a>
                         <input type="submit" class="edit-point__add" value ="Сохранить">

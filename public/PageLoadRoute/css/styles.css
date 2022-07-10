@@ -1,3 +1,38 @@
 .edit-buttons {
     display: flex;
 }
+.forms__length-wrapper,
+.forms__time-wrapper {
+    display: flex;
+    border: 1px solid #d3d5da;
+    border-radius: 7px;
+    padding: 9px 16px;
+    margin-bottom: 24px;
+}
+.length__from,
+.time__from {
+    margin-right: 20px;
+}
+.length__from,
+.length__to,
+.time__from,
+.time__to {
+    display: flex;
+    align-items: baseline;
+}
+.length__from input,
+.length__to input,
+.time__from input,
+.time__to input {
+    height: 30px;
+    margin-bottom: 0;
+}
+.length__from-text,
+.length__to-text,
+.time__from-text,
+.time__to-text {
+    font-size: 14px;
+    line-height: 121%;
+    color: #535353;
+    margin-right: 8px;
+}
