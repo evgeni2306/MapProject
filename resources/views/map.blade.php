@@ -108,11 +108,11 @@
             '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon[1]}}.svg" alt="middle">'+
             '<div class="length">'+
             '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">'+
-            '<p class="length__distance">{{$route->distance}}Км</p>'+
+            '<p class="length__distance">{{$route->distance}} Км</p>'+
             '</div>'+
             '<div class="time">'+
             '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">'+
-            '<p class="time__duration">{{$route->time}}</p>'+
+            '<p class="time__duration">{{$route->time}} Ч</p>'+
             '</div>'+
             '</div>'+
             '</div>').addTo({{$route->type}});

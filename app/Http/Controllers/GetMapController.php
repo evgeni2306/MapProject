@@ -85,7 +85,7 @@ class GetMapController extends Controller
                 $route->icon[1] = "greenroute";
             }
             if (is_numeric((float)$route->time) and (float)$route->time != 0) {
-                $route->time = $route->time . "Ч";
+                $route->time = $route->time;
             }
         }
 

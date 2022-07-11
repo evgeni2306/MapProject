@@ -133,7 +133,7 @@ class SearchController extends Controller
             $count = $this->GetObjectCommentsCount("route", $res->id);
             $res->rating =  [$Route->rating, $count];
             if (is_numeric((float)$res->time) and (float)$res->time != 0) {
-                $res->time = $res->time."Ч";
+                $res->time = $res->time." Ч";
             }
             if ($res->difficult == "Сложно") {
                 $res->icon = "redroute";

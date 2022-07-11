@@ -71,11 +71,11 @@
                 </div>
                 <div class="length">
                     <div class="length__title">Протяженность</div>
-                    <img src="/PageRoutePersonal/img/icons/road.svg" alt="road"><p class="length__distance">{{$_SESSION['CurrentRoute']->distance}}Км</p>
+                    <img src="/PageRoutePersonal/img/icons/road.svg" alt="road"><p class="length__distance">{{$_SESSION['CurrentRoute']->distance}} Км</p>
                 </div>
                 <div class="time">
                     <div class="time__title">Время прохождения</div>
-                    <img src="/PageRoutePersonal/img/icons/time.svg" alt="time"><p class="time__duration">{{$_SESSION['CurrentRoute']->time}}</p>
+                    <img src="/PageRoutePersonal/img/icons/time.svg" alt="time"><p class="time__duration">{{$_SESSION['CurrentRoute']->time}} Ч</p>
                 </div>
             </div>
         </div>
