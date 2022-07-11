@@ -102,7 +102,7 @@
             '<span class="star-rating__feedback">({{$route->rating[1]}})</span>'+
             '</div>'+
             '</div>'+
-            '<button style="background-color:red" onclick="DrawRoute()" >Отобразить</button>'+
+            // '<button style="background-color:red" onclick="DrawRoute()" >Отобразить</button>'+
             '<div class="marker-status status-broken">{{$route->status}}</div>' +
             '<div class="marker__characteristics">'+
             '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon[1]}}.svg" alt="middle">'+
@@ -115,6 +115,7 @@
             '<p class="time__duration">{{$route->time}} Ч</p>'+
             '</div>'+
             '</div>'+
+            '<button type="button" class="show-route" onclick="DrawRoute()" >Показать маршрут</button>' +
             '</div>').addTo({{$route->type}});
         <?}?>
 

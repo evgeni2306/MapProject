@@ -46,10 +46,10 @@
                             <option value="CSV">CSV</option>
                         </select>
                         @if ($errors->any())
-                        <div class="error-block  ">
-                            <img src="PageRegistration/img/information.svg" alt="">
-                            <p class="error-block__text">{{$errors->first()}}</p>
-                        </div>
+                            <div class="error-block hide">
+                                <img src="PageRegistration/img/information.svg" alt="error">
+                                <p class="error-block__text">{{$errors->first()}}</p>
+                            </div>
                         @endif
                         <input type="file" id="files" name="file">
                         <label for="files"><img src="/PageLoadRoute/img/download.svg">Загрузить файл</label>

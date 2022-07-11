@@ -43,7 +43,7 @@ body._lock {
 @font-face {
     font-family: "GolosTextRegular";
     src: url("../fonts/GolosTextRegular.woff") format("woff"),
-        url("../fonts/GolosTextRegular.ttf") format("truetype");
+    url("../fonts/GolosTextRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: 400;
 }
@@ -51,7 +51,7 @@ body._lock {
 @font-face {
     font-family: "GolosTextMedium";
     src: url("../fonts/GolosTextMedium.woff") format("woff"),
-        url("../fonts/GolosTextMedium.ttf") format("truetype");
+    url("../fonts/GolosTextMedium.ttf") format("truetype");
     font-style: normal;
     font-weight: 500;
 }
@@ -59,7 +59,7 @@ body._lock {
 @font-face {
     font-family: "GolosTextDemiBold";
     src: url("../fonts/GolosText-DemiBold.woff") format("woff"),
-        url("../fonts/GolosText-DemiBold.ttf") format("truetype");
+    url("../fonts/GolosText-DemiBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 600;
 }
@@ -67,14 +67,14 @@ body._lock {
 @font-face {
     font-family: "GolosTextBold";
     src: url("../fonts/GolosTextBold.woff") format("woff"),
-        url("../fonts/GolosTextBold.ttf") format("truetype");
+    url("../fonts/GolosTextBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
 @font-face {
     font-family: "TTFirsNeue";
     src: url("../fonts/TTFirsNeue-DemiBold.woff") format("woff"),
-        url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+    url("../fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
     font-style: normal;
     font-weight: 700;
 }
@@ -129,6 +129,10 @@ body._lock {
 .forms__length-wrapper,
 .forms__time-wrapper {
     display: flex;
+    border: 1px solid #d3d5da;
+    border-radius: 7px;
+    padding: 9px 16px;
+    margin-bottom: 24px;
 }
 .length__from,
 .time__from {
@@ -140,6 +144,13 @@ body._lock {
 .time__to {
     display: flex;
     align-items: baseline;
+}
+.length__from input,
+.length__to input,
+.time__from input,
+.time__to input {
+    height: 30px;
+    margin-bottom: 0;
 }
 .length__from-text,
 .length__to-text,

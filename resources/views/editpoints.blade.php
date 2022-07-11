@@ -50,17 +50,14 @@
                     @csrf
 
                     <div class="edit-point__warning">Вы можете загрузить фото в формате JPG, JPEG, PNG и размером не более 4МБ</div>
-{{--                    @if(isset($fileSizeError))--}}
-{{--                    <div class="error-block  ">--}}
-{{--                    <img src="PageRegistration/img/information.svg" alt="">--}}
-{{--                    <p class="error-block__text">{{$fileSizeError}}</p>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
+                    @if(isset($fileSizeError))
+                    <div class="error-block ">
+                        <img src="PageRegistration/img/information.svg" alt="error">
+                        <p class="error-block__text">{{$fileSizeError}}</p>
+                    </div>
+                    @endif
 
-                    <!--<div class="edit-point__photos__mobile">
-                        <img  class="photo" style = 'width:100%' src ="/PageEditPoints/img/back.png">
-                        <button class = "crossbutton"><img src="/PageEditPoints/img/crossbutton.svg" alt=""></button>
-                    </div>-->
+
                     <div class="edit-buttons">
                         <a href="{{URL::previous()}}" class="edit-point__cancel">Назад</a>
                         <input {{$fieldAccess->submit }} type="submit" class="edit-point__add" value ="Сохранить">
