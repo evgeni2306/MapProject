@@ -45,9 +45,6 @@ Route::middleware('auth')->group(function () {
 
     //---связанные с юзером---//
 
-    Route::get('/search', function () {
-        return view('search');
-    });
     Route::get('/search', [SearchController::class, 'GetSearchPage'])->name('getsearch');
     Route::post('/search', [SearchController::class, 'Search'])->name('search');
     Route::get('/edit', [UpdateUserController::class, 'GetSettingsPage'])->name('edit');
@@ -65,10 +62,6 @@ Route::middleware('auth')->group(function () {
         return view('loadroute');
     })->name('loadroute');
     Route::post('/loadroute', [UploadRouteController::class, 'UploadRoute'])->name('loadroute');
-
-//    Route::get('/editroute', function () {
-//        return view('editroutes');
-//    })->name('editroute');
 
     Route::get('/editroute={idd}', [UpdateRouteController::class, 'GetUpdateRoute'])->name('GetUpdateRoute');
     Route::post('/editroute={idd}', [UpdateRouteController::class, 'UpdateRoute'])->name('UpdateRoute');
@@ -91,31 +84,32 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::middleware('guest')->group(function () {
 
 //Роуты для неавторизованных
-Route::get('/registration', function () {
-    if (Auth::check()) {
-        return redirect('/map');
-    }
-    return view('registration');
+    Route::get('/registration', function () {
+        if (Auth::check()) {
+            return redirect('/map');
+        }
+        return view('registration');
 
-})->name('registration');
-Route::post('/registration', [RegisterController::class, 'save'])->name('registration');
+    })->name('registration');
+    Route::post('/registration', [RegisterController::class, 'save'])->name('registration');
 
-Route::get('/login', function () {
-    if (Auth::check()) {
-        return redirect('/map');
-    }
-    return view('login');
-})->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/login', function () {
+        if (Auth::check()) {
+            return redirect('/map');
+        }
+        return view('login');
+    })->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
 
 
-Route::get('auth/google', [SocialAuthController::class, 'googleredirect'])->name('google');
-Route::get('auth/google/callback', [SocialAuthController::class, 'loginwithgoogle']);
-Route::get('auth/vkontakte', [SocialAuthController::class, 'vkontakteredirect'])->name('vkontakte');
-Route::get('auth/vkontakte/callback', [SocialAuthController::class, 'loginwithvkontakte']);
-
+    Route::get('auth/google', [SocialAuthController::class, 'googleredirect'])->name('google');
+    Route::get('auth/google/callback', [SocialAuthController::class, 'loginwithgoogle']);
+    Route::get('auth/vkontakte', [SocialAuthController::class, 'vkontakteredirect'])->name('vkontakte');
+    Route::get('auth/vkontakte/callback', [SocialAuthController::class, 'loginwithvkontakte']);
+});
 
 //Роуты для всех юзеров
 Route::get('/profile={idd}', [GetProfileController::class, 'GetProfile'])->name('profile');
