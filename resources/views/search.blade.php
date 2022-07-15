@@ -80,7 +80,10 @@
           </div>
           
         </div>
-        <input type="submit" class="search-button" value ="Найти">            
+        <div class="search-buttons">
+          <input type="reset" class="reset-button" value ="Сбросить фильтры">
+          <input type="submit" class="search-button" value ="Найти маршрут">
+        </div>  
       </form>
 
         <h2 class="search-results__title">Результаты поиска</h2>
