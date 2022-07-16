@@ -83,8 +83,12 @@
           </div>
 
         </div>
-        <input type="submit" class="search-button" value ="Найти">
-          <input type="button" class="search-button" value ="Сброс" onclick="ResetFields()">
+          <div class="search-buttons">
+              <input type="button" class="reset-button" value ="Сбросить фильтры" onclick="ResetFields()">
+              <input type="submit" class="search-button" value ="Найти маршрут">
+          </div>
+{{--          <input type="submit" class="search-button" value ="Найти">--}}
+{{--          <input type="button" class="search-button" value ="Сброс" onclick="ResetFields()">--}}
 
           @if(isset($results))
         <h2 class="search-results__title">Результаты поиска</h2>
@@ -105,7 +109,7 @@
               <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$res->icon}}.svg" alt="middle">
               <div class="length">
                 <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">{{$res->distance}} Км</p>
+                <p class="length__distance">{{$res->distance}}</p>
               </div>
               <div class="time">
                 <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">

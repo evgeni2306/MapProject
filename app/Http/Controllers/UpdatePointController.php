@@ -30,13 +30,13 @@ class UpdatePointController extends Controller
 
             //---Проверка на размер загружаемой фотки---
 
-//            if (isset($validateFields['photo'])) {
-//                if (filesize($validateFields['photo']) > 4928307) {
-//                    $fileSizeError = "Выбранный вами файл слишком большой для загрузки";
-//                    $fieldAccess = $this->EditableFields();
-//                    return view('editpoints', [ 'fileSizeError' => $fileSizeError,'fieldAccess' => $fieldAccess]);
-//                }
-//            }
+            if (isset($validateFields['photo'])) {
+                if (filesize($validateFields['photo']) > 4928307) {
+                    $fileSizeError = "Выбранный вами файл слишком большой для загрузки";
+                    $fieldAccess = $this->EditableFields();
+                    return view('editpoints', [ 'fileSizeError' => $fileSizeError,'fieldAccess' => $fieldAccess]);
+                }
+            }
 
             //-------------------------------------------
 
