@@ -74,7 +74,6 @@ class UploadRouteController extends Controller
     public function XMLparse($path, $rroute)
     {
         $xml = new SimpleXMLElement(file_get_contents(storage_path('app\\' . $path)));
-        dd($xml);
         $count = Count($xml->trk->trkseg->trkpt);
         $Route = Route::create($rroute);
         $arr = [];
