@@ -112,7 +112,7 @@
             '</div>'+
             '<div class="time">'+
             '<img class="marker__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">'+
-            '<p class="time__duration">{{$route->time}} Ч</p>'+
+            '<p class="time__duration">{{$route->time}} </p>'+
             '</div>'+
             '</div>'+
             '<button type="button" class="show-route" onclick="DrawRoute()" >Показать маршрут</button>' +

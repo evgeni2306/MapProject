@@ -19,7 +19,6 @@
         <h1 class="edit-point__title">Редактирование маршрута</h1>
         <div class="content__container">
             <div class="edit-point__forms">
-{{--                {{dd($_SESSION['CurrentEditRoute'])}}--}}
                 <form method="post" action ="{{route('UpdateRoute',$_SESSION['CurrentEditRoute']->id)}}" id="edit-form" enctype="multipart/form-data">
                     <h4 class="sub-title">Название<span class="required-form">*</span></h4>
                     <input {{$fieldAccess->name}}  type="text"  placeholder="Введите название" name="name" required value = "{{$_SESSION['CurrentEditRoute']->name}}">

@@ -93,7 +93,7 @@ class UploadRouteController extends Controller
                 set_time_limit(20);
             }
             $distance = explode('.', $distance);
-            $dist = $distance[0] . '.' . substr($distance[1], 0, 2) . 'Км';
+            $dist = $distance[0] . '.' . substr($distance[1], 0, 2);
             Route::where('id', $Route->id)->update(['distance' => $dist]);
         }
         $this->SetCity($xml->trk->trkseg->trkpt[0]['lat'], $xml->trk->trkseg->trkpt[0]['lon'], $Route);
@@ -132,7 +132,7 @@ class UploadRouteController extends Controller
                 set_time_limit(20);
             }
             $distance = explode('.', $distance);
-            $dist = $distance[0] . '.' . substr($distance[1], 0, 2) . 'Км';
+            $dist = $distance[0] . '.' . substr($distance[1], 0, 2);
             Route::where('id', $Route->id)->update(['distance' => $dist]);
         }
 
