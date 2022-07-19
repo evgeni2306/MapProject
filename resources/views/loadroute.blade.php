@@ -46,7 +46,7 @@
                             <option value="CSV">CSV</option>
                         </select>
                         @if ($errors->any())
-                            <div class="error-block hide">
+                            <div class="error-block ">
                                 <img src="PageRegistration/img/information.svg" alt="error">
                                 <p class="error-block__text">{{$errors->first()}}</p>
                             </div>

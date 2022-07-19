@@ -27,7 +27,7 @@ class UploadRouteController extends Controller
             'difficult' => ['required', 'string', 'ends_with:greenroute,yellowroute,redroute'],
             'distance' => ['nullable', 'string'],
             'time' => ['nullable', 'string'],
-            'file' => ['required', 'file', 'mimes:csv,txt,xml'],
+            'file' => ['required', 'file'],
             'type' => ['required', 'string', 'ends_with:CSV,GPX']
 
         ]);
@@ -56,7 +56,7 @@ class UploadRouteController extends Controller
 
         $path = Storage::putFile('routes', $request->file('file'));
         $type = explode('.', $path);
-        if ($validateFields['type'] == "CSV" and $type[1] = "txt") {
+        if ($validateFields['type'] == "CSV" and $type[1] == "txt") {
             $this->CSVparse($path, $rroute);
         } else
             if ($validateFields['type'] == "GPX" and $type[1] == "xml") {

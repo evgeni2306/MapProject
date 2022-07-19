@@ -30,7 +30,7 @@
         </div>
         @csrf
         @if ($errors->any())
-        <div class="error-block hide">
+        <div class="error-block hide ">
             <img src="PageRegistration/img/information.svg" alt="">
             <p class="error-block__text">{{$errors->first()}}</p>
         </div>
