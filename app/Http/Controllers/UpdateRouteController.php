@@ -25,7 +25,10 @@ class UpdateRouteController extends Controller
                 'distance' => ['nullable', 'string'],
                 'time' => ['nullable', 'string'],
             ]);
-
+            if($validateFields['time'] == null){
+                $validateFields['time'] = "Не указано";
+            }
+            
             //----Обновление маршрута----
             $this->UpdateRouteDb($validateFields['name'], $validateFields['description'],
                 $validateFields['shortdescription'], $validateFields['difficult'], $validateFields['status'],

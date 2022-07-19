@@ -109,7 +109,7 @@
               <img class="route__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$res->icon}}.svg" alt="middle">
               <div class="length">
                 <img class="route__characteristic" src="/PageRoutePersonal/img/icons/road.svg" alt="road">
-                <p class="length__distance">{{$res->distance}}</p>
+                <p class="length__distance">{{$res->distance}} Км</p>
               </div>
               <div class="time">
                 <img class="route__characteristic" src="/PageRoutePersonal/img/icons/time.svg" alt="time">
