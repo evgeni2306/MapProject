@@ -134,6 +134,7 @@ body._lock {
 }
 .user__grade img {
     margin-right: 12px;
+    width:70px;
     vertical-align: middle;
 }
 .user__info {

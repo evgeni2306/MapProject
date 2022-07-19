@@ -65,10 +65,10 @@
                     </select>
                     @csrf
                     <div class="buttons">
-                        <input type="reset" class="settings__cancel" value ="Отмена">
+                        <input type="button" onclick="backButton()" class="settings__cancel" value ="Назад">
                         <input type="submit" class="settings__save" value ="Сохранить">
                     </div>
-
+<!--                    --><?// dd(URL::previous()) ?>
                 </div>
             </div>
         </form>
@@ -76,9 +76,13 @@
     <!--------------FOOTER-------------------->
 @include('Components.footer')
 <!--------------/FOOTER-------------------->
+
 </div>
 <script src="Script/menu.js"></script>
 <script>
+    function backButton(){
+        window.location.replace("{{URL::previous()}}");
+    }
     //-------Подстановка по умолчанию  значения полей с выбором------
     const select1 = document.getElementById('mapstyle').getElementsByTagName('option');
     for (let i = 1; i < select1.length; i++) {

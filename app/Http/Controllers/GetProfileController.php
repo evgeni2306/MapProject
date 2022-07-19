@@ -23,7 +23,7 @@ class GetProfileController extends Controller
             $user = DB::table('users')
                 ->where('users.id', $id)
                 ->join('ranks', 'ranks.id', '=', 'users.rank')
-                ->select('users.id', 'users.name', 'surname', 'users.rank', 'nickname', 'avatar', 'transport', 'rating', 'ranks.name as rname',
+                ->select('users.id', 'users.name','ranks.id  as rankid', 'surname', 'users.rank', 'nickname', 'avatar', 'transport', 'rating', 'ranks.name as rname',
                     'maxrating')
                 ->first();
             if ($user->nickname == null) {

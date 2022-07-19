@@ -87,11 +87,12 @@
               <input type="button" class="reset-button" value ="Сбросить фильтры" onclick="ResetFields()">
               <input type="submit" class="search-button" value ="Найти маршрут">
           </div>
-{{--          <input type="submit" class="search-button" value ="Найти">--}}
-{{--          <input type="button" class="search-button" value ="Сброс" onclick="ResetFields()">--}}
 
           @if(isset($results))
         <h2 class="search-results__title">Результаты поиска</h2>
+          @if(Count($results) == 0)
+          Результаты не найдены
+              @endif
         <div class="search-results">
 
         <?foreach($results as $res) { ?>

@@ -44,7 +44,7 @@
                     <div class="rating__title title">Рейтинг</div>
                     <div class="rating__points">Набрано очков: <span class="points">{{$user->rating}}</span></div>
                     <div class="rating__level">Уровень: <span>{{$user->rname}}</span></div>
-                    @if($_SESSION['User']->rankid !=4)
+                    @if($user->rankid !=4)
                     <div class="rating__nextlevel">
                         <div class="nextlevel">Следующий уровень: <span class="nextlevel__name">{{$nextrank}}</span></div>
                         <div class="points-received">
