@@ -91,7 +91,7 @@
           @if(isset($results))
         <h2 class="search-results__title">Результаты поиска</h2>
           @if(Count($results) == 0)
-          Результаты не найдены
+          Нечего не найдено
               @endif
         <div class="search-results">
 
