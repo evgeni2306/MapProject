@@ -53,7 +53,7 @@
         '</div>'+
         '</div>'+
         '<div class="marker__address">{{$point->address}}</div>' +
-        '<div class="marker-status status-unknown">Статус : {{$point->status}}</div>' +
+        '<div class="marker-status {{$point->status[1]}}">Статус : {{$point->status[0]}}</div>' +
         '<div class="marker__photo__container">'+
         '<img class="marker__photo" src="{{$point->photo}}" alt="object">'+
         '</div>'+
@@ -94,7 +94,7 @@
         '<span class="star-rating__feedback">({{$route->rating[1]}})</span>'+
         '</div>'+
         '</div>'+
-        '<div class="marker-status status-broken">{{$route->status}}</div>' +
+        '<div class="marker-status {{$route->status[1]}}">Статус : {{$route->status[0]}}</div>' +
         '<div class="marker__characteristics">'+
         '<img class="marker__characteristic complexity" src="/PageRoutePersonal/img/icons/{{$route->icon[1]}}.svg" alt="middle">'+
         '<div class="length">'+
