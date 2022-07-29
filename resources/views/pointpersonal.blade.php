@@ -221,10 +221,18 @@
 
         var socket = new Markers({iconUrl: '/PageMap/img/icons/socket.png'});
         var house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
-
+        var insocket = new Markers({iconUrl: '/PageMap/img/icons/socketinactive.svg'});
+        var inhouse = new Markers({iconUrl: '/PageMap/img/icons/houseinactive.svg'});
+        var geolocation = new Markers({iconUrl: '/PageMap/img/icons/locationIcon.svg'});
         L
         .marker([{{$_SESSION['CurrentPoint']->lat}}, {{$_SESSION['CurrentPoint']->lng}}], {icon: {{$_SESSION['CurrentPoint']->icon}}}).addTo(map);
-
+// ------- Определение местоположения на карте---------
+        map.locate({setView: false, maxZoom: 16});
+        function onLocationFound(e) {
+        L.marker(e.latlng,{icon: geolocation}).addTo(map)
+    }
+    map.on('locationfound', onLocationFound);
+    // ----------------------------------
 /*------------------EDIT-COMMENT---------------------*/
     let modal = document.querySelector('.modal');
     let editPopup = document.querySelector('.edit-popup');

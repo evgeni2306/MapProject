@@ -85,7 +85,6 @@
         mymap.locate({setView: true, maxZoom: 16});
         function onLocationFound(e) {
             L.marker(e.latlng,{icon: geolocation}).addTo(mymap)
-                .bindPopup("You are within " + radius + " meters from this point").openPopup();
         }
         mymap.on('locationfound', onLocationFound);
         // ----------------------------------
