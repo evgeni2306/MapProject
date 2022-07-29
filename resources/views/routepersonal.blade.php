@@ -227,6 +227,7 @@
         var house = new Markers({iconUrl: '/PageMap/img/icons/house.png'});
         var insocket = new Markers({iconUrl: '/PageMap/img/icons/socketinactive.svg'});
         var inhouse = new Markers({iconUrl: '/PageMap/img/icons/houseinactive.svg'});
+        var geolocation = new Markers({iconUrl: '/PageMap/img/icons/locationIcon.svg'});
         //-------------Вывод маршрутa на карту-----------------
         <?    foreach ($_SESSION['CurrentRoute']->rpoints as $rpoint){?>
 
@@ -256,6 +257,15 @@
 
     <? }?>
     //-------------------------------------------------------
+
+        // ------- Определение местоположения на карте---------
+        map.locate({setView: false, maxZoom: 16});
+        function onLocationFound(e) {
+        L.marker(e.latlng,{icon: geolocation}).addTo(map)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    }
+    map.on('locationfound', onLocationFound);
+    // ----------------------------------
         /*------------------EDIT-COMMENT---------------------*/
         let modal = document.querySelector('.modal');
         let editPopup = document.querySelector('.edit-popup');
