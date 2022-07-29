@@ -111,14 +111,15 @@
             reader.readAsDataURL(file);
         }
     }
-//отмена загруженной фотки, загруженная удаляется, возвращается старая
+    //отмена загруженной фотки, загруженная удаляется, возвращается старая
     document.getElementById("crossbutton").onclick = function(){
+        document.getElementById("crossbutton").style.display = "none";
         const preview = document.getElementById('photo');
         document.getElementById('files').value = null;//сброс файла в форме
         preview.src = oldway;//сброс картинки
     }
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
-    //-------------------------------------------------------------------------------------
+    /*-------------------------------*/
 
 </script>
 </body>
